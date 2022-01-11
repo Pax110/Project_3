@@ -4,14 +4,20 @@ import { config as _config } from "dotenv";
 import session from "express-session";
 import cors from "cors";
 import connectDB from "./config/db.js";
-import connectMongo from "connect-mongo";
+import MongoStore from "connect-mongo";
 
 //Load config
 _config({ path: "./config/config.env" });
 
 const app = express();
 const PORT = process.env.PORT || 5001;
-const MongoStore = connectMongo(session);
+// const session = require('express-session');
+// const MongoStore = require('connect-mongo')
+
+app.use("*", (req, res, next) => {
+  console.log(req.originalUrl);
+  next();
+});
 
 //connect to database
 connectDB();
@@ -27,7 +33,7 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
   })
 );
 
