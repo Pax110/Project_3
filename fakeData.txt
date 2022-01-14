@@ -7,21 +7,25 @@ Database model:
 	-Phone number
 	-Email
 	
-2)Kitchen
-
-	-Name
-	-Subtitle
-	-Pictures of the dishes and the restaurant
-	-customer reviews
-	-Menu
-		-Categories 
-			-items 
-				-item price
-	-Address
-		-Prep area number
-	-Phone Number 
-	-Email
-	-kitchen type (homebased/commissary) 
+2)Kitchen 
+{
+	-Type: (Home / Shared) 
+	-Name:
+	-Description: (short description of business ie: "delivering delicious pies to you")
+	-foodCategory: (ie: Desserts, Japanese, etc)
+	-Menu: {
+		-menuCategory: {(Appetizers, Mains, Desserts)} 
+			-Item: {(Name & Price)}
+	} 
+	-Address: {
+		-Prep Area: (numeric value if required or null)
+	}
+	-phoneNumber:
+	-Email:
+}
+	Add later:
+		-Pictures of the dishes and the restaurant (need photo uploader)
+		-Customer reviews (need to determine how this will look)
 	
 	
 3)Driver
