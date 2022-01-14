@@ -9,11 +9,14 @@ const restaurants = [
       mains: { name: "Potato Bacon", price: "10.99" },
       desserts: { name: "Chocolate Chip Cookie", price: "0.50" },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Susan", lastName: "Souperton" },
       address: "123 Soup Lane",
       city: "Calgary",
       province: "Alberta",
       prepArea: "",
+      phoneNumber: "403-111-1111",
+      email: "souplover99@gmail.com",
     },
   },
   {
@@ -31,11 +34,14 @@ const restaurants = [
         desserts: { name: "Figgy Pudding", price: "5.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Britney", lastName: "British" },
       address: "123 Queen Elizabeth Road",
       city: "Calgary",
       province: "Alberta",
       prepArea: "",
+      phoneNumber: "403-222-2222",
+      email: "fishnbrits@gmail.com",
     },
   },
   {
@@ -50,11 +56,14 @@ const restaurants = [
         desserts: { name: "Cinnamon Roll Muffin", price: "4.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Muffin", lastName: "Man" },
       address: "88 Drury Lane",
       city: "Calgary",
       province: "Alberta",
       prepArea: "",
+      phoneNumber: "403-333-3333",
+      email: "machomuffin@gmail.com",
     },
   },
   {
@@ -69,11 +78,14 @@ const restaurants = [
         desserts: { name: "Donut Tower", price: "40.00" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Matthew", lastName: "McConaughey" },
       address: "4321 Lost Lane",
       city: "Calgary",
       province: "Alberta",
       prepArea: "",
+      phoneNumber: "403-444-4444",
+      email: "glazed@gmail.com",
     },
   },
   {
@@ -88,11 +100,14 @@ const restaurants = [
         desserts: { name: "Fudge", price: "0.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Phyllis", lastName: "Baker" },
       address: "777 Calorie Court",
       city: "Calgary",
       province: "Alberta",
       prepArea: "",
+      phoneNumber: "403-555-5555",
+      email: "bakemeacake@gmail.com",
     },
   },
   {
@@ -107,11 +122,14 @@ const restaurants = [
         desserts: { name: "Cinnamon Laddoo", price: "1.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Chen", lastName: "Singh" },
       address: "1 Commissary Street",
       city: "Calgary",
       province: "Alberta",
       prepArea: "01",
+      phoneNumber: "403-666-6666",
+      email: "chencooks@gmail.com",
     },
   },
   {
@@ -126,11 +144,14 @@ const restaurants = [
         desserts: { name: "Mochi", price: "0.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Fred", lastName: "Noodleton" },
       address: "1 Commissary Street",
       city: "Calgary",
       province: "Alberta",
       prepArea: "02",
+      phoneNumber: "403-777-7777",
+      email: "sendnoods@gmail.com",
     },
   },
   {
@@ -145,11 +166,14 @@ const restaurants = [
         desserts: { name: "Keto Ball", price: "7.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Bob", lastName: "Johnson" },
       address: "1 Commissary Street",
       city: "Calgary",
       province: "Alberta",
       prepArea: "03",
+      phoneNumber: "403-888-8888",
+      email: "boblovesketo@gmail.com",
     },
   },
   {
@@ -164,11 +188,14 @@ const restaurants = [
         desserts: { name: "Caramel Sausage", price: "0.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Julie", lastName: "Wild" },
       address: "1 Commissary Street",
       city: "Calgary",
       province: "Alberta",
       prepArea: "04",
+      phoneNumber: "403-999-9999",
+      email: "24kgolden@gmail.com",
     },
   },
   {
@@ -183,11 +210,14 @@ const restaurants = [
         desserts: { name: "Cookies n Ice Cream", price: "8.99" },
       },
     },
-    address: {
+    contact: {
+      owner: { firstName: "Cookie", lastName: "Monster" },
       address: "1 Commissary Street",
       city: "Calgary",
       province: "Alberta",
       prepArea: "05",
+      phoneNumber: "403-111-2222",
+      email: "cisforcookie@gmail.com",
     },
   },
 ];
