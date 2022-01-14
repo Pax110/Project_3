@@ -1,0 +1,37 @@
+Database model: 
+
+1)Customer
+	-First Name
+	-Last Name
+	-Address
+	-Phone number
+	-Email
+	
+2)Kitchen
+
+	-Name
+	-Subtitle
+	-Pictures of the dishes and the restaurant
+	-customer reviews
+	-Menu
+		-Categories 
+			-items 
+				-item price
+	-Address
+		-Prep area number
+	-Phone Number 
+	-Email
+	-kitchen type (homebased/commissary) 
+	
+	
+3)Driver
+	-First Name
+	-Last Name
+	-Address
+	-Phone number
+	-Email
+	-Driver's License (yes/no)
+		- valid registration 
+		- valid insurance 
+	-Cell phone GPS Location 
+	-Availibility
