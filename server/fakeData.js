@@ -1,4 +1,4 @@
-const restaurants = [
+const fakeData = [
   {
     type: "Home",
     name: "Sip a Soup",

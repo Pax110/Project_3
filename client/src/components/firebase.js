@@ -1,5 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import { getFirestore } from "firebase/firestore";
+
 const config = {
   apiKey: "AIzaSyDa0LD1FY_-s8G9Sq__4jyQaHnCtwVs4O4",
   authDomain: "project-c1c8c.firebaseapp.com",
@@ -12,6 +14,8 @@ const config = {
 
 console.log(`config is : `, config);
 const app = firebase.initializeApp(config);
+
+export const db = getFirestore(app);
 
 export const auth = app.auth();
 export default app;
