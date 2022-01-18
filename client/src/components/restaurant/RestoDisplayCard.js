@@ -13,6 +13,7 @@ import { BuildingShop } from "@styled-icons/fluentui-system-filled";
 
 
 
+
 const RestoDisplayCard = () => {
   const [restaurants, setRestaurants] = useState([]);
   const restaurantsCollectionRef = collection(db, "restaurants");
@@ -49,6 +50,7 @@ const RestoDisplayCard = () => {
                     aria-label={`info about ${restaurant.name}`}
                   >
                     <HomeIcon/>
+                    <KitchenIcon/>
                   </IconButton>
                 }
               />
