@@ -3,5 +3,5 @@ import styled from 'styled-components';
 
 export const HomeIcon = styled(HomeHeart)`
 color: red;
-width: 400;
-height: 400;`
+width: 25px;
+height: 25px;`

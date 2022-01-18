@@ -3,5 +3,5 @@ import styled from 'styled-components';
 
 export const KitchenIcon = styled(BuildingShop)`
 color: black;
-width: 400;
-height: 400;`
+width: 25px;
+height: 25px;`

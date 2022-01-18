@@ -11,7 +11,6 @@ function App() {
       <LandingImage />
       <RestoDisplayCard />
       <Footer />
-      <HomeHeart/>
       
     </div>
   );
