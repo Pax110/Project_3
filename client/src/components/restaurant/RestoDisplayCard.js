@@ -50,7 +50,7 @@ const RestoDisplayCard = () => {
                     aria-label={`info about ${restaurant.name}`}
                   >
                     <HomeIcon/>
-                    <KitchenIcon/>
+                    {/* <KitchenIcon/> */}
                   </IconButton>
                 }
               />
