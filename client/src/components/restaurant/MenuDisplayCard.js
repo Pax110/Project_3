@@ -10,7 +10,7 @@ import { CardActionArea } from '@mui/material';
 
 
 const MenuDisplayCard = () => {
-    const [restaurants, setResturants] = useState([]);
+    const [restaurants, setRestaurants] = useState([]);
     const restaurantsCollectionRef = collection(db, "restaurants");
 
     useEffect(() => {
