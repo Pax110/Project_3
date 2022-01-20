@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,19 +13,42 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import "./navbar.css";
+import {auth} from '../firebase'
+import {onAuthStateChanged } from "firebase/auth";
 
 
 
-const pages = ["Placeholder", "Placeholder", "Placeholder"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+
+
+
+const pages = ["Order History"];
+const settings = ["Profile", "Order History", "Need Help?" , "Logout"];
 
 
 const Navbar = () => {
-
   
+  const [user,setUser] = useState()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  onAuthStateChanged(auth, (currentUser) => {
+  
+    if(currentUser){
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = currentUser.uid;
+      console.log("navbar uid",uid)
+      setUser(currentUser)
+      // ...
+    }else{
+      setUser(null)
+    }
+    
+  });
+
+
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -107,7 +131,7 @@ const Navbar = () => {
           >
             CULINARY COLLECTIVE
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {user && <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -117,9 +141,9 @@ const Navbar = () => {
                 {page}
               </Button>
             ))}
-          </Box>
-            
-           <Box sx={{ flexGrow: 0 }}>
+          </Box>}
+          
+           {user && <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Michelle B" src="/static/images/avatar/2.jpg" />
@@ -147,9 +171,10 @@ const Navbar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> }
         </Toolbar>
       </Container>
+     
     </AppBar>
   );
 };
