@@ -14,8 +14,10 @@ import MenuItem from "@mui/material/MenuItem";
 import "./navbar.css";
 
 
+
 const pages = ["Placeholder", "Placeholder", "Placeholder"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
 
 const Navbar = () => {
 
