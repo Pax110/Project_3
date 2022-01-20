@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <LandingImage />
-      <RestoDisplayCard />
-      <Footer />
+      <LandingImages/>
+      <RestoDisplayCard/>
+      <Footer/>
       <MenuDisplayCard/>
       <MenuDisplayCardTwo/>
     </div>
