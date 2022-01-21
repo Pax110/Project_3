@@ -6,11 +6,13 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { CardActionArea } from '@mui/material';
-import SuccessAlert from './Alerts';
+import Toast from './Toast';
+
 
 
 const MenuDisplayCardTwo = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [showToast, setShowToast] = useState(false);
   const { initializeApp } = require('firebase/app');
   const { getFirestore, collection, getDocs } = require('firebase/firestore');
 
@@ -29,9 +31,6 @@ const MenuDisplayCardTwo = () => {
     <ImageList sx={{ width: 500, height: 450 }}>
       {itemData.map((item) => (
         <CardActionArea>
-          
-    
-
         <ImageListItem key={item.img}>
           <img
             src={`${item.img}?w=248&fit=crop&auto=format`}
@@ -39,12 +38,15 @@ const MenuDisplayCardTwo = () => {
             alt={item.title}
             loading="lazy"
           />
-          <button onclick="myFunction()">Add to Cart</button>
-          <script>
-          {
-          alert("Sucessfully Added To Cart")
-          }
-          </script>
+          <button onClick={()=>{
+            setShowToast(true)
+            setTimeout(()=>{
+            setShowToast(false)
+            },1500)
+          }}>Add to Cart</button>
+          {showToast && <Toast message="Sucessfully Added"/> }
+         
+  
           <ImageListItemBar
             title={item.title}
             subtitle={<span>by: {item.author}</span>}
