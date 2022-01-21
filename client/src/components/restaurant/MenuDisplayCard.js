@@ -29,8 +29,8 @@ const MenuDisplayCardTwo = () => {
     <ImageList sx={{ width: 500, height: 450 }}>
       {itemData.map((item) => (
         <CardActionArea>
-          <SuccessAlert> </SuccessAlert>
-          {/* OnClick={!isStatic ? () => MenuItemSelected() : null} */}
+          
+    
 
         <ImageListItem key={item.img}>
           <img
@@ -39,6 +39,12 @@ const MenuDisplayCardTwo = () => {
             alt={item.title}
             loading="lazy"
           />
+          <button onclick="myFunction()">Add to Cart</button>
+          <script>
+          {
+          alert("Sucessfully Added To Cart")
+          }
+          </script>
           <ImageListItemBar
             title={item.title}
             subtitle={<span>by: {item.author}</span>}
