@@ -15,6 +15,8 @@ import MenuItem from "@mui/material/MenuItem";
 import "./navbar.css";
 import {auth} from '../firebase'
 import {onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router";
+import { useUserAuth } from "../context/UserAuthContext";
 
 
 
@@ -32,6 +34,10 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const navigate = useNavigate();
+  
+  
+
   onAuthStateChanged(auth, (currentUser) => {
   
     if(currentUser){
@@ -46,9 +52,15 @@ const Navbar = () => {
     }
     
   });
-
-
-  
+ 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -172,6 +184,12 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box> }
+         {user ?
+          <Button onClick={handleLogout}>Logout</Button>
+          :
+          <Button href="/signin">Signin</Button>
+
+        }
         </Toolbar>
       </Container>
      

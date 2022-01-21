@@ -11,7 +11,8 @@ import Signup from "./components/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 import UpdateProfile from "./components/UpdateProfile.js";
-
+import ForgotPassword from "./components/ForgotPassword.js";
+import RestoDisplayCard from "./components/restaurant/RestoDisplayCard"
 function App() {
   return (
     <Container >
@@ -30,15 +31,19 @@ function App() {
                 }
               />
               <Route path="/update-profile" element={<UpdateProfile />} />
+              <Route path="/signin" element={<Login />} />
 
               <Route path="/" element={<LandingImage />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+
               
             </Routes>
           </UserAuthContextProvider>
         </Col>
       </Row>
+      
       </Container>
       <Footer />
     </Container>
