@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "./context/UserAuthContext";
-
+import { createUserDocument } from "./firebase";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +15,8 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(email, password);
+      const {user} = await signUp(email, password);
+      await createUserDocument(user);
       navigate("/");
     } catch (err) {
       setError(err.message);
@@ -52,7 +53,7 @@ const Signup = () => {
         </Form>
       </div>
       <div className="p-4 box mt-3 text-center">
-        Already have an account? <Link to="/">Log In</Link>
+        Already have an account? <Link to="/signin">Log In</Link>
       </div>
     </>
   );
