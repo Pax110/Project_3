@@ -44,7 +44,7 @@ const Navbar = () => {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = currentUser.uid;
-      console.log("navbar uid",uid)
+      
       setUser(currentUser)
       // ...
     }else{

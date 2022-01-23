@@ -35,12 +35,7 @@ export function UserAuthContextProvider({ children }) {
   }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("Auth", currentuser);
-      console.log("currentUser email",currentuser.email)
-      console.log("curreuser name",currentuser.displayName)
-      console.log(currentuser.emailVerified)
-      console.log(currentuser.metadata)
-      console.log(currentuser.uid)
+      
       setUser(currentuser);
     });
 
@@ -59,6 +54,6 @@ export function UserAuthContextProvider({ children }) {
 }
 
 export function useUserAuth() {
-  console.log("useContext with userAuthContext",userAuthContext)
+  
   return useContext(userAuthContext);
 }
