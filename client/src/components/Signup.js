@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "./context/UserAuthContext";
+import { createUserDocument } from "./user";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Signup = () => {
     setError("");
     try {
       const {user} = await signUp(email, password);
-      
+      //await createUserDocument(user)
       navigate("/");
     } catch (err) {
       setError(err.message);
