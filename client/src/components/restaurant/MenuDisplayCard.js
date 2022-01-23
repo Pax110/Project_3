@@ -50,7 +50,7 @@ const MenuDisplayCardTwo = () => {
             <ImageListItemBar
               title={restaurant.menu.menu.appetizers.name}
               subtitle={
-                <span>price: {restaurant.menu.menu.appetizers.price}</span>
+                <span>price:{restaurant.menu.menu.appetizers.price}</span>
               }
               position="below"
             />
