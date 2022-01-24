@@ -23,7 +23,7 @@ const RestoDisplayCard = () => {
   }, []);
   console.log(restaurants);
   return (
-    <ImageList sx={{ width: 600, height: 450 }} cols={2}>
+    <ImageList cols={4}>
       {restaurants.map((restaurant) => (
         <ImageListItem key={restaurant.photoURL}>
           <img

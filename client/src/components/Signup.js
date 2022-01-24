@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "./context/UserAuthContext";
-
+import { createUserDocument } from "./user";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +15,12 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     try {
-      const {user} = await signUp(email, password);
+      const resp = await signUp(email, password);
+      
+      const user = resp.user;
+      
+      await createUserDocument(user);
+      
       
       navigate("/");
     } catch (err) {

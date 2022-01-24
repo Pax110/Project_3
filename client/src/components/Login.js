@@ -4,7 +4,7 @@ import { Form, Alert, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "./context/UserAuthContext";
-
+import { createUserDocument } from "./user";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +26,10 @@ const Login = () => {
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
     try {
-      await googleSignIn();
+      const resp = await googleSignIn();
+      const user = resp.user
+      await createUserDocument(user);
+
       navigate("/home");
     } catch (error) {
       console.log(error.message);

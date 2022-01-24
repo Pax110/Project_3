@@ -17,8 +17,8 @@ import {auth} from '../firebase'
 import {onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../context/UserAuthContext";
-
-
+import {Link} from 'react-router-dom'
+ 
 
 
 
@@ -158,7 +158,7 @@ const Navbar = () => {
            {user && <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Michelle B" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user.displayName} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -186,10 +186,15 @@ const Navbar = () => {
           </Box> }
          {user ?
           <Button onClick={handleLogout}>Logout</Button>
+          
+
           :
           <Button href="/signin">Signin</Button>
 
         }
+
+
+        {user && <Link to='/profile'>Profile</Link>}
         </Toolbar>
       </Container>
      

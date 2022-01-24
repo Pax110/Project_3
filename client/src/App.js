@@ -1,5 +1,4 @@
 
-import LandingImage from "./components/landingimage/LandingImage.js";
 import Navbar from "./components/navigation/Navbar.js";
 import Footer from "./components/footer/Footer.js";
 import { Container, Row, Col } from "react-bootstrap";
@@ -12,8 +11,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 import UpdateProfile from "./components/UpdateProfile.js";
 import ForgotPassword from "./components/ForgotPassword.js";
-import RestoDisplayCard from "./components/restaurant/RestoDisplayCard"
+
 import LandingPage from "./components/LandingPage.js";
+import Profile from "./components/Profile.js";
 function App() {
   return (
     <Container >
@@ -38,6 +38,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/home" element={<Home />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/profile" element={<Profile/>} />
               
               
 
