@@ -4,19 +4,16 @@ import Footer from "./components/footer/Footer.js";
 import RestoDisplayCard from "./components/restaurant/RestoDisplayCard.js";
 import MenuDisplayCard from "./components/restaurant/MenuDisplayCard.js";
 
-
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <LandingImage/>
-      <RestoDisplayCard/>
-      <Footer/>
-      <MenuDisplayCard/>
-      
+      <Navbar />
+      <LandingImage />
+      <RestoDisplayCard />
+      <Footer />
+      {/* <MenuDisplayCard /> */}
     </div>
   );
 }
 
 export default App;
-
