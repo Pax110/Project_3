@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Logo from "../icon/Logo.png";
 import { db } from "../firebase";
+import { useForm } from "react-hook-form";
 
 function Copyright(props) {
   return (
@@ -33,27 +34,12 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export const createBusinessDocument = async (restaurants) => {
-    //get a reference to the Firestore document
-    const docRef = firestore.doc(`/restaurants/${restaurants.id}`)
-    //create business object
-    const businessProfile = {
-        uid: restaurants.uid,
-        email: restaurants.email,
-        name: restaurants.name,
-        owner: {
-            firstName: "",
-            lastName: "",
-        }
-    //write to Cloud Firestore
-   // return docRef.set(businessProfile)
+export const createRestaurant = () => {
+  const { register, handleSubmit, reset } = useForm();
 
-    }
-}
-
-
-
-
+  const onSubmit = async (data) => {
+    console.log(data);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,8 +62,9 @@ export const createBusinessDocument = async (restaurants) => {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 3 }}
+            ref={register}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -154,4 +141,4 @@ export const createBusinessDocument = async (restaurants) => {
       </Container>
     </ThemeProvider>
   );
-}
+};
