@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "./context/UserAuthContext";
 import {Link} from 'react-router-dom'
@@ -17,6 +17,7 @@ const Home = () => {
   };
   return (
     <>  
+    <Container style={{width: "400px"}}>
       <div className="p-4 box mt-3 text-center">
       <h2>Home</h2>
         Hello Welcome <br />
@@ -29,11 +30,12 @@ const Home = () => {
           </Link>
           </div>
           <br/>
-      <div className="d-grid gap-2">
+      {/* <div className="d-grid gap-2">
         <Button variant="primary" onClick={handleLogout}>
           Log out
         </Button>
-      </div>
+      </div> */}
+      </Container>
     </>
   );
 };

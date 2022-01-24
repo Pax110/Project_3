@@ -18,7 +18,7 @@ function App() {
   return (
     <Container >
       <Navbar />
-      <Container style={{ width: "400px" }}>
+      <Container >
       <Row>
         <Col>
           <UserAuthContextProvider>
@@ -31,7 +31,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/update-profile" element={<UpdateProfile />} />
+              <Route path="/update-profile" element={<UpdateProfile />}/>
               <Route path="/signin" element={<Login />} />
 
               <Route path="/" element={<LandingPage />} />
@@ -49,7 +49,7 @@ function App() {
       
       </Container>
       <Footer />
-      {/* <RestoDisplayCard/> */}
+     
     </Container>
   );
 }

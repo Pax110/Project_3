@@ -3,7 +3,7 @@ import LandingImage from './landingimage/LandingImage';
 import RestoDisplayCard from './restaurant/RestoDisplayCard';
 
 function LandingPage() {
-  return <div>
+  return <div style={{width: "1000px"}}>
       <LandingImage />
       <RestoDisplayCard />
       </div>;

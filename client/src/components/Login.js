@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Alert } from "react-bootstrap";
+import { Form, Alert, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "./context/UserAuthContext";
@@ -35,6 +35,7 @@ const Login = () => {
 
   return (
     <>
+      <Container style={{width: "400px"}}>
       <div className="p-4 box">
         <h2 className="mb-3">Login</h2>
         {error && <Alert variant="danger">{error}</Alert>}
@@ -75,6 +76,7 @@ const Login = () => {
       <Link to="/forgot-password">Forgot password?</Link>
         Don't have an account? <Link to="/signup">Sign up</Link>
       </div>
+      </Container>
     </>
   );
 };
