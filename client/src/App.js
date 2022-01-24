@@ -13,6 +13,7 @@ import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 import UpdateProfile from "./components/UpdateProfile.js";
 import ForgotPassword from "./components/ForgotPassword.js";
 import RestoDisplayCard from "./components/restaurant/RestoDisplayCard"
+import LandingPage from "./components/LandingPage.js";
 function App() {
   return (
     <Container >
@@ -33,10 +34,12 @@ function App() {
               <Route path="/update-profile" element={<UpdateProfile />} />
               <Route path="/signin" element={<Login />} />
 
-              <Route path="/" element={<LandingImage />} />
+              <Route path="/" element={<LandingPage />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/home" element={<Home />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              
+              
 
               
             </Routes>
