@@ -11,7 +11,7 @@ function App() {
       <LandingImage />
       <RestoDisplayCard />
       <Footer />
-      {/* <MenuDisplayCard /> */}
+      <MenuDisplayCard />
     </div>
   );
 }
