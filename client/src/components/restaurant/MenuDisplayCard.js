@@ -46,11 +46,12 @@ const MenuDisplayCardTwo = () => {
               Add to Cart
             </button>
             {showToast && <Toast message="Sucessfully Added" />}
+            {console.log(restaurant)}
 
-            <ImageListItemBar
-              title={restaurant.menu.menu.appetizers.name}
+            <ImageListItemBar //have a prop called resturant but do not pass it through the map and make it all display
+              title={restaurant?.menu?.menu?.appetizers?.name}
               subtitle={
-                <span>price:{restaurant.menu.menu.appetizers.price}</span>
+                <span>price:{restaurant?.menu?.menu?.appetizers?.price}</span>
               }
               position="below"
             />
