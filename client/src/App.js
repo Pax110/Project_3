@@ -13,10 +13,14 @@ import ForgotPassword from "./components/ForgotPassword.js";
 
 import LandingPage from "./components/LandingPage.js";
 import Profile from "./components/Profile.js";
+import MenuCardComponent from "./components/restaurant/CardComponent.js";
+import MenuDisplayCardTwo from "./components/restaurant/MenuDisplayCard.js";
 function App() {
   return (
     <Container>
       <Navbar />
+      <MenuCardComponent />
+      <MenuDisplayCardTwo />
       <Container>
         <Row>
           <Col>
