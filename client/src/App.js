@@ -31,14 +31,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/update-profile" element={<UpdateProfile />}/>
+              <Route path="/update-profile" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}/>
               <Route path="/signin" element={<Login />} />
 
               <Route path="/" element={<LandingPage />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/home" element={<Home />} />
+              
               <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/profile" element={<Profile/>} />
+              <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
               
               
 
