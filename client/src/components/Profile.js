@@ -1,36 +1,144 @@
 import React, { useEffect, useState } from 'react';
 import {useUserAuth} from './context/UserAuthContext'
 import {doc, collection, onSnapshot} from 'firebase/firestore'
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Alert, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import {db} from './firebase'
+import {useForm} from 'react-hook-form'
+console.log("db",db);
 const Profile = () => {
     const {user} = useUserAuth()
     const [userDocument, setUserDocument] = useState(null)
+    const {register, setValue} = useForm()
 
-
-  useEffect(()=>{
-    let collRef = collection(db,"users")
-    let docRef = doc(collRef, user.uid)
-    docRef.onSnapshot((doc)=>{
-      if(doc.exists){
-        const documentData = doc.data()
+  
+  useEffect(() => {
+    let docRef = doc(db, "users", user.uid);
+    console.log(`docRef is ${JSON.stringify(docRef)}`);
+    const unsub = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        const documentData = doc.data();
+        console.log('documentData is', documentData)
         setUserDocument(documentData)
+        const formData = Object.entries(documentData).map((entry) => ({
+          [entry[0]]: entry[1],
+        }))
+        console.log("form Data", formData);
+        setValue(formData)
+      } else {
+        console.log(`onSnapshot() : doc.exists is FALSE`);
       }
-    })
-
-    const unsub = onSnapshot(doc(db, "cities", "SF"), (doc) => {
-      console.log("Current data: ", doc.data());
-  });
-   
-  },[user.uid])    
+    });
+  
+    return unsub;
+  }, [user.uid, setValue]);
   if(!userDocument){
-    return null
+    console.log("no user document");
+    return null 
   }
   return (
-    <div>
+    <>
+    <p>{JSON.stringify(userDocument)}</p>
+    <Container style={{width: "400px"}}>
+      <div className="p-4 box">
+        <h2 className="mb-3"> Profile</h2>
+        {/* {error && <Alert variant="danger">{error}</Alert>} */}
+        <Form >
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              type="email"
+              placeholder="Email address"
+              disabled
+              
+              // onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="text"
+              placeholder="First Name"
+              
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="text"
+              placeholder="Last Name"
+              
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="text"
+              placeholder="Address"
+              
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="text"
+              placeholder="City"
+              
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="text"
+              placeholder="Postal Code"
+             
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="text"
+              placeholder="Province"
+              
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="number"
+              placeholder="Phone Number"
+              
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <div className="d-grid gap-2">
+            <Button variant="primary" type="Submit">
+             Submit
+            </Button>
+          </div>
+        </Form>
+      </div>
       
-    </div>
+      </Container>
+    </>
   )
 }
 
@@ -55,142 +163,4 @@ export default Profile;
 // export default Profile;
 
 
-//For Kate 
-//From Here
-import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { useSession } from '../firebase/UserProvider';
-import { firestore } from '../firebase/config';
-import { updateUserDocument } from '../firebase/user';
-import { ProfileImage } from '../ProfileImage';
 
-const Profile = () => {
-  const { user } = useSession();
-  const params = useParams();
-  const { register, setValue, handleSubmit } = useForm();
-  const [userDocument, setUserDocument] = useState(null);
-  const [isLoading, setLoading] = useState(false);
-  
-  const history = useHistory()
-  useEffect(() => {
-    const docRef = firestore.collection('users').doc(params.id);
-    const unsubscribe = docRef.onSnapshot((doc) => {
-      if (doc.exists) {
-        const documentData = doc.data();
-        setUserDocument(documentData);
-        const formData = Object.entries(documentData).map((entry) => ({
-          [entry[0]]: entry[1],
-        }));
-
-        setValue(formData);
-      }
-    });
-    return unsubscribe;
-  }, [user.uid, setValue, params.id]);
-
-  const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      await updateUserDocument({ uid: params.id, ...data });
-      history.push("/login");
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (!userDocument) {
-    return null;
-  }
-
-  const formClassname = `ui big form twelve wide column ${isLoading ? 'loading' : ''}`;
-
-  return (
-    <div
-      className="add-form-container"
-      style={{ maxWidth: 960, margin: '50px auto' }}
-    >
-      <div className="ui grid stackable">
-        <ProfileImage id={params.id} />
-        <form className={formClassname} onSubmit={handleSubmit(onSubmit)}>
-          <div className="fields">
-            <div className="eight wide field">
-              <label>
-                Name
-                <input type="text" name="name" ref={register} />
-              </label>
-            </div>
-            <div className="eight wide field">
-              <label>
-                Email
-                <input type="text" name="email" disabled ref={register} />
-              </label>
-            </div>
-          </div>
-          <div className="fields">
-            <div className="six wide field">
-              <label>
-                Address
-                <input type="text" name="address" ref={register} />
-              </label>
-            </div>
-            <div className="five wide field">
-              <label>
-                City
-                <input type="text" name="city" ref={register} />
-              </label>
-            </div>
-            <div className="two wide field">
-              <label>
-                State
-                <input type="text" name="state" ref={register} />
-              </label>
-            </div>
-            <div className="three wide field">
-              <label>
-                Zip
-                <input type="text" name="zip" ref={register} />
-              </label>
-            </div>
-          </div>
-          <div className="equal width fields">
-            <div className="field">
-              <label>
-                Phone
-                <input type="text" name="phone" ref={register} />
-              </label>
-            </div>
-            <div className="field">
-              <label>
-                Specialty
-                <select className="specialty" name="specialty" ref={register}>
-                  <option value="field agent">Field Agent</option>
-                  <option value="covert operations">Covert Operations</option>
-                  <option value="intelligence officer">
-                    Intelligence Officer
-                  </option>
-                </select>
-              </label>
-            </div>
-            <div className="field">
-              <label>
-                ip
-                <input type="text" name="ip" ref={register} />
-              </label>
-            </div>
-          </div>
-          <button
-            type="submit"
-            className="ui submit large grey button right floated"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-export default Profile;
