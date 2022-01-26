@@ -1,18 +1,19 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { CardActionArea } from "@mui/material";
 import Toast from "./Toast";
 
-const MenuDisplayCardTwo = () => {
+//onclick fetch?
+
+const MenuDisplayCard = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [showToast, setShowToast] = useState(false);
-  const { initializeApp } = require("firebase/app");
-  const { getFirestore, collection, getDocs } = require("firebase/firestore");
+  const { collection, getDocs } = require("firebase/firestore");
   const restaurantsCollectionRef = collection(db, "restaurants");
 
   useEffect(() => {
@@ -35,18 +36,21 @@ const MenuDisplayCardTwo = () => {
               alt={restaurant.name}
               loading="lazy"
             />
-            <button
-              onClick={() => {
+            {/* <Link>
+              to={{ pathname: "/basket", restaurant: restaurant }}
+              Add Item to Cart
+            </Link> */}
+            {/* <div>
+              onClick=
+              {() => {
                 setShowToast(true);
                 setTimeout(() => {
                   setShowToast(false);
                 }, 1500);
               }}
-            >
-              Add to Cart
-            </button>
+            </div>
             {showToast && <Toast message="Sucessfully Added" />}
-            {console.log(restaurant)}
+            {console.log(restaurant)} */}
 
             <ImageListItemBar //have a prop called resturant but do not pass it through the map and make it all display
               title={restaurant?.menu?.menu?.appetizers?.name}
@@ -61,4 +65,4 @@ const MenuDisplayCardTwo = () => {
     </ImageList>
   );
 };
-export default MenuDisplayCardTwo;
+export default MenuDisplayCard;

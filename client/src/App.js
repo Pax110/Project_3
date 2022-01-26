@@ -14,13 +14,12 @@ import ForgotPassword from "./components/ForgotPassword.js";
 import LandingPage from "./components/LandingPage.js";
 import Profile from "./components/Profile.js";
 import MenuCardComponent from "./components/restaurant/CardComponent.js";
-import MenuDisplayCardTwo from "./components/restaurant/MenuDisplayCard.js";
+import MenuDisplayCard from "./components/restaurant/MenuDisplayCard.js";
+import RestoDisplayCard from "./components/restaurant/RestoDisplayCard.js";
 function App() {
   return (
     <Container>
       <Navbar />
-      <MenuCardComponent />
-      <MenuDisplayCardTwo />
       <Container>
         <Row>
           <Col>
@@ -34,6 +33,8 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path="/resto" element={<RestoDisplayCard />} />
+                <Route path="/menu" element={<MenuDisplayCard />} />
                 <Route
                   path="/update-profile"
                   element={

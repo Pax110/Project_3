@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
+import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
+import MenuDisplayCard from "./MenuDisplayCard";
 
 const RestoDisplayCard = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -32,6 +34,9 @@ const RestoDisplayCard = () => {
             alt={restaurant.name}
             loading="lazy"
           />
+          <button>
+            <Link to="menu">click here for menu</Link>
+          </button>
           <ImageListItemBar
             title={restaurant.name}
             subtitle={restaurant.description}
@@ -39,9 +44,7 @@ const RestoDisplayCard = () => {
               <IconButton
                 sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                 aria-label={`info about ${restaurant.name}`}
-              >
-                
-              </IconButton>
+              ></IconButton>
             }
           />
         </ImageListItem>
