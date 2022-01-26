@@ -8,7 +8,7 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { CardActionArea } from "@mui/material";
 import Toast from "./Toast";
 
-//onclick fetch?
+//onclick fetch? or forech or .find
 
 const MenuDisplayCard = () => {
   const [restaurants, setRestaurants] = useState([]);
