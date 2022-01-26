@@ -6,13 +6,13 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { CardActionArea } from "@mui/material";
-import Toast from "./Toast";
+// import Toast from "./Toast";
 
 //onclick fetch? or forech or .find
 
 const MenuDisplayCard = () => {
   const [restaurants, setRestaurants] = useState([]);
-  const [showToast, setShowToast] = useState(false);
+  // const [showToast, setShowToast] = useState(false);
   const { collection, getDocs } = require("firebase/firestore");
   const restaurantsCollectionRef = collection(db, "restaurants");
 
