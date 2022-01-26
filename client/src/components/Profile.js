@@ -6,7 +6,7 @@ import { Form, Alert, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import {db} from './firebase'
 import {useForm} from 'react-hook-form'
-console.log("db",db);
+
 const Profile = () => {
     const {user} = useUserAuth()
     const [userDocument, setUserDocument] = useState(null)
@@ -50,7 +50,7 @@ const Profile = () => {
               type="email"
               placeholder="Email address"
               disabled
-              
+             
               // onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
