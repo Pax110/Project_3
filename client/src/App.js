@@ -1,19 +1,32 @@
-import LandingImage from "./components/landingimage/LandingImage.js";
+
 import Navbar from "./components/navigation/Navbar.js";
 import Footer from "./components/footer/Footer.js";
-import RestoDisplayCard from "./components/restaurant/RestoDisplayCard.js";
-import FileUploader from "./components/file-uploader/FileUploader.js";
+import { Container, Row, Col } from "react-bootstrap";
+import "./App.css";
+import Router from '../src/Routes/Router'
+
+
+import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 
 function App() {
   return (
-    <div className="App">
+    <Container >
       <Navbar />
-      <LandingImage />
-      <RestoDisplayCard />
+      <Container >
+      <Row>
+        <Col>
+          <UserAuthContextProvider>
+            <Router />
+          </UserAuthContextProvider>
+        </Col>
+      </Row>
+      
+      </Container>
       <Footer />
-      <FileUploader />
-    </div>
+     
+    </Container>
   );
 }
 
 export default App;
+
