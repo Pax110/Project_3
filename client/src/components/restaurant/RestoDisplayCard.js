@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { useFirebase } from "../FirebaseProvider";
 import { collection, getDocs } from "firebase/firestore";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -9,6 +9,7 @@ import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 
 const RestoDisplayCard = () => {
+  const { db } = useFirebase();
   const [restaurants, setRestaurants] = useState([]);
   const restaurantsCollectionRef = collection(db, "restaurants");
 
@@ -39,9 +40,7 @@ const RestoDisplayCard = () => {
               <IconButton
                 sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                 aria-label={`info about ${restaurant.name}`}
-              >
-                
-              </IconButton>
+              ></IconButton>
             }
           />
         </ImageListItem>

@@ -46,14 +46,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/restaurant-signup"
-          element={
-            <ProtectedRoute>
-              <RestoSignUpPage />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/restaurant-signup" element={<RestoSignUpPage />} />
 
         <Route
           path="/profile"
