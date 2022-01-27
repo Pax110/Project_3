@@ -56,7 +56,7 @@ const Router = () => {
           }
         />
 
-        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/menu/:id" element={<MenuPage />} />
       </Routes>
     </div>
   );

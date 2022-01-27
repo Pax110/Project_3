@@ -1,5 +1,5 @@
 import React from "react";
-import MenuDisplayCard from "../components/restaurant/MenuDisplayCard";
+import { MenuDisplayCard } from "../components/restaurant/MenuDisplayCard";
 
 const MenuPage = () => {
   return (

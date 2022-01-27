@@ -3,7 +3,6 @@ import Footer from "./components/footer/Footer.js";
 import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
 import Router from "../src/Routes/Router";
-
 import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 
 function App() {
