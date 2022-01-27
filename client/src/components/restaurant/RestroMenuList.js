@@ -1,7 +1,7 @@
 import { getDoc } from "@firebase/firestore";
 import React from "react";
 
-function RestroList() {
+function RestroMenuList() {
   let restroRef = doc(db, `restaurants/${id}`);
   let restoSnap = await getDoc(restroRef);
 }
@@ -12,4 +12,4 @@ if (restoSnap.exists()) {
   console.log("Sorry, that resturant does not exist", id);
 }
 
-export default RestroList;
+export default RestroMenuList;
