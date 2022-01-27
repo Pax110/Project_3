@@ -7,8 +7,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
-import MenuDisplayCard from "./MenuDisplayCard";
-import { doc, collection, onSnapshot, getDocs } from "firebase/firestore";
+import { doc, collection, getDocs } from "firebase/firestore";
 
 const RestoDisplayCard = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -31,7 +30,7 @@ const RestoDisplayCard = () => {
   return (
     <ImageList cols={4}>
       {restaurants.map((restaurant) => (
-        <Link to={`/menu/${restaurant.DOC_ID}`}>
+        <Link to={`/menu/${restaurant.DOC_ID}`} key={restaurant.DOC_ID}>
           <ImageListItem
             onClick={() => {
               console.log(`${restaurant.DOC_ID}`);
