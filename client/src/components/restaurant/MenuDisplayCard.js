@@ -11,6 +11,8 @@ import { db } from "../firebase";
 // import Toast from "./Toast";
 
 // GOAL:accept only the 1 restro and display all of the menu items for that id
+//make menu an array , map it out
+//add pics
 
 const MenuDisplayCard = () => {
   const { id } = useParams();
