@@ -29,7 +29,7 @@ const MenuDisplayCard = () => {
   //     console.log("Sorry, that resturant does not exist", id);
   //   }
   useEffect(() => {
-    const getRestaurants = async () => {
+    const getRestaurant = async () => {
       const restaurantsDocRef = doc(db, "restaurants", id);
       console.log("about to get doc");
       const data = await getDoc(restaurantsDocRef);
@@ -37,7 +37,7 @@ const MenuDisplayCard = () => {
       console.log(data.data());
       setRestaurant(data.data());
     };
-    getRestaurants();
+    getRestaurant();
   }, []);
   if (id == null) return null;
   if (!restaurant.name) return null;
@@ -45,6 +45,15 @@ const MenuDisplayCard = () => {
   return (
     <ImageList sx={{ width: 500, height: 450 }}>
       <CardActionArea>
+        {restaurant.menu.menu.mains.map((main) => (
+          <ImageListItem>
+            <ImageListItemBar //build maps around every menu category
+              title={main.name}
+              subtitle={<span>price:{main.price}</span>}
+              position="below"
+            />
+          </ImageListItem>
+        ))}
         <ImageListItem key={restaurant.photoURL}>
           <img
             src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
