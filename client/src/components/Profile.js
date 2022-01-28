@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "./context/UserAuthContext";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { Form, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useFirebase } from "./FirebaseProvider";
@@ -12,30 +12,23 @@ const Profile = () => {
   const { register, setValue } = useForm();
   const { db, auth } = useFirebase();
 
+  
+
   useEffect(() => {
+    const updateUserDoc = async ()=> {
+
+    
     let docRef = doc(db, "users", user.uid);
     console.log(`docRef is ${JSON.stringify(docRef)}`);
-    const unsub = onSnapshot(docRef, (doc) => {
-      if (doc.exists()) {
-        const documentData = doc.data();
-        console.log("documentData is", documentData);
-        setUserDocument(documentData);
-        const formData = Object.entries(documentData).map((entry) => ({
-          [entry[0]]: entry[1],
-        }));
-        console.log("form Data", formData);
-        setValue(formData);
-      } else {
-        console.log(`onSnapshot() : doc.exists is FALSE`);
-      }
-    });
+    const a = await setDoc(docRef, {
+      firstName: 'namex',
+      lastName: 'nameY'
+    })
 
-    return unsub;
-  }, [user.uid, setValue]);
-  if (!userDocument) {
-    console.log("no user document");
-    return null;
   }
+  updateUserDoc()
+  }, []);
+
   return (
     <>
       <p>{JSON.stringify(userDocument)}</p>
