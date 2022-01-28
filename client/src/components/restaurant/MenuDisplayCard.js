@@ -10,8 +10,7 @@ import { db } from "../firebase";
 // import { RestroDisplayList } from "./MenuDisplayList";
 // import Toast from "./Toast";
 
-// //onclick fetch? or forech or .find
-// //accept only the resturant ID and display all of the menu items for that id
+// GOAL:accept only the 1 restro and display all of the menu items for that id
 
 const MenuDisplayCard = () => {
   const { id } = useParams();
@@ -68,7 +67,7 @@ const MenuDisplayCard = () => {
               </div>
               {showToast && <Toast message="Sucessfully Added" />}
               {console.log(restaurant)} */}
-          <ImageListItemBar //have a prop called resturant but do not pass it through the map and make it all display
+          <ImageListItemBar //build maps around every menu category
             title={restaurant?.menu?.menu?.appetizers?.name}
             subtitle={
               <span>price:{restaurant?.menu?.menu?.appetizers?.price}</span>
