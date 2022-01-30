@@ -113,6 +113,7 @@ const RestoSignUpForm = () => {
               <Form.Group
                 className="mb-3"
                 controlId="formGridAddress1"
+                type="address"
                 value={address1}
                 onChange={(e) => setAddress1(e.target.value)}
               >
@@ -122,6 +123,7 @@ const RestoSignUpForm = () => {
 
               <Form.Group
                 className="mb-3"
+                type="address2"
                 controlId="formGridAddress2"
                 value={address2}
                 onChange={(e) => setAddress2(e.target.value)}
@@ -134,6 +136,7 @@ const RestoSignUpForm = () => {
                 <Form.Group
                   as={Col}
                   controlId="formGridCity"
+                  type="city"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                 >
@@ -144,6 +147,7 @@ const RestoSignUpForm = () => {
                 <Form.Group
                   as={Col}
                   controlId="formGridProvince"
+                  type="province"
                   value={province}
                   onChange={(e) => setProvince(e.target.value)}
                 >
@@ -175,6 +179,7 @@ const RestoSignUpForm = () => {
                 <Form.Group
                   as={Col}
                   controlId="formGridPostalCode"
+                  type="postal"
                   value={postal}
                   onChange={(e) => setPostal(e.target.value)}
                 >
@@ -211,6 +216,7 @@ const RestoSignUpForm = () => {
                 <Form.Group
                   as={Col}
                   controlId="formGridEmail"
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 >
@@ -220,6 +226,7 @@ const RestoSignUpForm = () => {
 
                 <Form.Group
                   as={Col}
+                  type="phoneNumber"
                   controlId="formGridPhoneNumber"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
