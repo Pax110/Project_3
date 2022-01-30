@@ -79,9 +79,9 @@ const RestoSignUpForm = () => {
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
                 <Form.Control
+                  placeholder="Business Name"
                   type="name"
                   value={resto}
-                  placeholder="Business Name"
                   onChange={(e) => setResto(e.target.value)}
                 />
               </Form.Group>
@@ -110,49 +110,45 @@ const RestoSignUpForm = () => {
                   </Col>
                 </Row>
               </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="formGridAddress1"
-                type="address"
-                value={address1}
-                onChange={(e) => setAddress1(e.target.value)}
-              >
+              <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Address:</Form.Label>
-                <Form.Control placeholder="1234 Main Street" />
+                <Form.Control
+                  placeholder="1234 Main Street"
+                  type="address"
+                  value={address1}
+                  onChange={(e) => setAddress1(e.target.value)}
+                />
               </Form.Group>
 
-              <Form.Group
-                className="mb-3"
-                type="address2"
-                controlId="formGridAddress2"
-                value={address2}
-                onChange={(e) => setAddress2(e.target.value)}
-              >
+              <Form.Group className="mb-3" controlId="formGridAddress2">
                 <Form.Label>Address 2:</Form.Label>
-                <Form.Control placeholder="Apartment, Studio, Floor, or Prep Area (if applicable)" />
+                <Form.Control
+                  placeholder="Apartment, Studio, Floor, or Prep Area (if applicable)"
+                  type="address2"
+                  value={address2}
+                  onChange={(e) => setAddress2(e.target.value)}
+                />
               </Form.Group>
 
               <Row className="mb-3">
-                <Form.Group
-                  as={Col}
-                  controlId="formGridCity"
-                  type="city"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                >
+                <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>City:</Form.Label>
-                  <Form.Control />
+                  <Form.Control
+                    type="city"
+                    placeholder="City"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
                 </Form.Group>
 
-                <Form.Group
-                  as={Col}
-                  controlId="formGridProvince"
-                  type="province"
-                  value={province}
-                  onChange={(e) => setProvince(e.target.value)}
-                >
+                <Form.Group as={Col} controlId="formGridProvince">
                   <Form.Label>Province/Territory:</Form.Label>
-                  <Form.Select defaultValue="Choose...">
+                  <Form.Select
+                    defaultValue="Choose..."
+                    type="province"
+                    value={province}
+                    onChange={(e) => setProvince(e.target.value)}
+                  >
                     <option>Choose...</option>
                     <option value="Alberta">Alberta</option>
                     <option value="British Columbia">British Columbia</option>
@@ -176,15 +172,14 @@ const RestoSignUpForm = () => {
                   </Form.Select>
                 </Form.Group>
 
-                <Form.Group
-                  as={Col}
-                  controlId="formGridPostalCode"
-                  type="postal"
-                  value={postal}
-                  onChange={(e) => setPostal(e.target.value)}
-                >
+                <Form.Group as={Col} controlId="formGridPostalCode">
                   <Form.Label>Postal Code:</Form.Label>
-                  <Form.Control />
+                  <Form.Control
+                    type="postal"
+                    placeholder="Postal Code"
+                    value={postal}
+                    onChange={(e) => setPostal(e.target.value)}
+                  />
                 </Form.Group>
               </Row>
 
@@ -213,26 +208,24 @@ const RestoSignUpForm = () => {
                 </Row>
               </Form.Group>
               <Row className="mb-3">
-                <Form.Group
-                  as={Col}
-                  controlId="formGridEmail"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                >
+                <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Email:</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </Form.Group>
 
-                <Form.Group
-                  as={Col}
-                  type="phoneNumber"
-                  controlId="formGridPhoneNumber"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                >
+                <Form.Group as={Col} controlId="formGridPhoneNumber">
                   <Form.Label>Phone Number:</Form.Label>
-                  <Form.Control type="phoneNumber" placeholder="Phone Number" />
+                  <Form.Control
+                    placeholder="Phone Number"
+                    type="phoneNumber"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
                 </Form.Group>
               </Row>
 
