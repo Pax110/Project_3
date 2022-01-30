@@ -1,5 +1,5 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import background from "../landingimage/food1.jpg";
 import { collection, addDoc } from "firebase/firestore";
@@ -7,6 +7,7 @@ import { useFirebase } from "../FirebaseProvider";
 
 const RestoSignUpForm = () => {
   const { db } = useFirebase();
+  const navigate = useNavigate();
 
   const [resto, setResto] = useState("");
   const [type, setType] = useState("");
@@ -236,6 +237,7 @@ const RestoSignUpForm = () => {
                   onClick={() => {
                     console.log("clicked");
                     addResto();
+                    navigate("/");
                   }}
                 >
                   Sign up
