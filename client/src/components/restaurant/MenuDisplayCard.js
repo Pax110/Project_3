@@ -6,7 +6,8 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { CardActionArea } from "@mui/material";
-import { db } from "../firebase";
+import { useFirebase } from "../FirebaseProvider";
+
 // import { RestroDisplayList } from "./MenuDisplayList";
 // import Toast from "./Toast";
 
@@ -18,6 +19,7 @@ const MenuDisplayCard = () => {
   const { id } = useParams();
   console.log(id);
   const [restaurant, setRestaurant] = useState({});
+  const {db} = useFirebase()
   //   // // const [showToast, setShowToast] = useState(false);
   // const { collection, getDocs } = require("firebase/firestore");
   //   function RestroMenuList() {
