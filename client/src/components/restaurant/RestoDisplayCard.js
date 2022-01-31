@@ -1,15 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
-import { Link } from "react-router-dom";
+import { useFirebase } from "../FirebaseProvider";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import { doc, collection, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const RestoDisplayCard = () => {
+  const { db } = useFirebase();
   const [restaurants, setRestaurants] = useState([]);
   const restaurantsCollectionRef = collection(db, "restaurants");
   // let docRef = doc(db, "restaurants", restaurants.uid);

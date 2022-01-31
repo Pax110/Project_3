@@ -11,6 +11,7 @@ import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import UpdateProfilePage from "../pages/UpdateProfilePage";
 import MenuPage from "../pages/MenuPage";
+import RestoSignUpPage from "../pages/RestoSignUpPage";
 
 const Router = () => {
   return (
@@ -46,6 +47,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/restaurant-signup" element={<RestoSignUpPage />} />
 
         <Route
           path="/profile"

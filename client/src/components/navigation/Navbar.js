@@ -13,34 +13,35 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import "./navbar.css";
-import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../context/UserAuthContext";
 import { Link } from "react-router-dom";
+import { useFirebase } from "../FirebaseProvider";
 
 const pages = ["Order History"];
 const settings = ["Profile", "Order History", "Need Help?", "Logout"];
 
 const Navbar = () => {
-  const [user, setUser] = useState();
+  const { user } = useUserAuth();
+  const { auth } = useFirebase();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
   const navigate = useNavigate();
+  // const [user, setUser] = useState();
 
-  onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = currentUser.uid;
+  // onAuthStateChanged(auth, (currentUser) => {
+  //   if (currentUser) {
+  //     // User is signed in, see docs for a list of available properties
+  //     // https://firebase.google.com/docs/reference/js/firebase.User
+  //     const uid = currentUser.uid;
 
-      setUser(currentUser);
-      // ...
-    } else {
-      setUser(null);
-    }
-  });
+  //     setUser(currentUser);
+  //     // ...
+  //   } else {
+  //     setUser(null);
+  //   }
+  // });
 
   const handleLogout = async () => {
     try {
@@ -223,4 +224,5 @@ const Navbar = () => {
     </AppBar>
   );
 };
+
 export default Navbar;

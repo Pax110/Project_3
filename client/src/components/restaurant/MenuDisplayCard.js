@@ -6,9 +6,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { CardActionArea } from "@mui/material";
-import { db } from "../firebase";
-// import { RestroDisplayList } from "./MenuDisplayList";
-// import Toast from "./Toast";
+import { useFirebase } from "../FirebaseProvider";
 
 // GOAL:accept only the 1 restro and display all of the menu items for that id
 //make menu an array , map it out
@@ -16,20 +14,10 @@ import { db } from "../firebase";
 
 const MenuDisplayCard = () => {
   const { id } = useParams();
+  const { db } = useFirebase();
   console.log(id);
   const [restaurant, setRestaurant] = useState({});
-  //   // // const [showToast, setShowToast] = useState(false);
-  // const { collection, getDocs } = require("firebase/firestore");
-  //   function RestroMenuList() {
-  //     let restroRef = doc(db, `restaurants/${id}`);
-  //     let restoSnap = await getDoc(restroRef);
-  //   }
-  //   if (restoSnap.exists()) {
-  //     let data = restoSnap.data();
-  //     setRestaurant(data);
-  //   } else {
-  //     console.log("Sorry, that resturant does not exist", id);
-  //   }
+
   useEffect(() => {
     const getRestaurant = async () => {
       const restaurantsDocRef = doc(db, "restaurants", id);
@@ -47,6 +35,16 @@ const MenuDisplayCard = () => {
   return (
     <ImageList sx={{ width: 500, height: 450 }}>
       <CardActionArea>
+        {restaurant?.menu?.menu?.desserts.map((desserts) => (
+          <ImageListItem>
+            <ImageListItemBar //build maps around every menu category
+              title={desserts.name}
+              subtitle={<span>price:{desserts.price}</span>}
+              position="below"
+            />
+          </ImageListItem>
+        ))}
+
         {restaurant.menu.menu.mains.map((main) => (
           <ImageListItem>
             <ImageListItemBar //build maps around every menu category
@@ -63,21 +61,7 @@ const MenuDisplayCard = () => {
             alt={restaurant.name}
             loading="lazy"
           />
-          {/* <Link>
-                to={{ pathname: "/basket", restaurant: restaurant }}
-                Add Item to Cart
-              </Link> */}
-          {/* <div>
-                onClick=
-                {() => {
-                  setShowToast(true);
-                  setTimeout(() => {
-                    setShowToast(false);
-                  }, 1500);
-                }}
-              </div>
-              {showToast && <Toast message="Sucessfully Added" />}
-              {console.log(restaurant)} */}
+
           <ImageListItemBar //build maps around every menu category
             title={restaurant?.menu?.menu?.appetizers?.name}
             subtitle={
@@ -87,8 +71,44 @@ const MenuDisplayCard = () => {
           />
         </ImageListItem>
       </CardActionArea>
-      {/* )) */}
     </ImageList>
   );
 };
 export default MenuDisplayCard;
+
+// import Toast from "./Toast";
+{
+  /* <Link>
+                to={{ pathname: "/basket", restaurant: restaurant }}
+                Add Item to Cart
+              </Link> */
+}
+{
+  /* <div>
+                onClick=
+                {() => {
+                  setShowToast(true);
+                  setTimeout(() => {
+                    setShowToast(false);
+                  }, 1500);
+                }}
+              </div>
+              {showToast && <Toast message="Sucessfully Added" />}
+              {console.log(restaurant)} */
+}
+{
+  /* )) */
+}
+
+//   // // const [showToast, setShowToast] = useState(false);
+// const { collection, getDocs } = require("firebase/firestore");
+//   function RestroMenuList() {
+//     let restroRef = doc(db, `restaurants/${id}`);
+//     let restoSnap = await getDoc(restroRef);
+//   }
+//   if (restoSnap.exists()) {
+//     let data = restoSnap.data();
+//     setRestaurant(data);
+//   } else {
+//     console.log("Sorry, that resturant does not exist", id);
+//   }
