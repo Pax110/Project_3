@@ -24,7 +24,8 @@ export const createUserDocument = async (user) => {
   await setDoc(docRef, {
     uid: user.uid,
     email: user.email,
-    name: user.displayName,
+    firstName: "",
+    lastName:"",
     address: "",
     city: "",
     state: "",

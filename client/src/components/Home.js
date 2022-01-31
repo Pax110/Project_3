@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 
 import { useUserAuth } from "./context/UserAuthContext";
-import {Link} from 'react-router-dom'
+
 const Home = () => {
   
   const { user } = useUserAuth();
@@ -16,12 +16,10 @@ const Home = () => {
       <h2>Home</h2>
         Hello Welcome <br />
        
-        {user && user.displayName}
+        {user && user.displayname}
       </div>
       <div>
-      <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-            Update Profile
-          </Link>
+     
           </div>
           <br/>
       {/* <div className="d-grid gap-2">
