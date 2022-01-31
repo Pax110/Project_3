@@ -1,10 +1,10 @@
 import React from "react";
-import RestoSignUp from "../components/forms/RestoSignUpForm";
+import RestoSignUpForm from "../components/forms/RestoSignUpForm";
 
 const RestoSignUpPage = () => {
   return (
     <div>
-      <RestoSignUp />
+      <RestoSignUpForm />
     </div>
   );
 };
