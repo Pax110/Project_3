@@ -1,8 +1,7 @@
 import { doc, addDoc, collection, setDoc } from "firebase/firestore";
-import {db} from "./FirebaseProvider";
+import { db } from "./FirebaseProvider";
 
 export const createUserDocument = async (user) => {
-
   // get a reference to the Firestore document
   //   const docRef = db.doc(`/users/${user.uid}`);
 
@@ -24,7 +23,8 @@ export const createUserDocument = async (user) => {
   await setDoc(docRef, {
     uid: user.uid,
     email: user.email,
-    name: user.displayName,
+    firstName: "",
+    lastName: "",
     address: "",
     city: "",
     state: "",

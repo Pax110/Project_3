@@ -13,12 +13,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import "./navbar.css";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router";
-import { useUserAuth } from "../context/UserAuthContext";
+
 import { Link } from "react-router-dom";
 import { useFirebase } from "../FirebaseProvider";
-
+import { useUserAuth } from "../context/UserAuthContext";
+import { auth } from "../FirebaseProvider";
 const pages = ["Order History"];
 const settings = ["Profile", "Order History", "Need Help?", "Logout"];
 
@@ -27,21 +29,21 @@ const Navbar = () => {
   const { auth } = useFirebase();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const navigate = useNavigate();
   // const [user, setUser] = useState();
 
-  // onAuthStateChanged(auth, (currentUser) => {
-  //   if (currentUser) {
-  //     // User is signed in, see docs for a list of available properties
-  //     // https://firebase.google.com/docs/reference/js/firebase.User
-  //     const uid = currentUser.uid;
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
 
-  //     setUser(currentUser);
-  //     // ...
-  //   } else {
-  //     setUser(null);
-  //   }
-  // });
+      setUser(currentUser);
+      // ...
+    } else {
+      setUser(null);
+    }
+  });
 
   const handleLogout = async () => {
     try {
@@ -218,7 +220,9 @@ const Navbar = () => {
             <Button href="/signin">Signin</Button>
           )}
 
-          {user && <Link to="/profile">Profile</Link>}
+          {user && <Link to="/profile">Profile </Link>}
+          {user && <Link to="/need-help"> NeedHelp?</Link>}
+          {user && <Link to="/order-history">OrderHistory</Link>}
         </Toolbar>
       </Container>
     </AppBar>

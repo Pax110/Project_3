@@ -22,7 +22,7 @@ const Signup = () => {
       await createUserDocument(user);
       
       
-      navigate("/");
+      navigate("/profile");
     } catch (err) {
       setError(err.message);
     }
