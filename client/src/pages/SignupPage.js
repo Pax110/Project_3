@@ -1,10 +1,26 @@
 import React from 'react';
 import Signup from '../components/Signup'
-
+import background from '../components/landingimage/food1.jpg'
+import { Container } from 'react-bootstrap';
 const SignupPage = () => {
-  return <div>
-      <Signup />
-  </div>;
+  return <div
+  style={{
+  backgroundImage: `url(${background})`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+}}>
+    
+    <Container
+        style={{
+          width: "600px",
+          backgroundColor: "rgba(225, 229, 235, 0.9)",
+        }}
+      >    
+    
+    <Signup />
+
+    </Container>
+</div>;
 };
 
 export default SignupPage

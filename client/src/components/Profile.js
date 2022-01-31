@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import { useFirebase } from "./FirebaseProvider";
 import { useForm } from "react-hook-form";
 
+
 const Profile = () => {
   const { user } = useUserAuth();
   const [userDocument, setUserDocument] = useState(null);
@@ -31,6 +32,7 @@ const Profile = () => {
 
   return (
     <>
+   
       <p>{JSON.stringify(userDocument)}</p>
       <Container style={{ width: "400px" }}>
         <div className="p-4 box">
@@ -127,6 +129,7 @@ const Profile = () => {
           </Form>
         </div>
       </Container>
+      
     </>
   );
 };
