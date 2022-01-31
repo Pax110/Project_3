@@ -55,7 +55,7 @@ const MenuDisplayCard = () => {
     <ImageList cols={3}>
       <CardActionArea>
         <h3>Appetizers</h3>
-        {restaurant.menu.appetizers.map((main) => (
+        {restaurant.menu.appetizers.map((item) => (
           <Link to="#" onClick={addToCart}>
             <ImageListItem>
               <img
@@ -66,8 +66,8 @@ const MenuDisplayCard = () => {
               />
 
               <ImageListItemBar //build maps around every menu category
-                title={main.name}
-                subtitle={<span>Price: ${main.price}</span>}
+                title={item.name}
+                subtitle={<span>Price: ${item.price}</span>}
                 position="below"
               />
             </ImageListItem>
@@ -107,7 +107,7 @@ const MenuDisplayCard = () => {
       </CardActionArea>
       <CardActionArea>
         <h3>Mains</h3>
-        {restaurant.menu.mains.map((main) => (
+        {restaurant.menu.mains.map((item) => (
           <Link to="#" onClick={addToCart}>
             <ImageListItem>
               <img
@@ -118,8 +118,8 @@ const MenuDisplayCard = () => {
               />
 
               <ImageListItemBar //build maps around every menu category
-                title={main.name}
-                subtitle={<span>Price: ${main.price}</span>}
+                title={item.name}
+                subtitle={<span>Price: ${item.price}</span>}
                 position="below"
               />
             </ImageListItem>
@@ -159,7 +159,7 @@ const MenuDisplayCard = () => {
       </CardActionArea>
       <CardActionArea>
         <h3>Desserts</h3>
-        {restaurant.menu.desserts.map((main) => (
+        {restaurant.menu.desserts.map((item) => (
           <Link to="#" onClick={addToCart}>
             <ImageListItem>
               <img
@@ -170,8 +170,8 @@ const MenuDisplayCard = () => {
               />
 
               <ImageListItemBar //build maps around every menu category
-                title={main.name}
-                subtitle={<span>Price: ${main.price}</span>}
+                title={item.name}
+                subtitle={<span>Price: ${item.price}</span>}
                 position="below"
               />
             </ImageListItem>
