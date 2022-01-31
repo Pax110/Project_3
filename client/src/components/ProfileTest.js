@@ -4,11 +4,12 @@ import { doc, collection, onSnapshot } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { db } from "./firebase";
+import { useFirebase } from "./FirebaseProvider";
 import { useForm } from "react-hook-form";
 
 const ProfileTest = () => {
   const { user } = useUserAuth();
+  const { db, auth } = useFirebase();
   const [userDocument, setUserdocument] = useState(null);
 
   useEffect(() => {
@@ -21,9 +22,9 @@ const ProfileTest = () => {
         console.log("documentData", documentData);
         setUserdocument(documentData);
         const formData = Object.entries(documentData).map((entry) => ({
-            [entry[0]]: entry[1],
-          }))
-          console.log("form Data", formData);
+          [entry[0]]: entry[1],
+        }));
+        console.log("form Data", formData);
       }
     });
 
