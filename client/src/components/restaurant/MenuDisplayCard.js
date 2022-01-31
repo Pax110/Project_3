@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import ImageList from "@mui/material/ImageList";
@@ -46,25 +46,43 @@ const MenuDisplayCard = () => {
   if (id == null) return null;
   if (!restaurant.name) return null;
   console.log(restaurant);
+
+const addToCart = () => {
+  alert("Item added to cart")
+}
+
   return (
-    <ImageList sx={{ width: 500, height: 450 }}>
+    <ImageList cols={4}>
       <CardActionArea>
+        <h3>Menu</h3>
         {restaurant.menu.menu.mains.map((main) => (
+          <Link to="#" onClick={addToCart}>
           <ImageListItem>
+
+              <img
+              src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
+              srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={restaurant.name}
+              loading="lazy"
+            />
+
+
             <ImageListItemBar //build maps around every menu category
               title={main.name}
               subtitle={<span>price:{main.price}</span>}
               position="below"
             />
           </ImageListItem>
+          </Link>
         ))}
+        
         <ImageListItem key={restaurant.photoURL}>
-          <img
+          {/* <img
             src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
             srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={restaurant.name}
             loading="lazy"
-          />
+          /> */}
           {/* <Link>
                 to={{ pathname: "/basket", restaurant: restaurant }}
                 Add Item to Cart
@@ -80,14 +98,15 @@ const MenuDisplayCard = () => {
               </div>
               {showToast && <Toast message="Sucessfully Added" />}
               {console.log(restaurant)} */}
-          <ImageListItemBar //build maps around every menu category
+          {/* <ImageListItemBar //build maps around every menu category
             title={restaurant?.menu?.menu?.appetizers?.name}
             subtitle={
               <span>price:{restaurant?.menu?.menu?.appetizers?.price}</span>
             }
             position="below"
-          />
+          /> */}
         </ImageListItem>
+       
       </CardActionArea>
       {/* )) */}
     </ImageList>

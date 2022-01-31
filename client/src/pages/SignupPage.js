@@ -8,12 +8,15 @@ const SignupPage = () => {
   backgroundImage: `url(${background})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+  height: 445
+  
 }}>
     
     <Container
         style={{
           width: "600px",
           backgroundColor: "rgba(225, 229, 235, 0.9)",
+          height: 445
         }}
       >    
     

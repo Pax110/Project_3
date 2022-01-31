@@ -9,7 +9,7 @@ import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 function App() {
   return (
     <Container>
-      <Navbar />
+      <Navbar styles={{'position': 'sticky'}}/>
       <Container>
         <Row>
           <Col>
