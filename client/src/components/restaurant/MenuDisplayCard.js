@@ -19,7 +19,7 @@ const MenuDisplayCard = () => {
   const { id } = useParams();
   console.log(id);
   const [restaurant, setRestaurant] = useState({});
-  const {db} = useFirebase()
+  const { db } = useFirebase();
   //   // // const [showToast, setShowToast] = useState(false);
   // const { collection, getDocs } = require("firebase/firestore");
   //   function RestroMenuList() {
@@ -47,35 +47,33 @@ const MenuDisplayCard = () => {
   if (!restaurant.name) return null;
   console.log(restaurant);
 
-const addToCart = () => {
-  alert("Item added to cart")
-}
+  const addToCart = () => {
+    alert("Item added to cart");
+  };
 
   return (
     <ImageList cols={4}>
       <CardActionArea>
         <h3>Menu</h3>
-        {restaurant.menu.menu.mains.map((main) => (
+        {restaurant.menu.mains.map((main) => (
           <Link to="#" onClick={addToCart}>
-          <ImageListItem>
-
+            <ImageListItem>
               <img
-              src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
-              srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={restaurant.name}
-              loading="lazy"
-            />
+                src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
+                srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={restaurant.name}
+                loading="lazy"
+              />
 
-
-            <ImageListItemBar //build maps around every menu category
-              title={main.name}
-              subtitle={<span>price:{main.price}</span>}
-              position="below"
-            />
-          </ImageListItem>
+              <ImageListItemBar //build maps around every menu category
+                title={main.name}
+                subtitle={<span>price:{main.price}</span>}
+                position="below"
+              />
+            </ImageListItem>
           </Link>
         ))}
-        
+
         <ImageListItem key={restaurant.photoURL}>
           {/* <img
             src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
@@ -106,7 +104,6 @@ const addToCart = () => {
             position="below"
           /> */}
         </ImageListItem>
-       
       </CardActionArea>
       {/* )) */}
     </ImageList>
