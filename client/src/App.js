@@ -4,7 +4,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import FirebaseProvider from "./components/FirebaseProvider";
 import "./App.css";
 import Router from "../src/Routes/Router";
-
 import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 
 function App() {

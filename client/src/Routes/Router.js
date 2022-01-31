@@ -11,6 +11,7 @@ import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import UpdateProfilePage from "../pages/UpdateProfilePage";
 import RestoSignUpPage from "../pages/RestoSignUpPage";
+import MenuPage from "../pages/MenuPage";
 
 const Router = () => {
   return (
@@ -56,6 +57,8 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/menu/:id" element={<MenuPage />} />
       </Routes>
     </div>
   );
