@@ -221,7 +221,9 @@ const Navbar = () => {
             <Button href="/signin">Signin</Button>
           )}
 
-          {user && <Link to="/profile">Profile</Link>}
+          {user && <Link to="/profile">Profile </Link>}
+          {user && <Link to="/need-help"> NeedHelp?</Link>}
+          {user && <Link to="/order-history">OrderHistory</Link>}
         </Toolbar>
       </Container>
     </AppBar>
