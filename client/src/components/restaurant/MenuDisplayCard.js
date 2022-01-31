@@ -54,7 +54,59 @@ const MenuDisplayCard = () => {
   return (
     <ImageList cols={4}>
       <CardActionArea>
-        <h3>Menu</h3>
+        <h3>Appetizers</h3>
+        {restaurant.menu.appetizers.map((main) => (
+          <Link to="#" onClick={addToCart}>
+            <ImageListItem>
+              <img
+                src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
+                srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={restaurant.name}
+                loading="lazy"
+              />
+
+              <ImageListItemBar //build maps around every menu category
+                title={main.name}
+                subtitle={<span>Price: ${main.price}</span>}
+                position="below"
+              />
+            </ImageListItem>
+          </Link>
+        ))}
+
+        <ImageListItem key={restaurant.photoURL}>
+          {/* <img
+            src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
+            srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt={restaurant.name}
+            loading="lazy"
+          /> */}
+          {/* <Link>
+                to={{ pathname: "/basket", restaurant: restaurant }}
+                Add Item to Cart
+              </Link> */}
+          {/* <div>
+                onClick=
+                {() => {
+                  setShowToast(true);
+                  setTimeout(() => {
+                    setShowToast(false);
+                  }, 1500);
+                }}
+              </div>
+              {showToast && <Toast message="Sucessfully Added" />}
+              {console.log(restaurant)} */}
+          {/* <ImageListItemBar //build maps around every menu category
+            title={restaurant?.menu?.menu?.appetizers?.name}
+            subtitle={
+              <span>price:{restaurant?.menu?.menu?.appetizers?.price}</span>
+            }
+            position="below"
+          /> */}
+        </ImageListItem>
+      </CardActionArea>
+      <CardActionArea>
+        <h3>Mains</h3>
         {restaurant.menu.mains.map((main) => (
           <Link to="#" onClick={addToCart}>
             <ImageListItem>
@@ -67,7 +119,59 @@ const MenuDisplayCard = () => {
 
               <ImageListItemBar //build maps around every menu category
                 title={main.name}
-                subtitle={<span>price:{main.price}</span>}
+                subtitle={<span>Price: ${main.price}</span>}
+                position="below"
+              />
+            </ImageListItem>
+          </Link>
+        ))}
+
+        <ImageListItem key={restaurant.photoURL}>
+          {/* <img
+            src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
+            srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt={restaurant.name}
+            loading="lazy"
+          /> */}
+          {/* <Link>
+                to={{ pathname: "/basket", restaurant: restaurant }}
+                Add Item to Cart
+              </Link> */}
+          {/* <div>
+                onClick=
+                {() => {
+                  setShowToast(true);
+                  setTimeout(() => {
+                    setShowToast(false);
+                  }, 1500);
+                }}
+              </div>
+              {showToast && <Toast message="Sucessfully Added" />}
+              {console.log(restaurant)} */}
+          {/* <ImageListItemBar //build maps around every menu category
+            title={restaurant?.menu?.menu?.appetizers?.name}
+            subtitle={
+              <span>price:{restaurant?.menu?.menu?.appetizers?.price}</span>
+            }
+            position="below"
+          /> */}
+        </ImageListItem>
+      </CardActionArea>
+      <CardActionArea>
+        <h3>Desserts</h3>
+        {restaurant.menu.desserts.map((main) => (
+          <Link to="#" onClick={addToCart}>
+            <ImageListItem>
+              <img
+                src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
+                srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={restaurant.name}
+                loading="lazy"
+              />
+
+              <ImageListItemBar //build maps around every menu category
+                title={main.name}
+                subtitle={<span>Price: ${main.price}</span>}
                 position="below"
               />
             </ImageListItem>
