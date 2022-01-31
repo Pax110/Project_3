@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useFirebase } from "../FirebaseProvider";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
 import { Link } from "react-router-dom";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
