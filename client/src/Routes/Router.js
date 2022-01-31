@@ -12,6 +12,8 @@ import ProfilePage from "../pages/ProfilePage";
 import UpdateProfilePage from "../pages/UpdateProfilePage";
 import RestoSignUpPage from "../pages/RestoSignUpPage";
 import MenuPage from "../pages/MenuPage";
+import NeedHelpPage from "../pages/NeedHelpPage";
+import OrderHistoryPage from "../pages/OrderHistoryPage";
 
 const Router = () => {
   return (
@@ -54,6 +56,23 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <ProfileTest />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/order-history"
+          element={
+            <ProtectedRoute>
+              <OrderHistoryPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/need-help"
+          element={
+            <ProtectedRoute>
+              <NeedHelpPage />
             </ProtectedRoute>
           }
         />
