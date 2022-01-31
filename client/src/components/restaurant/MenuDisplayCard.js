@@ -52,7 +52,7 @@ const MenuDisplayCard = () => {
   };
 
   return (
-    <ImageList cols={4}>
+    <ImageList cols={3}>
       <CardActionArea>
         <h3>Appetizers</h3>
         {restaurant.menu.appetizers.map((main) => (
