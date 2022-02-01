@@ -50,15 +50,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-<<<<<<< HEAD
-        <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
-        <Route
-          path="/restaurant/editMenu/:id"
-          element={<RestoMenuEditPage />}
-        />
-=======
         <Route path="/restaurant/signup" element={<RestoSignUpPage />} />
->>>>>>> main
 
         <Route
           path="/profile"
