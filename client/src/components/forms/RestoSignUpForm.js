@@ -64,6 +64,35 @@ const RestoSignUpForm = () => {
     }
   };
 
+  // useEffect(() => {
+  //   let collRef = collection(db, "users");
+  //   console.log("user.uid",user.uid);
+  //   let docRef = doc(collRef, user.uid);
+  //   const unsubscribe = onSnapshot(docRef, (doc) => {
+  //     if (doc.exists) {
+  //       const receivedData = doc.data();
+  //       console.log("DOCUMENT DATA name", receivedData.uid);
+  //       setOwnerUid(receivedData.uid);
+  //     }
+  //   });
+  //   return unsubscribe;
+  // }, [ownerUid]);
+  // const addRole = async () => {
+  //   try {
+  //     let collRef = collection(db, "users");
+  //     let docRef = doc(collRef, user.uid);
+  //     await updateDoc(
+  //       docRef,
+  //       {
+          
+  //         role: "Business",
+  //       }
+  //     );
+  //     console.log("success!");
+  //   } catch (ex) {
+  //     console.log("FIRESTORE ADD FAILURE!", ex.message);
+  //   }
+  // };
   const addRole = async () => {
     try {
       let collRef = collection(db, "users");
