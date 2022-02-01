@@ -2,7 +2,7 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import background from "../landingimage/food1.jpg";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
@@ -53,6 +53,25 @@ const RestoSignUpForm = () => {
       setLastName("");
       setEmail("");
       setPhone("");
+    } catch (ex) {
+      console.log("FIRESTORE ADD FAILURE!", ex.message);
+    }
+  };
+
+  const addRole = async () => {
+    try {
+      let collRef = collection(db, "user");
+      let docRef = doc(collRef, user.uid);
+      await setDoc(
+        docRef,
+        { role: true },
+        { merge: true },
+        {
+          uid: user.uid,
+          role: "Business",
+        }
+      );
+      console.log("success!");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
@@ -237,6 +256,7 @@ const RestoSignUpForm = () => {
                   onClick={() => {
                     console.log("clicked");
                     addResto();
+                    addRole();
                     navigate("/");
                   }}
                 >
