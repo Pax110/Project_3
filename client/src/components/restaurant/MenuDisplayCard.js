@@ -59,9 +59,9 @@ const MenuDisplayCard = () => {
           <Link to="#" onClick={addToCart}>
             <ImageListItem>
               <img
-                src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
-                srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={restaurant.name}
+                src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
+                srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.name}
                 loading="lazy"
               />
 

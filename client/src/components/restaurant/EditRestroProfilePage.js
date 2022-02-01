@@ -1,13 +1,20 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import background from "../landingimage/food1.jpg";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  arrayUnion,
+  doc,
+} from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
+import { useUserAuth } from "../context/UserAuthContext";
 
-const RestroProfilePage = () => {
-
-    const { db } = useFirebase();
+const EditRestroProfilePage = () => {
+  const { db } = useFirebase();
+  const { user } = useUserAuth();
   const navigate = useNavigate();
 
   const [resto, setResto] = useState("");
@@ -21,11 +28,47 @@ const RestroProfilePage = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  //placeholder hooks
+  const [tempResto, setTempResto] = useState("");
+  const [tempType, setTempType] = useState("");
+  const [tempAddress1, setTempAddress1] = useState("");
+  const [tempAddress2, setTempAddress2] = useState("");
+  const [tempCity, setTempCity] = useState("");
+  const [tempProvince, setTempProvince] = useState("");
+  const [tempPostal, setTempPostal] = useState("");
+  const [tempFirstName, setTempFirstName] = useState("");
+  const [tempLastName, setTempLastName] = useState("");
+  const [tempEmail, setTempEmail] = useState("");
+  const [tempPhone, setTempPhone] = useState("");
 
-  const addResto = async () => {
+  useEffect(() => {
+    let collectionRef = collection(db, "resturants");
+    let documentRef = doc(collectionRef, DOC_ID.uid);
+    const unsubscribe = onSnapshot(documentRef, (doc) => {
+      if (doc.exists) {
+        const receivedData = doc.data();
+        console.log("DOCUMENT DATA name", receivedData.firstName);
+        setTempFirstName(receivedData.firstName);
+        setTempLastName(receivedData.lastName);
+        setTempAddress1(receivedData.address1);
+        setTempAddress2(receivedData.address2);
+        setTempResto(receivedData.resto);
+        setTempType(receivedData.type);
+        setTempProvince(receivedData.province);
+        setTempCity(receivedData.city);
+        setTempPostal(receivedData.postal);
+        setTempEmail(receivedData.email);
+        setTempPhone(receivedData.phone);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
+  const addRestroProfileInfo = async () => {
     try {
       let collectionRef = collection(db, "restaurants");
-      await addDoc(collectionRef, {
+      let documentRef = doc(collectionRef, DOC_ID.uid);
+      await setDoc(documentRef, {
         name: resto,
         type: type,
         contact: {
@@ -37,6 +80,7 @@ const RestroProfilePage = () => {
           owner: { firstName: firstName, lastName: lastName },
           email: email,
           phoneNumber: phone,
+          ownerUid: user.uid,
         },
       });
       console.log("success!");
@@ -55,57 +99,50 @@ const RestroProfilePage = () => {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
   };
-  return <div></div>;
-};
 
-export default RestroProfilePage;
+  // useEffect(() => {
+  //   let collRef = collection(db, "users");
+  //   console.log("user.uid",user.uid);
+  //   let docRef = doc(collRef, user.uid);
+  //   const unsubscribe = onSnapshot(docRef, (doc) => {
+  //     if (doc.exists) {
+  //       const receivedData = doc.data();
+  //       console.log("DOCUMENT DATA name", receivedData.uid);
+  //       setOwnerUid(receivedData.uid);
+  //     }
+  //   });
+  //   return unsubscribe;
+  // }, [ownerUid]);
+  // const addRole = async () => {
+  //   try {
+  //     let collRef = collection(db, "users");
+  //     let docRef = doc(collRef, user.uid);
+  //     await updateDoc(
+  //       docRef,
+  //       {
 
-
-const RestoSignUpForm = () => {
-  const { db } = useFirebase();
-  const navigate = useNavigate();
-
-  const [resto, setResto] = useState("");
-  const [type, setType] = useState("");
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [province, setProvince] = useState("");
-  const [postal, setPostal] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-
-  const addResto = async () => {
+  //         role: "Business",
+  //       }
+  //     );
+  //     console.log("success!");
+  //   } catch (ex) {
+  //     console.log("FIRESTORE ADD FAILURE!", ex.message);
+  //   }
+  // };
+  const editGeneralInfoFields = async () => {
     try {
-      let collectionRef = collection(db, "restaurants");
-      await addDoc(collectionRef, {
-        name: resto,
-        type: type,
-        contact: {
-          address: address1,
-          address2: address2,
-          city: city,
-          province: province,
-          postal: postal,
-          owner: { firstName: firstName, lastName: lastName },
-          email: email,
-          phoneNumber: phone,
+      let collRef = collection(db, "users");
+      let docRef = doc(collRef, user.uid);
+      await updateDoc(
+        docRef,
+        {
+          uid: user.uid,
+          role: arrayUnion("Business"),
         },
-      });
+
+        { merge: true }
+      );
       console.log("success!");
-      setResto("");
-      setType("");
-      setAddress1("");
-      setAddress2("");
-      setCity("");
-      setProvince("");
-      setPostal("");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhone("");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
@@ -201,12 +238,12 @@ const RestoSignUpForm = () => {
                 <Form.Group as={Col} controlId="formGridProvince">
                   <Form.Label>Province/Territory:</Form.Label>
                   <Form.Select
-                    defaultValue="Choose..."
+                    // defaultValue="Choose..."
                     type="province"
                     value={province}
                     onChange={(e) => setProvince(e.target.value)}
                   >
-                    <option>Choose...</option>
+                    <option value="Choose...">Choose...</option>
                     <option value="Alberta">Alberta</option>
                     <option value="British Columbia">British Columbia</option>
                     <option value="Manitoba">Manitoba</option>
@@ -289,10 +326,11 @@ const RestoSignUpForm = () => {
               <div className="d-grid gap-2">
                 <Button
                   variant="primary"
-                  type="Submit"
+                  type="button"
                   onClick={() => {
                     console.log("clicked");
                     addResto();
+                    addRole();
                     navigate("/");
                   }}
                 >
@@ -310,4 +348,4 @@ const RestoSignUpForm = () => {
   );
 };
 
-export default RestoSignUpForm;
+export default EditRestroProfilePage;
