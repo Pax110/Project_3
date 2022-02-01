@@ -55,7 +55,7 @@ const addToCart = () => {
     <ImageList cols={4}>
       <CardActionArea>
         <h3>Menu</h3>
-        {restaurant.menu.menu.mains.map((main) => (
+        {restaurant.menu.mains.map((main) => (
           <Link to="#" onClick={addToCart}>
           <ImageListItem>
 
