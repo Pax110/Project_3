@@ -78,6 +78,15 @@ const Router = () => {
         />
 
         <Route path="/menu/:id" element={<MenuPage />} />
+
+        <Route
+          path="/edit-biz-profile"
+          element={
+            <ProtectedRoute>
+              <RestroProfilePage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
