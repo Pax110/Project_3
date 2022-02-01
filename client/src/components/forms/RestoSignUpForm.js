@@ -16,7 +16,6 @@ const RestoSignUpForm = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const navigate = useNavigate();
-  console.log("user",user);
 
   const [resto, setResto] = useState("");
   const [type, setType] = useState("");
@@ -65,19 +64,6 @@ const RestoSignUpForm = () => {
     }
   };
 
-  // useEffect(() => {
-  //   let collRef = collection(db, "users");
-  //   console.log("user.uid",user.uid);
-  //   let docRef = doc(collRef, user.uid);
-  //   const unsubscribe = onSnapshot(docRef, (doc) => {
-  //     if (doc.exists) {
-  //       const receivedData = doc.data();
-  //       console.log("DOCUMENT DATA name", receivedData.uid);
-  //       setOwnerUid(receivedData.uid);
-  //     }
-  //   });
-  //   return unsubscribe;
-  // }, [ownerUid]);
   const addRole = async () => {
     try {
       let collRef = collection(db, "users");
@@ -135,6 +121,7 @@ const RestoSignUpForm = () => {
                     {" "}
                     <Form.Check
                       type="radio"
+                      value="Home"
                       checked={type === "Home"}
                       label="Home Kitchen"
                       onChange={(e) => setType(e.target.value)}
@@ -144,6 +131,7 @@ const RestoSignUpForm = () => {
                     {" "}
                     <Form.Check
                       type="radio"
+                      value="Commissary"
                       checked={type === "Commissary"}
                       label="Commissary Kitchen"
                       onChange={(e) => setType(e.target.value)}
