@@ -54,6 +54,7 @@ const RestoSignUpForm = () => {
       setLastName("");
       setEmail("");
       setPhone("");
+      setOwnerUid("");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
@@ -250,7 +251,7 @@ const RestoSignUpForm = () => {
               <div className="d-grid gap-2">
                 <Button
                   variant="primary"
-                  type="Submit"
+                  type="button"
                   onClick={() => {
                     console.log("clicked");
                     addResto();
