@@ -30,6 +30,6 @@ export const createUserDocument = async (user) => {
     state: "",
     zip: "",
     phone: "",
-    role: "Customer",
+    role: ["Customer"],
   });
 };

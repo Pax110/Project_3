@@ -2,7 +2,13 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import background from "../landingimage/food1.jpg";
-import { collection, addDoc, setDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  arrayUnion,
+  doc,
+} from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
@@ -88,6 +94,24 @@ const RestoSignUpForm = () => {
   //     console.log("FIRESTORE ADD FAILURE!", ex.message);
   //   }
   // };
+  const addRole = async () => {
+    try {
+      let collRef = collection(db, "users");
+      let docRef = doc(collRef, user.uid);
+      await updateDoc(
+        docRef,
+        {
+          uid: user.uid,
+          role: arrayUnion("Business"),
+        },
+
+        { merge: true }
+      );
+      console.log("success!");
+    } catch (ex) {
+      console.log("FIRESTORE ADD FAILURE!", ex.message);
+    }
+  };
 
   return (
     <>
