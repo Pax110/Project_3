@@ -10,6 +10,7 @@ const RestoSignUpForm = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const navigate = useNavigate();
+  console.log("user",user);
 
   const [resto, setResto] = useState("");
   const [type, setType] = useState("");
@@ -60,18 +61,19 @@ const RestoSignUpForm = () => {
     }
   };
 
-  useEffect(() => {
-    let collRef = collection(db, "users");
-    let docRef = doc(collRef, user.uid);
-    const unsubscribe = onSnapshot(docRef, (doc) => {
-      if (doc.exists) {
-        const receivedData = doc.data();
-        console.log("DOCUMENT DATA name", receivedData.uid);
-        setOwnerUid(receivedData.uid);
-      }
-    });
-    return unsubscribe;
-  }, [ownerUid]);
+  // useEffect(() => {
+  //   let collRef = collection(db, "users");
+  //   console.log("user.uid",user.uid);
+  //   let docRef = doc(collRef, user.uid);
+  //   const unsubscribe = onSnapshot(docRef, (doc) => {
+  //     if (doc.exists) {
+  //       const receivedData = doc.data();
+  //       console.log("DOCUMENT DATA name", receivedData.uid);
+  //       setOwnerUid(receivedData.uid);
+  //     }
+  //   });
+  //   return unsubscribe;
+  // }, [ownerUid]);
 
   return (
     <>
@@ -163,7 +165,7 @@ const RestoSignUpForm = () => {
                 <Form.Group as={Col} controlId="formGridProvince">
                   <Form.Label>Province/Territory:</Form.Label>
                   <Form.Select
-                    defaultValue="Choose..."
+                    // defaultValue="Choose..."
                     type="province"
                     value={province}
                     onChange={(e) => setProvince(e.target.value)}
