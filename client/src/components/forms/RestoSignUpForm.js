@@ -48,17 +48,17 @@ const RestoSignUpForm = () => {
         },
       });
       console.log("success!");
-      setResto("");
-      setType("");
-      setAddress1("");
-      setAddress2("");
-      setCity("");
-      setProvince("");
-      setPostal("");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhone("");
+      // setResto("");
+      // setType("");
+      // setAddress1("");
+      // setAddress2("");
+      // setCity("");
+      // setProvince("");
+      // setPostal("");
+      // setFirstName("");
+      // setLastName("");
+      // setEmail("");
+      // setPhone("");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
