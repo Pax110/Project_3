@@ -1,8 +1,8 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import background from "../landingimage/food1.jpg";
-import { collection, addDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
@@ -23,7 +23,6 @@ const RestoSignUpForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [ownerUid, setOwnerUid] = useState(null);
 
   const addResto = async () => {
     try {
@@ -40,7 +39,7 @@ const RestoSignUpForm = () => {
           owner: { firstName: firstName, lastName: lastName },
           email: email,
           phoneNumber: phone,
-          ownerUid: ownerUid,
+          ownerUid: user.uid,
         },
       });
       console.log("success!");
@@ -55,7 +54,6 @@ const RestoSignUpForm = () => {
       setLastName("");
       setEmail("");
       setPhone("");
-      setOwnerUid("");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
@@ -74,6 +72,24 @@ const RestoSignUpForm = () => {
   //   });
   //   return unsubscribe;
   // }, [ownerUid]);
+  const addRole = async () => {
+    try {
+      let collRef = collection(db, "user");
+      let docRef = doc(collRef, user.uid);
+      await setDoc(
+        docRef,
+        { role: true },
+        { merge: true },
+        {
+          uid: user.uid,
+          role: "Business",
+        }
+      );
+      console.log("success!");
+    } catch (ex) {
+      console.log("FIRESTORE ADD FAILURE!", ex.message);
+    }
+  };
 
   return (
     <>
@@ -113,7 +129,6 @@ const RestoSignUpForm = () => {
                     {" "}
                     <Form.Check
                       type="radio"
-                      value="Home"
                       checked={type === "Home"}
                       label="Home Kitchen"
                       onChange={(e) => setType(e.target.value)}
@@ -123,7 +138,6 @@ const RestoSignUpForm = () => {
                     {" "}
                     <Form.Check
                       type="radio"
-                      value="Commissary"
                       checked={type === "Commissary"}
                       label="Commissary Kitchen"
                       onChange={(e) => setType(e.target.value)}
@@ -170,7 +184,7 @@ const RestoSignUpForm = () => {
                     value={province}
                     onChange={(e) => setProvince(e.target.value)}
                   >
-                    <option>Choose...</option>
+                    <option value="Choose...">Choose...</option>
                     <option value="Alberta">Alberta</option>
                     <option value="British Columbia">British Columbia</option>
                     <option value="Manitoba">Manitoba</option>
@@ -257,6 +271,7 @@ const RestoSignUpForm = () => {
                   onClick={() => {
                     console.log("clicked");
                     addResto();
+                    addRole();
                     navigate("/");
                   }}
                 >
