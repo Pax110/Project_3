@@ -1,77 +1,64 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  doc,
-  getDoc,
-  collection,
-  orderBy,
-  query,
-  getDocs,
-} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 
 const RestoMenuEdit = () => {
+  const { id } = useParams();
+  console.log(id);
   const { db } = useFirebase();
-  const [restaurant, setRestaurant] = useState([]);
-  const menu = { appetizers: [] };
+  const [restaurant, setRestaurant] = useState(null);
 
-  const getMenuData = async () => {
-    try {
-      let collRef = collection(db, "restaurants");
-      let queryRef = query(collRef, orderBy("name"));
-      let querySnap = await getDocs(queryRef);
-      if (querySnap.empty) {
-        console.log("No docs found");
-      } else {
-        let menuData = querySnap.docs.map((doc) => ({
-          ...doc.data(),
-          DOC_ID: doc.id,
-        }));
-        setRestaurant(menuData);
-        console.log(menuData);
+  useEffect(() => {
+    const getMenuData = async () => {
+      try {
+        let docRef = doc(db, "restaurants", id);
+        let docSnap = await getDoc(docRef);
+        if (!docSnap.exists()) {
+          console.log("No docs found");
+        } else {
+          let restoData = docSnap.data();
+          restoData.DOC_ID = docSnap.id;
+          setRestaurant(restoData);
+          console.log(restoData);
+        }
+      } catch (ex) {
+        console.log("Firestore failure!", ex.message);
       }
-    } catch (ex) {
-      console.log("Firestore failure!", ex.message);
+    };
+    if (id) {
+      getMenuData();
     }
+  }, [id]);
+
+  const ItemDisplay = (props) => {
+    const item = props.item;
+    return (
+      <ul>
+        <li>Name: {item.name}</li>
+        <li>Price: ${item.price}</li>
+      </ul>
+    );
   };
-
-  //   useEffect(() => {
-  //     const getRestaurant = async () => {
-  //       const restaurantsDocRef = doc(db, "restaurants", id);
-  //       console.log("about to get doc");
-  //       const data = await getDoc(restaurantsDocRef);
-  //       console.log("got data");
-  //       console.log(data.data());
-  //       setRestaurant(data.data());
-  //     };
-  //     getRestaurant();
-  //   }, []);
-  //   if (id == null) return null;
-  //   if (!restaurant.name) return null;
-  //   console.log(restaurant);
-
   return (
-    // <div>
-    //   <h1>Appetizers:</h1>
-    //   {menu.menu.appetizers.map(
-    //     (item) => <p>Name: {item.name} <br/> Price: ${item.price}</p>
-    //   )}
-    // </div>
     <div>
-      <button onClick={() => getMenuData()}>GET DATA</button> <br />
-      {restaurant.map((item) => {
-        return (
-          <ul>
-            <li> Menu: </li>
-            <li> Appetizers: {JSON.stringify(item.menu.appetizers)}</li>
-            <li> Mains: {JSON.stringify(item.menu.mains)}</li>
-            <li> Desserts: {JSON.stringify(item.menu.desserts)}</li>
-            <li>docId: {item.DOC_ID}</li>
+      <h3> Menu: </h3>
+      <h3> Appetizers:</h3>
+      {restaurant &&
+        restaurant.menu.appetizers.map((i) => (
+          <ItemDisplay key={i.name} item={i} />
+        ))}
+      <h3> Mains:</h3>
+      {restaurant &&
+        restaurant.menu.mains.map((i) => <ItemDisplay key={i.name} item={i} />)}
+      <h3> Desserts:</h3>
+      {restaurant &&
+        restaurant.menu.desserts.map((i) => (
+          <ItemDisplay key={i.name} item={i} />
+        ))}
+      <h3>docId: {restaurant?.DOC_ID}</h3>
 
-            <hr />
-          </ul>
-        );
-      })}
+      <hr />
     </div>
   );
 };

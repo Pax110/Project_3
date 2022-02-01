@@ -51,7 +51,10 @@ const Router = () => {
           }
         />
         <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
-        <Route path="/restaurant/editMenu/" element={<RestoMenuEditPage />} />
+        <Route
+          path="/restaurant/editMenu/:id"
+          element={<RestoMenuEditPage />}
+        />
 
         <Route
           path="/profile"
