@@ -2,7 +2,13 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import background from "../landingimage/food1.jpg";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  arrayUnion,
+  doc,
+} from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
@@ -60,16 +66,16 @@ const RestoSignUpForm = () => {
 
   const addRole = async () => {
     try {
-      let collRef = collection(db, "user");
+      let collRef = collection(db, "users");
       let docRef = doc(collRef, user.uid);
-      await setDoc(
+      await updateDoc(
         docRef,
-        { role: true },
-        { merge: true },
         {
           uid: user.uid,
-          role: "Business",
-        }
+          role: arrayUnion("Business"),
+        },
+
+        { merge: true }
       );
       console.log("success!");
     } catch (ex) {
