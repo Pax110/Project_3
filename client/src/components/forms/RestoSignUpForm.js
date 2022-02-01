@@ -1,12 +1,14 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import background from "../landingimage/food1.jpg";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, onSnapshot } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const RestoSignUpForm = () => {
   const { db } = useFirebase();
+  const { user } = useUserAuth();
   const navigate = useNavigate();
 
   const [resto, setResto] = useState("");
@@ -20,6 +22,7 @@ const RestoSignUpForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [ownerUid, setOwnerUid] = useState(null);
 
   const addResto = async () => {
     try {
@@ -36,6 +39,7 @@ const RestoSignUpForm = () => {
           owner: { firstName: firstName, lastName: lastName },
           email: email,
           phoneNumber: phone,
+          ownerUid: ownerUid,
         },
       });
       console.log("success!");
@@ -54,6 +58,19 @@ const RestoSignUpForm = () => {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
   };
+
+  useEffect(() => {
+    let collRef = collection(db, "users");
+    let docRef = doc(collRef, user.uid);
+    const unsubscribe = onSnapshot(docRef, (doc) => {
+      if (doc.exists) {
+        const receivedData = doc.data();
+        console.log("DOCUMENT DATA name", receivedData.uid);
+        setOwnerUid(receivedData.uid);
+      }
+    });
+    return unsubscribe;
+  }, [ownerUid]);
 
   return (
     <>
