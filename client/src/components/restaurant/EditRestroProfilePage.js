@@ -82,6 +82,7 @@ const EditRestroProfilePage = () => {
           phoneNumber: phone,
           ownerUid: user.uid,
         },
+        // {merge:true}
       });
       console.log("success!");
       setResto("");
@@ -100,53 +101,7 @@ const EditRestroProfilePage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   let collRef = collection(db, "users");
-  //   console.log("user.uid",user.uid);
-  //   let docRef = doc(collRef, user.uid);
-  //   const unsubscribe = onSnapshot(docRef, (doc) => {
-  //     if (doc.exists) {
-  //       const receivedData = doc.data();
-  //       console.log("DOCUMENT DATA name", receivedData.uid);
-  //       setOwnerUid(receivedData.uid);
-  //     }
-  //   });
-  //   return unsubscribe;
-  // }, [ownerUid]);
-  // const addRole = async () => {
-  //   try {
-  //     let collRef = collection(db, "users");
-  //     let docRef = doc(collRef, user.uid);
-  //     await updateDoc(
-  //       docRef,
-  //       {
-
-  //         role: "Business",
-  //       }
-  //     );
-  //     console.log("success!");
-  //   } catch (ex) {
-  //     console.log("FIRESTORE ADD FAILURE!", ex.message);
-  //   }
-  // };
-  const editGeneralInfoFields = async () => {
-    try {
-      let collRef = collection(db, "users");
-      let docRef = doc(collRef, user.uid);
-      await updateDoc(
-        docRef,
-        {
-          uid: user.uid,
-          role: arrayUnion("Business"),
-        },
-
-        { merge: true }
-      );
-      console.log("success!");
-    } catch (ex) {
-      console.log("FIRESTORE ADD FAILURE!", ex.message);
-    }
-  };
+  const editGeneralInfoFields = async () => {};
 
   return (
     <>
@@ -164,7 +119,7 @@ const EditRestroProfilePage = () => {
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Join Culinary Collective!</h2>
+            <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
