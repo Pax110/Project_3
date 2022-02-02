@@ -6,8 +6,9 @@ import {
   collection,
   addDoc,
   updateDoc,
-  arrayUnion,
   doc,
+  onSnapshot,
+  setDoc,
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -43,7 +44,7 @@ const EditRestroProfilePage = () => {
 
   useEffect(() => {
     let collectionRef = collection(db, "resturants");
-    let documentRef = doc(collectionRef, DOC_ID.uid);
+    let documentRef = doc(collectionRef, user.uid);
     const unsubscribe = onSnapshot(documentRef, (doc) => {
       if (doc.exists) {
         const receivedData = doc.data();
@@ -67,7 +68,7 @@ const EditRestroProfilePage = () => {
   const addRestroProfileInfo = async () => {
     try {
       let collectionRef = collection(db, "restaurants");
-      let documentRef = doc(collectionRef, DOC_ID.uid);
+      let documentRef = doc(collectionRef, user.uid);
       await setDoc(documentRef, {
         name: resto,
         type: type,
@@ -284,8 +285,7 @@ const EditRestroProfilePage = () => {
                   type="button"
                   onClick={() => {
                     console.log("clicked");
-                    addResto();
-                    addRole();
+
                     navigate("/");
                   }}
                 >

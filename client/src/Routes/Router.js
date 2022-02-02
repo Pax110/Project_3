@@ -14,6 +14,7 @@ import RestoSignUpPage from "../pages/RestoSignUpPage";
 import MenuPage from "../pages/MenuPage";
 import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
+import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePage";
 
 const Router = () => {
   return (
@@ -79,14 +80,10 @@ const Router = () => {
 
         <Route path="/menu/:id" element={<MenuPage />} />
 
-        {/* <Route
-          path="/edit-biz-profile"
-          element={
-            <ProtectedRoute>
-              <RestroProfilePage />
-            </ProtectedRoute>
-          }
-        /> */}
+        <Route
+          path="/edit-biz-profile/:id"
+          element={<EditRestroProfilePage />}
+        />
       </Routes>
     </div>
   );
