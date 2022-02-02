@@ -58,7 +58,7 @@ const MenuDisplayCard = () => {
         <h3>Appetizers</h3>
         {restaurant.menu.appetizers.map((item) => (
           <Link to="#" onClick={addToCart}>
-            <ImageListItem sx={{ width: "150px", height: "150px" }}>
+            <ImageListItem sx={{ width: "200px", height: "200px" }}>
               <img
                 src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -110,7 +110,7 @@ const MenuDisplayCard = () => {
         <h3>Mains</h3>
         {restaurant.menu.mains.map((item) => (
           <Link to="#" onClick={addToCart}>
-            <ImageListItem sx={{ width: "150px", height: "150px" }}>
+            <ImageListItem sx={{ width: "200px", height: "200px" }}>
               <img
                 src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -162,7 +162,7 @@ const MenuDisplayCard = () => {
         <h3>Desserts</h3>
         {restaurant.menu.desserts.map((item) => (
           <Link to="#" onClick={addToCart}>
-            <ImageListItem sx={{ width: "150px", height: "150px" }}>
+            <ImageListItem sx={{ width: "200px", height: "200px" }}>
               <img
                 src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
