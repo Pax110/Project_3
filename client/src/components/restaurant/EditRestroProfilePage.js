@@ -69,22 +69,25 @@ const EditRestroProfilePage = () => {
     try {
       let collectionRef = collection(db, "restaurants");
       let documentRef = doc(collectionRef, user.uid);
-      await setDoc(documentRef, {
-        name: resto,
-        type: type,
-        contact: {
-          address: address1,
-          address2: address2,
-          city: city,
-          province: province,
-          postal: postal,
-          owner: { firstName: firstName, lastName: lastName },
-          email: email,
-          phoneNumber: phone,
-          ownerUid: user.uid,
+      await setDoc(
+        documentRef,
+        {
+          name: resto,
+          type: type,
+          contact: {
+            address: address1,
+            address2: address2,
+            city: city,
+            province: province,
+            postal: postal,
+            owner: { firstName: firstName, lastName: lastName },
+            email: email,
+            phoneNumber: phone,
+            // ownerUid: user.uid,
+          },
         },
-        // {merge:true}
-      });
+        { merge: true }
+      );
       console.log("success!");
       setResto("");
       setType("");
@@ -102,7 +105,7 @@ const EditRestroProfilePage = () => {
     }
   };
 
-  const editGeneralInfoFields = async () => {};
+  // const editGeneralInfoFields = async () => {};
 
   return (
     <>

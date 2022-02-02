@@ -50,7 +50,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/restaurant/signup" element={<RestoSignUpPage />}/>
+        <Route path="/restaurant/signup" element={<RestoSignUpPage />} />
 
         <Route
           path="/profile"
@@ -81,7 +81,7 @@ const Router = () => {
         <Route path="/menu/:id" element={<MenuPage />} />
 
         <Route
-          path="/edit-biz-profile/:id"
+          path="/restaurant/editprofile"
           element={<EditRestroProfilePage />}
         />
       </Routes>
