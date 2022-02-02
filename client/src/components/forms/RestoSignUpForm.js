@@ -2,11 +2,19 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import background from "../landingimage/food1.jpg";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  arrayUnion,
+  doc,
+} from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const RestoSignUpForm = () => {
   const { db } = useFirebase();
+  const { user } = useUserAuth();
   const navigate = useNavigate();
 
   const [resto, setResto] = useState("");
@@ -36,20 +44,69 @@ const RestoSignUpForm = () => {
           owner: { firstName: firstName, lastName: lastName },
           email: email,
           phoneNumber: phone,
+          ownerUid: user.uid,
         },
       });
       console.log("success!");
-      setResto("");
-      setType("");
-      setAddress1("");
-      setAddress2("");
-      setCity("");
-      setProvince("");
-      setPostal("");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhone("");
+      // setResto("");
+      // setType("");
+      // setAddress1("");
+      // setAddress2("");
+      // setCity("");
+      // setProvince("");
+      // setPostal("");
+      // setFirstName("");
+      // setLastName("");
+      // setEmail("");
+      // setPhone("");
+    } catch (ex) {
+      console.log("FIRESTORE ADD FAILURE!", ex.message);
+    }
+  };
+
+  // useEffect(() => {
+  //   let collRef = collection(db, "users");
+  //   console.log("user.uid",user.uid);
+  //   let docRef = doc(collRef, user.uid);
+  //   const unsubscribe = onSnapshot(docRef, (doc) => {
+  //     if (doc.exists) {
+  //       const receivedData = doc.data();
+  //       console.log("DOCUMENT DATA name", receivedData.uid);
+  //       setOwnerUid(receivedData.uid);
+  //     }
+  //   });
+  //   return unsubscribe;
+  // }, [ownerUid]);
+  // const addRole = async () => {
+  //   try {
+  //     let collRef = collection(db, "users");
+  //     let docRef = doc(collRef, user.uid);
+  //     await updateDoc(
+  //       docRef,
+  //       {
+          
+  //         role: "Business",
+  //       }
+  //     );
+  //     console.log("success!");
+  //   } catch (ex) {
+  //     console.log("FIRESTORE ADD FAILURE!", ex.message);
+  //   }
+  // };
+  const addRole = async () => {
+    try {
+      let collRef = collection(db, "users");
+      let docRef = doc(collRef, user.uid);
+      await updateDoc(
+        docRef,
+        {
+          uid: user.uid,
+          role: arrayUnion("Business"),
+        },
+
+        { merge: true }
+      );
+      console.log("success!");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
@@ -145,12 +202,12 @@ const RestoSignUpForm = () => {
                 <Form.Group as={Col} controlId="formGridProvince">
                   <Form.Label>Province/Territory:</Form.Label>
                   <Form.Select
-                    defaultValue="Choose..."
+                    // defaultValue="Choose..."
                     type="province"
                     value={province}
                     onChange={(e) => setProvince(e.target.value)}
                   >
-                    <option>Choose...</option>
+                    <option value="Choose...">Choose...</option>
                     <option value="Alberta">Alberta</option>
                     <option value="British Columbia">British Columbia</option>
                     <option value="Manitoba">Manitoba</option>
@@ -233,10 +290,11 @@ const RestoSignUpForm = () => {
               <div className="d-grid gap-2">
                 <Button
                   variant="primary"
-                  type="Submit"
+                  type="button"
                   onClick={() => {
                     console.log("clicked");
                     addResto();
+                    addRole();
                     navigate("/");
                   }}
                 >

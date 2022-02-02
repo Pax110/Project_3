@@ -7,6 +7,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { CardActionArea } from "@mui/material";
 import { useFirebase } from "../FirebaseProvider";
+import { width } from "@mui/system";
 
 // import { RestroDisplayList } from "./MenuDisplayList";
 // import Toast from "./Toast";
@@ -57,7 +58,7 @@ const MenuDisplayCard = () => {
         <h3>Appetizers</h3>
         {restaurant.menu.appetizers.map((item) => (
           <Link to="#" onClick={addToCart}>
-            <ImageListItem>
+            <ImageListItem sx={{ width: "200px", height: "200px" }}>
               <img
                 src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -74,7 +75,7 @@ const MenuDisplayCard = () => {
           </Link>
         ))}
 
-        <ImageListItem key={restaurant.photoURL}>
+        <ImageListItem>
           {/* <img
             src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
             srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -109,11 +110,11 @@ const MenuDisplayCard = () => {
         <h3>Mains</h3>
         {restaurant.menu.mains.map((item) => (
           <Link to="#" onClick={addToCart}>
-            <ImageListItem>
+            <ImageListItem sx={{ width: "200px", height: "200px" }}>
               <img
-                src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
-                srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={restaurant.name}
+                src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
+                srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.name}
                 loading="lazy"
               />
 
@@ -126,7 +127,7 @@ const MenuDisplayCard = () => {
           </Link>
         ))}
 
-        <ImageListItem key={restaurant.photoURL}>
+        <ImageListItem>
           {/* <img
             src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
             srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -161,11 +162,11 @@ const MenuDisplayCard = () => {
         <h3>Desserts</h3>
         {restaurant.menu.desserts.map((item) => (
           <Link to="#" onClick={addToCart}>
-            <ImageListItem>
+            <ImageListItem sx={{ width: "200px", height: "200px" }}>
               <img
-                src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
-                srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={restaurant.name}
+                src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
+                srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.name}
                 loading="lazy"
               />
 
@@ -178,7 +179,7 @@ const MenuDisplayCard = () => {
           </Link>
         ))}
 
-        <ImageListItem key={restaurant.photoURL}>
+        <ImageListItem>
           {/* <img
             src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
             srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -188,6 +189,7 @@ const MenuDisplayCard = () => {
           {/* <Link>
                 to={{ pathname: "/basket", restaurant: restaurant }}
                 Add Item to Cart
+                key={item.menuphoto}
               </Link> */}
           {/* <div>
                 onClick=
