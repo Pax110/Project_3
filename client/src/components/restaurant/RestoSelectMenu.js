@@ -10,6 +10,7 @@ const RestoSelectMenu = () => {
   const { user } = useUserAuth();
   const [selectedResto, setSelectedResto] = useState("");
   const [restoData, setRestoData] = useState([]);
+  const [id, setID] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -22,6 +23,7 @@ const RestoSelectMenu = () => {
       }));
       console.log("new data", newData);
       setRestoData(newData);
+      setID(newData[0].DOC_ID);
     };
     if (user) {
       getData();
@@ -44,12 +46,11 @@ const RestoSelectMenu = () => {
           onChange={(e) => setSelectedResto(e.target.value)}
         >
           <option value="Choose...">Choose...</option>
-
           {restoData &&
-            restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
+            restoData.map((i, index) => <ItemDisplay key={index} item={i} />)}
         </Form.Select>
       </Form.Group>
-      <Link to={`/restaurants/editprofile/${selectedResto.DOC_ID}`}>
+      <Link to={`/restaurants/editprofile/${id}`}>
         <Button
           variant="primary"
           disabled={!selectedResto}
@@ -58,7 +59,7 @@ const RestoSelectMenu = () => {
           Account Details
         </Button>
       </Link>
-      <Link to={`/restaurants/editmenu/${selectedResto.DOC_ID}`}>
+      <Link to={`/restaurants/editmenu/${id}`}>
         <Button
           variant="primary"
           disabled={!selectedResto}
