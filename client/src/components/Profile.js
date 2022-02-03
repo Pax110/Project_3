@@ -36,17 +36,7 @@ const Profile = () => {
         setTempFirstName(receivedData.firstName)
         setTempLastName(receivedData.lastName)
         setTempAddress(receivedData.address)
-        // let receivedData = documentData.docs.map(doc=>({...doc.data(), DOC_ID: doc.id}))
-        // console.log("receiveddata",receivedData);
-        
-
-        
-        // const formData = Object.entries(documentData).map((entry) => ({
-        //   // [entry[0]]: entry[1],
-          
-        // }));
-
-        // setFirestoreData(formData);
+       
       }
     });
     return unsubscribe;
