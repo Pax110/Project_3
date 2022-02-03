@@ -10,7 +10,8 @@ import {
   query,
   where,
   getDoc,
-  getDocs
+  getDocs,
+  updateDoc
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -51,6 +52,10 @@ const EditRestroProfilePage = () => {
 
   //setting final document to use for placeholer
   const [document, setDocument] = useState([])
+
+  //getting DOC_ID to update the data
+  const [id,setId] = useState("") 
+
   useEffect(async () => {
 
     try{
@@ -72,10 +77,13 @@ const EditRestroProfilePage = () => {
         let newData = querySnap.docs.map((doc) => ({...doc.data(), DOC_ID : doc.id}))
         console.log("new data",newData[0].name);
        setDocument(newData)
+       console.log("setId is.........",newData[0].DOC_ID);
+       setId(newData[0].DOC_ID)
+      
        
       }
     }catch(ex){
-      console.log("Error",ex.message);
+      console.log("Errorrrr",ex.message);
     }
 
     // let collectionRef = collection(db, "resturants");
@@ -101,9 +109,10 @@ const EditRestroProfilePage = () => {
   }, []);
 
   const addRestroProfileInfo = async () => {
+    {console.log("id is ",id);}
     try {
       let collectionRef = collection(db, "restaurants");
-      let documentRef = doc(collectionRef, "abc");
+      let documentRef = doc(collectionRef, id);
       await setDoc(
         documentRef,
         {
@@ -167,7 +176,7 @@ const EditRestroProfilePage = () => {
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
                 <Form.Control
-                  placeholder={document[0].name}
+                  // placeholder={document[0].name}
                   type="name"
                   value={resto}
                   onChange={(e) => setResto(e.target.value)}
