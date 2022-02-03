@@ -4,18 +4,24 @@ import React, { useEffect, useState } from "react";
 import background from "../landingimage/food1.jpg";
 import {
   collection,
-  addDoc,
-  updateDoc,
   doc,
   onSnapshot,
   setDoc,
+  query,
+  where,
+  getDoc,
+  getDocs
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
+
+//user.uid === restaurants.OwnerUid
+
 const EditRestroProfilePage = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
+  console.log("user id is",user.uid);
   const navigate = useNavigate();
 
   const [resto, setResto] = useState("");
@@ -42,33 +48,62 @@ const EditRestroProfilePage = () => {
   const [tempEmail, setTempEmail] = useState("");
   const [tempPhone, setTempPhone] = useState("");
 
-  useEffect(() => {
-    let collectionRef = collection(db, "resturants");
-    let documentRef = doc(collectionRef, user.uid);
-    const unsubscribe = onSnapshot(documentRef, (doc) => {
-      if (doc.exists) {
-        const receivedData = doc.data();
-        console.log("DOCUMENT DATA name", receivedData.firstName);
-        setTempFirstName(receivedData.firstName);
-        setTempLastName(receivedData.lastName);
-        setTempAddress1(receivedData.address1);
-        setTempAddress2(receivedData.address2);
-        setTempResto(receivedData.resto);
-        setTempType(receivedData.type);
-        setTempProvince(receivedData.province);
-        setTempCity(receivedData.city);
-        setTempPostal(receivedData.postal);
-        setTempEmail(receivedData.email);
-        setTempPhone(receivedData.phone);
+
+  //setting final document to use for placeholer
+  const [document, setDocument] = useState([])
+  useEffect(async () => {
+
+    try{
+        console.log("useEffect triggered");
+      let collectionRef = collection(db, "restaurants");
+      
+      // let alldocs = await getDocs(collectionRef)
+     
+      let queryRef = query(
+        collectionRef,
+        where("ownerUid", "==", user.uid) 
+      );
+      let querySnap = await getDocs(queryRef);
+     
+      console.log("querySnap",querySnap);
+      if(querySnap.empty){
+        console.log("querySnap came back empty");
+      }else{
+        let newData = querySnap.docs.map((doc) => ({...doc.data(), DOC_ID : doc.id}))
+        console.log("new data",newData[0].name);
+       setDocument(newData)
+       
       }
-    });
-    return unsubscribe;
+    }catch(ex){
+      console.log("Error",ex.message);
+    }
+
+    // let collectionRef = collection(db, "resturants");
+    // let documentRef = doc(collectionRef, "abc");
+    // const unsubscribe = onSnapshot(documentRef, (doc) => {
+    //   if (doc.exists) {
+    //     const receivedData = doc.data();
+        // console.log("DOCUMENT DATA name", receivedData.firstName);
+        // setTempFirstName(newData[0].firstName);
+        // setTempLastName(newData[0].lastName);
+        // setTempAddress1(newData[0].address1);
+        // setTempAddress2(newData[0].address2);
+        // setTempResto(newData[0].resto);
+        // setTempType(newData[0].type);
+        // setTempProvince(newData[0].province);
+        // setTempCity(newData[0].city);
+        // setTempPostal(newData[0].postal);
+        // setTempEmail(newData[0].email);
+        // setTempPhone(newData[0].phone);
+    //   }
+    // });
+    // return unsubscribe;
   }, []);
 
   const addRestroProfileInfo = async () => {
     try {
       let collectionRef = collection(db, "restaurants");
-      let documentRef = doc(collectionRef, user.uid);
+      let documentRef = doc(collectionRef, "abc");
       await setDoc(
         documentRef,
         {
@@ -123,16 +158,16 @@ const EditRestroProfilePage = () => {
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
+            <h2 className="mb-3 text-center">Restaurant Profile</h2>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
               }}
-            >
+            >{console.log("doc is ",document)}
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
                 <Form.Control
-                  placeholder="Business Name"
+                  placeholder={document[0].name}
                   type="name"
                   value={resto}
                   onChange={(e) => setResto(e.target.value)}
@@ -288,18 +323,16 @@ const EditRestroProfilePage = () => {
                   type="button"
                   onClick={() => {
                     console.log("clicked");
-
+                    addRestroProfileInfo()
                     navigate("/");
                   }}
                 >
-                  Sign up
+                  Update
                 </Button>
               </div>
             </Form>
           </div>
-          <div className="p-4 box mt-3 text-center">
-            Already have an account? <Link to="/signin">Log In</Link>
-          </div>
+         
         </Container>
       </div>
     </>

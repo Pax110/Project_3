@@ -180,7 +180,10 @@ const Navbar = () => {
               />
               </Box>
           } */}
-
+          {user && <Link to="/restaurant/signup">Join us</Link>}<div>__</div>
+          {user && <Link to="/restaurant/editprofile">UpdateResto</Link>}
+          
+          
           {user && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

@@ -44,8 +44,8 @@ const RestoSignUpForm = () => {
           owner: { firstName: firstName, lastName: lastName },
           email: email,
           phoneNumber: phone,
-          ownerUid: user.uid,
         },
+        ownerUid: user.uid,
       });
       console.log("success!");
       // setResto("");

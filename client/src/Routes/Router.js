@@ -9,7 +9,6 @@ import SignupPage from "../pages/SignupPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
-import UpdateProfilePage from "../pages/UpdateProfilePage";
 import RestoSignUpPage from "../pages/RestoSignUpPage";
 import MenuPage from "../pages/MenuPage";
 import NeedHelpPage from "../pages/NeedHelpPage";
@@ -28,14 +27,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/update-profile"
-          element={
-            <ProtectedRoute>
-              <UpdateProfilePage />
-            </ProtectedRoute>
-          }
-        />
+        
         <Route path="/signin" element={<LoginPage />} />
 
         <Route path="/" element={<LandingPage />} />
@@ -50,7 +42,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/restaurant/signup" element={<RestoSignUpPage />} />
+        <Route path="/restaurant/signup" element={<ProtectedRoute><RestoSignUpPage /></ProtectedRoute>} />
 
         <Route
           path="/profile"
@@ -82,7 +74,7 @@ const Router = () => {
 
         <Route
           path="/restaurant/editprofile"
-          element={<EditRestroProfilePage />}
+          element={<ProtectedRoute><EditRestroProfilePage /></ProtectedRoute>}
         />
       </Routes>
     </div>
