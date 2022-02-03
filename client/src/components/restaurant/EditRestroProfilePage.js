@@ -11,18 +11,17 @@ import {
   where,
   getDoc,
   getDocs,
-  updateDoc
+  updateDoc,
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
-
 
 //user.uid === restaurants.OwnerUid
 
 const EditRestroProfilePage = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
-  console.log("user id is",user.uid);
+  console.log("user id is", user.uid);
   const navigate = useNavigate();
 
   const [resto, setResto] = useState("");
@@ -49,41 +48,37 @@ const EditRestroProfilePage = () => {
   const [tempEmail, setTempEmail] = useState("");
   const [tempPhone, setTempPhone] = useState("");
 
-
   //setting final document to use for placeholer
-  const [document, setDocument] = useState([])
+  const [document, setDocument] = useState([]);
 
   //getting DOC_ID to update the data
-  const [id,setId] = useState("") 
+  const [id, setId] = useState("");
 
   useEffect(async () => {
-
-    try{
-        console.log("useEffect triggered");
+    try {
+      console.log("useEffect triggered");
       let collectionRef = collection(db, "restaurants");
-      
+
       // let alldocs = await getDocs(collectionRef)
-     
-      let queryRef = query(
-        collectionRef,
-        where("ownerUid", "==", user.uid) 
-      );
+
+      let queryRef = query(collectionRef, where("ownerUid", "==", user.uid));
       let querySnap = await getDocs(queryRef);
-     
-      console.log("querySnap",querySnap);
-      if(querySnap.empty){
+
+      console.log("querySnap", querySnap);
+      if (querySnap.empty) {
         console.log("querySnap came back empty");
-      }else{
-        let newData = querySnap.docs.map((doc) => ({...doc.data(), DOC_ID : doc.id}))
-        console.log("new data",newData[0].name);
-       setDocument(newData)
-       console.log("setId is.........",newData[0].DOC_ID);
-       setId(newData[0].DOC_ID)
-      
-       
+      } else {
+        let newData = querySnap.docs.map((doc) => ({
+          ...doc.data(),
+          DOC_ID: doc.id,
+        }));
+        console.log("new data", newData[0].name);
+        setDocument(newData);
+        console.log("setId is.........", newData[0].DOC_ID);
+        setId(newData[0].DOC_ID);
       }
-    }catch(ex){
-      console.log("Errorrrr",ex.message);
+    } catch (ex) {
+      console.log("Errorrrr", ex.message);
     }
 
     // let collectionRef = collection(db, "resturants");
@@ -91,25 +86,27 @@ const EditRestroProfilePage = () => {
     // const unsubscribe = onSnapshot(documentRef, (doc) => {
     //   if (doc.exists) {
     //     const receivedData = doc.data();
-        // console.log("DOCUMENT DATA name", receivedData.firstName);
-        // setTempFirstName(newData[0].firstName);
-        // setTempLastName(newData[0].lastName);
-        // setTempAddress1(newData[0].address1);
-        // setTempAddress2(newData[0].address2);
-        // setTempResto(newData[0].resto);
-        // setTempType(newData[0].type);
-        // setTempProvince(newData[0].province);
-        // setTempCity(newData[0].city);
-        // setTempPostal(newData[0].postal);
-        // setTempEmail(newData[0].email);
-        // setTempPhone(newData[0].phone);
+    // console.log("DOCUMENT DATA name", receivedData.firstName);
+    // setTempFirstName(newData[0].firstName);
+    // setTempLastName(newData[0].lastName);
+    // setTempAddress1(newData[0].address1);
+    // setTempAddress2(newData[0].address2);
+    // setTempResto(newData[0].resto);
+    // setTempType(newData[0].type);
+    // setTempProvince(newData[0].province);
+    // setTempCity(newData[0].city);
+    // setTempPostal(newData[0].postal);
+    // setTempEmail(newData[0].email);
+    // setTempPhone(newData[0].phone);
     //   }
     // });
     // return unsubscribe;
   }, []);
 
   const addRestroProfileInfo = async () => {
-    {console.log("id is ",id);}
+    {
+      console.log("id is ", id);
+    }
     try {
       let collectionRef = collection(db, "restaurants");
       let documentRef = doc(collectionRef, id);
@@ -167,12 +164,13 @@ const EditRestroProfilePage = () => {
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Restaurant Profile</h2>
+            <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
               }}
-            >{console.log("doc is ",document)}
+            >
+              {console.log("doc is ", document)}
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
                 <Form.Control
@@ -332,7 +330,7 @@ const EditRestroProfilePage = () => {
                   type="button"
                   onClick={() => {
                     console.log("clicked");
-                    addRestroProfileInfo()
+                    addRestroProfileInfo();
                     navigate("/");
                   }}
                 >
@@ -341,7 +339,6 @@ const EditRestroProfilePage = () => {
               </div>
             </Form>
           </div>
-         
         </Container>
       </div>
     </>
