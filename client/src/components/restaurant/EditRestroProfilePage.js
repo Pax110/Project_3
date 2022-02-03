@@ -283,7 +283,7 @@ const EditRestroProfilePage = () => {
               <Form.Group className="mb-3" controlId="formBasicName">
                 <Row>
                   <Col>
-                    <Form.Label>Owner Contact:</Form.Label>
+                    <Form.Label>Business Contact:</Form.Label>
                     <Form.Control
                       type="firstName"
                       placeholder="First Name"
@@ -306,7 +306,7 @@ const EditRestroProfilePage = () => {
               </Form.Group>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
-                  <Form.Label>Email:</Form.Label>
+                  <Form.Label>Business Email:</Form.Label>
                   <Form.Control
                     type="email"
                     placeholder="Email"
@@ -316,7 +316,7 @@ const EditRestroProfilePage = () => {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridPhoneNumber">
-                  <Form.Label>Phone Number:</Form.Label>
+                  <Form.Label>Business Phone Number:</Form.Label>
                   <Form.Control
                     placeholder="Phone Number"
                     type="phoneNumber"
