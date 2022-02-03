@@ -9,14 +9,18 @@ const RestoSelectMenu = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const [selectedResto, setSelectedResto] = useState("");
-  const [restoData, setRestoData] = useState({});
+  const [restoData, setRestoData] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       let restoRef = collection(db, "restaurants");
       let q = query(restoRef, where("ownerUid", "==", user.uid));
       let querySnap = await getDocs(q);
-      let newData = querySnap.docs.map((doc) => doc.data());
+      let newData = querySnap.docs.map((doc) => ({
+        ...doc.data(),
+        DOC_ID: doc.id,
+      }));
+      console.log("new data", newData);
       setRestoData(newData);
     };
     if (user) {
@@ -39,12 +43,13 @@ const RestoSelectMenu = () => {
           value={selectedResto}
           onChange={(e) => setSelectedResto(e.target.value)}
         >
-          <option value="Choose...">Choose...</option>{" "}
+          <option value="Choose...">Choose...</option>
+
           {restoData &&
             restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
         </Form.Select>
       </Form.Group>
-      <Link to={`/restaurants/editprofile/${selectedResto.id}`}>
+      <Link to={`/restaurants/editprofile/${selectedResto.DOC_ID}`}>
         <Button
           variant="primary"
           disabled={!selectedResto}
@@ -53,7 +58,7 @@ const RestoSelectMenu = () => {
           Account Details
         </Button>
       </Link>
-      <Link to={`/restaurants/editmenu/${selectedResto.id}`}>
+      <Link to={`/restaurants/editmenu/${selectedResto.DOC_ID}`}>
         <Button
           variant="primary"
           disabled={!selectedResto}
