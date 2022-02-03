@@ -7,41 +7,39 @@ import { Form, Col } from "react-bootstrap";
 const RestoSelectMenu = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
-  const [restoName, setRestoName] = useState([]);
-  const [restoData2, setRestoData2] = useState({});
+  const [selectedResto, setSelectedResto] = useState("");
+  const [restoData, setRestoData] = useState({});
 
   useEffect(() => {
     const getData = async () => {
       let restoRef = collection(db, "restaurants");
       let q = query(restoRef, where("ownerUid", "==", user.uid));
       let querySnap = await getDocs(q);
-      console.log(q);
-      console.log("the restos we own are:");
-      querySnap.forEach((doc) => {
-        let restoData = doc.data();
-        console.log(`name: ${restoData.name}`);
-        setRestoData2(restoData);
-      });
+      let newData = querySnap.docs.map((doc) => doc.data());
+      setRestoData(newData);
     };
     getData();
-  }, []);
+  }, [user.uid]);
+
+  const ItemDisplay = (props) => {
+    const item = props.item;
+    return <option>{item.name}</option>;
+  };
 
   return (
     <div>
-      {console.log("Resto Data2:", restoData2)}
+      {console.log("Resto Data is:", restoData)}
 
-      <Form.Group as={Col} controlId="formGridProvince">
+      <Form.Group as={Col} controlId="formSelectResto">
         <Form.Label>Select Restaurant:</Form.Label>
         <Form.Select
-          // defaultValue="Choose..."
-          type="province"
-          value={restoData2.name}
-          onChange={(e) => setRestoName(e.target.value)}
+          type="resto"
+          value={selectedResto}
+          onChange={(e) => setSelectedResto(e.target.value)}
         >
-          <option value="Choose...">Choose...</option>
-          <option value={restoName}>{restoData2.name}</option>
-          <option value={restoName}>{restoData2.name}</option>
-          <option value={restoName}>{restoData2.name}</option>
+          <option value="Choose...">Choose...</option>{" "}
+          {restoData &&
+            restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
         </Form.Select>
       </Form.Group>
     </div>
