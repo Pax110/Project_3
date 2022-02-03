@@ -8,9 +8,8 @@ import { Link } from "react-router-dom";
 const RestoSelectMenu = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
-  const [selectedResto, setSelectedResto] = useState("");
+  const [selectedRestoID, setSelectedRestoID] = useState("");
   const [restoData, setRestoData] = useState([]);
-  const [id, setID] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -21,9 +20,7 @@ const RestoSelectMenu = () => {
         ...doc.data(),
         DOC_ID: doc.id,
       }));
-      console.log("new data", newData);
       setRestoData(newData);
-      setID(newData[0].DOC_ID);
     };
     if (user) {
       getData();
@@ -32,7 +29,7 @@ const RestoSelectMenu = () => {
 
   const ItemDisplay = (props) => {
     const item = props.item;
-    return <option>{item.name}</option>;
+    return <option value={item.DOC_ID}>{item.name}</option>;
   };
 
   return (
@@ -42,32 +39,35 @@ const RestoSelectMenu = () => {
         <Form.Label>Select Restaurant:</Form.Label>
         <Form.Select
           type="resto"
-          value={selectedResto}
-          onChange={(e) => setSelectedResto(e.target.value)}
+          value={selectedRestoID}
+          onChange={(e) => {
+            console.log("selected value is:", e.target.value);
+            setSelectedRestoID(e.target.value);
+          }}
         >
           <option value="Choose...">Choose...</option>
           {restoData &&
-            restoData.map((i, index) => <ItemDisplay key={index} item={i} />)}
+            restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
         </Form.Select>
+        <Link to={`/restaurants/editprofile/${selectedRestoID}`}>
+          <Button
+            variant="primary"
+            disabled={!selectedRestoID}
+            style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+          >
+            Account Details
+          </Button>
+        </Link>
+        <Link to={`/restaurants/editmenu/${selectedRestoID}`}>
+          <Button
+            variant="primary"
+            disabled={!selectedRestoID}
+            style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+          >
+            Menu Details
+          </Button>
+        </Link>{" "}
       </Form.Group>
-      <Link to={`/restaurants/editprofile/${id}`}>
-        <Button
-          variant="primary"
-          disabled={!selectedResto}
-          style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
-        >
-          Account Details
-        </Button>
-      </Link>
-      <Link to={`/restaurants/editmenu/${id}`}>
-        <Button
-          variant="primary"
-          disabled={!selectedResto}
-          style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
-        >
-          Menu Details
-        </Button>
-      </Link>{" "}
     </div>
   );
 };
