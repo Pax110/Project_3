@@ -2,7 +2,8 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useFirebase } from "../FirebaseProvider";
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const RestoSelectMenu = () => {
   const { db } = useFirebase();
@@ -18,8 +19,10 @@ const RestoSelectMenu = () => {
       let newData = querySnap.docs.map((doc) => doc.data());
       setRestoData(newData);
     };
-    getData();
-  }, [user.uid]);
+    if (user) {
+      getData();
+    }
+  }, [user?.uid]);
 
   const ItemDisplay = (props) => {
     const item = props.item;
@@ -29,7 +32,6 @@ const RestoSelectMenu = () => {
   return (
     <div>
       {console.log("Resto Data is:", restoData)}
-
       <Form.Group as={Col} controlId="formSelectResto">
         <Form.Label>Select Restaurant:</Form.Label>
         <Form.Select
@@ -42,6 +44,24 @@ const RestoSelectMenu = () => {
             restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
         </Form.Select>
       </Form.Group>
+      <Link to={`/restaurants/editprofile/${selectedResto.id}`}>
+        <Button
+          variant="primary"
+          disabled={!selectedResto}
+          style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+        >
+          Account Details
+        </Button>
+      </Link>
+      <Link to={`/restaurants/editmenu/${selectedResto.id}`}>
+        <Button
+          variant="primary"
+          disabled={!selectedResto}
+          style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+        >
+          Menu Details
+        </Button>
+      </Link>{" "}
     </div>
   );
 };
