@@ -15,6 +15,7 @@ import MenuPage from "../pages/MenuPage";
 import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
 import RestoDashboardPage from "../pages/RestoDashboardPage";
+import RestoMenuEditPage from "../pages/RestoMenuEditPage";
 
 const Router = () => {
   return (
@@ -53,7 +54,11 @@ const Router = () => {
         <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
         <Route
           path="/restaurant/editMenu/:id"
-          element={<RestoMenuEditPage />}
+          element={
+            <ProtectedRoute>
+              <RestoMenuEditPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
