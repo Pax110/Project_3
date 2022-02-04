@@ -8,7 +8,6 @@ import AddDessertItem from "./AddDessertItem";
 
 const RestoMenuEdit = () => {
   const { id } = useParams();
-  console.log(id);
   const { db } = useFirebase();
   const [restaurant, setRestaurant] = useState(null);
 
