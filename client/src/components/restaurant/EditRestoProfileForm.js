@@ -1,6 +1,10 @@
 import React from "react";
+import { register } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 const EditRestoProfileForm = ({ document }) => {
+  const { control, handleSubmit } = useForm({ defaultValues: document }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
+  //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
   return (
     <>
       <div

@@ -1,6 +1,6 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import background from "../landingimage/food1.jpg";
 import {
   collection,
@@ -15,8 +15,6 @@ import {
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
-import { registerVersion } from "@firebase/app";
-import { useForm, Controller } from "react-hook-form";
 import EditRestoProfileForm from "./EditRestoProfileForm";
 
 //user.uid === restaurants.OwnerUid
@@ -30,35 +28,7 @@ const EditRestroProfilePage = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   console.log("user id is", user.uid);
-  const navigate = useNavigate();
   const [document, setDocument] = useState([]);
-  const { control, handleSubmit } = useForm({ defaultValues: document }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
-  //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
-  const [resto, setResto] = useState("");
-  const [type, setType] = useState("");
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [province, setProvince] = useState("");
-  const [postal, setPostal] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  //placeholder hooks
-  const [tempResto, setTempResto] = useState("");
-  const [tempType, setTempType] = useState("");
-  const [tempAddress1, setTempAddress1] = useState("");
-  const [tempAddress2, setTempAddress2] = useState("");
-  const [tempCity, setTempCity] = useState("");
-  const [tempProvince, setTempProvince] = useState("");
-  const [tempPostal, setTempPostal] = useState("");
-  const [tempFirstName, setTempFirstName] = useState("");
-  const [tempLastName, setTempLastName] = useState("");
-  const [tempEmail, setTempEmail] = useState("");
-  const [tempPhone, setTempPhone] = useState("");
-
-  //setting final document to use for placeholer
 
   //getting DOC_ID to update the data
   const [id, setId] = useState("");
