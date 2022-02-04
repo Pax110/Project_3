@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
-import AddMenuItem from "./AddMenuItem";
+import AddAppItem from "./AddAppItem";
+import AddMainItem from "./AddMainItem";
+import AddDessertItem from "./AddDessertItem";
 
 const RestoMenuEdit = () => {
   const { id } = useParams();
@@ -49,17 +51,17 @@ const RestoMenuEdit = () => {
         restaurant.menu.appetizers.map((i) => (
           <ItemDisplay key={i.name} item={i} />
         ))}
-      <AddMenuItem />
+      <AddAppItem />
       <h3> Mains:</h3>
       {restaurant &&
         restaurant.menu.mains.map((i) => <ItemDisplay key={i.name} item={i} />)}
-      <AddMenuItem />
+      <AddMainItem />
       <h3> Desserts:</h3>
       {restaurant &&
         restaurant.menu.desserts.map((i) => (
           <ItemDisplay key={i.name} item={i} />
         ))}
-      <AddMenuItem />
+      <AddDessertItem />
       <h3>docId: {restaurant?.DOC_ID}</h3>
 
       <hr />
