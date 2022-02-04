@@ -15,15 +15,24 @@ import {
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
+import { registerVersion } from "@firebase/app";
+import { useForm, Controller } from "react-hook-form";
 
 //user.uid === restaurants.OwnerUid
+//move jx into another file call it edit restro priofile form takes 1 property which is restro document , once it has the document it will render the edit restro form component and pass it the document
+//use form hook will be moved into the use form down into the form component. use form will only run only once it has the document . the name field will then be populated
+//edit profilepage : get the data and get the id, then load up in a diff comp.
+//make sure to use the controller around each field
+//34 to 56 delete after all the stuff is moved
 
 const EditRestroProfilePage = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   console.log("user id is", user.uid);
   const navigate = useNavigate();
-
+  const [document, setDocument] = useState([]);
+  const { control, handleSubmit } = useForm({ defaultValues: document }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
+  //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
   const [resto, setResto] = useState("");
   const [type, setType] = useState("");
   const [address1, setAddress1] = useState("");
@@ -49,7 +58,6 @@ const EditRestroProfilePage = () => {
   const [tempPhone, setTempPhone] = useState("");
 
   //setting final document to use for placeholer
-  const [document, setDocument] = useState([]);
 
   //getting DOC_ID to update the data
   const [id, setId] = useState("");
@@ -73,7 +81,7 @@ const EditRestroProfilePage = () => {
           DOC_ID: doc.id,
         }));
         console.log("new data", newData[0].name);
-        setDocument(newData);
+        setDocument(newData[0]);
         console.log("setId is.........", newData[0].DOC_ID);
         setId(newData[0].DOC_ID);
       }
@@ -164,7 +172,9 @@ const EditRestroProfilePage = () => {
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
+            <h2 className="mb-3 text-center">
+              Update Restaurant Profile ({id})
+            </h2>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -173,11 +183,13 @@ const EditRestroProfilePage = () => {
               {console.log("doc is ", document)}
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
-                <Form.Control
-                  // placeholder={document[0].name}
-                  type="name"
-                  value={resto}
-                  onChange={(e) => setResto(e.target.value)}
+                <Controller
+                  name="name"
+                  control={control} //hooks you up to form
+                  render={({ field }) => {
+                    console.log("FIELD IS ", field);
+                    return <Form.Control {...field} />;
+                  }} //places the form control and populates all the fields
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
