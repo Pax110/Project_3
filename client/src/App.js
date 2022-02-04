@@ -9,12 +9,12 @@ import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 function App() {
   return (
     <Container>
-      <Navbar styles={{'position': 'sticky'}}/>
       <Container>
         <Row>
           <Col>
             <FirebaseProvider>
               <UserAuthContextProvider>
+                <Navbar styles={{ position: "sticky" }} />
                 <Router />
               </UserAuthContextProvider>
             </FirebaseProvider>
