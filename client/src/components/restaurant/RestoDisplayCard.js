@@ -8,7 +8,6 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 
-
 const RestoDisplayCard = () => {
   const { db } = useFirebase();
   const [restaurants, setRestaurants] = useState([]);
@@ -19,6 +18,7 @@ const RestoDisplayCard = () => {
   useEffect(() => {
     const getRestaurants = async () => {
       const data = await getDocs(restaurantsCollectionRef);
+
       setRestaurants(
         data.docs.map((doc) => ({ ...doc.data(), DOC_ID: doc.id }))
       );
@@ -26,17 +26,11 @@ const RestoDisplayCard = () => {
 
     getRestaurants();
   }, []);
-  
   return (
     <ImageList cols={4}>
       {restaurants.map((restaurant) => (
         <Link to={`/menu/${restaurant.DOC_ID}`} key={restaurant.DOC_ID}>
-          <ImageListItem
-            onClick={() => {
-              console.log(`${restaurant.DOC_ID}`);
-            }}
-            key={restaurant.photoURL}
-          >
+          <ImageListItem onClick={() => {}} key={restaurant.photoURL}>
             <img
               src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
               srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}

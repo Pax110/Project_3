@@ -13,7 +13,7 @@ import RestoSignUpPage from "../pages/RestoSignUpPage";
 import MenuPage from "../pages/MenuPage";
 import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
-import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePage";
+import RestoDashboardPage from "../pages/RestoDashboardPage";
 
 const Router = () => {
   return (
@@ -27,7 +27,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        
+
         <Route path="/signin" element={<LoginPage />} />
 
         <Route path="/" element={<LandingPage />} />
@@ -42,7 +42,16 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/restaurant/signup" element={<ProtectedRoute><RestoSignUpPage /></ProtectedRoute>} />
+        <Route path="/restaurant/signup" element={<RestoSignUpPage />} />
+
+        <Route
+          path="/restaurant/dashboard"
+          element={
+            <ProtectedRoute>
+              <RestoDashboardPage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/profile"
@@ -74,7 +83,11 @@ const Router = () => {
 
         <Route
           path="/restaurant/editprofile"
-          element={<ProtectedRoute><EditRestroProfilePage /></ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <EditRestroProfilePage />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </div>
