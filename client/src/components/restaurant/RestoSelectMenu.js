@@ -49,7 +49,7 @@ const RestoSelectMenu = () => {
           {restoData &&
             restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
         </Form.Select>
-        <Link to={`/restaurants/editprofile/${selectedRestoID}`}>
+        <Link to={`/restaurant/editprofile/${selectedRestoID}`}>
           <Button
             variant="primary"
             disabled={!selectedRestoID}
@@ -58,7 +58,7 @@ const RestoSelectMenu = () => {
             Account Details
           </Button>
         </Link>
-        <Link to={`/restaurants/editmenu/${selectedRestoID}`}>
+        <Link to={`/restaurant/editmenu/${selectedRestoID}`}>
           <Button
             variant="primary"
             disabled={!selectedRestoID}
