@@ -19,7 +19,7 @@ const RestoDisplayCard = () => {
   useEffect(() => {
     const getRestaurants = async () => {
       const data = await getDocs(restaurantsCollectionRef);
-      console.log(data.docs);
+   
       setRestaurants(
         data.docs.map((doc) => ({ ...doc.data(), DOC_ID: doc.id }))
       );
@@ -27,14 +27,14 @@ const RestoDisplayCard = () => {
 
     getRestaurants();
   }, []);
-  console.log(restaurants);
+
   return (
     <ImageList cols={4}>
       {restaurants.map((restaurant) => (
         <Link to={`/menu/${restaurant.DOC_ID}`} key={restaurant.DOC_ID}>
           <ImageListItem
             onClick={() => {
-              console.log(`${restaurant.DOC_ID}`);
+            
             }}
             key={restaurant.photoURL}
           >
