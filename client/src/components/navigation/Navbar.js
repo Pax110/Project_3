@@ -264,7 +264,8 @@ const Navbar = () => {
               {/* <Button><a href="/shopping-cart">CART</a></Button> */}
               <Dropdown alignright>
                 <Dropdown.Toggle>
-                  <Badge>{10}</Badge>
+                  
+                  <Badge>{0}</Badge>
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{minwidth: 370}}>
                   <span>Cart is Empty</span>
