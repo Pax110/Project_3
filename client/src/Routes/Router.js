@@ -16,7 +16,6 @@ import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
 import RestoDashboardPage from "../pages/RestoDashboardPage";
 import RestoMenuEditPage from "../pages/RestoMenuEditPage";
-import AdminPage from "../pages/AdminPage";
 
 const Router = () => {
   return (
