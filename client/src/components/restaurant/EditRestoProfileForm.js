@@ -5,7 +5,10 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/food1.jpg";
 
 const EditRestoProfileForm = ({ document }) => {
+  const document1 = document
+  {console.log("doc in the form ", document1)}
   const { control, handleSubmit, setValue } = useForm({
+    
     defaultValues: document,
   }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
   //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
@@ -35,10 +38,11 @@ const EditRestoProfileForm = ({ document }) => {
                 e.preventDefault();
               }}
             >
-              {console.log("doc is ", document)}
+              
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
                 <Controller
+                
                   name="name"
                   control={control} //hooks you up to form
                   render={({ field }) => {
@@ -51,6 +55,7 @@ const EditRestoProfileForm = ({ document }) => {
                 <Form.Label>Business Type:</Form.Label>
                 <Controller
                   name="Home"
+                 
                   control={control}
                   rules={{ required: true }}
                   render={({ field }) => (
@@ -228,7 +233,7 @@ const EditRestoProfileForm = ({ document }) => {
                   type="button"
                   onClick={() => {
                     console.log("clicked");
-                    addRestroProfileInfo();
+                    // addRestroProfileInfo();
                     // navigate("/");
                   }}
                 >

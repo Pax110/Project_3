@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   collection,
@@ -29,10 +29,10 @@ const EditRestroProfilePage = () => {
   const { id } = useParams();
   console.log("user id is", user.uid);
   console.log("THIS USER ID IS FROM PARAMS", id);
-  // const [document, setDocument] = useState([]);
+   const [document, setDocument] = useState([]);
 
   // //getting DOC_ID to update the data
-  // const [id, setId] = useState("");
+  const [documentId, setDocumentId] = useState("");
 
   useEffect(async () => {
     try {
@@ -52,10 +52,10 @@ const EditRestroProfilePage = () => {
           ...doc.data(),
           DOC_ID: doc.id,
         }));
-        console.log("new data", newData[0].name);
-        // setDocument(newData[0]);
+        console.log("new data", newData[0]);
+        setDocument(newData[0]);
         console.log("setId is.........", newData[0].DOC_ID);
-        // setId(newData[0].DOC_ID);
+        setDocumentId(newData[0].DOC_ID);
       }
     } catch (ex) {
       console.log("Errorrrr", ex.message);
@@ -65,6 +65,7 @@ const EditRestroProfilePage = () => {
   return (
     <div>
       {" "}
+      {console.log("document in the page",document)}
       <EditRestoProfileForm props={document} />
     </div>
   );
