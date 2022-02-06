@@ -96,14 +96,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminPage />
-            </ProtectedRoute>
-          }
-        />
+       
         <Route path="/menu/:id" element={<MenuPage />} />
       </Routes>
     </div>
