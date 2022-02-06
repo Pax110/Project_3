@@ -20,7 +20,7 @@
     "react-firebase": "^2.2.8",
     "react-firebaseui": "^6.0.0",
     "react-google-button": "^0.7.2",
-    "react-hook-form": "^7.25.0",
+    "react-hook-form": "^7.26.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.3",

@@ -16,6 +16,7 @@ import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
 import RestoDashboardPage from "../pages/RestoDashboardPage";
 import RestoMenuEditPage from "../pages/RestoMenuEditPage";
+import AdminPage from "../pages/AdminPage";
 
 const Router = () => {
   return (
@@ -95,7 +96,14 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/menu/:id" element={<MenuPage />} />
       </Routes>
     </div>

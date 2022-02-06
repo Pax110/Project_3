@@ -255,6 +255,13 @@ const Navbar = () => {
             </Button>
           )}
 
+          {currentUser && (
+            <Button>
+              {" "}
+              <Link to="/admin">Admin</Link>{" "}
+            </Button>
+          )}
+
 
 
 
