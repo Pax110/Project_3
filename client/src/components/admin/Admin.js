@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useFirebase } from "./FirebaseProvider";
-import { useUserAuth } from "./context/UserAuthContext";
+
 import Table from 'react-bootstrap/Table'
+import { useFirebase } from "../FirebaseProvider";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Admin = () => {
   const { db } = useFirebase();
