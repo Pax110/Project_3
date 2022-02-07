@@ -29,12 +29,9 @@ const EditRestroProfilePage = () => {
   const { id } = useParams();
   console.log("user id is", user.uid);
   console.log("THIS USER ID IS FROM PARAMS", id);
-   const [document, setDocument] = useState([]);
+  const [document, setDocument] = useState();
 
   // //getting DOC_ID to update the data
-
-
-
 
   useEffect(() => {
     let collRef = collection(db, "restaurants");
@@ -42,21 +39,22 @@ const EditRestroProfilePage = () => {
     const unsubscribe = onSnapshot(docRef, (doc) => {
       if (doc.exists()) {
         const receivedData = doc.data();
-        console.log("Selected Restaurant : RECEIVED DOCUMENT DATA", receivedData);
-       setDocument(receivedData)
+        console.log(
+          "Selected Restaurant : RECEIVED DOCUMENT DATA",
+          receivedData
+        );
+        setDocument(receivedData);
       }
     });
     return unsubscribe;
   }, []);
 
-
-  return (
-    <div>
-      {" "}
-      {console.log("document in the page",document)}
-      <EditRestoProfileForm doc={document} />
-    </div>
-  );
+  console.log("document in the page", document);
+if(document){
+  return <EditRestoProfileForm doc={document} />;
+}else{
+  return <div>Loading...</div>
+}
 };
 
 export default EditRestroProfilePage;

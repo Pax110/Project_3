@@ -4,21 +4,23 @@ import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/food1.jpg";
 
-
-
-
 const EditRestoProfileForm = (props) => {
-  const docValue = props.doc
-  console.log("docValue",docValue);
- 
-  
+  const docValue = props.doc;
+  console.log("docValue", docValue);
 
-  const { control, handleSubmit, setValue } = useForm({
-    
-    defaultValues: docValue
-    
+  const { control, handleSubmit, setValue, formState } = useForm({
+    //defaultValues: {name: name}
+    defaultValues: docValue,
   }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
   //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
+  const errors = formState.errors;
+  const mySubmit = (data) => {
+    console.log("submitted data is", data);
+    
+  };
+  const myError = (err) => {
+    console.log("err is", err);
+  };
 
   return (
     <>
@@ -40,40 +42,37 @@ const EditRestoProfileForm = (props) => {
               Update Restaurant Profile ({id})
             </h2> */}
             <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              
+            <Form onSubmit={handleSubmit(mySubmit, myError)}>
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
                 <Controller
-                
                   name="name"
                   control={control} //hooks you up to form
-                  render={({ field: { onChange, onBlur, value, name, ref } }) => {
-                    // console.log("FIELD IS ", field);
+                  rules={{required: true}}
+                  render={(props) => {
+                    const { field } = props;
+                    console.log("FIELD IS ", field);
                     return <Form.Control {...field} />;
                   }} //places the form control and populates all the fields
                 />
+                {errors.name && <div>this field has an error</div>}
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Label>Business Type:</Form.Label>
                 <Controller
-                  name="Home"
-                 
+                  name="type"
                   control={control}
-                  rules={{ required: true }}
+                  // rules={{ required: }}
                   render={({ field }) => (
                     <Row>
                       <Col>
                         {" "}
                         <Form.Check
                           type="radio"
-                          value="Home"
+                         
                           // checked={type === "Home"}
                           label="Home Kitchen"
+                          {...field}
                           // onChange={(e) => setType(e.target.value)}
                         />
                       </Col>
@@ -82,34 +81,33 @@ const EditRestoProfileForm = (props) => {
                         {" "}
                         <Form.Check
                           type="radio"
-                          value="Commissary"
+                          
                           // checked={type === "Commissary"}
                           label="Commissary Kitchen"
+                          {...field}
                           // onChange={(e) => setType(e.target.value)}
                         />{" "}
                       </Col>
                     </Row>
                   )}
                 />
-                
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Address:</Form.Label>
                 <Controller
-                  name="address"
+                  name="contact.address"
                   control={control} //hooks you up to form
                   render={({ field }) => {
                     // console.log("FIELD IS ", field);
                     return <Form.Control {...field} />;
                   }}
                 />
-                
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGridAddress2">
                 <Form.Label>Address 2:</Form.Label>
                 <Controller
-                  name="address2"
+                  name="contact.address2"
                   control={control} //hooks you up to form
                   render={({ field }) => {
                     // console.log("FIELD IS ", field);
@@ -121,7 +119,7 @@ const EditRestoProfileForm = (props) => {
                 <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>City:</Form.Label>
                   <Controller
-                    name="city"
+                    name="contact.city"
                     control={control} //hooks you up to form
                     render={({ field }) => {
                       // console.log("FIELD IS ", field);
@@ -130,7 +128,7 @@ const EditRestoProfileForm = (props) => {
                   />
                 </Form.Group>
 
-                <Form.Group as={Col} >
+                <Form.Group as={Col}>
                   <Form.Label>Province/Territory:</Form.Label>
                   <Controller
                     control={control}
@@ -172,7 +170,7 @@ const EditRestoProfileForm = (props) => {
                 <Form.Group as={Col} controlId="formGridPostalCode">
                   <Form.Label>Postal Code:</Form.Label>
                   <Controller
-                    name="postalCode"
+                    name="contact.postalCode"
                     control={control} //hooks you up to form
                     render={({ field }) => {
                       // console.log("FIELD IS ", field);
@@ -186,7 +184,7 @@ const EditRestoProfileForm = (props) => {
                   <Col>
                     <Form.Label>Business Contact:</Form.Label>
                     <Controller
-                      name="firstName"
+                      name="contact.owner.firstName"
                       control={control} //hooks you up to form
                       render={({ field }) => {
                         // console.log("FIELD IS ", field);
@@ -199,7 +197,7 @@ const EditRestoProfileForm = (props) => {
                       <br />
                     </Form.Label>
                     <Controller
-                      name="lastName"
+                      name="contact.owner.lastName"
                       control={control} //hooks you up to form
                       render={({ field }) => {
                         // console.log("FIELD IS ", field);
@@ -213,7 +211,7 @@ const EditRestoProfileForm = (props) => {
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Business Email:</Form.Label>
                   <Controller
-                    name="email"
+                    name="contact.email"
                     control={control} //hooks you up to form
                     render={({ field }) => {
                       // console.log("FIELD IS ", field);
@@ -235,15 +233,7 @@ const EditRestoProfileForm = (props) => {
                 </Form.Group>
               </Row>
               <div className="d-grid gap-2">
-                <Button
-                  variant="primary"
-                  type="button"
-                  onClick={() => {
-                    console.log("clicked");
-                    // addRestroProfileInfo();
-                    // navigate("/");
-                  }}
-                >
+                <Button variant="primary" type="submit">
                   Update
                 </Button>
               </div>
