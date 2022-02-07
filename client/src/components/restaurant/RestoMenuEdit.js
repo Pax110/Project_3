@@ -26,8 +26,8 @@ const ApptizerEdit = (props) => {
     //send the the whole restaurant doc (updated) back to the "restaurant" doc
  
       let restoDocRef = doc(db, `restaurants/${id}`);
-      // let data = await updateDoc(restoDocRef, `${menu.appetizers[0]}`, {name: "zzzz", price: "$0.25"});
-      // console.log("received data", data);
+      let data = await updateDoc(restoDocRef, "${menu.appetizers[0]}", {name: "zzzz", price: "$0.25"});
+      console.log("received data", data);
     
    
 
