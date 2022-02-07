@@ -35,7 +35,8 @@ const RestoDisplayCard = () => {
     <Container
       style={{
         width: "auto",
-        backgroundColor: "rgba(254, 170, 0, 0.6)",
+        backgroundColor: "rgba(254, 170, 0, 0.9)",
+        borderRadius: "15px",
       }}
     >
       <h1 className="p-4 box mt-3 text-center">Browse Local Cuisines</h1>
@@ -71,6 +72,7 @@ const RestoDisplayCard = () => {
           </Link>
         ))}
       </ImageList>
+      <br />
     </Container>
   );
 };

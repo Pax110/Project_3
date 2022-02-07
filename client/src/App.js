@@ -9,7 +9,7 @@ import CartProvider from "./components/context/CartProvider.js";
 
 function App() {
   return (
-    <Container>
+    <Container className="App" styles={{ width: "100%" }}>
       <Container>
         <Row>
           <Col>
