@@ -5,7 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, CardMedia } from "@mui/material";
 import { useFirebase } from "../FirebaseProvider";
 import { width } from "@mui/system";
 
@@ -59,7 +59,9 @@ const MenuDisplayCard = () => {
         {restaurant.menu.appetizers.map((item) => (
           <Link to="#" onClick={addToCart}>
             <ImageListItem sx={{ width: "200px", height: "200px" }}>
-              <img
+              <CardMedia
+                component="img"
+                height="250"
                 src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.name}
@@ -111,7 +113,9 @@ const MenuDisplayCard = () => {
         {restaurant.menu.mains.map((item) => (
           <Link to="#" onClick={addToCart}>
             <ImageListItem sx={{ width: "200px", height: "200px" }}>
-              <img
+              <CardMedia
+                component="img"
+                height="250"
                 src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.name}
@@ -163,7 +167,9 @@ const MenuDisplayCard = () => {
         {restaurant.menu.desserts.map((item) => (
           <Link to="#" onClick={addToCart}>
             <ImageListItem sx={{ width: "200px", height: "200px" }}>
-              <img
+              <CardMedia
+                component="img"
+                height="250"
                 src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.name}
