@@ -3,16 +3,15 @@ import firstPic from "./food1.jpg";
 import secondPic from "./food.jpg";
 import thirdPic from "./header.jpg";
 import { Carousel } from "react-bootstrap";
-import "./landing.css";
 
 const LandingImage = () => {
   return (
-    <Carousel>
+    <Carousel style={{ width: "100%", margin: "0px", padding: "0px" }}>
       <Carousel.Item>
         <img
           className="d-block w-100"
           src={`${firstPic}`}
-          style={{ width: "800px", height: "600px" }}
+          style={{ width: "100%", height: "600px" }}
           alt="First slide"
         />
         <Carousel.Caption>

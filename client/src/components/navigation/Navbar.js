@@ -71,8 +71,11 @@ const Navbar = () => {
   const titleFont = "'Bebas Neue'";
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#342628" }}>
-      <Container maxWidth="xl">
+    <AppBar
+      position="absolute"
+      sx={{ width: "100%", bgcolor: "#342628", padding: "0px, 0px, 0px, 0px" }}
+    >
+      <Container>
         <Toolbar disableGutters>
           <Typography
             variant="h4"

@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Footer() {
   return (
-    <Box sx={{ flexGrow: 0, paddingTop: "10px" }}>
+    <Box sx={{ flexGrow: 0, paddingTop: "10px", width: "100%" }}>
       <AppBar position="static" sx={{ bgcolor: "#342628" }}>
         <Toolbar>
           <Typography

@@ -9,14 +9,14 @@ import CartProvider from "./components/context/CartProvider.js";
 
 function App() {
   return (
-    <Container className="App" styles={{ width: "100%" }}>
+    <Container className="App" style={{ maxWidth: "none" }}>
       <Container>
         <Row>
           <Col>
             <CartProvider>
               <FirebaseProvider>
                 <UserAuthContextProvider>
-                  <Navbar styles={{ position: "sticky" }} />
+                  <Navbar />
                   <Router />
                 </UserAuthContextProvider>
               </FirebaseProvider>
