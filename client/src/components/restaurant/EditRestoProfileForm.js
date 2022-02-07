@@ -4,12 +4,14 @@ import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/food1.jpg";
 
-const EditRestoProfileForm = ({ document }) => {
-  const document1 = document
+const EditRestoProfileForm = ({props}) => {
+  const document1 = props
   {console.log("doc in the form ", document1)}
   const { control, handleSubmit, setValue } = useForm({
     
-    defaultValues: document,
+    defaultValues: {
+      name: props.name
+    },
   }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
   //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
 
