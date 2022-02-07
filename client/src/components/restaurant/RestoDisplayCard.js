@@ -8,6 +8,8 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
+import HomeIcon from "../icon/HomeIcon";
+import KitchenIcon from "../icon/KitchenIcon";
 import { CardMedia, Container } from "@mui/material";
 
 const RestoDisplayCard = () => {
@@ -56,7 +58,9 @@ const RestoDisplayCard = () => {
                   <IconButton
                     sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                     aria-label={`info about ${restaurant.name}`}
-                  ></IconButton>
+                  >
+                    <HomeIcon />
+                  </IconButton>
                 }
               />
             </ImageListItem>
