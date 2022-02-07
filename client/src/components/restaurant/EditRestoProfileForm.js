@@ -7,20 +7,15 @@ import background from "../landingimage/food1.jpg";
 
 
 
-const EditRestoProfileForm = ({props}) => {
-
-  const document1 = props
-  const nameX = document1.name
-
-  const defaultValue = {
+const EditRestoProfileForm = (props) => {
+  const docValue = props.doc
+  console.log("docValue",docValue);
+ 
   
-    name: "abcd"
-    
-    }
-  {console.log("NAME : doc in the form ", nameX)}
+
   const { control, handleSubmit, setValue } = useForm({
     
-    defaultValues: defaultValue
+    defaultValues: docValue
     
   }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
   //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
@@ -57,7 +52,7 @@ const EditRestoProfileForm = ({props}) => {
                 
                   name="name"
                   control={control} //hooks you up to form
-                  render={({ field }) => {
+                  render={({ field: { onChange, onBlur, value, name, ref } }) => {
                     // console.log("FIELD IS ", field);
                     return <Form.Control {...field} />;
                   }} //places the form control and populates all the fields

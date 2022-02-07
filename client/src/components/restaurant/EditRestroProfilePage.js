@@ -54,7 +54,7 @@ const EditRestroProfilePage = () => {
     <div>
       {" "}
       {console.log("document in the page",document)}
-      <EditRestoProfileForm props={document} />
+      <EditRestoProfileForm doc={document} />
     </div>
   );
 };
