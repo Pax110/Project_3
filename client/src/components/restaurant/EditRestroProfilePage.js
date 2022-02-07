@@ -32,35 +32,23 @@ const EditRestroProfilePage = () => {
    const [document, setDocument] = useState([]);
 
   // //getting DOC_ID to update the data
-  const [documentId, setDocumentId] = useState("");
 
-  useEffect(async () => {
-    try {
-      console.log("useEffect triggered");
-      let collectionRef = collection(db, "restaurants");
 
-      // let alldocs = await getDocs(collectionRef)
 
-      let queryRef = query(collectionRef, where("ownerUid", "==", user.uid));
-      let querySnap = await getDocs(queryRef);
 
-      console.log("querySnap", querySnap);
-      if (querySnap.empty) {
-        console.log("querySnap came back empty");
-      } else {
-        let newData = querySnap.docs.map((doc) => ({
-          ...doc.data(),
-          DOC_ID: doc.id,
-        }));
-        console.log("new data", newData[0]);
-        setDocument(newData[0]);
-        console.log("setId is.........", newData[0].DOC_ID);
-        setDocumentId(newData[0].DOC_ID);
+  useEffect(() => {
+    let collRef = collection(db, "restaurants");
+    let docRef = doc(collRef, id);
+    const unsubscribe = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        const receivedData = doc.data();
+        console.log("Selected Restaurant : RECEIVED DOCUMENT DATA", receivedData);
+       setDocument(receivedData)
       }
-    } catch (ex) {
-      console.log("Errorrrr", ex.message);
-    }
+    });
+    return unsubscribe;
   }, []);
+
 
   return (
     <div>

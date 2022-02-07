@@ -38,7 +38,7 @@ const Navbar = () => {
       // https://firebase.google.com/docs/reference/js/firebase.User
 
       setCurrentUser(currentUser);
-      console.log("user is", user);
+     
       // ...
     } else {
       setCurrentUser(null);

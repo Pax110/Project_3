@@ -1,15 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import RestoSelectMenu from "../components/restaurant/RestoSelectMenu";
 
 //Need to add id and key to links
 
 const RestoDashboardPage = () => {
   return (
-    <div>
+    <div>  
+      <h3>Restaurant Dashboard</h3>  
       <RestoSelectMenu />
-      <h1> Hi I am the dashboard</h1>
     </div>
   );
 };
