@@ -5,19 +5,22 @@ import FirebaseProvider from "./components/FirebaseProvider";
 import "./App.css";
 import Router from "../src/Routes/Router";
 import { UserAuthContextProvider } from "./components/context/UserAuthContext";
+import CartProvider from "./components/context/CartProvider.js";
 
 function App() {
   return (
-    <Container>
+    <Container className="App" style={{ maxWidth: "none" }}>
       <Container>
         <Row>
           <Col>
-            <FirebaseProvider>
-              <UserAuthContextProvider>
-                <Navbar styles={{ position: "sticky" }} />
-                <Router />
-              </UserAuthContextProvider>
-            </FirebaseProvider>
+            <CartProvider>
+              <FirebaseProvider>
+                <UserAuthContextProvider>
+                  <Navbar />
+                  <Router />
+                </UserAuthContextProvider>
+              </FirebaseProvider>
+            </CartProvider>
           </Col>
         </Row>
       </Container>

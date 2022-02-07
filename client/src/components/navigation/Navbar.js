@@ -38,7 +38,7 @@ const Navbar = () => {
       // https://firebase.google.com/docs/reference/js/firebase.User
 
       setCurrentUser(currentUser);
-     
+      console.log("user is", user);
       // ...
     } else {
       setCurrentUser(null);
@@ -71,8 +71,11 @@ const Navbar = () => {
   const titleFont = "'Bebas Neue'";
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#342628" }}>
-      <Container maxWidth="xl">
+    <AppBar
+      position="absolute"
+      sx={{ width: "100%", bgcolor: "#342628", padding: "0px, 0px, 0px, 0px" }}
+    >
+      <Container>
         <Toolbar disableGutters>
           <Typography
             variant="h4"
@@ -261,7 +264,7 @@ const Navbar = () => {
               {/* <Button><a href="/shopping-cart">CART</a></Button> */}
               <Dropdown alignright>
                 <Dropdown.Toggle>
-                  <Badge>{10}</Badge>
+                  <Badge>{0}</Badge>
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{ minwidth: 370 }}>
                   <span>Cart is Empty</span>
@@ -269,6 +272,13 @@ const Navbar = () => {
               </Dropdown>
             </div>
           }
+
+          {currentUser && (
+            <Button>
+              {" "}
+              <Link to="/admin">Admin</Link>{" "}
+            </Button>
+          )}
 
           {/* SIGNIN BUTTON */}
 

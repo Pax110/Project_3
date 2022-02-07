@@ -15,6 +15,7 @@ import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
 import RestoDashboardPage from "../pages/RestoDashboardPage";
 import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePage";
+import AdminPage from "../pages/AdminPage";
 
 const Router = () => {
   return (
@@ -76,6 +77,15 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <NeedHelpPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPage />
             </ProtectedRoute>
           }
         />

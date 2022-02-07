@@ -39,6 +39,8 @@ export function UserAuthContextProvider({ children }) {
     };
   }, []);
 
+  //user profile from firestore ex profile and pass profile []
+
   return (
     <userAuthContext.Provider
       value={{ db, user, logIn, signUp, logOut, googleSignIn }}
