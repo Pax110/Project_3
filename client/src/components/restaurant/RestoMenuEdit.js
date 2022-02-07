@@ -95,36 +95,36 @@ const RestoMenuEdit = () => {
     }
   }, [id]);
 
-  const EditItemDisplay = (props) => {
-    const item = props.item;
-    return (
-      <Container
-        style={{
-          width: "400px",
-          backgroundColor: "#feaa00",
-        }}
-      >
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Form.Group className="mb-3" controlId="formMenuItem">
-            <Form.Label>Name:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Name"
-              {...register("First name", { required: true, maxLength: 80 })}
-            />
-            <Form.Label>Price:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Price"
-              {...register("Price", { required: true })}
-            />
-            <br />
-            <input type="submit" />
-          </Form.Group>
-        </Form>
-      </Container>
-    );
-  };
+  // const EditItemDisplay = (props) => {
+  //   const item = props.item;
+  //   return (
+  //     <Container
+  //       style={{
+  //         width: "400px",
+  //         backgroundColor: "#feaa00",
+  //       }}
+  //     >
+  //       <Form onSubmit={handleSubmit(onSubmit)}>
+  //         <Form.Group className="mb-3" controlId="formMenuItem">
+  //           <Form.Label>Name:</Form.Label>
+  //           <Form.Control
+  //             type="text"
+  //             placeholder="Name"
+  //             {...register("First name", { required: true, maxLength: 80 })}
+  //           />
+  //           <Form.Label>Price:</Form.Label>
+  //           <Form.Control
+  //             type="text"
+  //             placeholder="Price"
+  //             {...register("Price", { required: true })}
+  //           />
+  //           <br />
+  //           <input type="submit" />
+  //         </Form.Group>
+  //       </Form>
+  //     </Container>
+  //   );
+  // };
 
   return (
     <div>
@@ -137,17 +137,17 @@ const RestoMenuEdit = () => {
         ))}
       {/* <AddAppItem /> //TO ADD ITEM */}
       <h3> Mains:</h3>
-      {restaurant &&
+      {/* {restaurant &&
         restaurant.menu.mains.map((i) => (
           <EditItemDisplay key={i.name} item={i} />
         ))}
-      <AddMainItem />
+      <AddMainItem /> */}
       <h3> Desserts:</h3>
-      {restaurant &&
+      {/* {restaurant &&
         restaurant.menu.desserts.map((i) => (
           <EditItemDisplay key={i.name} item={i} />
         ))}
-      <AddDessertItem />
+      <AddDessertItem /> */}
       <h3>docId: {restaurant?.DOC_ID}</h3>
 
       <hr />
