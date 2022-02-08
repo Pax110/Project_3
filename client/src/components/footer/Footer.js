@@ -69,7 +69,7 @@ export default function Footer() {
             }}
           >
             Eat.Local.Food.Click.Harvest.Curb Choose to put your money where
-            your house is, shop local
+            your home is, shop local
           </Typography>
           <Search>
             <SearchIconWrapper>
