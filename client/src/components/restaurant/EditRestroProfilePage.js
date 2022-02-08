@@ -5,12 +5,7 @@ import {
   collection,
   doc,
   onSnapshot,
-  setDoc,
-  query,
-  where,
-  getDoc,
-  getDocs,
-  updateDoc,
+ 
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -51,7 +46,7 @@ const EditRestroProfilePage = () => {
 
   console.log("document in the page", document);
 if(document){
-  return <EditRestoProfileForm doc={document} />;
+  return <EditRestoProfileForm id={id} doc={document} />;
 }else{
   return <div>Loading...</div>
 }

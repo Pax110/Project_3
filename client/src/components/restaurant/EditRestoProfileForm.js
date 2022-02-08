@@ -3,10 +3,15 @@ import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/food1.jpg";
+import { collection, doc, updateDoc } from "firebase/firestore";
+import { useFirebase } from "../FirebaseProvider";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
-  console.log("docValue", docValue);
+  const { user } = useUserAuth();
+  const { db } = useFirebase();
+  const docId = props.id;
 
   const { control, handleSubmit, setValue, formState } = useForm({
     //defaultValues: {name: name}
@@ -14,9 +19,29 @@ const EditRestoProfileForm = (props) => {
   }); //defines an empty form object  //on button click all handleSubmit> its react hook forms has everything and then call our submit function
   //<button onClick={()=>handleSubmit(your submit function goes here)}> then you use update doc with this data. then you do an update doc in firestore (gets handed data)
   const errors = formState.errors;
-  const mySubmit = (data) => {
+  const mySubmit = async (data) => {
     console.log("submitted data is", data);
-    
+    console.log("submitted data type is", data.type);
+    let collRef = collection(db, "restaurants");
+    let docRef = doc(collRef, docId);
+
+    await updateDoc(docRef, {
+      name: data.name,
+      type: data.type,
+      contact: {
+        address: data.contact.address,
+        address2: data.contact.address2,
+        city: data.contact.city,
+        province: data.contact.province,
+        postal: data.contact.postalCode,
+        owner: {
+          firstName: data.contact.owner.firstName,
+          lastName: data.contact.owner.lastName,
+        },
+        email: data.contact.email,
+      },
+      phoneNumber: data.phoneNumber,
+    });
   };
   const myError = (err) => {
     console.log("err is", err);
@@ -48,10 +73,10 @@ const EditRestoProfileForm = (props) => {
                 <Controller
                   name="name"
                   control={control} //hooks you up to form
-                  rules={{required: true}}
+                  rules={{ required: true }}
                   render={(props) => {
                     const { field } = props;
-                    console.log("FIELD IS ", field);
+
                     return <Form.Control {...field} />;
                   }} //places the form control and populates all the fields
                 />
@@ -69,7 +94,6 @@ const EditRestoProfileForm = (props) => {
                         {" "}
                         <Form.Check
                           type="radio"
-                         
                           // checked={type === "Home"}
                           label="Home Kitchen"
                           {...field}
@@ -81,7 +105,6 @@ const EditRestoProfileForm = (props) => {
                         {" "}
                         <Form.Check
                           type="radio"
-                          
                           // checked={type === "Commissary"}
                           label="Commissary Kitchen"
                           {...field}
@@ -93,7 +116,7 @@ const EditRestoProfileForm = (props) => {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formGridAddress1">
+              <Form.Group className="mb-3" controlId="formGrid">
                 <Form.Label>Address:</Form.Label>
                 <Controller
                   name="contact.address"
