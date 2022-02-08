@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import "./Footer.css";
+import "../fonts/fonts.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -68,7 +68,8 @@ export default function Footer() {
               color: "#feaa00",
             }}
           >
-            Eat.Local.Food.Click.Harvest.Curb
+            Eat.Local.Food.Click.Harvest.Curb Choose to put your money where
+            your home is, shop local
           </Typography>
           <Search>
             <SearchIconWrapper>
