@@ -77,18 +77,20 @@ const Navbar = () => {
     >
       <Container>
         <Toolbar disableGutters>
-          <Typography
-            variant="h4"
-            noWrap
-            component="div"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: titleFont,
-            }}
-          >
-            CULINARY COLLECTIVE
-          </Typography>
+          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+            <Typography
+              variant="h4"
+              noWrap
+              component="div"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: titleFont,
+              }}
+            >
+              CULINARY COLLECTIVE
+            </Typography>
+          </Link>
 
           {user && (
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
