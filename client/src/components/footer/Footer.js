@@ -68,7 +68,8 @@ export default function Footer() {
               color: "#feaa00",
             }}
           >
-            Eat.Local.Food.Click.Harvest.Curb
+            Eat.Local.Food.Click.Harvest.Curb Choose to put your money where
+            your house is, shop local
           </Typography>
           <Search>
             <SearchIconWrapper>
