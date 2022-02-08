@@ -16,7 +16,6 @@ const EditRestoProfileForm = (props) => {
   const errors = formState.errors;
   const mySubmit = (data) => {
     console.log("submitted data is", data);
-    
   };
   const myError = (err) => {
     console.log("err is", err);
@@ -48,7 +47,7 @@ const EditRestoProfileForm = (props) => {
                 <Controller
                   name="name"
                   control={control} //hooks you up to form
-                  rules={{required: true}}
+                  rules={{ required: true }}
                   render={(props) => {
                     const { field } = props;
                     console.log("FIELD IS ", field);
@@ -69,19 +68,25 @@ const EditRestoProfileForm = (props) => {
                         {" "}
                         <Form.Check
                           type="radio"
-                         
                           // checked={type === "Home"}
                           label="Home Kitchen"
                           {...field}
                           // onChange={(e) => setType(e.target.value)}
                         />
                       </Col>
-
+                    </Row>
+                  )}
+                />
+                <Controller
+                  name="type"
+                  control={control}
+                  // rules={{ required: }}
+                  render={({ field }) => (
+                    <Row>
                       <Col>
                         {" "}
                         <Form.Check
                           type="radio"
-                          
                           // checked={type === "Commissary"}
                           label="Commissary Kitchen"
                           {...field}
