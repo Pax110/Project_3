@@ -19,6 +19,8 @@ const RestoDisplayCard = () => {
   // let docRef = doc(db, "restaurants", restaurants.uid);
   // console.log(`docRef is ${JSON.stringify(docRef)}`);
 
+  const myStyle = { fontFamily: "Bebas Neue" };
+
   useEffect(() => {
     const getRestaurants = async () => {
       const data = await getDocs(restaurantsCollectionRef);
@@ -34,11 +36,13 @@ const RestoDisplayCard = () => {
     <Container
       style={{
         width: "auto",
-        backgroundColor: "rgba(254, 170, 0, 0.9)",
+        backgroundColor: "#f7f4ef",
         borderRadius: "15px",
       }}
     >
-      <h1 className="p-4 box mt-3 text-center">Browse Local Cuisines</h1>
+      <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+        Browse Local Cuisines
+      </h1>
       <ImageList cols={4}>
         {restaurants.map((restaurant) => (
           <Link to={`/menu/${restaurant.DOC_ID}`} key={restaurant.DOC_ID}>

@@ -100,7 +100,15 @@ const EditRestoProfileForm = (props) => {
                           // onChange={(e) => setType(e.target.value)}
                         />
                       </Col>
-
+                    </Row>
+                  )}
+                />
+                <Controller
+                  name="type"
+                  control={control}
+                  // rules={{ required: }}
+                  render={({ field }) => (
+                    <Row>
                       <Col>
                         {" "}
                         <Form.Check

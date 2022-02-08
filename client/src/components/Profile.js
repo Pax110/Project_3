@@ -87,7 +87,7 @@ const Profile = () => {
   return (
     <>
       {/* <p>{JSON.stringify(userDocument)}</p> */}
-      <Container style={{ width: "400px" }}>
+      <Container >
         <div className="p-4 box">
           <h2 className="mb-3"> Profile</h2>
           {/* {error && <Alert variant="danger">{error}</Alert>} */}
