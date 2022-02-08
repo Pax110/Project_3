@@ -12,11 +12,11 @@ function App() {
     <Container className="App" style={{ maxWidth: "none" }}>
       <Container>
         <Row>
-          <Col>
+          <Col style={{ paddingTop: "80px" }}>
             <CartProvider>
               <FirebaseProvider>
                 <UserAuthContextProvider>
-                  <Navbar />
+                  <Navbar style={{ position: "sticky" }} />
                   <Router />
                 </UserAuthContextProvider>
               </FirebaseProvider>

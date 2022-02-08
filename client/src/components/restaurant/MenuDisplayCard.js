@@ -63,7 +63,7 @@ const MenuDisplayCard = () => {
         width: "auto",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
-        marginTop: "80px",
+
         padding: "15px",
       }}
     >
