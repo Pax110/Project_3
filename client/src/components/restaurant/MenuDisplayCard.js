@@ -55,7 +55,7 @@ const MenuDisplayCard = () => {
 
   const title = restaurant.name.toUpperCase();
 
-  const myStyle = { fontFamily: "Bebas Neue", paddingLeft: "15px" };
+  const myStyle = { fontFamily: "Bebas Neue" };
 
   return (
     <Container
@@ -63,22 +63,23 @@ const MenuDisplayCard = () => {
         width: "auto",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
-
         padding: "15px",
+        paddingRight: "50px",
+        paddingLeft: "30px",
       }}
     >
       {" "}
       <h1 style={myStyle}>{title}</h1>
-      <ImageList style={{ display: "flex" }}>
+      <ImageList style={{ display: "flex", overflow: "none" }}>
         <Col>
-          <Row>
+          <Row style={{ margin: "10px" }}>
             <CardActionArea
               style={{
                 backgroundColor: "white",
                 borderRadius: "15px",
                 display: "flex",
                 flexWrap: "wrap",
-                margin: "5px",
+                margin: "15px",
                 gap: "5px",
               }}
             >
@@ -138,7 +139,7 @@ const MenuDisplayCard = () => {
               </ImageListItem>
             </CardActionArea>
           </Row>
-          <Row>
+          <Row style={{ margin: "10px" }}>
             <CardActionArea
               style={{
                 backgroundColor: "white",
@@ -205,7 +206,7 @@ const MenuDisplayCard = () => {
               </ImageListItem>
             </CardActionArea>
           </Row>
-          <Row>
+          <Row style={{ margin: "10px" }}>
             <CardActionArea
               style={{
                 backgroundColor: "white",
