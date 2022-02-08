@@ -10,7 +10,7 @@ const NeedHelpPage = () => {
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        padding: "100px",
+        padding: "250px",
         height: "100%",
       }}
     >
