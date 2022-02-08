@@ -35,7 +35,6 @@ const Signup = () => {
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <h5>Email</h5>
               <Form.Control
                 type="email"
                 placeholder="Email address"
@@ -44,7 +43,6 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <h5>Password</h5>
               <Form.Control
                 type="password"
                 placeholder="Password"
