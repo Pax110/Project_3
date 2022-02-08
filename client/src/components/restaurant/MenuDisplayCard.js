@@ -8,7 +8,7 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { Container, Row, Col } from "react-bootstrap";
 import { CardActionArea, CardMedia } from "@mui/material";
 import { useFirebase } from "../FirebaseProvider";
-import "./restaurant.css";
+import "../fonts/fonts.css";
 
 // import { RestroDisplayList } from "./MenuDisplayList";
 // import Toast from "./Toast";
@@ -63,6 +63,8 @@ const MenuDisplayCard = () => {
         width: "auto",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
+        marginTop: "80px",
+        padding: "15px",
       }}
     >
       {" "}

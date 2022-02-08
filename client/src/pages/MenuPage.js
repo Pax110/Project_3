@@ -2,11 +2,7 @@ import React from "react";
 import MenuDisplayCard from "../components/restaurant/MenuDisplayCard";
 
 const MenuPage = () => {
-  return (
-    <div>
-      <MenuDisplayCard />
-    </div>
-  );
+  return <MenuDisplayCard />;
 };
 
 export default MenuPage;

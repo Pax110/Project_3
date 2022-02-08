@@ -35,7 +35,7 @@ const RestoDisplayCard = () => {
     <Container
       style={{
         width: "auto",
-        backgroundColor: "rgba(254, 170, 0, 0.9)",
+        backgroundColor: "#f7f4ef",
         borderRadius: "15px",
       }}
     >
