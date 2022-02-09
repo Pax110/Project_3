@@ -44,8 +44,9 @@ const EditRestoMenuForm = (props) => {
     console.log("data submitted", data)
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, id);
+  
     const receivedData = updateDoc(docRef, {
-        menu: data
+        menu: data.menu
     })
     console.log("receivedData",receivedData)
   }
