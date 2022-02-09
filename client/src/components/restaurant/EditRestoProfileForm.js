@@ -27,6 +27,7 @@ const EditRestoProfileForm = (props) => {
 
     await updateDoc(docRef, {
       name: data.name,
+      // description: data.description,
       type: data.type,
       contact: {
         address: data.contact.address,
@@ -88,6 +89,22 @@ const EditRestoProfileForm = (props) => {
                 />
                 {errors.name && <div>this field has an error</div>}
               </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formRestoDescription">
+                <Form.Label>Add your resturant description:</Form.Label>
+                <Controller
+                  name="description"
+                  control={control} //hooks you up to form
+                  rules={{ required: true }}
+                  render={(props) => {
+                    const { field } = props;
+
+                    return <Form.Control {...field} />;
+                  }} //places the form control and populates all the fields
+                />
+                {errors.name && <div>this field has an error</div>}
+              </Form.Group>
+
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Label>Business Type:</Form.Label>
 
