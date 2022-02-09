@@ -1,11 +1,14 @@
+import { collection, doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Appetizer = ({ register, index }) => {
  
-  const r = register(`name[${index}]`);
-  console.log("r is",r)
+  // const r = register(`name[${index}]`);
+  // console.log("r is",r)
   return (
     <Container
       style={{
@@ -33,19 +36,29 @@ const EditRestoMenuForm = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { id } = useParams();
+  const { db } = useUserAuth();
   const docValue = props.document;
 
-  const onSubmit = (data) => console.log("data is",data);
+  const onSubmit = async (data) => {
+    console.log("data submitted", data)
+    let collRef = collection(db, "restaurants");
+    let docRef = doc(collRef, id);
+    const receivedData = updateDoc(docRef, {
+        menu: data
+    })
+    console.log("receivedData",receivedData)
+  }
   const onError = (err) => console.log("error is",err);
-  console.log(errors);
+
   return (
     <div>
       <h3>EditRestoMenuForm</h3>
       <h3>Menu</h3>
       <div>Appetizer</div>
-      {JSON.stringify(docValue.menu.appetizers)}
+      {JSON.stringify(docValue.data.menu.appetizers)}
       {docValue &&
-        docValue.menu.appetizers.map((data, index) => (
+        docValue.data.menu.appetizers.map((data, index) => (
           <Appetizer register={register} key={index} index={index} />
         ))}
       <button onClick={handleSubmit(onSubmit, onError)}>Update</button>
