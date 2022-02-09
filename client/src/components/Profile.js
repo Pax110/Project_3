@@ -15,13 +15,11 @@ const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("")
 
   // placeholder hooks
   const [tempFirstName, setTempFirstName] = useState("");
   const [tempLastName, setTempLastName] = useState("");
   const [tempAddress, setTempAddress] = useState("");
-  const [tempPhone, setTempPhone] = useState("")
 
   useEffect(() => {
     let collRef = collection(db, "users");
@@ -29,20 +27,10 @@ const Profile = () => {
     const unsubscribe = onSnapshot(docRef, (doc) => {
       if (doc.exists) {
         const receivedData = doc.data();
-        console.log("Profile: RECEIVED DOCUMENT DATA", receivedData);
+        console.log("DOCUMENT DATA name", receivedData.firstName);
         setTempFirstName(receivedData.firstName);
         setTempLastName(receivedData.lastName);
         setTempAddress(receivedData.address);
-        setTempPhone(receivedData.phone)
-        // let receivedData = documentData.docs.map(doc=>({...doc.data(), DOC_ID: doc.id}))
-        // console.log("receiveddata",receivedData);
-
-        // const formData = Object.entries(documentData).map((entry) => ({
-        //   // [entry[0]]: entry[1],
-
-        // }));
-
-        // setFirestoreData(formData);
       }
     });
     return unsubscribe;
@@ -61,9 +49,9 @@ const Profile = () => {
         },
         { merge: true }
       );
-      // setFirstName("");
-      // setLastName("");
-      // setAddress("");
+      setFirstName("");
+      setLastName("");
+      setAddress("");
       navigate("/");
     } catch (e) {
       console.log("Error", e.message);
@@ -87,13 +75,13 @@ const Profile = () => {
   return (
     <>
       {/* <p>{JSON.stringify(userDocument)}</p> */}
-      <Container >
+      <Container>
         <div className="p-4 box">
           <h2 className="mb-3"> Profile</h2>
           {/* {error && <Alert variant="danger">{error}</Alert>} */}
           <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Email address"
@@ -105,7 +93,7 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>First Name</Form.Label>
+              <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
                 value={firstName}
@@ -115,7 +103,7 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Last Name</Form.Label>
+              <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Last Name"
@@ -126,7 +114,7 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Address</Form.Label>
+              <Form.Label>Address</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Address"
@@ -137,12 +125,11 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Phone#</Form.Label>
+              <Form.Label>Phone#</Form.Label>
               <Form.Control
                 type="text"
                 placeholder={tempPhone}
                 value={phone}
-                
                 onChange={(e) => setPhone(e.target.value)}
               />
             </Form.Group>

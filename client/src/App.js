@@ -9,21 +9,16 @@ import CartProvider from "./components/context/CartProvider.js";
 
 function App() {
   return (
-    <Container className="App" style={{ maxWidth: "none" }}>
-      <Container>
-        <Row>
-          <Col style={{ paddingTop: "80px" }}>
-            <CartProvider>
-              <FirebaseProvider>
-                <UserAuthContextProvider>
-                  <Navbar style={{ position: "sticky" }} />
-                  <Router />
-                </UserAuthContextProvider>
-              </FirebaseProvider>
-            </CartProvider>
-          </Col>
-        </Row>
-      </Container>
+    <Container className="App" style={{ maxWidth: "none", paddingTop: "80px" }}>
+      <CartProvider>
+        <FirebaseProvider>
+          <UserAuthContextProvider>
+            <Navbar style={{ position: "sticky" }} />
+            <Router />
+          </UserAuthContextProvider>
+        </FirebaseProvider>
+      </CartProvider>
+
       <Footer />
     </Container>
   );

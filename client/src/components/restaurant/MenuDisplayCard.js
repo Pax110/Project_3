@@ -63,21 +63,23 @@ const MenuDisplayCard = () => {
         width: "auto",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
-
         padding: "15px",
+        paddingRight: "50px",
+        paddingLeft: "30px",
       }}
     >
       {" "}
       <h1 style={myStyle}>{title}</h1>
-      <ImageList>
+      <ImageList style={{ display: "flex", overflow: "none" }}>
         <Col>
-          <Row>
+          <Row style={{ margin: "10px" }}>
             <CardActionArea
               style={{
                 backgroundColor: "white",
                 borderRadius: "15px",
                 display: "flex",
-                margin: "5px",
+                flexWrap: "wrap",
+                margin: "15px",
                 gap: "5px",
               }}
             >
@@ -137,12 +139,13 @@ const MenuDisplayCard = () => {
               </ImageListItem>
             </CardActionArea>
           </Row>
-          <Row>
+          <Row style={{ margin: "10px" }}>
             <CardActionArea
               style={{
                 backgroundColor: "white",
                 borderRadius: "15px",
                 display: "flex",
+                flexWrap: "wrap",
                 margin: "15px",
                 gap: "5px",
               }}
@@ -203,12 +206,13 @@ const MenuDisplayCard = () => {
               </ImageListItem>
             </CardActionArea>
           </Row>
-          <Row>
+          <Row style={{ margin: "10px" }}>
             <CardActionArea
               style={{
                 backgroundColor: "white",
                 borderRadius: "15px",
                 display: "flex",
+                flexWrap: "wrap",
                 margin: "15px",
                 gap: "5px",
               }}
