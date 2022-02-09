@@ -84,38 +84,42 @@ const EditRestoProfileForm = (props) => {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Label>Business Type:</Form.Label>
+               
                 <Controller
                   name="type"
                   control={control}
                   // rules={{ required: }}
-                  render={({ field }) => (
-                    <Row>
-                      <Col>
+                  render={({ field : {onChange, value, name} }) => (
+                    <Row onChange={onChange} value={value}>
+                        <Col>
                         {" "}
                         <Form.Check
                           type="radio"
-                          // checked={type === "Home"}
-                          label="Home Kitchen"
-                          {...field}
-                          // onChange={(e) => setType(e.target.value)}
-                        />
-                      </Col>
-                    </Row>
-                  )}
-                />
-                <Controller
-                  name="type"
-                  control={control}
-                  // rules={{ required: }}
-                  render={({ field }) => (
-                    <Row>
-                      <Col>
-                        {" "}
-                        <Form.Check
-                          type="radio"
+                         name={name}
                           // checked={type === "Commissary"}
                           label="Commissary Kitchen"
-                          {...field}
+                          onChange={onChange}
+                          // {...field}
+                          
+                          value="Comissary"
+                          // onChange={(e) => setType(e.target.value)}
+                        />{" "}
+                      </Col>
+
+
+
+                      <Col>
+                        {" "}
+                        <Form.Check
+                          type="radio"
+                          name={name}
+                          // checked={type === "Commissary"}
+                          label="Home Kitchen"
+                          onChange={onChange}
+                          // {...field}
+                       
+                          value="Home"
+
                           // onChange={(e) => setType(e.target.value)}
                         />{" "}
                       </Col>
@@ -164,10 +168,11 @@ const EditRestoProfileForm = (props) => {
                   <Controller
                     control={control}
                     name="province"
-                    render={({ field }) => (
+                    render={({ field: onChange }) => (
                       <Form.Select
                         // defaultValue="Choose..."
                         type="province"
+                        onChange={onChange}
                         // value={province}
                         // onChange={(e) => setProvince(e.target.value)}
                       >
