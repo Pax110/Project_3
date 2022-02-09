@@ -84,29 +84,27 @@ const EditRestoProfileForm = (props) => {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Label>Business Type:</Form.Label>
-               
+
                 <Controller
                   name="type"
                   control={control}
                   // rules={{ required: }}
-                  render={({ field : {onChange, value, name} }) => (
+                  render={({ field: { onChange, value, name } }) => (
                     <Row onChange={onChange} value={value}>
-                        <Col>
+                      <Col>
                         {" "}
                         <Form.Check
                           type="radio"
-                         name={name}
+                          name={name}
                           // checked={type === "Commissary"}
                           label="Commissary Kitchen"
                           onChange={onChange}
                           // {...field}
-                          
+
                           value="Comissary"
                           // onChange={(e) => setType(e.target.value)}
                         />{" "}
                       </Col>
-
-
 
                       <Col>
                         {" "}
@@ -117,7 +115,7 @@ const EditRestoProfileForm = (props) => {
                           label="Home Kitchen"
                           onChange={onChange}
                           // {...field}
-                       
+
                           value="Home"
 
                           // onChange={(e) => setType(e.target.value)}
@@ -168,11 +166,12 @@ const EditRestoProfileForm = (props) => {
                   <Controller
                     control={control}
                     name="province"
-                    render={({ field: onChange }) => (
+                    render={({ field:{value, onChange }}) => (
                       <Form.Select
                         // defaultValue="Choose..."
                         type="province"
                         onChange={onChange}
+                        value={value}
                         // value={province}
                         // onChange={(e) => setProvince(e.target.value)}
                       >
