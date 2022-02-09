@@ -92,8 +92,8 @@ const MenuDisplayCard = () => {
                     <CardMedia
                       component="img"
                       height="250"
-                      src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
-                      srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      src={`${item.menuphoto}`}
+                      srcSet={`${item.menuphoto}`}
                       alt={item.name}
                       loading="lazy"
                     />
@@ -159,8 +159,8 @@ const MenuDisplayCard = () => {
                     <CardMedia
                       component="img"
                       height="250"
-                      src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
-                      srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      src={`${item.menuphoto}`}
+                      srcSet={`${item.menuphoto}`}
                       alt={item.name}
                       loading="lazy"
                     />
@@ -226,8 +226,8 @@ const MenuDisplayCard = () => {
                     <CardMedia
                       component="img"
                       height="250"
-                      src={`${item.menuphoto}?w=248&fit=crop&auto=format`}
-                      srcSet={`${item.menuphoto}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      src={`${item.menuphoto}`}
+                      srcSet={`${item.menuphoto}`}
                       alt={item.name}
                       loading="lazy"
                     />
