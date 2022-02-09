@@ -15,11 +15,13 @@ const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
 
   // placeholder hooks
   const [tempFirstName, setTempFirstName] = useState("");
   const [tempLastName, setTempLastName] = useState("");
   const [tempAddress, setTempAddress] = useState("");
+  const [tempPhone, setTempPhone] = useState("");
 
   useEffect(() => {
     let collRef = collection(db, "users");
@@ -31,6 +33,7 @@ const Profile = () => {
         setTempFirstName(receivedData.firstName);
         setTempLastName(receivedData.lastName);
         setTempAddress(receivedData.address);
+        setTempPhone(receivedData.phone);
       }
     });
     return unsubscribe;
@@ -46,6 +49,7 @@ const Profile = () => {
           firstName: firstName,
           lastName: lastName,
           address: address,
+          phone: phone,
         },
         { merge: true }
       );
