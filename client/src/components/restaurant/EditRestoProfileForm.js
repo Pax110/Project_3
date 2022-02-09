@@ -3,7 +3,7 @@ import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/food1.jpg";
-import { collection, doc, updateDoc } from "firebase/firestore";
+import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
@@ -45,6 +45,12 @@ const EditRestoProfileForm = (props) => {
   };
   const myError = (err) => {
     console.log("err is", err);
+  };
+
+  const deleteRestroAccount = async () => {
+    let collRef = collection(db, "restaurants");
+    let docRef = doc(collRef, docId);
+    await deleteDoc(docRef);
   };
 
   return (
@@ -166,7 +172,7 @@ const EditRestoProfileForm = (props) => {
                   <Controller
                     control={control}
                     name="province"
-                    render={({ field:{value, onChange }}) => (
+                    render={({ field: { value, onChange } }) => (
                       <Form.Select
                         // defaultValue="Choose..."
                         type="province"
@@ -272,6 +278,16 @@ const EditRestoProfileForm = (props) => {
                   Update
                 </Button>
               </div>
+            </Form>
+            <Form onSubmit={handleSubmit(deleteRestroAccount, myError)}>
+              <Form.Group>
+                <br />
+                <div className="d-grid gap-2">
+                  <Button variant="danger" type="submit">
+                    Delete Profile
+                  </Button>
+                </div>
+              </Form.Group>
             </Form>
           </div>
         </Container>
