@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
-import { Form, Container, Row, Col, Button, Alert } from "react-bootstrap";
+import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/food1.jpg";
 import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
@@ -305,11 +305,9 @@ const EditRestoProfileForm = (props) => {
                 </Form.Group>
               </Row>
               <div className="d-grid gap-2">
-                <Alert variant="success">
-                  <Button variant="primary" type="submit">
-                    Update
-                  </Button>
-                </Alert>
+                <Button variant="primary" type="submit">
+                  Update
+                </Button>
               </div>
             </Form>
             <Form onSubmit={handleSubmit(deleteRestroAccount, myError)}>
