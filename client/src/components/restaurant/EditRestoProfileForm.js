@@ -27,7 +27,7 @@ const EditRestoProfileForm = (props) => {
 
     await updateDoc(docRef, {
       name: data.name,
-      // description: data.description,
+      description: data.description,
       type: data.type,
       contact: {
         address: data.contact.address,
@@ -109,7 +109,6 @@ const EditRestoProfileForm = (props) => {
                 <Controller
                   name="description"
                   control={control} //hooks you up to form
-                  rules={{ required: true }}
                   render={(props) => {
                     const { field } = props;
 
