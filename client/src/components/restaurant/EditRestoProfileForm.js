@@ -54,20 +54,20 @@ const EditRestoProfileForm = (props) => {
     await deleteDoc(docRef);
   };
 
-  [
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-    "light",
-    "dark",
-  ].map((variant, idx) => (
-    <Alert key={idx} variant={variant}>
-      This is a {variant} alert—check it out!
-    </Alert>
-  ));
+  // [
+  //   "primary",
+  //   "secondary",
+  //   "success",
+  //   "danger",
+  //   "warning",
+  //   "info",
+  //   "light",
+  //   "dark",
+  // ].map((variant, idx) => (
+  //   <Alert key={idx} variant={variant}>
+  //     This is a {variant} alert—check it out!
+  //   </Alert>
+
   return (
     <>
       <div
