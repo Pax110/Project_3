@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 
 const Appetizer = ({ register, index }) => {
- 
   // const r = register(`name[${index}]`);
   // console.log("r is",r)
   return (
@@ -18,12 +17,87 @@ const Appetizer = ({ register, index }) => {
     >
       <label>Item Name: </label>
       <br />
-      <input type="text"  {...register(`menu.appetizers[${index}].name`)}/>
+      <input type="text" {...register(`menu.appetizers[${index}].name`)} />
       <br />
       <label>Item Price: </label>
       <br />
       <input type="text" {...register(`menu.appetizers[${index}].price`)} />
-      <input type="hidden" {...register(`menu.appetizers[${index}].type`)} value="appetizers" />
+      <input
+        type="hidden"
+        {...register(`menu.appetizers[${index}].type`)}
+        value="appetizers"
+      />
+       <input
+        type="hidden"
+        {...register(`menu.appetizers[${index}].menuphoto`)}
+        value="appetizers"
+      />
+      <br />
+
+      <br />
+    </Container>
+  );
+};
+const Main = ({ register, index }) => {
+  // const r = register(`name[${index}]`);
+  // console.log("r is",r)
+  return (
+    <Container
+      style={{
+        width: "400px",
+        backgroundColor: "#feaa00",
+      }}
+    >
+      <label>Item Name: </label>
+      <br />
+      <input type="text" {...register(`menu.mains[${index}].name`)} />
+      <br />
+      <label>Item Price: </label>
+      <br />
+      <input type="text" {...register(`menu.mains[${index}].price`)} />
+      <input
+        type="hidden"
+        {...register(`menu.mains[${index}].type`)}
+        value="mains"
+      />
+       <input
+        type="hidden"
+        {...register(`menu.mains[${index}].menuphoto`)}
+        value="mains"
+      />
+      <br />
+
+      <br />
+    </Container>
+  );
+};
+const Dessert = ({ register, index }) => {
+  // const r = register(`name[${index}]`);
+  // console.log("r is",r)
+  return (
+    <Container
+      style={{
+        width: "400px",
+        backgroundColor: "#feaa00",
+      }}
+    >
+      <label>Item Name: </label>
+      <br />
+      <input type="text" {...register(`menu.desserts[${index}].name`)} />
+      <br />
+      <label>Item Price: </label>
+      <br />
+      <input type="text" {...register(`menu.desserts[${index}].price`)} />
+      <input
+        type="hidden"
+        {...register(`menu.desserts[${index}].type`)}
+        value="desserts"
+      />
+      <input
+        type="hidden"
+        {...register(`menu.desserts[${index}].menuphoto`)}
+        value="desserts"
+      />
       <br />
 
       <br />
@@ -31,36 +105,65 @@ const Appetizer = ({ register, index }) => {
   );
 };
 const EditRestoMenuForm = (props) => {
+  const docValue = props.document;
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: docValue
+  });
   const { id } = useParams();
   const { db } = useUserAuth();
-  const docValue = props.document;
 
   const onSubmit = async (data) => {
-    console.log("data submitted", data)
+    console.log("data submitted", data);
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, id);
-  
+
     const receivedData = updateDoc(docRef, {
-        menu: data.menu
-    })
-    console.log("receivedData",receivedData)
-  }
-  const onError = (err) => console.log("error is",err);
+      menu: data.menu,
+    });
+    console.log("receivedData", receivedData);
+  };
+  
+  const onError = (err) => console.log("error is", err);
 
   return (
     <div>
       <h3>EditRestoMenuForm</h3>
       <h3>Menu</h3>
-      <div>Appetizer</div>
-      {JSON.stringify(docValue.data.menu.appetizers)}
+      <h4>Appetizer</h4>
+      {JSON.stringify(docValue.menu.appetizers)}
       {docValue &&
-        docValue.data.menu.appetizers.map((data, index) => (
-          <Appetizer register={register} key={index} index={index} />
+        docValue.menu.appetizers.map((data, index) => (
+          <>
+            <Appetizer register={register} key={index} index={index} />
+          </>
+        ))}
+
+
+        {/* MAINS */}
+        <div>Mains</div>
+      {JSON.stringify(docValue.menu.mains)}
+
+      {docValue &&
+        docValue.menu.mains.map((data, index) => (
+          <>
+            <Main register={register} key={index} index={index} />
+          </>
+        ))}
+
+
+
+      {/* DESSERTS */}
+      <div>Desserts</div>
+      {JSON.stringify(docValue.menu.desserts)}
+      {docValue &&
+        docValue.menu.desserts.map((data, index) => (
+          <>
+            <Dessert register={register} key={index} index={index} />
+          </>
         ))}
       <button onClick={handleSubmit(onSubmit, onError)}>Update</button>
     </div>
