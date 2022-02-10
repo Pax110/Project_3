@@ -5,103 +5,81 @@ import { Form, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useFirebase } from "./FirebaseProvider";
 import { set, useForm } from "react-hook-form";
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 
 const Profile = () => {
   const { user } = useUserAuth();
   const { db, auth } = useFirebase();
-  const navigate = useNavigate()  
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [address, setAddress] = useState("")
-  
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
 
   // placeholder hooks
-  const [tempFirstName, setTempFirstName] = useState("")
-  const [tempLastName, setTempLastName] = useState("")
-  const [tempAddress, setTempAddress] = useState("")
-
-
-
+  const [tempFirstName, setTempFirstName] = useState("");
+  const [tempLastName, setTempLastName] = useState("");
+  const [tempAddress, setTempAddress] = useState("");
 
   useEffect(() => {
-
-     let collRef = collection(db, "users");
-      let docRef = doc(collRef, user.uid);
-    const unsubscribe = onSnapshot(docRef,(doc) => {
+    let collRef = collection(db, "users");
+    let docRef = doc(collRef, user.uid);
+    const unsubscribe = onSnapshot(docRef, (doc) => {
       if (doc.exists) {
         const receivedData = doc.data();
-        console.log("DOCUMENT DATA name",receivedData.firstName)
-        setTempFirstName(receivedData.firstName)
-        setTempLastName(receivedData.lastName)
-        setTempAddress(receivedData.address)
-       
+        console.log("DOCUMENT DATA name", receivedData.firstName);
+        setTempFirstName(receivedData.firstName);
+        setTempLastName(receivedData.lastName);
+        setTempAddress(receivedData.address);
       }
     });
     return unsubscribe;
   }, []);
 
-
-
   const addProfileInfo = async () => {
-
-
-    try{
-      
+    try {
       let collRef = collection(db, "users");
       let docRef = doc(collRef, user.uid);
-      await setDoc(docRef, {
-        firstName: firstName,
-        lastName: lastName,
-        address: address
+      await setDoc(
+        docRef,
+        {
+          firstName: firstName,
+          lastName: lastName,
+          address: address,
         },
-         { merge: true }
-      )
-      setFirstName("")
-      setLastName("")
-      setAddress("")
-      navigate("/")
-
-    }catch(e){
+        { merge: true }
+      );
+      setFirstName("");
+      setLastName("");
+      setAddress("");
+      navigate("/");
+    } catch (e) {
       console.log("Error", e.message);
     }
 
-
-
-
-
-
-
-
     // useEffect(() => {
     //   const updateUserDoc = async ()=> {
-  
-      
+
     //   let docRef = doc(db, "users", user.uid);
     //   console.log(`docRef is ${JSON.stringify(docRef)}`);
     //   const a = await setDoc(docRef, {
     //     firstName: 'namex',
     //     lastName: 'nameY'
     //   })
-  
+
     // }
     // updateUserDoc()
     // }, []);
-
-
-  }
-
+  };
 
   return (
     <>
-   
       {/* <p>{JSON.stringify(userDocument)}</p> */}
-      <Container style={{ width: "400px" }}>
+      <Container>
         <div className="p-4 box">
           <h2 className="mb-3"> Profile</h2>
           {/* {error && <Alert variant="danger">{error}</Alert>} */}
-          <Form onSubmit={(e)=>e.preventDefault()}>
+          <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
                 type="email"
@@ -116,7 +94,6 @@ const Profile = () => {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Control
                 type="text"
-                
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder={tempFirstName}
@@ -189,16 +166,19 @@ const Profile = () => {
             </Form.Group> */}
 
             <div className="d-grid gap-2">
-              <Button variant="primary" type="Submit"
-               onClick={() => {addProfileInfo()}}>
-               
+              <Button
+                variant="primary"
+                type="Submit"
+                onClick={() => {
+                  addProfileInfo();
+                }}
+              >
                 Submit
               </Button>
             </div>
           </Form>
         </div>
       </Container>
-      
     </>
   );
 };
