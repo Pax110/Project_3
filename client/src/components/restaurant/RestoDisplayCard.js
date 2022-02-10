@@ -50,8 +50,8 @@ const RestoDisplayCard = () => {
               <CardMedia
                 component="img"
                 height="250"
-                src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
-                srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                src={`${restaurant.photoURL}`}
+                srcSet={`${restaurant.photoURL}`}
                 alt={restaurant.name}
                 loading="lazy"
               />
