@@ -34,14 +34,14 @@ const RestoSelectMenu = () => {
 
   return (
     <div>
-      {console.log("Resto Data is:", restoData)}
+    
       <Form.Group as={Col} controlId="formSelectResto">
         <Form.Label>Select Restaurant:</Form.Label>
         <Form.Select
           type="resto"
           value={selectedRestoID}
           onChange={(e) => {
-            console.log("selected value is:", e.target.value);
+          
             setSelectedRestoID(e.target.value);
           }}
         >

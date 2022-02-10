@@ -16,6 +16,7 @@ import OrderHistoryPage from "../pages/OrderHistoryPage";
 import RestoDashboardPage from "../pages/RestoDashboardPage";
 import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePage";
 import AdminPage from "../pages/AdminPage";
+import EditRestoMenuPage from "../pages/EditRestoMenuPage";
 
 const Router = () => {
   return (
@@ -44,8 +45,16 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/restaurant/signup" element={<RestoSignUpPage />} />
+        <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
 
+        <Route
+          path="/restaurant/editMenu/:id"
+          element={
+            <ProtectedRoute>
+              <EditRestoMenuPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/restaurant/dashboard"
           element={
