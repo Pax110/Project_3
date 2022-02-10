@@ -6,6 +6,7 @@ import background from "../landingimage/food1.jpg";
 import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
+import DeleteRestoButton from "./DeleteRestoButton";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
@@ -48,26 +49,6 @@ const EditRestoProfileForm = (props) => {
     console.log("err is", err);
   };
 
-  const deleteRestroAccount = async () => {
-    let collRef = collection(db, "restaurants");
-    let docRef = doc(collRef, docId);
-    await deleteDoc(docRef);
-  };
-
-  // [
-  //   "primary",
-  //   "secondary",
-  //   "success",
-  //   "danger",
-  //   "warning",
-  //   "info",
-  //   "light",
-  //   "dark",
-  // ].map((variant, idx) => (
-  //   <Alert key={idx} variant={variant}>
-  //     This is a {variant} alert—check it out!
-  //   </Alert>
-
   return (
     <>
       <div
@@ -84,9 +65,6 @@ const EditRestoProfileForm = (props) => {
           }}
         >
           <div className="p-4 box">
-            {/* <h2 className="mb-3 text-center">
-              Update Restaurant Profile ({id})
-            </h2> */}
             <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
             <Form onSubmit={handleSubmit(mySubmit, myError)}>
               <Form.Group className="mb-3" controlId="formRestoName">
@@ -97,7 +75,6 @@ const EditRestoProfileForm = (props) => {
                   rules={{ required: true }}
                   render={(props) => {
                     const { field } = props;
-
                     return <Form.Control {...field} />;
                   }} //places the form control and populates all the fields
                 />
@@ -108,19 +85,17 @@ const EditRestoProfileForm = (props) => {
                 <Form.Label>Add your resturant description:</Form.Label>
                 <Controller
                   name="description"
-                  control={control} //hooks you up to form
+                  control={control}
                   render={(props) => {
                     const { field } = props;
-
                     return <Form.Control {...field} />;
-                  }} //places the form control and populates all the fields
+                  }}
                 />
                 {errors.name && <div>this field has an error</div>}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Label>Business Type:</Form.Label>
-
                 <Controller
                   name="type"
                   control={control}
@@ -136,9 +111,7 @@ const EditRestoProfileForm = (props) => {
                           label="Commissary Kitchen"
                           onChange={onChange}
                           // {...field}
-
-                          value="Comissary"
-                          // onChange={(e) => setType(e.target.value)}
+                          value="Commissary"
                         />{" "}
                       </Col>
 
@@ -151,10 +124,7 @@ const EditRestoProfileForm = (props) => {
                           label="Home Kitchen"
                           onChange={onChange}
                           // {...field}
-
                           value="Home"
-
-                          // onChange={(e) => setType(e.target.value)}
                         />{" "}
                       </Col>
                     </Row>
@@ -166,9 +136,8 @@ const EditRestoProfileForm = (props) => {
                 <Form.Label>Address:</Form.Label>
                 <Controller
                   name="contact.address"
-                  control={control} //hooks you up to form
+                  control={control}
                   render={({ field }) => {
-                    // console.log("FIELD IS ", field);
                     return <Form.Control {...field} />;
                   }}
                 />
@@ -177,9 +146,8 @@ const EditRestoProfileForm = (props) => {
                 <Form.Label>Address 2:</Form.Label>
                 <Controller
                   name="contact.address2"
-                  control={control} //hooks you up to form
+                  control={control}
                   render={({ field }) => {
-                    // console.log("FIELD IS ", field);
                     return <Form.Control {...field} />;
                   }}
                 />
@@ -189,9 +157,8 @@ const EditRestoProfileForm = (props) => {
                   <Form.Label>City:</Form.Label>
                   <Controller
                     name="contact.city"
-                    control={control} //hooks you up to form
+                    control={control}
                     render={({ field }) => {
-                      // console.log("FIELD IS ", field);
                       return <Form.Control {...field} />;
                     }}
                   />
@@ -209,7 +176,6 @@ const EditRestoProfileForm = (props) => {
                         onChange={onChange}
                         value={value}
                         // value={province}
-                        // onChange={(e) => setProvince(e.target.value)}
                       >
                         <option value="Choose...">Choose...</option>
                         <option value="Alberta">Alberta</option>
@@ -242,9 +208,8 @@ const EditRestoProfileForm = (props) => {
                   <Form.Label>Postal Code:</Form.Label>
                   <Controller
                     name="contact.postalCode"
-                    control={control} //hooks you up to form
+                    control={control}
                     render={({ field }) => {
-                      // console.log("FIELD IS ", field);
                       return <Form.Control {...field} />;
                     }}
                   />
@@ -256,9 +221,8 @@ const EditRestoProfileForm = (props) => {
                     <Form.Label>Business Contact:</Form.Label>
                     <Controller
                       name="contact.owner.firstName"
-                      control={control} //hooks you up to form
+                      control={control}
                       render={({ field }) => {
-                        // console.log("FIELD IS ", field);
                         return <Form.Control {...field} />;
                       }}
                     />
@@ -269,9 +233,8 @@ const EditRestoProfileForm = (props) => {
                     </Form.Label>
                     <Controller
                       name="contact.owner.lastName"
-                      control={control} //hooks you up to form
+                      control={control}
                       render={({ field }) => {
-                        // console.log("FIELD IS ", field);
                         return <Form.Control {...field} />;
                       }}
                     />
@@ -283,9 +246,8 @@ const EditRestoProfileForm = (props) => {
                   <Form.Label>Business Email:</Form.Label>
                   <Controller
                     name="contact.email"
-                    control={control} //hooks you up to form
+                    control={control}
                     render={({ field }) => {
-                      // console.log("FIELD IS ", field);
                       return <Form.Control {...field} />;
                     }}
                   />
@@ -295,9 +257,8 @@ const EditRestoProfileForm = (props) => {
                   <Form.Label>Business Phone Number:</Form.Label>
                   <Controller
                     name="phoneNumber"
-                    control={control} //hooks you up to form
+                    control={control}
                     render={({ field }) => {
-                      // console.log("FIELD IS ", field);
                       return <Form.Control {...field} />;
                     }}
                   />
@@ -309,16 +270,10 @@ const EditRestoProfileForm = (props) => {
                 </Button>
               </div>
             </Form>
-            <Form onSubmit={handleSubmit(deleteRestroAccount, myError)}>
-              <Form.Group>
-                <br />
-                <div className="d-grid gap-2">
-                  <Button variant="danger" type="submit">
-                    Delete Profile
-                  </Button>
-                </div>
-              </Form.Group>
-            </Form>
+            <Form.Group>
+              <br />
+              <DeleteRestoButton id={props.id} />
+            </Form.Group>
           </div>
         </Container>
       </div>

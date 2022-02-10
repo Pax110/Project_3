@@ -47,52 +47,12 @@ const RestoSignUpForm = () => {
         },
         ownerUid: user.uid,
       });
-      console.log("success!");
-      // setResto("");
-      // setType("");
-      // setAddress1("");
-      // setAddress2("");
-      // setCity("");
-      // setProvince("");
-      // setPostal("");
-      // setFirstName("");
-      // setLastName("");
-      // setEmail("");
-      // setPhone("");
+      console.log("Create business success!");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
   };
 
-  // useEffect(() => {
-  //   let collRef = collection(db, "users");
-  //   console.log("user.uid",user.uid);
-  //   let docRef = doc(collRef, user.uid);
-  //   const unsubscribe = onSnapshot(docRef, (doc) => {
-  //     if (doc.exists) {
-  //       const receivedData = doc.data();
-  //       console.log("DOCUMENT DATA name", receivedData.uid);
-  //       setOwnerUid(receivedData.uid);
-  //     }
-  //   });
-  //   return unsubscribe;
-  // }, [ownerUid]);
-  // const addRole = async () => {
-  //   try {
-  //     let collRef = collection(db, "users");
-  //     let docRef = doc(collRef, user.uid);
-  //     await updateDoc(
-  //       docRef,
-  //       {
-          
-  //         role: "Business",
-  //       }
-  //     );
-  //     console.log("success!");
-  //   } catch (ex) {
-  //     console.log("FIRESTORE ADD FAILURE!", ex.message);
-  //   }
-  // };
   const addRole = async () => {
     try {
       let collRef = collection(db, "users");
@@ -106,7 +66,7 @@ const RestoSignUpForm = () => {
 
         { merge: true }
       );
-      console.log("success!");
+      console.log("Add role success!");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
@@ -292,7 +252,6 @@ const RestoSignUpForm = () => {
                   variant="primary"
                   type="button"
                   onClick={() => {
-                    console.log("clicked");
                     addResto();
                     addRole();
                     navigate("/");
