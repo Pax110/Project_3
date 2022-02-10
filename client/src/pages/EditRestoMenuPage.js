@@ -1,8 +1,8 @@
 import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useUserAuth } from "../context/UserAuthContext";
-import EditRestoMenuForm from "./EditRestoMenuForm";
+import { useUserAuth } from "../components/context/UserAuthContext";
+import EditRestoMenuForm from "../components/restaurant/EditRestoMenuForm";
 
 const EditRestoMenuPage = () => {
   const { id } = useParams();
@@ -34,7 +34,7 @@ const EditRestoMenuPage = () => {
       <div>
         <h3>EditRestoMenuPage</h3>
         <div>{JSON.stringify(restaurant)}</div>
-        
+
         <EditRestoMenuForm id={id} document={restaurant} />
       </div>
     );
