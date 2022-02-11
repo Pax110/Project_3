@@ -55,7 +55,7 @@ const MenuDisplayCard = () => {
 
   const title = restaurant.name.toUpperCase();
 
-  const myStyle = { fontFamily: "Bebas Neue" };
+  const myStyle = { fontFamily: "Bebas Neue", textAlign: "center" };
 
   return (
     <Container
@@ -65,7 +65,6 @@ const MenuDisplayCard = () => {
         borderRadius: "15px",
         padding: "15px",
         paddingRight: "50px",
-        paddingLeft: "30px",
       }}
     >
       {" "}

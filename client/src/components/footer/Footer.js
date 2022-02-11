@@ -6,6 +6,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
+import { Col } from "react-bootstrap";
 import "../fonts/fonts.css";
 
 const Search = styled("div")(({ theme }) => ({
@@ -58,7 +60,7 @@ export default function Footer() {
       <AppBar position="static" sx={{ bgcolor: "#342628" }}>
         <Toolbar>
           <Typography
-            variant="h6"
+            variant="h7"
             noWrap
             component="div"
             sx={{
@@ -68,9 +70,26 @@ export default function Footer() {
               color: "#feaa00",
             }}
           >
-            Eat.Local.Food.Click.Harvest.Curb Choose to put your money where
-            your home is, shop local
+            Put your money where your home is .. shop local ♥
           </Typography>
+          <Col>
+            <Link
+              to="/restaurant/signup"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              <Typography
+                variant="h7"
+                noWrap
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "block" },
+                }}
+              >
+                Join the Collective
+              </Typography>
+            </Link>
+          </Col>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
