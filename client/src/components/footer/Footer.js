@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import "../fonts/fonts.css";
 
 const Search = styled("div")(({ theme }) => ({
@@ -56,27 +56,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Footer() {
   return (
-    <Box sx={{ flexGrow: 0, paddingTop: "10px", width: "100%" }}>
+    <Box
+      sx={{
+        flexGrow: 0,
+        paddingTop: "10px",
+        width: "100%",
+      }}
+    >
       <AppBar position="static" sx={{ bgcolor: "#342628" }}>
-        <Toolbar>
-          <Typography
-            variant="h7"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              fontFamily: FooterFont,
-              color: "#feaa00",
-            }}
-          >
-            Put your money where your home is .. shop local ♥
-          </Typography>
-          <Col>
-            <Link
-              to="/restaurant/signup"
-              style={{ color: "white", textDecoration: "none" }}
-            >
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Row sx={{ display: "flex" }}>
+            <Col>
+              <Link
+                to="/restaurant/signup"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <Typography variant="h7">Join the Collective</Typography>
+              </Link>
+            </Col>
+            <Col>
+              <Typography variant="h7">Stuff Stuff</Typography>
+            </Col>
+            <Col>
+              <Typography variant="h7">Other Stuff</Typography>
+            </Col>
+            <Row>
               <Typography
                 variant="h7"
                 noWrap
@@ -84,12 +88,14 @@ export default function Footer() {
                 sx={{
                   flexGrow: 1,
                   display: { xs: "none", sm: "block" },
+                  fontFamily: FooterFont,
+                  color: "#feaa00",
                 }}
               >
-                Join the Collective
+                Put your money where your home is .. shop local ♥
               </Typography>
-            </Link>
-          </Col>
+            </Row>
+          </Row>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
