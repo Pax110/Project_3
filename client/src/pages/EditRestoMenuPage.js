@@ -32,9 +32,6 @@ const EditRestoMenuPage = () => {
   if (restaurant) {
     return (
       <div>
-        <h3>EditRestoMenuPage</h3>
-        <div>{JSON.stringify(restaurant)}</div>
-
         <EditRestoMenuForm id={id} document={restaurant} />
       </div>
     );
