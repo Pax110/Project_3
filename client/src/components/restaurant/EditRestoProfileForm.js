@@ -7,6 +7,7 @@ import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
+import FileUploader from "../file-uploader/FileUploader";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
@@ -262,6 +263,11 @@ const EditRestoProfileForm = (props) => {
                       return <Form.Control {...field} />;
                     }}
                   />
+                </Form.Group>
+                <Form.Group>
+                  {" "}
+                  <Form.Label>Upload your profile photo</Form.Label>
+                  <FileUploader />
                 </Form.Group>
               </Row>
               <div className="d-grid gap-2">
