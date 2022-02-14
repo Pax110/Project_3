@@ -266,10 +266,23 @@ const EditRestoProfileForm = (props) => {
                 </Form.Group>
                 <Form.Group>
                   {" "}
-                  <Form.Label>Upload your profile photo</Form.Label>
+                  <Form.Label>Upload your business profile photo</Form.Label>
                   <FileUploader />
                 </Form.Group>
               </Row>
+
+              <Form.Group className="mb-3" controlId="formFoodCategory">
+                <Form.Label>Add your resturant's food category:</Form.Label>
+                <Controller
+                  name="foodCategory"
+                  control={control}
+                  render={(props) => {
+                    const { field } = props;
+                    return <Form.Control {...field} />;
+                  }}
+                />
+                {errors.name && <div>this field has an error</div>}
+              </Form.Group>
               <div className="d-grid gap-2">
                 <Button variant="primary" type="submit">
                   Update
