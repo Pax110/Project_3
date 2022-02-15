@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-import Table from 'react-bootstrap/Table'
+import Table from "react-bootstrap/Table";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
@@ -46,6 +46,7 @@ const Admin = () => {
             <th>Email</th>
             <th>Phone</th>
             <th>Role</th>
+            <th>Approve New Business:</th>
           </tr>
         </thead>
 
@@ -54,16 +55,15 @@ const Admin = () => {
             return (
               <tbody key={index}>
                 <tr>
-                    {console.log("data back",data)}
+                  {console.log("data back", data)}
                   <td>{index}</td>
                   <td>{data.firstName}</td>
                   <td>{data.lastName}</td>
                   <td>{data.email}</td>
                   <td>{data.phone}</td>
                   <td>{data.role}</td>
-                
+                  {data.role && <input type="checkbox"></input>}
                 </tr>
-               
               </tbody>
             );
           })}
