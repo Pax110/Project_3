@@ -10,6 +10,7 @@ const Admin = () => {
   const { user } = useUserAuth();
   // const [selectedRestoID, setSelectedRestoID] = useState("");
   const [userData, setUserData] = useState([]);
+  const [role, setRole]= useState("")
 
   useEffect(() => {
     const getData = async () => {
@@ -28,11 +29,12 @@ const Admin = () => {
     }
   }, []);
 
+
   // const ItemDisplay = (props) => {
   //   const item = props.item;
   //   return <option value={item.DOC_ID}>{item.name}</option>;
   // };
-
+  console.log("role is", role)
   return (
     <div>
       <h2>Admin Dashboard</h2>
@@ -62,7 +64,7 @@ const Admin = () => {
                   <td>{data.email}</td>
                   <td>{data.phone}</td>
                   <td>{data.role}</td>
-                  {data.role[1] == "Business" && <input type="checkbox"></input>}
+                  {data.role && <input type="checkbox" value={role} onChange={(e)=>{setRole(e.target.value)}}></input>}
                 </tr>
               </tbody>
             );
