@@ -55,7 +55,11 @@ const MenuDisplayCard = () => {
 
   const title = restaurant.name.toUpperCase();
 
-  const myStyle = { fontFamily: "Bebas Neue", textAlign: "center" };
+  const myStyle = {
+    fontFamily: "Bebas Neue",
+    textAlign: "center",
+    textDecoration: "none",
+  };
 
   return (
     <Container
@@ -65,6 +69,7 @@ const MenuDisplayCard = () => {
         borderRadius: "15px",
         padding: "15px",
         paddingRight: "50px",
+        textDecoration: "none",
       }}
     >
       {" "}
@@ -84,9 +89,18 @@ const MenuDisplayCard = () => {
             >
               <h3 style={myStyle}>Appetizers</h3>
               {restaurant.menu.appetizers.map((item) => (
-                <Link to="#" onClick={addToCart}>
+                <Link
+                  to="#"
+                  onClick={addToCart}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
                   <ImageListItem
-                    sx={{ width: "200px", height: "200px", margin: "20px" }}
+                    sx={{
+                      width: "200px",
+                      height: "200px",
+                      margin: "20px",
+                      textDecoration: "none",
+                    }}
                   >
                     <CardMedia
                       component="img"
@@ -97,9 +111,20 @@ const MenuDisplayCard = () => {
                       loading="lazy"
                     />
 
-                    <ImageListItemBar //build maps around every menu category
+                    <ImageListItemBar
+                      input
+                      disableUnderline
+                      textDecoration="none" //build maps around every menu category
                       title={item.name}
-                      subtitle={<span>Price: ${item.price}</span>}
+                      underline="none"
+                      flexWrap="wrap"
+                      subtitle={
+                        <span>
+                          Price: ${item.price}
+                          <br />
+                          {item.description}
+                        </span>
+                      }
                       position="below"
                     />
                   </ImageListItem>
@@ -151,7 +176,11 @@ const MenuDisplayCard = () => {
             >
               <h3 style={myStyle}>Mains</h3>
               {restaurant.menu.mains.map((item) => (
-                <Link to="#" onClick={addToCart}>
+                <Link
+                  to="#"
+                  onClick={addToCart}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
                   <ImageListItem
                     sx={{ width: "200px", height: "200px", margin: "20px" }}
                   >
@@ -166,7 +195,13 @@ const MenuDisplayCard = () => {
 
                     <ImageListItemBar //build maps around every menu category
                       title={item.name}
-                      subtitle={<span>Price: ${item.price}</span>}
+                      flexWrap
+                      subtitle={
+                        <span>
+                          Price: ${item.price} <br />
+                          {item.description}
+                        </span>
+                      }
                       position="below"
                     />
                   </ImageListItem>
@@ -218,7 +253,11 @@ const MenuDisplayCard = () => {
             >
               <h3 style={myStyle}>Desserts</h3>
               {restaurant.menu.desserts.map((item) => (
-                <Link to="#" onClick={addToCart}>
+                <Link
+                  to="#"
+                  onClick={addToCart}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
                   <ImageListItem
                     sx={{ width: "200px", height: "200px", margin: "20px" }}
                   >
@@ -231,9 +270,16 @@ const MenuDisplayCard = () => {
                       loading="lazy"
                     />
 
-                    <ImageListItemBar //build maps around every menu category
+                    <ImageListItemBar
+                      //build maps around every menu category
                       title={item.name}
-                      subtitle={<span>Price: ${item.price}</span>}
+                      subtitle={
+                        <span>
+                          Price: ${item.price}
+                          <br />
+                          {item.description}
+                        </span>
+                      }
                       position="below"
                     />
                   </ImageListItem>

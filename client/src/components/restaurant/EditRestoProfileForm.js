@@ -7,6 +7,7 @@ import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
+import FileUploader from "../file-uploader/FileUploader";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
@@ -263,7 +264,25 @@ const EditRestoProfileForm = (props) => {
                     }}
                   />
                 </Form.Group>
+                <Form.Group>
+                  {" "}
+                  <Form.Label>Upload your business profile photo</Form.Label>
+                  <FileUploader />
+                </Form.Group>
               </Row>
+
+              <Form.Group className="mb-3" controlId="formFoodCategory">
+                <Form.Label>Add your resturant's food category:</Form.Label>
+                <Controller
+                  name="foodCategory"
+                  control={control}
+                  render={(props) => {
+                    const { field } = props;
+                    return <Form.Control {...field} />;
+                  }}
+                />
+                {errors.name && <div>this field has an error</div>}
+              </Form.Group>
               <div className="d-grid gap-2">
                 <Button variant="primary" type="submit">
                   Update
