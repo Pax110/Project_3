@@ -21,15 +21,17 @@ const EditRestoMenuForm = (props) => {
   const { id } = useParams();
   const { db } = useUserAuth();
 
+
+
   const onSubmit = async (data) => {
     console.log("data submitted", data);
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, id);
 
-    const receivedData = updateDoc(docRef, {
-      menu: data.menu,
-    });
-    console.log("receivedData", receivedData);
+    // const receivedData = updateDoc(docRef, {
+    //   menu: data.menu,
+    // });
+    // console.log("receivedData", receivedData);
   };
 
   const onError = (err) => console.log("error is", err);
@@ -49,7 +51,7 @@ const EditRestoMenuForm = (props) => {
           backgroundColor: "rgba(225, 229, 235, 0.9)",
         }}
       >
-        <h3>EditRestoMenuForm</h3>
+       
         <h3>Menu</h3>
 
         {/* APPETIZERS */}
