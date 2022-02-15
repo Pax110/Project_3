@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -31,14 +31,30 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
-  const { user } = useUserAuth();
+
+  const { user, getUserProfile } = useUserAuth();
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const getuserData = async () => {
+      try {
+        const info = await getUserProfile();
+        console.log("info ", info);
+        setUserInfo(info);
+      } catch (e) {
+        console.log("error", e.message);
+      }
+    };
+    getuserData();
+  }, [user]);
+
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
 
       setCurrentUser(currentUser);
-      
+
       // ...
     } else {
       setCurrentUser(null);
@@ -48,6 +64,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
+      setUserInfo(null);
       navigate("/");
     } catch (error) {
       console.log(error.message);
@@ -72,7 +89,7 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position="absolute"
+      position="fixed"
       sx={{ width: "100%", bgcolor: "#342628", padding: "0px, 0px, 0px, 0px" }}
     >
       <Container>
@@ -260,7 +277,8 @@ const Navbar = () => {
           {user && <Link to="/profile">Profile </Link>}
           {user && <Link to="/need-help"> NeedHelp?</Link>}
           {user && <Link to="/order-history">OrderHistory</Link>} */}
-          {currentUser && (
+          {console.log("userInfo inside Navbar", userInfo)}
+          {userInfo?.role[1] == "Business" && (
             <Button>
               {" "}
               <Link to="/restaurant/dashboard">RestoDash</Link>{" "}

@@ -4,13 +4,16 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import Table from "react-bootstrap/Table";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
+import { useForm } from "react-hook-form";
+
 
 const Admin = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
+  const [checked, setChecked] = useState(false)
   // const [selectedRestoID, setSelectedRestoID] = useState("");
   const [userData, setUserData] = useState([]);
-  const [role, setRole]= useState("")
+ 
 
   useEffect(() => {
     const getData = async () => {
@@ -27,14 +30,19 @@ const Admin = () => {
     if (user) {
       getData();
     }
-  }, []);
-
+  }, [checked]);
+  
+  console.log("is business approved?", checked)
 
   // const ItemDisplay = (props) => {
   //   const item = props.item;
   //   return <option value={item.DOC_ID}>{item.name}</option>;
   // };
-  console.log("role is", role)
+
+  const handleChange =()=>{
+    
+    // setChecked(e.target.value)
+  }
   return (
     <div>
       <h2>Admin Dashboard</h2>
@@ -64,7 +72,8 @@ const Admin = () => {
                   <td>{data.email}</td>
                   <td>{data.phone}</td>
                   <td>{data.role}</td>
-                  {data.role && <input type="checkbox" value={role} onChange={(e)=>{setRole(e.target.value)}}></input>}
+                  
+                  {data.role && <input type="checkbox" value={checked} onChange={handleChange}/>}
                 </tr>
               </tbody>
             );

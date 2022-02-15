@@ -6,22 +6,6 @@ import { useUserAuth } from "./context/UserAuthContext";
 
 const Home = () => {
   
-  const { user, getUserProfile } = useUserAuth();
-  
-  
-  useEffect(()=>{
-    const getuserData = async () =>{
-
-      try{
-          const a = await getUserProfile()
-          console.log("a",a)
-      }catch(e){
-          console.log("error",e.message)
-      }
-    }
-    getuserData()
-    
-  },[])
   
   
   return (
@@ -31,7 +15,7 @@ const Home = () => {
       <h2>Home</h2>
         Hello Welcome <br />
        
-        {user && user.displayname}
+        
       </div>
       <div>
      
