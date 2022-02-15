@@ -62,7 +62,7 @@ const Admin = () => {
                   <td>{data.email}</td>
                   <td>{data.phone}</td>
                   <td>{data.role}</td>
-                  {data.role && <input type="checkbox"></input>}
+                  {data.role[1] == "Business" && <input type="checkbox"></input>}
                 </tr>
               </tbody>
             );
