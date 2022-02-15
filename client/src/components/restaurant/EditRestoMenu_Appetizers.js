@@ -9,28 +9,32 @@ const Appetizer = ({ register, index }) => {
   // const r = register(`name[${index}]`);
   // console.log("r is",r)
   const { id } = useParams();
-  const { db } = useFirebase();
-  console.log("register is", register())
+  
+
   const { unregister } = useForm();
 
   const handleDelete = (data) => {
-
-
-    
     console.log("Deleting an item in Appetizer with index number", index);
-    console.log("item is coming from a field called menu");
-    console.log("whic has a doc id", id);
-    unregister(`menu.appetizers[${index}].name`)
-    console.log("unregistering...")
-    console.log(unregister(`menu.appetizers[${index}].name`))
-    // let collRef = collection(db, "restaurants");
-    // let docRef = doc(collRef, id);
-    // const path = `menu.appetizers[${index}]`
-    // console.log("path is",path)
-    // await updateDoc(docRef, {
-    //   path : deleteField()
-    // });
+
+    console.log("which has a doc id", id);
+    unregister(`menu.appetizers[${index}].name`);
+    console.log("unregistering...");
+    unregister(`menu.appetizers[${index}].name`);
+    // const path = menu.appetizers[${index}].name
+    console.log(unregister(`menu.appetizers[${index}].name`));
+//get access to the doc submitting 
+
   };
+
+  //DELETING Directly to the Database Field (Not working, not recoemmended)
+  // let collRef = collection(db, "restaurants");
+  // let docRef = doc(collRef, id);
+  // const path = `menu.appetizers[${index}]`
+  // console.log("path is",path)
+  // await updateDoc(docRef, {
+  //   path : deleteField()
+  // });
+
   return (
     <Container
       style={{

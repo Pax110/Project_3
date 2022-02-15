@@ -32,6 +32,9 @@ export function UserAuthContextProvider({ children }) {
     const docSnap = await getDoc(docRef)
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
+      const userInfo = docSnap.data()
+      console.log("userInfor in UserAuthContext", userInfo)
+      return userInfo
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -54,10 +57,10 @@ export function UserAuthContextProvider({ children }) {
   }
 
   //user profile from firestore ex profile and pass profile []
-  getUserProfile()
+
   return (
     <userAuthContext.Provider
-      value={{ db, user, logIn, signUp, logOut, googleSignIn }}
+      value={{ db, user, logIn, signUp, logOut, googleSignIn, getUserProfile }}
     >
       {children}
     </userAuthContext.Provider>

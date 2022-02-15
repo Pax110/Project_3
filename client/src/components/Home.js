@@ -1,12 +1,27 @@
 import React from "react";
+import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 
 import { useUserAuth } from "./context/UserAuthContext";
 
 const Home = () => {
   
-  const { user } = useUserAuth();
- 
+  const { user, getUserProfile } = useUserAuth();
+  
+  
+  useEffect(()=>{
+    const getuserData = async () =>{
+
+      try{
+          const a = await getUserProfile()
+          console.log("a",a)
+      }catch(e){
+          console.log("error",e.message)
+      }
+    }
+    getuserData()
+    
+  },[])
   
   
   return (

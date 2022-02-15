@@ -21,13 +21,16 @@ const EditRestoMenuForm = (props) => {
   const { id } = useParams();
   const { db } = useUserAuth();
 
-
+  //FINAL DOC UPDATE
 
   const onSubmit = async (data) => {
-    console.log("data submitted", data);
+    console.log("data attempting to submit..", data.menu);
+
+    //delete an element (filte)
+
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, id);
-
+   
     // const receivedData = updateDoc(docRef, {
     //   menu: data.menu,
     // });
@@ -51,7 +54,6 @@ const EditRestoMenuForm = (props) => {
           backgroundColor: "rgba(225, 229, 235, 0.9)",
         }}
       >
-       
         <h3>Menu</h3>
 
         {/* APPETIZERS */}
