@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   const myStyle = {
@@ -39,6 +40,31 @@ const AboutUs = () => {
           frais. Cheesy feet!{" "}
         </p>{" "}
         <br />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Link
+          to="/pages/NeedHelpPage"
+          style={{ color: "white", textDecoration: "none" }}
+        />
+        <button
+          style={{
+            backgroundColor: "orange",
+            textDecoration: "none",
+            padding: "0.5%",
+            textAlign: "center",
+            margin: "10px",
+            marginBottom: "50px",
+            justifyContent: "center",
+          }}
+        >
+          Click Here for more FAQs
+        </button>
       </div>
     </Container>
   );
