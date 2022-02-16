@@ -3,7 +3,7 @@ import React from "react";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../pages/LandingPage.js";
-import ProfileTest from "../components/ProfileTest.js";
+
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
@@ -60,15 +60,6 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <RestoDashboardPage />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <ProfileTest />
             </ProtectedRoute>
           }
         />
