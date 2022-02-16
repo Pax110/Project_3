@@ -37,21 +37,17 @@ const MenuDisplayCard = () => {
   useEffect(() => {
     const getRestaurant = async () => {
       const restaurantsDocRef = doc(db, "restaurants", id);
-      console.log("about to get doc");
+
       const data = await getDoc(restaurantsDocRef);
-      console.log("got data");
+
       console.log(data.data());
       setRestaurant(data.data());
     };
     getRestaurant();
-  }, []);
+  }, [id]);
   if (id == null) return null;
   if (!restaurant.name) return null;
   console.log(restaurant);
-
-  const addToCart = () => {
-    alert("Item added to cart");
-  };
 
   const title = restaurant.name.toUpperCase();
 
@@ -89,78 +85,33 @@ const MenuDisplayCard = () => {
             >
               <h3 style={myStyle}>Appetizers</h3>
               {restaurant.menu.appetizers.map((item) => (
-                <Link
-                  to="#"
-                  onClick={addToCart}
-                  style={{ textDecoration: "none", color: "black" }}
+                <ImageListItem
+                  sx={{
+                    width: "200px",
+                    height: "200px",
+                    margin: "20px",
+                    textDecoration: "none",
+                  }}
                 >
-                  <ImageListItem
-                    sx={{
-                      width: "200px",
-                      height: "200px",
-                      margin: "20px",
-                      textDecoration: "none",
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      height="250"
-                      src={`${item.menuphoto}`}
-                      srcSet={`${item.menuphoto}`}
-                      alt={item.name}
-                      loading="lazy"
-                    />
+                  <CardMedia
+                    component="img"
+                    height="250"
+                    src={`${item.menuphoto}`}
+                    srcSet={`${item.menuphoto}`}
+                    alt={item.name}
+                    loading="lazy"
+                  />
 
-                    <ImageListItemBar
-                      input
-                      disableUnderline
-                      textDecoration="none" //build maps around every menu category
-                      title={item.name}
-                      underline="none"
-                      flexWrap="wrap"
-                      subtitle={
-                        <span>
-                          Price: ${item.price}
-                          <br />
-                          {item.description}
-                        </span>
-                      }
-                      position="below"
-                    />
-                  </ImageListItem>
-                </Link>
+                  <ImageListItemBar
+                    textDecoration="none" //build maps around every menu category
+                    title={item.name}
+                    underline="none"
+                    subtitle={<span>Price: ${item.price}.toString()</span>}
+                    position="below"
+                  />
+                  <button onClick={console.log("clicked")}>Add to Cart</button>
+                </ImageListItem>
               ))}
-
-              <ImageListItem>
-                {/* <img
-            src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
-            srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={restaurant.name}
-            loading="lazy"
-          /> */}
-                {/* <Link>
-                to={{ pathname: "/basket", restaurant: restaurant }}
-                Add Item to Cart
-              </Link> */}
-                {/* <div>
-                onClick=
-                {() => {
-                  setShowToast(true);
-                  setTimeout(() => {
-                    setShowToast(false);
-                  }, 1500);
-                }}
-              </div>
-              {showToast && <Toast message="Sucessfully Added" />}
-              {console.log(restaurant)} */}
-                {/* <ImageListItemBar //build maps around every menu category
-            title={restaurant?.menu?.menu?.appetizers?.name}
-            subtitle={
-              <span>price:{restaurant?.menu?.menu?.appetizers?.price}</span>
-            }
-            position="below"
-          /> */}
-              </ImageListItem>
             </CardActionArea>
           </Row>
           <Row style={{ margin: "10px" }}>
@@ -176,11 +127,7 @@ const MenuDisplayCard = () => {
             >
               <h3 style={myStyle}>Mains</h3>
               {restaurant.menu.mains.map((item) => (
-                <Link
-                  to="#"
-                  onClick={addToCart}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+                <Link to="#" style={{ textDecoration: "none", color: "black" }}>
                   <ImageListItem
                     sx={{ width: "200px", height: "200px", margin: "20px" }}
                   >
@@ -195,7 +142,7 @@ const MenuDisplayCard = () => {
 
                     <ImageListItemBar //build maps around every menu category
                       title={item.name}
-                      flexWrap
+                      
                       subtitle={
                         <span>
                           Price: ${item.price} <br />
@@ -207,37 +154,6 @@ const MenuDisplayCard = () => {
                   </ImageListItem>
                 </Link>
               ))}
-
-              <ImageListItem>
-                {/* <img
-            src={`${restaurant.photoURL}?w=248&fit=crop&auto=format`}
-            srcSet={`${restaurant.photoURL}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={restaurant.name}
-            loading="lazy"
-          /> */}
-                {/* <Link>
-                to={{ pathname: "/basket", restaurant: restaurant }}
-                Add Item to Cart
-              </Link> */}
-                {/* <div>
-                onClick=
-                {() => {
-                  setShowToast(true);
-                  setTimeout(() => {
-                    setShowToast(false);
-                  }, 1500);
-                }}
-              </div>
-              {showToast && <Toast message="Sucessfully Added" />}
-              {console.log(restaurant)} */}
-                {/* <ImageListItemBar //build maps around every menu category
-            title={restaurant?.menu?.menu?.appetizers?.name}
-            subtitle={
-              <span>price:{restaurant?.menu?.menu?.appetizers?.price}</span>
-            }
-            position="below"
-          /> */}
-              </ImageListItem>
             </CardActionArea>
           </Row>
           <Row style={{ margin: "10px" }}>
@@ -253,11 +169,7 @@ const MenuDisplayCard = () => {
             >
               <h3 style={myStyle}>Desserts</h3>
               {restaurant.menu.desserts.map((item) => (
-                <Link
-                  to="#"
-                  onClick={addToCart}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+                <Link to="#" style={{ textDecoration: "none", color: "black" }}>
                   <ImageListItem
                     sx={{ width: "200px", height: "200px", margin: "20px" }}
                   >

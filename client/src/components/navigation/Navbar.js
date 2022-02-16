@@ -285,20 +285,7 @@ const Navbar = () => {
             </Button>
           )}
 
-          {/* CART */}
-          {
-            <div>
-              {/* <Button><a href="/shopping-cart">CART</a></Button> */}
-              <Dropdown alignright>
-                <Dropdown.Toggle>
-                  <Badge>{0}</Badge>
-                </Dropdown.Toggle>
-                <Dropdown.Menu style={{ minwidth: 370 }}>
-                  <span>Cart is Empty</span>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-          }
+          
 
           {currentUser && (
             <Button>
@@ -317,3 +304,18 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+//{/* CART
+  // <div>
+  //   {/* <Button><a href="/shopping-cart">CART</a></Button> */}
+  //   <Dropdown alignright>
+  //     <Dropdown.Toggle>
+  //       <Badge>{0}</Badge>
+  //     </Dropdown.Toggle>
+  //     <Dropdown.Menu style={{ minwidth: 370 }}>
+  //       <span>Cart is Empty</span>
+  //     </Dropdown.Menu>
+  //   </Dropdown>
+  // </div>
