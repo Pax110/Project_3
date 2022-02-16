@@ -11,7 +11,13 @@ const cartReducer = (state, action) => {
 
         cart: state.cart.filter((c) => c.name !== action.payload.name),
       };
-
+      case "CHANGE_CART_QTY":
+        return {
+          ...state,
+          cart: state.cart.filter((c) =>
+            c.name === action.payload.name ? (c.qty = action.payload.qty) : c.qty
+          ),
+        };
     default:
       return state;
   }
