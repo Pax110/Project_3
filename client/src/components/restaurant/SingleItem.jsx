@@ -16,6 +16,8 @@ const SingleItem = ({ item }) => {
     fontFamily: "Montserrat",
     textAlign: "center",
     textDecoration: "none",
+    overflow: "visible",
+    padding: "5px",
   };
   return (
     <>
@@ -29,12 +31,15 @@ const SingleItem = ({ item }) => {
       />
 
       <ImageListItemBar
+        padding={2}
         title={item.name}
         style={myStyle}
         subtitle={
           <span>
-            Price: ${item.price} <br />
             {item.description}
+            <br />
+            <br />
+            Price: ${item.price}
           </span>
         }
         position="below"
