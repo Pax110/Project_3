@@ -8,6 +8,7 @@ import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
 import FileUploader from "../file-uploader/FileUploader";
+import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
@@ -267,7 +268,7 @@ const EditRestoProfileForm = (props) => {
                 <Form.Group>
                   {" "}
                   <Form.Label>Upload your business profile photo</Form.Label>
-                  <FileUploader />
+                  <RestroUpdateUploader />
                 </Form.Group>
               </Row>
 
