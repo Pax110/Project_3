@@ -10,6 +10,7 @@ const FileUploader = () => {
     let filename = image.name;
     let extension = filename.split(".").pop();
     if (image == null) return;
+    console.log("restro id here", restaurant.id);
     // Reference: https://firebase.google.com/docs/storage/web/upload-files?authuser=0
     let restaurantImageRef = ref(
       store,
