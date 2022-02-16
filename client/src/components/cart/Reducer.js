@@ -1,7 +1,7 @@
 import React from "react";
 
 const cartReducer = (state, action) => {
-  console.log("action.payload.name",action.payload.name)
+  console.log("action.payload.name", action.payload.name);
   switch (action.type) {
     case "ADD_TO_CART":
       return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
@@ -11,16 +11,27 @@ const cartReducer = (state, action) => {
 
         cart: state.cart.filter((c) => c.name !== action.payload.name),
       };
-      case "CHANGE_CART_QTY":
-        return {
-          ...state,
-          cart: state.cart.filter((c) =>
-            c.name === action.payload.name ? (c.qty = action.payload.qty) : c.qty
-          ),
-        };
+    case "CHANGE_CART_QTY":
+      return {
+        ...state,
+        cart: state.cart.filter((c) =>
+          c.name === action.payload.name ? (c.qty = action.payload.qty) : c.qty
+        ),
+      };
+    default:
+      return state;
+  }
+};
+const itemReducer = (state, action) => {
+  switch (action.type) {
+    case "FILTER_BY_SEARCH":
+      return { ...state, searchQuery: action.payload };
+    case "CLEAR_FILTERS":
+      return { byStock: false, byFastDelivery: false, byRating: 0 };
+
     default:
       return state;
   }
 };
 
-export default cartReducer;
+export default itemReducer;

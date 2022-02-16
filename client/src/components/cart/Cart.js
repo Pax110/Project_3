@@ -15,6 +15,7 @@ const Cart = () => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
+    console.log("cart value",cart)
   }, [cart]);
 
   return (
