@@ -1,22 +1,29 @@
-import React, { createContext, useContext, useReducer } from 'react';
-import cartReducer from '../Reducer';
+import { doc, getDoc } from "firebase/firestore";
+import React, { createContext, useContext, useEffect, useReducer, useState } from "react";
+import cartReducer from "../cart/Reducer";
+import { userAuthContext } from "./UserAuthContext";
 
-export const CartContext = createContext()
+export const CartContext = createContext();
 
-const CartProvider = ({children}) => {
-      const [state, dispatch] = useReducer(cartReducer, {
-          cart: []
-      })
-  return <div>
-      <CartContext.Provider value={{state, dispatch}}>
-            {children}
+const CartProvider = ({ children }) => {
+   
+
+  const [state, dispatch] = useReducer(cartReducer, {
+    //   items: items,
+    cart: []
+  });
+  
+
+  return (
+    <div>
+      <CartContext.Provider value={{ state, dispatch }}>
+        {children}
       </CartContext.Provider>
-  </div>;
-    
-}
+    </div>
+  );
+};
 
-
-export default CartProvider
+export default CartProvider;
 export const CartState = () => {
-    return useContext(CartContext)
-}
+  return useContext(CartContext);
+};

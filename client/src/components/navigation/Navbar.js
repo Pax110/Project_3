@@ -13,7 +13,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import "../fonts/fonts.css";
-
+import { FaShoppingCart } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import '../cart/styles.css'
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router";
 
@@ -21,8 +23,9 @@ import { Link } from "react-router-dom";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import { auth } from "../FirebaseProvider";
-import { Dropdown } from "react-bootstrap";
+import { ButtonGroup, Dropdown, Nav } from "react-bootstrap";
 import { Badge } from "@mui/material";
+import { CartState } from "../context/CartProvider";
 const pages = ["Order History"];
 // const settings = ["Profile", "Order History", "Need Help?", "Logout"];
 
@@ -31,6 +34,11 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
+  const {
+    state: { cart },
+    dispatch
+    
+  } = CartState();
 
   const { user, getUserProfile } = useUserAuth();
   const [userInfo, setUserInfo] = useState(null);
@@ -88,187 +96,244 @@ const Navbar = () => {
   const titleFont = "'Bebas Neue'";
 
   return (
-    <AppBar
-      position="fixed"
-      sx={{ width: "100%", bgcolor: "#342628", padding: "0px, 0px, 0px, 0px" }}
-    >
-      <Container>
-        <Toolbar disableGutters>
-          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+    <>
+      <div>
+        <Nav>
+          <Dropdown alignright>
+            <Dropdown.Toggle>
+              <FaShoppingCart color="white" fontSize="25px" />
+              <Badge>{cart.length}</Badge>
+            </Dropdown.Toggle>
+            <Dropdown.Menu style={{ minwidth: 370 }}>
+              {cart.length>0?(
+                  <>
+                  {cart.map((item)=>(
+                      <span className="cartitem" key={item.name}>
+                        <img
+                        src={item.menuphoto}
+                        className="cartItemImg"
+                        alt={item.name}
+                      />
+                      <div className="cartItemDetail">
+                        <span>{item.name}</span>
+                        <span>$ {item.price}</span>
+                      </div>
+                      <AiFillDelete
+                        fontSize="20px"
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          dispatch({
+                            type: "REMOVE_FROM_CART",
+                            payload: item,
+                          })
+                        }
+                      />
+                      </span>
+                  ))}
+                   <Link to="/cart">
+                    <Button style={{ width: "95%", margin: "0 10px" }}>
+                      Go To Cart
+                    </Button>
+                  </Link>
+                  </>
+              ):(
+                
+                <span>Cart is Empty</span>
+              )}
+
+            </Dropdown.Menu>
+          </Dropdown>
+        </Nav>
+      </div>
+      <AppBar
+        position="fixed"
+        sx={{
+          width: "100%",
+          bgcolor: "#342628",
+          padding: "0px, 0px, 0px, 0px",
+        }}
+      >
+        <Container>
+          <Toolbar disableGutters>
+            <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+              <Typography
+                variant="h4"
+                noWrap
+                component="div"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: titleFont,
+                }}
+              >
+                CULINARY COLLECTIVE
+              </Typography>
+            </Link>
+
+            {user && (
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  {pages.map((page) => (
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      {/* <Typography textAlign="center">{page}</Typography> */}
+
+                      <MenuItem
+                        component={Link}
+                        to="/profile"
+                        onClick={handleCloseUserMenu}
+                      >
+                        Profile
+                      </MenuItem>
+                      <MenuItem
+                        component={Link}
+                        to="/order-history"
+                        onClick={handleCloseUserMenu}
+                      >
+                        Order History
+                      </MenuItem>
+                      <MenuItem
+                        component={Link}
+                        to="/need-help"
+                        onClick={handleCloseUserMenu}
+                      >
+                        Need Help?
+                      </MenuItem>
+                      <MenuItem
+                        component={Link}
+                        to="/profile"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </MenuItem>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            )}
             <Typography
-              variant="h4"
+              variant="h6"
               noWrap
               component="div"
               sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
                 fontFamily: titleFont,
               }}
             >
               CULINARY COLLECTIVE
             </Typography>
-          </Link>
-
-          {user && (
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
+            {currentUser && (
+              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    {/* <Typography textAlign="center">{page}</Typography> */}
-
-                    <MenuItem
-                      component={Link}
-                      to="/profile"
-                      onClick={handleCloseUserMenu}
-                    >
-                      Profile
-                    </MenuItem>
-                    <MenuItem
-                      component={Link}
-                      to="/order-history"
-                      onClick={handleCloseUserMenu}
-                    >
-                      Order History
-                    </MenuItem>
-                    <MenuItem
-                      component={Link}
-                      to="/need-help"
-                      onClick={handleCloseUserMenu}
-                    >
-                      Need Help?
-                    </MenuItem>
-                    <MenuItem
-                      component={Link}
-                      to="/profile"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </MenuItem>
-                  </MenuItem>
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
                 ))}
-              </Menu>
-            </Box>
-          )}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "flex", md: "none" },
-              fontFamily: titleFont,
-            }}
-          >
-            CULINARY COLLECTIVE
-          </Typography>
-          {currentUser && (
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
-          )}
+              </Box>
+            )}
 
-          {currentUser && (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt={user?.displayname}
-                    src="/static/images/avatar/2.jpg"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {/* {settings.map((setting) => (
+            {currentUser && (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt={user?.displayname}
+                      src="/static/images/avatar/2.jpg"
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {/* {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))} */}
 
-                <MenuItem
-                  component={Link}
-                  to="/home"
-                  onClick={handleCloseUserMenu}
-                >
-                  Home
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  to="/profile"
-                  onClick={handleCloseUserMenu}
-                >
-                  Profile
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  to="/order-history"
-                  onClick={handleCloseUserMenu}
-                >
-                  Order History
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  to="/need-help"
-                  onClick={handleCloseUserMenu}
-                >
-                  Need Help?
-                </MenuItem>
-                <MenuItem component={Link} to="/profile" onClick={handleLogout}>
-                  Logout
-                </MenuItem>
-              </Menu>
-            </Box>
-          )}
-          {/* {user ? (
+                  <MenuItem
+                    component={Link}
+                    to="/home"
+                    onClick={handleCloseUserMenu}
+                  >
+                    Home
+                  </MenuItem>
+                  <MenuItem
+                    component={Link}
+                    to="/profile"
+                    onClick={handleCloseUserMenu}
+                  >
+                    Profile
+                  </MenuItem>
+                  <MenuItem
+                    component={Link}
+                    to="/order-history"
+                    onClick={handleCloseUserMenu}
+                  >
+                    Order History
+                  </MenuItem>
+                  <MenuItem
+                    component={Link}
+                    to="/need-help"
+                    onClick={handleCloseUserMenu}
+                  >
+                    Need Help?
+                  </MenuItem>
+                  <MenuItem
+                    component={Link}
+                    to="/profile"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </Box>
+            )}
+            {/* {user ? (
             <Button onClick={handleLogout}>Logout</Button>
           ) : (
             <Button href="/signin">Signin</Button>
@@ -277,45 +342,42 @@ const Navbar = () => {
           {user && <Link to="/profile">Profile </Link>}
           {user && <Link to="/need-help"> NeedHelp?</Link>}
           {user && <Link to="/order-history">OrderHistory</Link>} */}
-          {console.log("userInfo inside Navbar", userInfo)}
-          {userInfo?.role[1] == "Business" && (
-            <Button>
-              {" "}
-              <Link to="/restaurant/dashboard">RestoDash</Link>{" "}
-            </Button>
-          )}
+            {console.log("userInfo inside Navbar", userInfo)}
+            {userInfo?.role[1] == "Business" && (
+              <Button>
+                {" "}
+                <Link to="/restaurant/dashboard">RestoDash</Link>{" "}
+              </Button>
+            )}
 
-          
+            {currentUser && (
+              <Button>
+                {" "}
+                <Link to="/admin">Admin</Link>{" "}
+              </Button>
+            )}
 
-          {currentUser && (
-            <Button>
-              {" "}
-              <Link to="/admin">Admin</Link>{" "}
-            </Button>
-          )}
+            {/* SIGNIN BUTTON */}
 
-          {/* SIGNIN BUTTON */}
-
-          {!currentUser && <Button href="/signin">Signin</Button>}
-        </Toolbar>
-      </Container>
-    </AppBar>
+            {!currentUser && <Button href="/signin">Signin</Button>}
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
   );
 };
 
 export default Navbar;
 
-
-
 //{/* CART
-  // <div>
-  //   {/* <Button><a href="/shopping-cart">CART</a></Button> */}
-  //   <Dropdown alignright>
-  //     <Dropdown.Toggle>
-  //       <Badge>{0}</Badge>
-  //     </Dropdown.Toggle>
-  //     <Dropdown.Menu style={{ minwidth: 370 }}>
-  //       <span>Cart is Empty</span>
-  //     </Dropdown.Menu>
-  //   </Dropdown>
-  // </div>
+// <div>
+//   {/* <Button><a href="/shopping-cart">CART</a></Button> */}
+//   <Dropdown alignright>
+//     <Dropdown.Toggle>
+//       <Badge>{0}</Badge>
+//     </Dropdown.Toggle>
+//     <Dropdown.Menu style={{ minwidth: 370 }}>
+//       <span>Cart is Empty</span>
+//     </Dropdown.Menu>
+//   </Dropdown>
+// </div>

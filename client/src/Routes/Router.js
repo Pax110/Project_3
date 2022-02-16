@@ -17,6 +17,7 @@ import RestoDashboardPage from "../pages/RestoDashboardPage";
 import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePage";
 import AdminPage from "../pages/AdminPage";
 import EditRestoMenuPage from "../pages/EditRestoMenuPage";
+import CartPage from "../pages/CartPage";
 
 const Router = () => {
   return (
@@ -46,6 +47,7 @@ const Router = () => {
           }
         />
         <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
+        <Route path="/cart" element={<CartPage />} />
 
         <Route
           path="/restaurant/editMenu/:id"

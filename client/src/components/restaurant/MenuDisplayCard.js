@@ -64,7 +64,7 @@ const MenuDisplayCard = () => {
       <h3>Appetizers</h3>
       {restaurant.menu.appetizers.map((item) => (
         <>
-          <SingleItem item={item} key={item.title} />
+          <SingleItem item={item} key={item.name} />
         </>
       ))}
       <Container

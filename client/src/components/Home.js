@@ -1,13 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container } from "react-bootstrap";
+import { CartState } from "./context/CartProvider";
 
 import { useUserAuth } from "./context/UserAuthContext";
 
 const Home = () => {
   
+
   
-  
+  const {state: {cart}} = CartState()
+  console.log("cart is",cart)
   return (
     <>  
     <Container style={{width: "400px"}}>
