@@ -49,22 +49,24 @@ const AboutUs = () => {
         }}
       >
         <Link
-          to="/pages/NeedHelpPage"
+          to="/need-help"
           style={{ color: "white", textDecoration: "none" }}
-        />
-        <button
-          style={{
-            backgroundColor: "orange",
-            textDecoration: "none",
-            padding: "0.5%",
-            textAlign: "center",
-            margin: "10px",
-            marginBottom: "50px",
-            justifyContent: "center",
-          }}
         >
-          Click Here for more FAQs
-        </button>
+          <button
+            style={{
+              backgroundColor: "orange",
+              textDecoration: "none",
+              padding: "0.5%",
+              textAlign: "center",
+              margin: "10px",
+              marginBottom: "50px",
+              justifyContent: "center",
+              borderRadius: "5px",
+            }}
+          >
+            Click Here for more FAQs
+          </button>
+        </Link>
       </div>
     </Container>
   );
