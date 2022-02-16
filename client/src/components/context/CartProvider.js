@@ -1,7 +1,8 @@
 
 import React, { createContext, useContext, useReducer, useState } from "react";
-import itemReducer from "../cart/Reducer";
-import cartReducer from "../cart/Reducer";
+import {cartReducer} from '../cart/Reducer'
+import {itemReducer} from '../cart/Reducer'
+
 
 
 export const CartContext = createContext();
@@ -15,7 +16,7 @@ const CartProvider = ({ children }) => {
   });
   
   const [itemState, itemDispatch] = useReducer(itemReducer, {
-    fastDelivery: false,
+    asapDelivery: false,
     dayAheadDelivery: false,
     searchQuery: "",
 

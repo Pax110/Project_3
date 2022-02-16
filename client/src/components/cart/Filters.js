@@ -7,76 +7,46 @@ import './styles.css'
 const Filters = () => {
 
     const [rate, setRate]= useState(3)
-    //   const {
-//     productDispatch,
-//     productState: { byStock, byFastDelivery, sort, byRating },
-//   } = CartState();
+      const {
+    
+    itemState: { byStock, byFastDelivery, sort, byRating },
+    itemDispatch
+  } = CartState();
 
-  // make state for rating
+  
 
   return (
     <div className="filters">
-      <span className="title">Filter Products</span>
+      <span className="title">Filter Items</span>
+      
       <span>
         <Form.Check
           inline
-          label="Ascending"
-          name="group1"
-          type="radio"
-          id={`inline-1`}
-        //   onChange={() =>
-        //     productDispatch({
-        //       type: "SORT_BY_PRICE",
-        //       payload: "lowToHigh",
-        //     })
-        //   }
-        //   checked={sort === "lowToHigh" ? true : false}
-        />
-      </span>
-      <span>
-        <Form.Check
-          inline
-          label="Descending"
-          name="group1"
-          type="radio"
-          id={`inline-2`}
-        //   onChange={() =>
-        //     productDispatch({
-        //       type: "SORT_BY_PRICE",
-        //       payload: "highToLow",
-        //     })
-        //   }
-        //   checked={sort === "highToLow" ? true : false}
-        />
-      </span>
-      <span>
-        <Form.Check
-          inline
-          label="Include Out of Stock"
+          label="Order a day ahead"
           name="group1"
           type="checkbox"
           id={`inline-3`}
-        //   onChange={() =>
-        //     productDispatch({
-        //       type: "FILTER_BY_STOCK",
-        //     })
-        //   }
-        //   checked={byStock}
+          onChange={() =>
+            itemDispatch({
+              type: "FILTER_BY_AHEAD_DELIVERY",
+            })
+          }
+          // checked={byStock}
         />
       </span>
       <span>
         <Form.Check
           inline
-          label="Fast Delivery Only"
+          label="ASAP Delivery Only"
           name="group1"
           type="checkbox"
           id={`inline-4`}
-        //   onChange={() =>
-        //     productDispatch({
-        //       type: "FILTER_BY_DELIVERY",
-        //     })
-        //   }
-        //   checked={byFastDelivery}
+          onChange={() =>
+            itemDispatch({
+              type: "FILTER_BY_ASAP_DELIVERY",
+            })
+          }
+          // checked={byFastDelivery}
         />
       </span>
       <span>
@@ -85,22 +55,16 @@ const Filters = () => {
           rating={rate}
           style={{cursor: "pointer"}}
           onClick={(i)=>setRate(i)}
-        //   onClick={(i) =>
-        //     productDispatch({
-        //       type: "FILTER_BY_RATING",
-        //       payload: i + 1,
-        //     })
-        //   }
-        //   style={{ cursor: "pointer" }}
+        
         />
       </span>
       <Button
         variant="light"
-        // onClick={() =>
-        //   productDispatch({
-        //     type: "CLEAR_FILTERS",
-        //   })
-        // }
+        onClick={() =>
+          itemDispatch({
+            type: "CLEAR_FILTERS",
+          })
+        }
       >
         Clear Filters
       </Button>

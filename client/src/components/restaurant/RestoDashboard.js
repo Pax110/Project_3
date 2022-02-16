@@ -5,7 +5,7 @@ import { useFirebase } from "../FirebaseProvider";
 import { Form, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const RestoSelectMenu = () => {
+const RestoDashboard = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const [selectedRestoID, setSelectedRestoID] = useState("");
@@ -67,8 +67,17 @@ const RestoSelectMenu = () => {
             Menu Details
           </Button>
         </Link>{" "}
+        <Link to={`/restaurant/orders/${selectedRestoID}`}>
+          <Button
+            variant="primary"
+            disabled={!selectedRestoID}
+            style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+          >
+            Orders
+          </Button>
+        </Link>{" "}
       </Form.Group>
     </div>
   );
 };
-export default RestoSelectMenu;
+export default RestoDashboard;

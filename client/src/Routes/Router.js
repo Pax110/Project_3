@@ -18,6 +18,7 @@ import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePag
 import AdminPage from "../pages/AdminPage";
 import EditRestoMenuPage from "../pages/EditRestoMenuPage";
 import CartPage from "../pages/CartPage";
+import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
 
 const Router = () => {
   return (
@@ -62,6 +63,15 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <RestoDashboardPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/restaurant/orders/:id"
+          element={
+            <ProtectedRoute>
+              <RestoOrdersViewPage />
             </ProtectedRoute>
           }
         />

@@ -1,13 +1,12 @@
 import React from "react";
-import RestoSelectMenu from "../components/restaurant/RestoSelectMenu";
+import RestoDashboard from "../components/restaurant/RestoDashboard";
 
-//Need to add id and key to links
 
 const RestoDashboardPage = () => {
   return (
     <div>  
       <h3>Restaurant Dashboard</h3>  
-      <RestoSelectMenu />
+      <RestoDashboard />
     </div>
   );
 };

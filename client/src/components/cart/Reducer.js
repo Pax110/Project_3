@@ -1,6 +1,6 @@
-import React from "react";
 
-const cartReducer = (state, action) => {
+
+export const cartReducer = (state, action) => {
   console.log("action.payload.name", action.payload.name);
   switch (action.type) {
     case "ADD_TO_CART":
@@ -22,16 +22,15 @@ const cartReducer = (state, action) => {
       return state;
   }
 };
-const itemReducer = (state, action) => {
+export const itemReducer = (state, action) => {
   switch (action.type) {
     case "FILTER_BY_SEARCH":
       return { ...state, searchQuery: action.payload };
     case "CLEAR_FILTERS":
-      return { byStock: false, byFastDelivery: false, byRating: 0 };
+      return {  byFastDelivery: false };
 
     default:
       return state;
   }
 };
 
-export default itemReducer;
