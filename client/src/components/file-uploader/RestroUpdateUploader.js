@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import { useFirebase } from "../FirebaseProvider";
 import { ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router";
 
 const RestroUpdateUploader = () => {
+  let params = useParams();
+  let id = params.id;
+  console.log(id);
+  const { db } = useFirebase();
   const [image, setImage] = useState("");
   const { store } = useFirebase();
   const upload = (restaurant) => {
     let filename = image.name;
     let extension = filename.split(".").pop();
     if (image == null) return;
-    console.log("restro id here", restaurant.id);
-    // Reference: https://firebase.google.com/docs/storage/web/upload-files?authuser=0
+    console.log("restro id", id);
+
     let restaurantImageRef = ref(
       store,
-      `/restaurants/${restaurant.id}/${uuidv4() + "." + extension}`
+      `/restaurants/${id}/${uuidv4() + "." + extension}`
     );
     uploadBytes(restaurantImageRef, image).then(alert("Success"));
   };
@@ -28,7 +33,7 @@ const RestroUpdateUploader = () => {
             setImage(e.target.files[0]);
           }}
         />
-        <button onClick={upload}>Upload</button>
+        <button onClick={upload}>Upload Profile Photo</button>
       </center>
     </div>
   );

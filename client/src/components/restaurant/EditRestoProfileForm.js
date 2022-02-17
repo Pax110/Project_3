@@ -84,7 +84,7 @@ const EditRestoProfileForm = (props) => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formRestoDescription">
-                <Form.Label>Add your resturant description:</Form.Label>
+                <Form.Label>Add your restaurant description:</Form.Label>
                 <Controller
                   name="description"
                   control={control}
