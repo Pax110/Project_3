@@ -4,8 +4,7 @@ import { useUserAuth } from "./context/UserAuthContext";
 
 const LiveOrders = () => {
   const { db, user } = useUserAuth();
-  let collRef = collection(db, "orders");
-  let docRef = doc(collRef, user.uid);
+  
   const [orders, setOrders] = useState();
 
  
@@ -15,10 +14,16 @@ const LiveOrders = () => {
       const getData = async  () =>{
         
         try {
-          const q = query(docRef, where("user.uid", "==", user.uid));
+          let collRef = collection(db, "orders");
+         
+          const q = query(collRef, where("customerId", "==", user.uid));
           const querySnapshot = await getDocs(q);
           console.log("querySnapShot", querySnapshot);
-          setOrders(querySnapshot.data())
+          let newData = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            DOC_ID: doc.id,
+          }));
+          setOrders(newData)
         
         } catch (e) {
           console.log("error", e.message);

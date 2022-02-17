@@ -32,7 +32,7 @@ const Cart = () => {
         DeliveryType: "ASAP",
         orderTime: "9 AM",
         orderTotal: "$90",
-        restaurantId: "xyz123.."
+        restaurantId: "2oRIUm3DYeiesWr2LBeZ"
 
       });
     } catch (e) {
