@@ -17,7 +17,7 @@ const SingleItem = ({ item }) => {
     textAlign: "center",
     textDecoration: "none",
     overflow: "visible",
-    padding: "5px",
+    padding: "2px",
   };
   return (
     <>
