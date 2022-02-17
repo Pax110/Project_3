@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import "../fonts/fonts.css";
 import { FaShoppingCart } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
-import '../cart/styles.css'
+import "../cart/styles.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router";
 
@@ -36,8 +36,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const {
     state: { cart },
-    dispatch
-    
+    dispatch,
   } = CartState();
 
   const { user, getUserProfile } = useUserAuth();
@@ -105,11 +104,11 @@ const Navbar = () => {
               <Badge>{cart.length}</Badge>
             </Dropdown.Toggle>
             <Dropdown.Menu style={{ minwidth: 370 }}>
-              {cart.length>0?(
-                  <>
-                  {cart.map((item)=>(
-                      <span className="cartitem" key={item.name}>
-                        <img
+              {cart.length > 0 ? (
+                <>
+                  {cart.map((item) => (
+                    <span className="cartitem" key={item.name}>
+                      <img
                         src={item.menuphoto}
                         className="cartItemImg"
                         alt={item.name}
@@ -120,6 +119,7 @@ const Navbar = () => {
                       </div>
                       <AiFillDelete
                         fontSize="20px"
+                        color="red"
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           dispatch({
@@ -128,19 +128,17 @@ const Navbar = () => {
                           })
                         }
                       />
-                      </span>
+                    </span>
                   ))}
-                   <Link to="/cart">
+                  <Link to="/cart">
                     <Button style={{ width: "95%", margin: "0 10px" }}>
                       Go To Cart
                     </Button>
                   </Link>
-                  </>
-              ):(
-                
+                </>
+              ) : (
                 <span>Cart is Empty</span>
               )}
-
             </Dropdown.Menu>
           </Dropdown>
         </Nav>
