@@ -13,11 +13,11 @@ const SingleItem = ({ item }) => {
   console.log("cart", cart);
 
   const myStyle = {
-    fontFamily: "Montserrat",
+    fontFamily: "Roboto",
     textAlign: "center",
     textDecoration: "none",
     overflow: "visible",
-    padding: "5px",
+    padding: "2px",
   };
   return (
     <>
