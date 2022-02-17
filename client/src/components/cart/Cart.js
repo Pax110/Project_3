@@ -1,7 +1,9 @@
+import { addDoc, collection, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 import { CartState } from "../context/CartProvider";
+import { userAuthContext, useUserAuth } from "../context/UserAuthContext";
 // import Rating from "./Rating";
 
 const Cart = () => {
@@ -11,12 +13,32 @@ const Cart = () => {
   } = CartState();
   const [total, setTotal] = useState();
 
+  const { db,user } = useUserAuth();
+
   useEffect(() => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
-    console.log("cart value",cart)
+    console.log("cart value", cart);
   }, [cart]);
+
+  const handleOrder = async () => {
+    alert("Payment Successful. Thank you!");
+    try {
+      let collRef = collection(db, "orders");
+     
+      await addDoc(collRef, {
+        customerId: user.uid,
+        DeliveryType: "ASAP",
+        orderTime: "9 AM",
+        orderTotal: "$90",
+        restaurantId: "xyz123.."
+
+      });
+    } catch (e) {
+      console.log("error", e.message);
+    }
+  };
 
   return (
     <>
@@ -78,7 +100,11 @@ const Cart = () => {
           <span style={{ fontWeight: 700, fontSize: 20 }}>
             Total: $ {total}
           </span>
-          <Button type="button" disabled={cart.length === 0}>
+          <Button
+            type="button"
+            disabled={cart.length === 0}
+            onClick={handleOrder}
+          >
             Proceed to Checkout
           </Button>
         </div>
