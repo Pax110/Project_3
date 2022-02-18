@@ -119,7 +119,6 @@ const Navbar = () => {
                       </div>
                       <AiFillDelete
                         fontSize="20px"
-                        color="red"
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           dispatch({

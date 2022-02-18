@@ -116,7 +116,7 @@ const Cart = () => {
                         <Col md={2}>
                           <Button
                             type="button"
-                            variant="danger"
+                            variant="light"
                             onClick={() =>
                               dispatch({
                                 type: "REMOVE_FROM_CART",
