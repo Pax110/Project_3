@@ -26,8 +26,8 @@ import { auth } from "../FirebaseProvider";
 import { ButtonGroup, Dropdown, Nav } from "react-bootstrap";
 import { Badge } from "@mui/material";
 import { CartState } from "../context/CartProvider";
+
 const pages = ["Order History"];
-// const settings = ["Profile", "Order History", "Need Help?", "Logout"];
 
 const Navbar = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -249,13 +249,16 @@ const Navbar = () => {
             {currentUser && (
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page}
-                  </Button>
+                  <>
+                    <MenuItem
+                      component={Link}
+                      to="/order-history"
+                      onClick={handleCloseUserMenu}
+                    >
+                      ORDER HISTORY
+                    </MenuItem>
+                    
+                  </>
                 ))}
               </Box>
             )}
