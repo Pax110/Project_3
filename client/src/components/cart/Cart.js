@@ -44,6 +44,7 @@ const Cart = () => {
     fontFamily: "Bebas Neue",
     textAlign: "center",
     textDecoration: "none",
+    paddingBottom: "10px",
   };
 
   const otherStyle = {
@@ -51,7 +52,6 @@ const Cart = () => {
     textAlign: "left",
     textDecoration: "none",
     overflow: "visible",
-    padding: "3px",
   };
 
   if (total) {
@@ -138,7 +138,9 @@ const Cart = () => {
                   Subtotal: ${total.toFixed(2)} <br />
                   GST: ${(total * 0.05).toFixed(2)} <br />
                   <br />
-                  Total: ${(total + total * 0.05).toFixed(2)}
+                  <span className="title">
+                    Total: ${(total + total * 0.05).toFixed(2)}
+                  </span>
                   <br /> <br />
                   Thank you for your order!
                 </span>
