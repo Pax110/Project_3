@@ -46,6 +46,14 @@ const Cart = () => {
     textDecoration: "none",
   };
 
+  const otherStyle = {
+    fontFamily: "Roboto",
+    textAlign: "left",
+    textDecoration: "none",
+    overflow: "visible",
+    padding: "3px",
+  };
+
   if (total) {
     return (
       <>
@@ -65,7 +73,7 @@ const Cart = () => {
           >
             <Row>
               <h1 style={myStyle}>Order Summary</h1>
-              <div className="productContainer">
+              <div className="productContainer" style={otherStyle}>
                 <ListGroup>
                   {cart.map((item) => (
                     <ListGroup.Item key={item.name}>
@@ -125,9 +133,14 @@ const Cart = () => {
                 </ListGroup>
               </div>
               <div className="filters summary">
-                <span className="title">Subtotal ({cart.length}) items</span>
-                <span style={{ fontWeight: 700, fontSize: 20 }}>
-                  Total: $ {total.toFixed(2)}
+                <span className="title"> {cart.length} Items In Cart</span>
+                <span style={{ fontWeight: 400, fontSize: 20 }}>
+                  Subtotal: ${total.toFixed(2)} <br />
+                  GST: ${(total * 0.05).toFixed(2)} <br />
+                  <br />
+                  Total: ${(total + total * 0.05).toFixed(2)}
+                  <br /> <br />
+                  Thank you for your order!
                 </span>
                 <Button
                   type="button"
