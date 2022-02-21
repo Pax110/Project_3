@@ -12,7 +12,7 @@ const Cart = () => {
     state: { cart },
     dispatch,
   } = CartState();
-  const [total, setTotal] = useState();
+  const [total, setTotal] = useState(null);
 
   const { db, user } = useUserAuth();
 
@@ -20,7 +20,7 @@ const Cart = () => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
-    console.log("cart value", cart);
+    console.log("cart value",cart)
   }, [cart]);
 
   const handleOrder = async () => {
@@ -30,16 +30,26 @@ const Cart = () => {
 
       await addDoc(collRef, {
         customerId: user.uid,
-        DeliveryType: "ASAP",
-        orderTime: "9 AM",
-        orderTotal: "$90",
+        orderId: "123",
+        deliveryType: "ASAP",
+        orderTime: new Date(),
+        orderTotal: countTotal(total, countTax(total)),
         restaurantId: "2oRIUm3DYeiesWr2LBeZ",
+        userLocation: "t3q4w1",
+        orderItems: cart
       });
     } catch (e) {
       console.log("error", e.message);
     }
   };
 
+  const countTax = (i) => {
+    return i * (0.05).toFixed(2);
+  };
+
+  const countTotal = (i,j) => {
+    return (i + j).toFixed(2)
+  }
   const myStyle = {
     fontFamily: "Bebas Neue",
     textAlign: "center",
@@ -136,10 +146,10 @@ const Cart = () => {
                 <span className="title"> {cart.length} Items In Cart</span>
                 <span style={{ fontWeight: 400, fontSize: 20 }}>
                   Subtotal: ${total.toFixed(2)} <br />
-                  GST: ${(total * 0.05).toFixed(2)} <br />
+                  GST: ${countTax(total).toFixed(2)} <br />
                   <br />
                   <span className="title">
-                    Total: ${(total + total * 0.05).toFixed(2)}
+                    Total: ${countTotal(total, countTax(total))}
                   </span>
                   <br /> <br />
                   Thank you for your order!
@@ -158,7 +168,7 @@ const Cart = () => {
       </>
     );
   } else {
-    return <div>Loading...</div>;
+    return <div>Cart is empty.</div>;
   }
 };
 
