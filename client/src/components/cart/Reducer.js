@@ -1,10 +1,10 @@
 
 
 export const cartReducer = (state, action) => {
-  console.log("action.payload.name", action.payload.name);
+  console.log("action.payload......", action.payload);
   switch (action.type) {
     case "ADD_TO_CART":
-      return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
+      return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] }; //this is where I need to set restaurant id but only once for all the other add to cart actions
     case "REMOVE_FROM_CART":
       return {
         ...state,

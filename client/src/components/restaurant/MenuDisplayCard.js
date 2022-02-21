@@ -89,7 +89,7 @@ const MenuDisplayCard = () => {
                 <ImageListItem
                   sx={{ width: "220px", height: "220px", margin: "20px" }}
                 >
-                  <SingleItem item={item} key={item.name} />
+                  <SingleItem restoId={id} item={item} key={item.name} />
                 </ImageListItem>
               ))}
             </CardActionArea>

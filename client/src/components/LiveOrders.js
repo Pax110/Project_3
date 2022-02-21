@@ -41,7 +41,7 @@ const LiveOrders = () => {
   }, [user.uid]);
 
   if (orders) {
-    return <div>Order History</div>;
+    return <div>Order History listed in console</div>;
   } else {
     return <div>Loading...</div>;
   }

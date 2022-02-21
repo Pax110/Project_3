@@ -26,13 +26,16 @@ import { auth } from "../FirebaseProvider";
 import { ButtonGroup, Dropdown, Nav } from "react-bootstrap";
 import { Badge } from "@mui/material";
 import { CartState } from "../context/CartProvider";
-
+import { useParams } from "react-router-dom";
 const pages = ["Order History"];
 
 const Navbar = () => {
   const [currentUser, setCurrentUser] = useState();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [restoId, setRestoId] = useState(null);
+  const a = "selectedRestoId";
+
   const navigate = useNavigate();
   const {
     state: { cart },
@@ -129,7 +132,7 @@ const Navbar = () => {
                       />
                     </span>
                   ))}
-                  <Link to="/cart">
+                  <Link to={`/cart/${a}`}>
                     <Button style={{ width: "95%", margin: "0 10px" }}>
                       Go To Cart
                     </Button>
@@ -257,7 +260,6 @@ const Navbar = () => {
                     >
                       ORDER HISTORY
                     </MenuItem>
-                    
                   </>
                 ))}
               </Box>

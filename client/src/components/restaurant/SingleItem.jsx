@@ -4,13 +4,13 @@ import React from "react";
 
 import { CartState } from "../context/CartProvider";
 
-const SingleItem = ({ item }) => {
+const SingleItem = ({ item, restoId }) => {
   const {
     state: { cart },
     dispatch,
   } = CartState();
 
-  console.log("cart", cart);
+  console.log("cart is...", cart);
 
   const myStyle = {
     fontFamily: "Roboto",
@@ -65,7 +65,7 @@ const SingleItem = ({ item }) => {
             onClick={() => {
               dispatch({
                 type: "ADD_TO_CART",
-                payload: item,
+                payload:item,
               });
             }}
           >

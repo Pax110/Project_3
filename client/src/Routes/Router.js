@@ -48,7 +48,7 @@ const Router = () => {
           }
         />
         <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/cart/:id" element={<CartPage />} />
 
         <Route
           path="/restaurant/editMenu/:id"
