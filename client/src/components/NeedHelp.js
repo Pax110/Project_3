@@ -26,16 +26,19 @@ const NeedHelp = () => {
               {!showHelp1 && (
                 <>
                   <Card.Body>
-                    <Card.Title>FAQ</Card.Title>
+                    <Card.Title>What is a Commisary Kitchen?</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                      A commissary kitchen is a licensed commercial kitchen
+                      regulated by Alberta Health Services, AHS, where
+                      foodservice providers can safely and legally prepare, cook
+                      and store food and equipment
                     </Card.Text>
                     <Button
                       onClick={() => {
                         setShowHelp1(!showHelp1);
                       }}
                     >
-                      FAQ Answer
+                      More Details
                     </Button>
                   </Card.Body>
                 </>
@@ -43,13 +46,12 @@ const NeedHelp = () => {
               {showHelp1 && (
                 <>
                   <Card.Body>
-                    <Card.Title>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </Card.Title>
+                    <Card.Title>What is a Commisary Kitchen?</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam,
+                      A commissary kitchen is a licensed commercial kitchen
+                      regulated by Alberta Health Services, AHS, where
+                      foodservice providers can safely and legally prepare, cook
+                      and store food and equipment
                     </Card.Text>
                     <Button
                       onClick={() => {
@@ -69,16 +71,17 @@ const NeedHelp = () => {
               {!showHelp2 && (
                 <>
                   <Card.Body>
-                    <Card.Title>FAQ</Card.Title>
+                    <Card.Title>What is a Home Based Kitchen?</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                      food prepared in an AHS residental kitchen delievered
+                      right to your door!
                     </Card.Text>
                     <Button
                       onClick={() => {
                         setShowHelp2(!showHelp2);
                       }}
                     >
-                      FAQ Answer
+                      More Details
                     </Button>
                   </Card.Body>
                 </>
@@ -86,13 +89,15 @@ const NeedHelp = () => {
               {showHelp2 && (
                 <>
                   <Card.Body>
-                    <Card.Title>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </Card.Title>
+                    <Card.Title>What is a Home Based Kitchen?</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam,
+                      What if your neighbour has cooked pasta for lunch while
+                      her neighbour has rustled up a Nizami biriyani and you had
+                      the option to order in both piping hot at your workplace
+                      or home? Now with Culinary Collectiive, a brand new
+                      mobile-based home food discovery and ordering platform
+                      that enables home cooked meals to be delivered at the
+                      doorstep, it is reality.
                     </Card.Text>
                     <Button
                       onClick={() => {
@@ -112,16 +117,18 @@ const NeedHelp = () => {
               {!showHelp3 && (
                 <>
                   <Card.Body>
-                    <Card.Title>FAQ</Card.Title>
+                    <Card.Title>Why is Supporting Local Important?</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                      You support the local economy, you get unique goods and
+                      services,it helps protect the environment,your money stays
+                      in Calgary
                     </Card.Text>
                     <Button
                       onClick={() => {
                         setShowHelp3(!showHelp3);
                       }}
                     >
-                      FAQ Answer
+                      More Details
                     </Button>
                   </Card.Body>
                 </>
@@ -129,13 +136,22 @@ const NeedHelp = () => {
               {showHelp3 && (
                 <>
                   <Card.Body>
-                    <Card.Title>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </Card.Title>
+                    <Card.Title>Why is Supporting Local Important?</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam,
+                      Small businesses make up more than sixty per cent of the
+                      retail sector in Calgary. Local businesses generate about
+                      four times more economic activity than larger
+                      corporations. And support for local businesses means
+                      support for local jobs. Money stays local not only does a
+                      dollar go further when spent at a local level, it also
+                      keeps on giving. Over half of every $100 earned by local
+                      businesses ends up recirculating in the Calgary economy.
+                      It’s a win-win for our neighbourhood businesses when you
+                      think local.You help out the environment Less time and
+                      resources shipping products grown and made nearby means
+                      fewer emissions are associated with every purchase. Local
+                      foods, which support area farmers, can be even more
+                      beneficial.
                     </Card.Text>
                     <Button
                       onClick={() => {
@@ -155,16 +171,18 @@ const NeedHelp = () => {
               {!showHelp4 && (
                 <>
                   <Card.Body>
-                    <Card.Title>FAQ</Card.Title>
+                    <Card.Title>My order was not correct</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                      Fear not we are here to correct any issues, wrong item
+                      delievered? Missing an item? Overchanged? We got you
+                      covered.
                     </Card.Text>
                     <Button
                       onClick={() => {
                         setShowHelp4(!showHelp4);
                       }}
                     >
-                      FAQ Answer
+                      More Details
                     </Button>
                   </Card.Body>
                 </>
@@ -172,13 +190,10 @@ const NeedHelp = () => {
               {showHelp4 && (
                 <>
                   <Card.Body>
-                    <Card.Title>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </Card.Title>
+                    <Card.Title>My order was not correct</Card.Title>
                     <Card.Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam,
+                      email our helpline at help@cc.com and we will reach out to
+                      you with a solution.
                     </Card.Text>
                     <Button
                       onClick={() => {
