@@ -34,14 +34,12 @@ const RestoSelectMenu = () => {
 
   return (
     <div>
-    
       <Form.Group as={Col} controlId="formSelectResto">
         <Form.Label>Select Restaurant:</Form.Label>
         <Form.Select
           type="resto"
           value={selectedRestoID}
           onChange={(e) => {
-          
             setSelectedRestoID(e.target.value);
           }}
         >
@@ -53,7 +51,12 @@ const RestoSelectMenu = () => {
           <Button
             variant="primary"
             disabled={!selectedRestoID}
-            style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+            style={{
+              backgroundColor: "#feaa00",
+              borderColor: "#feaa00",
+              padding: "0.25rem",
+              margin: "1%",
+            }}
           >
             Account Details
           </Button>
@@ -62,7 +65,12 @@ const RestoSelectMenu = () => {
           <Button
             variant="primary"
             disabled={!selectedRestoID}
-            style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+            style={{
+              backgroundColor: "#feaa00",
+              borderColor: "#feaa00",
+              padding: "0.25rem",
+              margin: "1%",
+            }}
           >
             Menu Details
           </Button>
