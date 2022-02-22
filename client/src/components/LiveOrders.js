@@ -55,9 +55,10 @@ const LiveOrders = () => {
                   {order.orderItems.map((item) => (
                     <>
                       <span>{item.name}</span>
-                      <span>{item.price}</span>
+                      <span>{item.price}</span><br></br>
                     </>
                   ))}
+                  <p>Order Total: ${order.orderTotal}</p>
                 </Card.Text>
                 <Button variant="primary">Print Receipt</Button>
               </Card.Body>
