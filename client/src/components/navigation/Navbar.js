@@ -23,8 +23,8 @@ import { Link } from "react-router-dom";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import { auth } from "../FirebaseProvider";
-import { ButtonGroup, Dropdown, Nav } from "react-bootstrap";
-import { Badge } from "@mui/material";
+import { ButtonGroup, Dropdown, FormControl, Nav } from "react-bootstrap";
+import { Badge, TextField } from "@mui/material";
 import { CartState } from "../context/CartProvider";
 import { useParams } from "react-router-dom";
 const pages = ["Order History"];
@@ -40,6 +40,7 @@ const Navbar = () => {
   const {
     state: { cart },
     dispatch,
+    itemDispatch,
   } = CartState();
 
   const { user, getUserProfile } = useUserAuth();
@@ -144,7 +145,24 @@ const Navbar = () => {
             </Dropdown.Menu>
           </Dropdown>
         </Nav>
+        
+      <span>
+      <FormControl
+              style={{ width: 500 }}
+              type="search"
+              placeholder="Search an item..."
+              className="m-auto"
+              aria-label="Search"
+              onChange={(e) => {
+                itemDispatch({
+                  type: "FILTER_BY_SEARCH",
+                  payload: e.target.value,
+                });
+              }}
+            />
+      </span>
       </div>
+   
       <AppBar
         position="fixed"
         sx={{

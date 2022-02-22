@@ -34,9 +34,10 @@ const Cart = () => {
         deliveryType: "ASAP",
         orderTime: new Date(),
         orderTotal: countTotal(total, countTax(total)),
-        restaurantId: "2oRIUm3DYeiesWr2LBeZ",
+        restaurantId: "", //get the restoId from the state
         userLocation: "t3q4w1",
-        orderItems: cart
+        orderItems: cart,
+        restaurantName: "Popeyes", //make this dynamic after getting the restoId
       });
     } catch (e) {
       console.log("error", e.message);

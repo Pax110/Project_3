@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "./context/UserAuthContext";
+import {Button, Card} from 'react-bootstrap'
 
 const LiveOrders = () => {
   const { db, user } = useUserAuth();
@@ -41,7 +42,31 @@ const LiveOrders = () => {
   }, [user.uid]);
 
   if (orders) {
-    return <div>Order History listed in console</div>;
+    return (
+      <>
+        <div>Order History listed in console</div>
+        <div>
+          {orders.map((order) => (
+            <div>
+              {order.orderItems.map((item) => (
+                <>
+                  <Card>
+                    <Card.Header>Restauant Name</Card.Header>
+                    <Card.Body>
+                      <Card.Title>Your Order</Card.Title>
+                      <Card.Text>
+                        {item.name}
+                      </Card.Text>
+                      <Button variant="primary">Print Receipt</Button>
+                    </Card.Body>
+                  </Card>
+                </>
+              ))}
+            </div>
+          ))}
+        </div>
+      </>
+    );
   } else {
     return <div>Loading...</div>;
   }

@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
+
 import { Container, Row, Col } from "react-bootstrap";
 import { Button, CardActionArea, CardMedia } from "@mui/material";
 import { useFirebase } from "../FirebaseProvider";
 import "../fonts/fonts.css";
 import { prodErrorMap } from "firebase/auth";
 import SingleItem from "./SingleItem";
+import { CartState } from "../context/CartProvider";
 
 // import { RestroDisplayList } from "./MenuDisplayList";
 // import Toast from "./Toast";
@@ -24,18 +25,22 @@ const MenuDisplayCard = () => {
   console.log(id);
   const [restaurant, setRestaurant] = useState({});
   const { db } = useFirebase();
-  //   // // const [showToast, setShowToast] = useState(false);
-  // const { collection, getDocs } = require("firebase/firestore");
-  //   function RestroMenuList() {
-  //     let restroRef = doc(db, `restaurants/${id}`);
-  //     let restoSnap = await getDoc(restroRef);
-  //   }
-  //   if (restoSnap.exists()) {
-  //     let data = restoSnap.data();
-  //     setRestaurant(data);
-  //   } else {
-  //     console.log("Sorry, that resturant does not exist", id);
-  //   }
+  const {
+   
+    itemState: { byAsapDelivery, byBookedDelivery, byRating, bySearchQuery },
+  } = CartState();
+
+  const transformItems =  () => {
+    let sortedItems = restaurant.menu.appetizers
+    if(bySearchQuery){
+      sortedItems = sortedItems.filter((item) =>
+        item.name.toLowerCase().includes(bySearchQuery)
+      );
+    }
+    console.log("sorted..", sortedItems)
+    return sortedItems
+  }
+
   useEffect(() => {
     const getRestaurant = async () => {
       const restaurantsDocRef = doc(db, "restaurants", id);

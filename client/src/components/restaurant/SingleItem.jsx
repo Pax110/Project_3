@@ -11,7 +11,7 @@ const SingleItem = ({ item, restoId }) => {
   } = CartState();
 
   console.log("cart is...", cart);
-
+  item.restoId = restoId
   const myStyle = {
     fontFamily: "Roboto",
     textAlign: "center",
