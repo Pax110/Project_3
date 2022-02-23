@@ -19,6 +19,7 @@ import AdminPage from "../pages/AdminPage";
 import EditRestoMenuPage from "../pages/EditRestoMenuPage";
 import CartPage from "../pages/CartPage";
 import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
+import AdminUsersProfilePage from "../pages/AdminUsersProfilePage";
 
 const Router = () => {
   return (
@@ -98,6 +99,14 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <AdminPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/user-profile/:id"
+          element={
+            <ProtectedRoute>
+              <AdminUsersProfilePage />
             </ProtectedRoute>
           }
         />
