@@ -35,7 +35,7 @@ const RestoSelectMenu = () => {
   return (
     <div>
       <Form.Group as={Col} controlId="formSelectResto">
-        <Form.Label>Select Restaurant:</Form.Label>
+        <Form.Label style={{}}>Select Restaurant:</Form.Label>
         <Form.Select
           type="resto"
           value={selectedRestoID}
@@ -77,6 +77,7 @@ const RestoSelectMenu = () => {
         </Link>{" "}
         <Button
           variant="primary"
+          disabled={!selectedRestoID}
           style={{
             backgroundColor: "#feaa00",
             borderColor: "#feaa00",
