@@ -19,6 +19,9 @@ import AdminPage from "../pages/AdminPage";
 import EditRestoMenuPage from "../pages/EditRestoMenuPage";
 import CartPage from "../pages/CartPage";
 import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
+import AdminUsersProfilePage from "../pages/AdminUsersProfilePage";
+import TrackOrderPage from "../pages/TrackOrderPage";
+
 
 const Router = () => {
   return (
@@ -92,12 +95,28 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/track-order"
+          element={
+            <ProtectedRoute>
+              <TrackOrderPage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/admin"
           element={
             <ProtectedRoute>
               <AdminPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/user-profile/:id"
+          element={
+            <ProtectedRoute>
+              <AdminUsersProfilePage />
             </ProtectedRoute>
           }
         />

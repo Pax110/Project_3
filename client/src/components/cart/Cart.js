@@ -16,11 +16,13 @@ const Cart = () => {
 
   const { db, user } = useUserAuth();
 
+  const randomValue = Math.floor(1000 + Math.random() * 9000);
+
   useEffect(() => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
-    console.log("cart value",cart)
+    console.log("cart value", cart);
   }, [cart]);
 
   const handleOrder = async () => {
@@ -30,11 +32,11 @@ const Cart = () => {
 
       await addDoc(collRef, {
         customerId: user.uid,
-        orderId: "123",
+        orderId: randomValue,
         deliveryType: "ASAP",
         orderTime: new Date(),
         orderTotal: countTotal(total, countTax(total)),
-        restaurantId: "", //get the restoId from the state
+        restaurantId: cart[0].restoId, //get the restoId from the state
         userLocation: "t3q4w1",
         orderItems: cart,
         restaurantName: "Popeyes", //make this dynamic after getting the restoId
@@ -48,9 +50,9 @@ const Cart = () => {
     return i * (0.05).toFixed(2);
   };
 
-  const countTotal = (i,j) => {
-    return (i + j).toFixed(2)
-  }
+  const countTotal = (i, j) => {
+    return (i + j).toFixed(2);
+  };
   const myStyle = {
     fontFamily: "Bebas Neue",
     textAlign: "center",

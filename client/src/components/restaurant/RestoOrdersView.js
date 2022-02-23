@@ -46,13 +46,12 @@ const LiveOrders = () => {
               <Card.Body>
                 <Card.Title>Order Number: {order.orderId}</Card.Title>
                 <Card.Text>
-                {order.orderItems.map((item) => (
+                  {order.orderItems.map((item) => (
                     <>
                       <span>{item.name}</span>
                       <span> x </span>
-                      <span>{item.qty}</span><br></br>
-                      
-                      
+                      <span>{item.qty}</span>
+                      <br></br>
                     </>
                   ))}
                   <hr></hr>
@@ -60,22 +59,6 @@ const LiveOrders = () => {
                 </Card.Text>
               </Card.Body>
             </Card>
-
-            {/* <Card>
-              <Card.Header>{order.DOC_ID}</Card.Header>
-              <Card.Body>
-                <Card.Title> Order Number: {order.orderId}</Card.Title>
-                <Card.Text>
-                {order.orderItems.map((item) => (
-                    <>
-                      <span>{item.name}</span><br></br>
-                      
-                    </>
-                  ))}
-                  <p>Order Total: ${order.orderTotal}</p>
-                </Card.Text>
-              </Card.Body>
-            </Card> */}
           </div>
         ))}
       </div>
