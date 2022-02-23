@@ -75,6 +75,17 @@ const RestoSelectMenu = () => {
             Menu Details
           </Button>
         </Link>{" "}
+        <Button
+          variant="primary"
+          style={{
+            backgroundColor: "#feaa00",
+            borderColor: "#feaa00",
+            padding: "0.25rem",
+            margin: "1%",
+          }}
+        >
+          Edit Bio
+        </Button>
       </Form.Group>
     </div>
   );
