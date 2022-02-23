@@ -20,6 +20,8 @@ import EditRestoMenuPage from "../pages/EditRestoMenuPage";
 import CartPage from "../pages/CartPage";
 import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
 import AdminUsersProfilePage from "../pages/AdminUsersProfilePage";
+import TrackOrderPage from "../pages/TrackOrderPage";
+
 
 const Router = () => {
   return (
@@ -90,6 +92,14 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <NeedHelpPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/track-order"
+          element={
+            <ProtectedRoute>
+              <TrackOrderPage />
             </ProtectedRoute>
           }
         />

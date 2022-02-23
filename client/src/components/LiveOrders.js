@@ -64,7 +64,7 @@ const LiveOrders = () => {
                   ))}
                   <hr></hr>
                   <span>Order Total: $</span>
-                  <span style={{fontStyle: "italic"}}>{order.orderTotal}</span>
+                  <span style={{fontStyle: "italic"}}>${order.orderTotal}</span>
                 </Card.Text>
                 <Button variant="primary">Print Receipt</Button>
               </Card.Body>
