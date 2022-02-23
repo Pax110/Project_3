@@ -44,21 +44,27 @@ const LiveOrders = () => {
   if (orders) {
     return (
       <>
-        <div>Order History listed in console</div>
         <div>
           {orders.map((order) => (
             <Card>
-              <Card.Header>{order.DOC_ID}</Card.Header>
+              <Card.Header>Restaurant Name</Card.Header>
               <Card.Body>
                 <Card.Title>Your Order</Card.Title>
                 <Card.Text>
                   {order.orderItems.map((item) => (
                     <>
                       <span>{item.name}</span>
-                      <span>{item.price}</span><br></br>
+                      <span> </span>
+                      <span>x</span>
+                      <span> </span>
+                      <span>{item.qty}</span><br></br>
+                      <span style={{fontStyle: "italic"}}>${item.price}</span>
+                      <br></br>
                     </>
                   ))}
-                  <p>Order Total: ${order.orderTotal}</p>
+                  <hr></hr>
+                  <span>Order Total: $</span>
+                  <span style={{fontStyle: "italic"}}>{order.orderTotal}</span>
                 </Card.Text>
                 <Button variant="primary">Print Receipt</Button>
               </Card.Body>

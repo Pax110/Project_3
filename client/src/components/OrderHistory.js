@@ -3,9 +3,9 @@ import LiveOrders from './LiveOrders';
 
 const OrderHistory = () => {
   return <div>
-      <h2>Order History</h2>
+      <h2 style={{textAlign: "center"}}>Order Again!</h2>
       <LiveOrders/>
-      <span>All the previous orders...</span>
+      
   </div>;
 };
 
