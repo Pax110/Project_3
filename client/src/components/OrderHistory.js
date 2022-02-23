@@ -66,12 +66,13 @@ const OrderHistory = () => {
               <Card.Text>
                 {order.orderItems.map((item) => (
                   <>
-                    <span>{item.name}:&nbsp;</span>
-
+                    <span>{item.qty}&nbsp;</span>
+                    <span>{item.name}&nbsp;</span>
                     <span>${item.price}</span>
                     <br></br>
                   </>
                 ))}
+                <br />
                 <strong>Order Total: ${order.orderTotal}</strong>
               </Card.Text>
               <Button variant="primary">Print Receipt</Button>
