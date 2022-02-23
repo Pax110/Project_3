@@ -1,112 +1,75 @@
-import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
-import "../fonts/fonts.css";
+import "./Footer.css";
+import Social from "./social1.png";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const FooterFont = "'Noto Serif', italics";
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
-
-export default function Footer() {
+const Footer = () => {
   return (
-    <Box
-      sx={{
-        flexGrow: 0,
-        paddingTop: "10px",
-        width: "100%",
-      }}
-    >
-      <AppBar position="static" sx={{ bgcolor: "#342628" }}>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Row sx={{ display: "flex" }}>
-            <Col>
-              <Link
-                to="/restaurant/signup"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                <Typography variant="h7">Join the Collective</Typography>
-              </Link>
-            </Col>
-            <Col>
-              <Typography variant="h7">Stuff Stuff</Typography>
-            </Col>
-            <Col>
-              <Typography variant="h7">Other Stuff</Typography>
-            </Col>
-            <Row>
-              <Typography
-                variant="h7"
-                noWrap
-                component="div"
-                sx={{
-                  flexGrow: 1,
-                  display: { xs: "none", sm: "block" },
-                  fontFamily: FooterFont,
-                  color: "#feaa00",
-                }}
-              >
-                Put your money where your home is .. shop local ♥
-              </Typography>
-            </Row>
-          </Row>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <footer className="footer">
+      <div className="footerAddress">
+        <h1 className="footerLogo"> CULINARY COLLECTIVE</h1>
+
+        <h2>
+          Open Sorcerers 🧙‍♂️ <br /> Kate, Michelle and Pax
+        </h2>
+
+        <address>
+          404 InceptionU Lane, Calgary, AB H3H 3H3
+        </address>
+      </div>
+      <ul className="footerNav">
+        <li className="navItem">
+          <h2 className="navTitle">Join the Collective</h2>
+
+          <ul className="navList">
+            <Link to="/signup">
+              <li>Customer</li>
+            </Link>
+
+            <Link to="/restaurant/signup">
+              <li>Retailer</li>
+            </Link>
+
+            <li>
+              Driver
+            </li>
+          </ul>
+        </li>
+        <li className="navItem">
+          <h2 className="navTitle">Learn More</h2>
+          <ul className="navList">
+            <li>About Us</li>
+
+            <li>Mission</li>
+
+            <li>
+              <a href="mailto:?subject=Culinary Collective <3 &amp;body=Hello friend, check out this amazing site for local home based businesses and commissary kitchens! Hope you like it :)">
+                Tell a Friend{" "}
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li className="navItem">
+          <h2 className="navTitle">Connect With Us</h2>
+          <ul className="navList">
+            <li className="photo">
+              <img src={Social} alt="social media" />
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div className="bottom">
+        <p>&copy; 2022 Project Three. All rights reserved.</p>
+
+        <div className="bottomMessage">
+          <span>
+            put your money where your home is, shop local{" "}
+            <span className="heart">♥</span>
+          </span>
+        </div>
+      </div>
+    </footer>
   );
-}
+};
+
+export default Footer;
