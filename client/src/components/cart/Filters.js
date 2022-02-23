@@ -8,21 +8,17 @@ import "./styles.css";
 const Filters = () => {
   const [rate, setRate] = useState(3);
   const {
-    itemState : { byAsapDelivery, byBookedDelivery, byRating, bySearchQuery },
+    itemState: { byAsapDelivery, byBookedDelivery, byRating, bySearchQuery },
     itemDispatch,
   } = CartState();
 
-  console.log(byBookedDelivery, byAsapDelivery, byRating, bySearchQuery)
+  console.log(byBookedDelivery, byAsapDelivery, byRating, bySearchQuery);
 
-  
   return (
     <div className="filters">
       <span className="title">Filter Items</span>
 
-
-
       <span>
-      
         <Form.Check
           inline
           label="Book a day ahead and SAVE"
@@ -34,7 +30,7 @@ const Filters = () => {
               type: "FILTER_BY_BOOKED_DELIVERY",
             })
           }
-         checked={byBookedDelivery}
+          checked={byBookedDelivery}
         />
       </span>
       <span>
@@ -49,7 +45,7 @@ const Filters = () => {
               type: "FILTER_BY_ASAP_DELIVERY",
             })
           }
-         checked={byAsapDelivery}
+          checked={byAsapDelivery}
         />
       </span>
       <span>
@@ -61,7 +57,7 @@ const Filters = () => {
         />
       </span>
       <Button
-        variant="light"
+        style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
         onClick={() =>
           itemDispatch({
             type: "CLEAR_FILTERS",
