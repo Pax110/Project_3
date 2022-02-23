@@ -36,9 +36,9 @@
 }
 
 .filters {
-  background-color: #343a40;
+  background-color: #342628;
   border-radius: "10px";
-  color: white;
+  color: whitesmoke;
   padding: 20px;
   display: flex;
   flex-direction: column;

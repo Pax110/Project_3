@@ -171,6 +171,7 @@ const Cart = () => {
                 </span>
                 <Button
                   type="button"
+                  style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
                   disabled={cart.length === 0}
                   onClick={(handleOrder, handleShow)}
                 >
