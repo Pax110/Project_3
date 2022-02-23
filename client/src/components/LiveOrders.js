@@ -8,12 +8,14 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "./context/UserAuthContext";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 
 const LiveOrders = () => {
   const { db, user } = useUserAuth();
 
   const [orders, setOrders] = useState();
+
+  const myStyle = { fontFamily: "Bebas Neue" };
 
   useEffect(() => {
     const getData = async () => {
@@ -43,29 +45,40 @@ const LiveOrders = () => {
 
   if (orders) {
     return (
-      <>
-        <div>Order History listed in console</div>
-        <div>
-          {orders.map((order) => (
-            <Card>
-              <Card.Header>{order.DOC_ID}</Card.Header>
-              <Card.Body>
-                <Card.Title>Your Order</Card.Title>
-                <Card.Text>
-                  {order.orderItems.map((item) => (
-                    <>
-                      <span>{item.name}</span>
-                      <span>{item.price}</span><br></br>
-                    </>
-                  ))}
-                  <p>Order Total: ${order.orderTotal}</p>
-                </Card.Text>
-                <Button variant="primary">Print Receipt</Button>
-              </Card.Body>
-            </Card>
-          ))}
-        </div>
-      </>
+      <Container
+        style={{
+          width: "auto",
+          backgroundColor: "#f7f4ef",
+          borderRadius: "15px",
+          paddingBottom: "15px",
+        }}
+      >
+        <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+          Order History
+        </h1>
+        {orders.map((order) => (
+          <Card
+            style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}
+          >
+            <Card.Header>{order.DOC_ID}</Card.Header>
+            <Card.Body>
+              <Card.Title>Your Order</Card.Title>
+              <Card.Text>
+                {order.orderItems.map((item) => (
+                  <>
+                    <span>{item.name}:&nbsp;</span>
+
+                    <span>${item.price}</span>
+                    <br></br>
+                  </>
+                ))}
+                <strong>Order Total: ${order.orderTotal}</strong>
+              </Card.Text>
+              <Button variant="primary">Print Receipt</Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </Container>
     );
   } else {
     return <div>Loading...</div>;
