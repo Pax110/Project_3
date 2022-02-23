@@ -1,7 +1,7 @@
 import React from "react";
 import Wheel from 
 
-export default function Wheel() {
+function Wheel() {
   let container = document.querySelector(".container");
   let btn = document.getElementById("spin");
   let number = Math.ceil(Math.random() * 1000);
