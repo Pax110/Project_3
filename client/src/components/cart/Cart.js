@@ -1,7 +1,15 @@
 import { Container } from "@mui/material";
 import { addDoc, collection, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Form,
+  Image,
+  ListGroup,
+  Modal,
+  Row,
+} from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 import { CartState } from "../context/CartProvider";
 import { userAuthContext, useUserAuth } from "../context/UserAuthContext";
@@ -13,6 +21,10 @@ const Cart = () => {
     dispatch,
   } = CartState();
   const [total, setTotal] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const { db, user } = useUserAuth();
 
@@ -160,10 +172,28 @@ const Cart = () => {
                 <Button
                   type="button"
                   disabled={cart.length === 0}
-                  onClick={handleOrder}
+                  onClick={(handleOrder, handleShow)}
                 >
                   Proceed to Checkout
                 </Button>
+                <Modal
+                  show={show}
+                  onHide={handleClose}
+                  keyboard={false}
+                  centered
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>Woohoo! Order Successful.</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    The Collective will prepare your order for delivery. 🚚🍴
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="success" onClick={handleClose}>
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </div>
             </Row>
           </Container>
