@@ -39,6 +39,7 @@ const Admin = () => {
     <Container
       style={{
         width: "auto",
+        maxWidth: "none",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
         paddingBottom: "15px",
