@@ -7,6 +7,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import SingleUser from "./SingleUser";
+import { Container } from "react-bootstrap";
 
 const Admin = () => {
   const { db } = useFirebase();
@@ -14,6 +15,8 @@ const Admin = () => {
 
   // const [selectedRestoID, setSelectedRestoID] = useState("");
   const [userData, setUserData] = useState([]);
+
+  const myStyle = { fontFamily: "Bebas Neue" };
 
   useEffect(() => {
     const getData = async () => {
@@ -33,12 +36,20 @@ const Admin = () => {
   }, []);
   console.log("userdata", userData);
   return (
-    <div>
-      <h2>Admin Dashboard</h2>
-      <h3>List of all users</h3>
-      <Table striped bordered hover>
+    <Container
+      style={{
+        width: "auto",
+        backgroundColor: "#f7f4ef",
+        borderRadius: "15px",
+        paddingBottom: "15px",
+      }}
+    >
+      <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+        Admin Dashboard
+      </h1>
+      <Table bordered>
         <thead>
-          <tr>
+          <tr style={{ backgroundColor: "white" }}>
             <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -52,14 +63,14 @@ const Admin = () => {
           userData.map((data, index) => {
             return (
               <tbody key={index}>
-                <tr>
+                <tr style={{ backgroundColor: "white" }}>
                   <SingleUser index={index} data={data} />
                 </tr>
               </tbody>
             );
           })}
       </Table>
-    </div>
+    </Container>
   );
 };
 export default Admin;
