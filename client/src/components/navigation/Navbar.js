@@ -207,7 +207,7 @@ const Navbar = () => {
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt={user?.displayname}
+                    alt={userInfo?.firstName}
                     src="/static/images/avatar/2.jpg"
                   />
                 </IconButton>
