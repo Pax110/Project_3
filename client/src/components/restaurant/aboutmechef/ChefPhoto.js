@@ -2,18 +2,10 @@ import React from "react";
 import "./veg.jpeg";
 import Image from "react-bootstrap/Image";
 
-const ChefPhoto = () => {
+const ChefPic = () => {
   return (
-    <div>
-      <Image>
-        <img
-          src={"veg.jpeg"}
-          className="img-fluid rounded-pill"
-          alt="Chef Image"
-        />
-      </Image>
-    </div>
+    <img src={"veg.jpeg"} className="img-fluid rounded-pill" alt="Chef Image" />
   );
 };
 
-export default ChefPhoto;
+export default ChefPic;

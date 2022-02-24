@@ -75,7 +75,7 @@ const MenuDisplayCard = () => {
       }}
     >
       <h1 style={myStyle}>{title}</h1>
-      <AboutMeChef />
+      {/* <AboutMeChef /> */}
       <ImageList style={{ display: "flex", overflow: "none" }}>
         <Col>
           <Row style={{ margin: "10px" }}>

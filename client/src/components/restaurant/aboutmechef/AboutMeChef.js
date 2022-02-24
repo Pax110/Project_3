@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import ChefPhoto from "./ChefPhoto";
+import ChefPic from "./ChefPhoto";
 
 const AboutMeChef = () => {
   const myStyle = {
@@ -19,7 +19,8 @@ const AboutMeChef = () => {
         textDecoration: "none",
       }}
     >
-      <ChefPhoto />
+      <ChefPic />
+
       <div>
         AboutMeChef orem Ipsum is simply dummy text of the printing and
         typesetting industry. Lorem Ipsum has been the industry's standard dummy
