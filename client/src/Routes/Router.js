@@ -21,8 +21,7 @@ import CartPage from "../pages/CartPage";
 import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
 import AdminUsersProfilePage from "../pages/AdminUsersProfilePage";
 import TrackOrderPage from "../pages/TrackOrderPage";
-// import RestoDashboardPage from "../pages/RestoDashboardPage";
-
+import RestoDashboardPage from "../pages/RestoDashboardPage";
 
 const Router = () => {
   return (
@@ -62,14 +61,14 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        {/* <Route
+        <Route
           path="/restaurant/dashboard"
           element={
             <ProtectedRoute>
               <RestoDashboardPage />
             </ProtectedRoute>
           }
-        /> */}
+        />
 
         <Route
           path="/restaurant/orders/:id"
