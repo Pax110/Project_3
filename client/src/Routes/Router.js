@@ -54,7 +54,7 @@ const Router = () => {
         <Route path="/cart/:id" element={<CartPage />} />
 
         <Route
-          path="/restaurant/editMenu/:id"
+          path="/restaurant/editmenu/:id"
           element={
             <ProtectedRoute>
               <EditRestoMenuPage />
@@ -75,6 +75,14 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <RestoOrdersViewPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/restaurant/editprofile/:id"
+          element={
+            <ProtectedRoute>
+              <EditRestroProfilePage />
             </ProtectedRoute>
           }
         />
@@ -122,15 +130,6 @@ const Router = () => {
         />
 
         <Route path="/menu/:id" element={<MenuPage />} />
-
-        <Route
-          path="/restaurant/editprofile/:id"
-          element={
-            <ProtectedRoute>
-              <EditRestroProfilePage />
-            </ProtectedRoute>
-          }
-        />
       </Routes>
     </div>
   );
