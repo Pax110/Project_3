@@ -13,7 +13,7 @@ import RestoSignUpPage from "../pages/RestoSignUpPage";
 import MenuPage from "../pages/MenuPage";
 import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
-import RestoDashboardPage from "../pages/RestoDashboardPage";
+
 import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePage";
 import AdminPage from "../pages/AdminPage";
 import EditRestoMenuPage from "../pages/EditRestoMenuPage";
@@ -21,6 +21,7 @@ import CartPage from "../pages/CartPage";
 import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
 import AdminUsersProfilePage from "../pages/AdminUsersProfilePage";
 import TrackOrderPage from "../pages/TrackOrderPage";
+// import RestoDashboardPage from "../pages/RestoDashboardPage";
 
 
 const Router = () => {
@@ -61,14 +62,14 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/restaurant/dashboard"
           element={
             <ProtectedRoute>
               <RestoDashboardPage />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
         <Route
           path="/restaurant/orders/:id"

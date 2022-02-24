@@ -1,11 +1,8 @@
 import React from "react";
-<<<<<<< HEAD
 import RestoDashboard from "../components/restaurant/RestoDashboard";
-=======
 import RestoSelectMenu from "../components/restaurant/RestoSelectMenu";
 import { Container } from "react-bootstrap";
 import background from "../components/landingimage/dash.jpeg";
->>>>>>> main
 
 
 const RestoDashboardPage = () => {
@@ -13,11 +10,6 @@ const RestoDashboardPage = () => {
     fontFamily: "Bebas Neue",
   };
   return (
-<<<<<<< HEAD
-    <div>  
-      <h3>Restaurant Dashboard</h3>  
-      <RestoDashboard />
-=======
     <div
       style={{
         backgroundImage: `url(${background})`,
@@ -48,7 +40,6 @@ const RestoDashboardPage = () => {
           />
         </div>
       </Container>
->>>>>>> main
     </div>
   );
 };

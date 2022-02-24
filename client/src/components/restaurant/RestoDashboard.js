@@ -75,7 +75,6 @@ const RestoDashboard = () => {
             Menu Details
           </Button>
         </Link>{" "}
-<<<<<<< HEAD:client/src/components/restaurant/RestoDashboard.js
         <Link to={`/restaurant/orders/${selectedRestoID}`}>
           <Button
             variant="primary"
@@ -85,7 +84,6 @@ const RestoDashboard = () => {
             Orders
           </Button>
         </Link>{" "}
-=======
         <Button
           variant="primary"
           disabled={!selectedRestoID}
@@ -98,7 +96,6 @@ const RestoDashboard = () => {
         >
           Edit Bio
         </Button>
->>>>>>> main:client/src/components/restaurant/RestoSelectMenu.js
       </Form.Group>
     </div>
   );
