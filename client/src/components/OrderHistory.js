@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "./context/UserAuthContext";
 import { Button, Card, Container } from "react-bootstrap";
+import PrintReceipt from "./PrintReceipt";
 
 const OrderHistory = () => {
   const { db, user } = useUserAuth();
@@ -75,7 +76,7 @@ const OrderHistory = () => {
                 <br />
                 <strong>Order Total: ${order.orderTotal}</strong>
               </Card.Text>
-              <Button variant="primary">Print Receipt</Button>
+              <PrintReceipt items={order.orderItems}  total={order.orderTotal}/>
             </Card.Body>
           </Card>
         ))}

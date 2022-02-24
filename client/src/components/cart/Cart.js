@@ -13,6 +13,7 @@ import {
 import { AiFillDelete } from "react-icons/ai";
 import { CartState } from "../context/CartProvider";
 import { userAuthContext, useUserAuth } from "../context/UserAuthContext";
+
 // import Rating from "./Rating";
 
 const Cart = () => {
