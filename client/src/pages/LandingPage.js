@@ -10,7 +10,7 @@ function LandingPage() {
       <LandingImage />
       <AboutUs />
       <RestoDisplayCard />
-      <Magic8 />
+      {/* <Magic8 /> */}
     </div>
   );
 }
