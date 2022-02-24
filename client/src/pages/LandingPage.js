@@ -8,8 +8,8 @@ function LandingPage() {
   return (
     <div>
       <LandingImage />
-      <AboutUs />
       <RestoDisplayCard />
+      <AboutUs />
       <Magic8 />
     </div>
   );

@@ -9,6 +9,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { CardActionArea, CardMedia } from "@mui/material";
 import { useFirebase } from "../FirebaseProvider";
 import "../fonts/fonts.css";
+import AboutMeChef from "./aboutmechef/AboutMeChef";
+import { contains } from "@firebase/util";
 
 // import { RestroDisplayList } from "./MenuDisplayList";
 // import Toast from "./Toast";
@@ -72,8 +74,8 @@ const MenuDisplayCard = () => {
         textDecoration: "none",
       }}
     >
-      {" "}
       <h1 style={myStyle}>{title}</h1>
+      <AboutMeChef />
       <ImageList style={{ display: "flex", overflow: "none" }}>
         <Col>
           <Row style={{ margin: "10px" }}>
