@@ -35,7 +35,16 @@ const PrintReceipt = ({ total, items }) => {
 
   return (
     <div>
-      <Button variant="primary" onClick={handlePdf}>
+      <Button
+        variant="primary"
+        style={{
+          backgroundColor: "#feaa00",
+          borderColor: "#feaa00",
+          padding: "0.25rem",
+          margin: "1%",
+        }}
+        onClick={handlePdf}
+      >
         Print Receipt
       </Button>
     </div>
