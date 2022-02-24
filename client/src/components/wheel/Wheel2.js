@@ -23,7 +23,7 @@ const data = [
   },
 ];
 
-const Sample = () => {
+export default function Wheel2() {
   const handleOnChange = (target) => {
     console.log(target);
   };
@@ -41,4 +41,4 @@ const Sample = () => {
       backgroundColor="#fff"
     />
   );
-};
+}
