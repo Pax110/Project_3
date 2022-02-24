@@ -1,5 +1,5 @@
 import React from "react";
-import RestoDashboard from "../components/restaurant/RestoDashboard";
+
 import RestoSelectMenu from "../components/restaurant/RestoSelectMenu";
 import { Container } from "react-bootstrap";
 import background from "../components/landingimage/dash.jpeg";
