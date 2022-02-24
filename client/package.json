@@ -25,7 +25,11 @@
     "react-hook-form": "^7.27.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+<<<<<<< HEAD
     "react-icons": "^4.2.0",
+=======
+    "react-simple-wheel-picker": "^1.2.0",
+>>>>>>> main
     "styled-components": "^5.3.3",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
@@ -33,6 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && firebase deploy --only hosting",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -8,6 +8,7 @@ import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
 import FileUploader from "../file-uploader/FileUploader";
+import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
@@ -83,7 +84,7 @@ const EditRestoProfileForm = (props) => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formRestoDescription">
-                <Form.Label>Add your resturant description:</Form.Label>
+                <Form.Label>Add your restaurant description:</Form.Label>
                 <Controller
                   name="description"
                   control={control}
@@ -267,7 +268,7 @@ const EditRestoProfileForm = (props) => {
                 <Form.Group>
                   {" "}
                   <Form.Label>Upload your business profile photo</Form.Label>
-                  <FileUploader />
+                  <RestroUpdateUploader />
                 </Form.Group>
               </Row>
 

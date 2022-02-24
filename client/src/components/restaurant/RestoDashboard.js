@@ -34,14 +34,12 @@ const RestoDashboard = () => {
 
   return (
     <div>
-    
       <Form.Group as={Col} controlId="formSelectResto">
-        <Form.Label>Select Restaurant:</Form.Label>
+        <Form.Label style={{}}>Select Restaurant:</Form.Label>
         <Form.Select
           type="resto"
           value={selectedRestoID}
           onChange={(e) => {
-          
             setSelectedRestoID(e.target.value);
           }}
         >
@@ -53,7 +51,12 @@ const RestoDashboard = () => {
           <Button
             variant="primary"
             disabled={!selectedRestoID}
-            style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+            style={{
+              backgroundColor: "#feaa00",
+              borderColor: "#feaa00",
+              padding: "0.25rem",
+              margin: "1%",
+            }}
           >
             Account Details
           </Button>
@@ -62,11 +65,17 @@ const RestoDashboard = () => {
           <Button
             variant="primary"
             disabled={!selectedRestoID}
-            style={{ backgroundColor: "#feaa00", borderColor: "#feaa00" }}
+            style={{
+              backgroundColor: "#feaa00",
+              borderColor: "#feaa00",
+              padding: "0.25rem",
+              margin: "1%",
+            }}
           >
             Menu Details
           </Button>
         </Link>{" "}
+<<<<<<< HEAD:client/src/components/restaurant/RestoDashboard.js
         <Link to={`/restaurant/orders/${selectedRestoID}`}>
           <Button
             variant="primary"
@@ -76,6 +85,20 @@ const RestoDashboard = () => {
             Orders
           </Button>
         </Link>{" "}
+=======
+        <Button
+          variant="primary"
+          disabled={!selectedRestoID}
+          style={{
+            backgroundColor: "#feaa00",
+            borderColor: "#feaa00",
+            padding: "0.25rem",
+            margin: "1%",
+          }}
+        >
+          Edit Bio
+        </Button>
+>>>>>>> main:client/src/components/restaurant/RestoSelectMenu.js
       </Form.Group>
     </div>
   );
