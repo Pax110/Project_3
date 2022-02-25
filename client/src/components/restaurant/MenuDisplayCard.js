@@ -78,79 +78,77 @@ const MenuDisplayCard = () => {
     >
       <h1 style={myStyle}>{title}</h1>
       <AboutMeChef />
-      <ImageList style={{ display: "flex", overflow: "none" }}>
-        <Col>
-          <Row style={{ margin: "10px" }}>
-            <CardActionArea
-              style={{
-                backgroundColor: "white",
-                borderRadius: "15px",
-                display: "flex",
-                flexWrap: "wrap",
-                margin: "15px",
-                gap: "5px",
-              }}
-            >
-              <h3 style={myStyle}>Appetizers</h3>
-              {restaurant.menu.appetizers.map((item) => (
-                <ImageListItem
-                  sx={{ width: "220px", height: "220px", margin: "20px" }}
-                >
-                  <SingleItem restoId={id} item={item} key={item.name} />
-                </ImageListItem>
-              ))}
-            </CardActionArea>
-          </Row>
-        </Col>
+      <Col>
+        <Row style={{ margin: "10px" }}>
+          <CardActionArea
+            style={{
+              backgroundColor: "white",
+              borderRadius: "15px",
+              display: "flex",
+              flexWrap: "wrap",
+              margin: "15px",
+              gap: "5px",
+            }}
+          >
+            <h3 style={myStyle}>Appetizers</h3>
+            {restaurant.menu.appetizers.map((item) => (
+              <ImageListItem
+                sx={{ width: "220px", height: "220px", margin: "20px" }}
+              >
+                <SingleItem restoId={id} item={item} key={item.name} />
+              </ImageListItem>
+            ))}
+          </CardActionArea>
+        </Row>
+      </Col>
 
-        <Col>
-          <Row style={{ margin: "10px" }}>
-            <CardActionArea
-              style={{
-                backgroundColor: "white",
-                borderRadius: "15px",
-                display: "flex",
-                flexWrap: "wrap",
-                margin: "15px",
-                gap: "5px",
-              }}
-            >
-              <h3 style={myStyle}>Mains</h3>
-              {restaurant.menu.mains.map((item) => (
-                <ImageListItem
-                  sx={{ width: "220px", height: "220px", margin: "20px" }}
-                >
-                  <SingleItem item={item} key={item.name} />
-                </ImageListItem>
-              ))}
-            </CardActionArea>
-          </Row>
-        </Col>
+      <Col>
+        <Row style={{ margin: "10px" }}>
+          <CardActionArea
+            style={{
+              backgroundColor: "white",
+              borderRadius: "15px",
+              display: "flex",
+              flexWrap: "wrap",
+              margin: "15px",
+              gap: "5px",
+            }}
+          >
+            <h3 style={myStyle}>Mains</h3>
+            {restaurant.menu.mains.map((item) => (
+              <ImageListItem
+                sx={{ width: "220px", height: "220px", margin: "20px" }}
+              >
+                <SingleItem item={item} key={item.name} />
+              </ImageListItem>
+            ))}
+          </CardActionArea>
+        </Row>
+      </Col>
 
-        <Col>
-          <Row style={{ margin: "10px" }}>
-            <CardActionArea
-              style={{
-                backgroundColor: "white",
-                borderRadius: "15px",
-                display: "flex",
-                flexWrap: "wrap",
-                margin: "15px",
-                gap: "5px",
-              }}
-            >
-              <h3 style={myStyle}>Desserts</h3>
-              {restaurant.menu.desserts.map((item) => (
-                <ImageListItem
-                  sx={{ width: "220px", height: "220px", margin: "20px" }}
-                >
-                  <SingleItem item={item} key={item.name} />
-                </ImageListItem>
-              ))}
-            </CardActionArea>
-          </Row>
-        </Col>
-      </ImageList>
+      <Col>
+        <Row style={{ margin: "10px" }}>
+          <CardActionArea
+            style={{
+              backgroundColor: "white",
+              borderRadius: "15px",
+              display: "flex",
+              flexWrap: "wrap",
+              margin: "15px",
+              gap: "5px",
+            }}
+          >
+            <h3 style={myStyle}>Desserts</h3>
+            {restaurant.menu.desserts.map((item) => (
+              <ImageListItem
+                sx={{ width: "220px", height: "220px", margin: "20px" }}
+              >
+                <SingleItem item={item} key={item.name} />
+              </ImageListItem>
+            ))}
+          </CardActionArea>
+        </Row>
+      </Col>
     </Container>
   );
 };
