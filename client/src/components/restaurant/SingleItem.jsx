@@ -4,14 +4,22 @@ import React from "react";
 
 import { CartState } from "../context/CartProvider";
 
-const SingleItem = ({ item, restoId }) => {
+const SingleItem = ({ item, restoId, restaurant }) => {
   const {
     state: { cart },
     dispatch,
   } = CartState();
 
   console.log("cart is...", cart);
-  item.restoId = restoId
+
+  //Resraurant Id to add into item to dispatch into the cart
+  item.restoId = restoId;
+
+  //Resraurant Id to add into item to dispatch into the cart
+  //item.restoName = restaurant.name
+
+  console.log("restaurant is",restaurant)
+
   const myStyle = {
     fontFamily: "Roboto",
     textAlign: "center",
@@ -65,7 +73,7 @@ const SingleItem = ({ item, restoId }) => {
             onClick={() => {
               dispatch({
                 type: "ADD_TO_CART",
-                payload:item,
+                payload: item,
               });
             }}
           >
