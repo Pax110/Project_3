@@ -28,20 +28,19 @@ const MenuDisplayCard = () => {
   const [restaurant, setRestaurant] = useState({});
   const { db } = useFirebase();
   const {
-   
     itemState: { byAsapDelivery, byBookedDelivery, byRating, bySearchQuery },
   } = CartState();
 
-  const transformItems =  () => {
-    let sortedItems = restaurant.menu.appetizers
-    if(bySearchQuery){
+  const transformItems = () => {
+    let sortedItems = restaurant.menu.appetizers;
+    if (bySearchQuery) {
       sortedItems = sortedItems.filter((item) =>
         item.name.toLowerCase().includes(bySearchQuery)
       );
     }
-    console.log("sorted..", sortedItems)
-    return sortedItems
-  }
+    console.log("sorted..", sortedItems);
+    return sortedItems;
+  };
 
   useEffect(() => {
     const getRestaurant = async () => {
@@ -59,7 +58,6 @@ const MenuDisplayCard = () => {
   console.log(restaurant);
 
   const title = restaurant.name.toUpperCase();
-  
 
   const myStyle = {
     fontFamily: "Bebas Neue",
@@ -152,8 +150,8 @@ const MenuDisplayCard = () => {
             </CardActionArea>
           </Row>
         </Col>
-      </Container>
-    </>
+      </ImageList>
+    </Container>
   );
 };
 export default MenuDisplayCard;
