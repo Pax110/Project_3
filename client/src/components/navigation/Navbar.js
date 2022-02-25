@@ -18,7 +18,6 @@ import { AiFillDelete } from "react-icons/ai";
 import "../cart/styles.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router";
-
 import { Link } from "react-router-dom";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -27,6 +26,7 @@ import { ButtonGroup, Dropdown, FormControl, Nav } from "react-bootstrap";
 import { Badge, TextField } from "@mui/material";
 import { CartState } from "../context/CartProvider";
 import { useParams } from "react-router-dom";
+
 const pages = ["Order History"];
 
 const Navbar = () => {
@@ -227,9 +227,15 @@ const Navbar = () => {
                         }}
                       />{" "}
                       <Dropdown style={{ padding: "15px" }}>
-                        <Dropdown.Toggle>
+                        <Dropdown.Toggle
+                          style={{
+                            backgroundColor: "#feaa00",
+                            borderColor: "#feaa00",
+                          }}
+                          focus={{ boxShadow: "0 0 0 0.25rem #f7f4ef" }}
+                        >
                           <FaShoppingCart color="white" fontSize="25px" />
-                          <Badge>{cart.length}</Badge>
+                          <Badge>&nbsp;{cart.length}</Badge>
                         </Dropdown.Toggle>
                         <Dropdown.Menu style={{ minwidth: 370 }}>
                           {cart.length > 0 ? (
@@ -279,6 +285,7 @@ const Navbar = () => {
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
+                      sx={{ backgroundColor: "#feaa00", color: "#342628" }}
                       alt={userInfo?.firstName}
                       src="/static/images/avatar/2.jpg"
                     />
