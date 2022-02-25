@@ -3,15 +3,14 @@ import AboutUs from "../components/aboutus/AboutUs";
 import LandingImage from "../components/landingimage/LandingImage";
 
 import RestoDisplayCard from "../components/restaurant/RestoDisplayCard";
-import Filters from '../components/cart/Filters'
+import Filters from "../components/cart/Filters";
 function LandingPage() {
   return (
     <div>
-      <Filters/>
+      <Filters />
       <LandingImage />
-      <AboutUs />
       <RestoDisplayCard />
-    
+      <AboutUs />
     </div>
   );
 }

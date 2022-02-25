@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
@@ -8,7 +8,7 @@ import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
 // import FileUploader from "../file-uploader/FileUploader";
-// import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
+import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
@@ -16,6 +16,7 @@ const EditRestoProfileForm = (props) => {
   const { db } = useFirebase();
   const docId = props.id;
 
+  const [photoURL, setPhotoURL] = useState();
   const { control, handleSubmit, setValue, formState } = useForm({
     //defaultValues: {name: name}
     defaultValues: docValue,
@@ -30,6 +31,7 @@ const EditRestoProfileForm = (props) => {
 
     await updateDoc(docRef, {
       name: data.name,
+      photoURL: photoURL,
       description: data.description,
       type: data.type,
       contact: {
@@ -268,6 +270,7 @@ const EditRestoProfileForm = (props) => {
                 <Form.Group>
                   {" "}
                   <Form.Label>Upload your business profile photo</Form.Label>
+                  <RestroUpdateUploader setPhotoURL={setPhotoURL} />
                   {/* <RestroUpdateUploader /> */}
                 </Form.Group>
               </Row>

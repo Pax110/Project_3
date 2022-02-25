@@ -31,6 +31,7 @@ const RestoDisplayCard = () => {
 
     getRestaurants();
   }, []);
+  console.log("WOWOWOWOWOWOW", restaurants);
   return (
     <Container
       style={{
