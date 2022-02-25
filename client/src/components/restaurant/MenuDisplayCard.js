@@ -57,6 +57,7 @@ const MenuDisplayCard = () => {
   console.log(restaurant);
 
   const title = restaurant.name.toUpperCase();
+  
 
   const myStyle = {
     fontFamily: "Bebas Neue",
