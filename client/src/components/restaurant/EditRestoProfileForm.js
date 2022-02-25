@@ -270,11 +270,8 @@ const EditRestoProfileForm = (props) => {
                 <Form.Group>
                   {" "}
                   <Form.Label>Upload your business profile photo</Form.Label>
-<<<<<<< HEAD
                   <RestroUpdateUploader setPhotoURL={setPhotoURL} />
-=======
                   {/* <RestroUpdateUploader /> */}
->>>>>>> main
                 </Form.Group>
               </Row>
 
