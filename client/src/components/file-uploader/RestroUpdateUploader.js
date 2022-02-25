@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useFirebase } from "../FirebaseProvider";
-import { ref, uploadBytes } from "firebase/storage";
+import {
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router";
 
-const RestroUpdateUploader = () => {
+const RestroUpdateUploader = ({ setPhotoURL }) => {
   let params = useParams();
   let id = params.id;
   console.log(id);
@@ -21,7 +26,19 @@ const RestroUpdateUploader = () => {
       store,
       `/restaurants/${id}/${uuidv4() + "." + extension}`
     );
-    uploadBytes(restaurantImageRef, image).then(alert("Success"));
+    const uploadTask = uploadBytesResumable(restaurantImageRef, image);
+    uploadTask.on(
+      "state_changed",
+      () => {},
+      (error) => {
+        console.log("ERROR MESSAGE", error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setPhotoURL(downloadURL);
+        });
+      }
+    );
   };
 
   return (

@@ -14,20 +14,20 @@ const AboutMeChef = () => {
         width: "auto",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
-        padding: "15px",
         paddingRight: "50px",
+
         textDecoration: "none",
       }}
     >
       <Container
         style={{
-          padding: "none",
           backgroundColor: "white",
           borderRadius: "10px",
           display: "flex",
           flexWrap: "wrap",
-          margin: "15px",
+
           gap: "5px",
+          margin: "auto 0",
         }}
       >
         <Col xs={6} md={2}>
@@ -38,6 +38,7 @@ const AboutMeChef = () => {
           md={8}
           style={{ justifyContent: "right", padding: "2%", margin: "0 auto" }}
         >
+          <h2> chef bonnie</h2>
           AboutMeChef orem Ipsum is simply dummy text of the printing and
           typesetting industry. Lorem Ipsum is simply dummy text of the printing
           and typesetting industry. Lorem Ipsum has been the industry's standard
