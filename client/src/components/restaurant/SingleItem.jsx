@@ -4,7 +4,7 @@ import React from "react";
 
 import { CartState } from "../context/CartProvider";
 
-const SingleItem = ({ item, restoId }) => {
+const SingleItem = ({ item, restoId, restaurant }) => {
   const {
     state: { cart },
     dispatch,
@@ -19,6 +19,8 @@ const SingleItem = ({ item, restoId }) => {
     overflow: "visible",
     padding: "3px",
   };
+
+  console.log("restaurant is ",restaurant)
   return (
     <>
       <CardMedia

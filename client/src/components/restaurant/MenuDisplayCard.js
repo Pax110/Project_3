@@ -26,23 +26,23 @@ const MenuDisplayCard = () => {
   const [restaurant, setRestaurant] = useState({});
   const { db } = useFirebase();
   const {
-   
     itemState: { byAsapDelivery, byBookedDelivery, byRating, bySearchQuery },
   } = CartState();
 
-  const transformItems =  () => {
-    let sortedItems = restaurant.menu.appetizers
-    if(bySearchQuery){
+  const transformItems = () => {
+    let sortedItems = restaurant.menu.appetizers;
+    if (bySearchQuery) {
       sortedItems = sortedItems.filter((item) =>
         item.name.toLowerCase().includes(bySearchQuery)
       );
     }
-    console.log("sorted..", sortedItems)
-    return sortedItems
-  }
+    console.log("sorted..", sortedItems);
+    return sortedItems;
+  };
 
   useEffect(() => {
     const getRestaurant = async () => {
+      console.log("id is", id);
       const restaurantsDocRef = doc(db, "restaurants", id);
 
       const data = await getDoc(restaurantsDocRef);
@@ -63,7 +63,16 @@ const MenuDisplayCard = () => {
     textAlign: "center",
     textDecoration: "none",
   };
-
+  const displayItem = (item) => (
+    <ImageListItem sx={{ width: "220px", height: "220px", margin: "20px" }}>
+      <SingleItem
+        restaurant={restaurant}
+        restoId={id}
+        item={item}
+        key={item.name}
+      />
+    </ImageListItem>
+  );
   return (
     <>
       <Container
@@ -90,13 +99,7 @@ const MenuDisplayCard = () => {
               }}
             >
               <h3 style={myStyle}>Appetizers</h3>
-              {restaurant.menu.appetizers.map((item) => (
-                <ImageListItem
-                  sx={{ width: "220px", height: "220px", margin: "20px" }}
-                >
-                  <SingleItem restoId={id} item={item} key={item.name} />
-                </ImageListItem>
-              ))}
+              {restaurant.menu.appetizers.map(displayItem)}
             </CardActionArea>
           </Row>
         </Col>
@@ -114,13 +117,7 @@ const MenuDisplayCard = () => {
               }}
             >
               <h3 style={myStyle}>Mains</h3>
-              {restaurant.menu.mains.map((item) => (
-                <ImageListItem
-                  sx={{ width: "220px", height: "220px", margin: "20px" }}
-                >
-                  <SingleItem item={item} key={item.name} />
-                </ImageListItem>
-              ))}
+              {restaurant.menu.mains.map(displayItem)}
             </CardActionArea>
           </Row>
         </Col>
@@ -138,13 +135,7 @@ const MenuDisplayCard = () => {
               }}
             >
               <h3 style={myStyle}>Desserts</h3>
-              {restaurant.menu.desserts.map((item) => (
-                <ImageListItem
-                  sx={{ width: "220px", height: "220px", margin: "20px" }}
-                >
-                  <SingleItem item={item} key={item.name} />
-                </ImageListItem>
-              ))}
+              {restaurant.menu.desserts.map(displayItem)}
             </CardActionArea>
           </Row>
         </Col>
