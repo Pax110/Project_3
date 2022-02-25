@@ -11,8 +11,6 @@ function LandingPage() {
       <LandingImage />
       <RestoDisplayCard />
       <AboutUs />
-
-      <Magic8 />
     </div>
   );
 }

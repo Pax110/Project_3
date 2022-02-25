@@ -8,7 +8,7 @@ import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
 // import FileUploader from "../file-uploader/FileUploader";
-// import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
+import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
 
 const EditRestoProfileForm = (props) => {
   const docValue = props.doc;
