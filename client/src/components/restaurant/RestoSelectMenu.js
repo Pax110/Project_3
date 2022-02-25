@@ -47,6 +47,21 @@ const RestoSelectMenu = () => {
           {restoData &&
             restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
         </Form.Select>
+        <Link to={`/restaurant/orders/${selectedRestoID}`}>
+        <Button
+          variant="primary"
+          disabled={!selectedRestoID}
+          style={{
+            backgroundColor: "#feaa00",
+            borderColor: "#feaa00",
+            padding: "0.25rem",
+            margin: "1%",
+          }}
+        >
+          Orders
+        </Button>
+        </Link>
+        
         <Link to={`/restaurant/editprofile/${selectedRestoID}`}>
           <Button
             variant="primary"

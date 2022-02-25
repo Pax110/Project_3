@@ -3,7 +3,7 @@ import React from "react";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../pages/LandingPage.js";
-import ProfileTest from "../components/ProfileTest.js";
+
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
@@ -13,10 +13,15 @@ import RestoSignUpPage from "../pages/RestoSignUpPage";
 import MenuPage from "../pages/MenuPage";
 import NeedHelpPage from "../pages/NeedHelpPage";
 import OrderHistoryPage from "../pages/OrderHistoryPage";
-import RestoDashboardPage from "../pages/RestoDashboardPage";
+
 import EditRestroProfilePage from "../components/restaurant/EditRestroProfilePage";
 import AdminPage from "../pages/AdminPage";
 import EditRestoMenuPage from "../pages/EditRestoMenuPage";
+import CartPage from "../pages/CartPage";
+import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
+import AdminUsersProfilePage from "../pages/AdminUsersProfilePage";
+import TrackOrderPage from "../pages/TrackOrderPage";
+import RestoDashboardPage from "../pages/RestoDashboardPage";
 
 const Router = () => {
   return (
@@ -46,9 +51,10 @@ const Router = () => {
           }
         />
         <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
+        <Route path="/cart/:id" element={<CartPage />} />
 
         <Route
-          path="/restaurant/editMenu/:id"
+          path="/restaurant/editmenu/:id"
           element={
             <ProtectedRoute>
               <EditRestoMenuPage />
@@ -65,10 +71,18 @@ const Router = () => {
         />
 
         <Route
-          path="/profile"
+          path="/restaurant/orders/:id"
           element={
             <ProtectedRoute>
-              <ProfileTest />
+              <RestoOrdersViewPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/restaurant/editprofile/:id"
+          element={
+            <ProtectedRoute>
+              <EditRestroProfilePage />
             </ProtectedRoute>
           }
         />
@@ -89,6 +103,14 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/track-order"
+          element={
+            <ProtectedRoute>
+              <TrackOrderPage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/admin"
@@ -98,17 +120,16 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-
-        <Route path="/menu/:id" element={<MenuPage />} />
-
         <Route
-          path="/restaurant/editprofile/:id"
+          path="/admin/user-profile/:id"
           element={
             <ProtectedRoute>
-              <EditRestroProfilePage />
+              <AdminUsersProfilePage />
             </ProtectedRoute>
           }
         />
+
+        <Route path="/menu/:id" element={<MenuPage />} />
       </Routes>
     </div>
   );
