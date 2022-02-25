@@ -100,69 +100,6 @@ const Navbar = () => {
 
   return (
     <>
-      <div>
-        <Nav>
-          <Dropdown alignright>
-            <Dropdown.Toggle>
-              <FaShoppingCart color="white" fontSize="25px" />
-              <Badge>{cart.length}</Badge>
-            </Dropdown.Toggle>
-            <Dropdown.Menu style={{ minwidth: 370 }}>
-              {cart.length > 0 ? (
-                <>
-                  {cart.map((item) => (
-                    <span className="cartitem" key={item.name}>
-                      <img
-                        src={item.menuphoto}
-                        className="cartItemImg"
-                        alt={item.name}
-                      />
-                      <div className="cartItemDetail">
-                        <span>{item.name}</span>
-                        <span>$ {item.price}</span>
-                      </div>
-                      <AiFillDelete
-                        fontSize="20px"
-                        style={{ cursor: "pointer" }}
-                        onClick={() =>
-                          dispatch({
-                            type: "REMOVE_FROM_CART",
-                            payload: item,
-                          })
-                        }
-                      />
-                    </span>
-                  ))}
-                  <Link to={`/cart/${a}`}>
-                    <Button style={{ width: "95%", margin: "0 10px" }}>
-                      Go To Cart
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <span>Cart is Empty</span>
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Nav>
-        
-      <span>
-      <FormControl
-              style={{ width: 500 }}
-              type="search"
-              placeholder="Search an item..."
-              className="m-auto"
-              aria-label="Search"
-              onChange={(e) => {
-                itemDispatch({
-                  type: "FILTER_BY_SEARCH",
-                  payload: e.target.value,
-                });
-              }}
-            />
-      </span>
-      </div>
-   
       <AppBar
         position="fixed"
         sx={{
@@ -220,8 +157,6 @@ const Navbar = () => {
                 >
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      {/* <Typography textAlign="center">{page}</Typography> */}
-
                       <MenuItem
                         component={Link}
                         to="/profile"
@@ -271,52 +206,97 @@ const Navbar = () => {
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
                   <>
-                    <MenuItem
-                      component={Link}
-                      to="/order-history"
-                      onClick={handleCloseUserMenu}
-                    >
-                      ORDER HISTORY
-                    </MenuItem>
-                    <MenuItem
-                      component={Link}
-                      to="track-order"
-                      onClick={handleCloseUserMenu}
-                    >
-                      Track
-                    </MenuItem>
+                    <FormControl
+                      style={{ width: 300 }}
+                      type="search"
+                      placeholder="Search..."
+                      className="m-auto"
+                      aria-label="Search"
+                      onChange={(e) => {
+                        itemDispatch({
+                          type: "FILTER_BY_SEARCH",
+                          payload: e.target.value,
+                        });
+                      }}
+                    />
+                    <Nav>
+                      <Dropdown alignright>
+                        <Dropdown.Toggle>
+                          <FaShoppingCart color="white" fontSize="25px" />
+                          <Badge>{cart.length}</Badge>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu style={{ minwidth: 370 }}>
+                          {cart.length > 0 ? (
+                            <>
+                              {cart.map((item) => (
+                                <span className="cartitem" key={item.name}>
+                                  <img
+                                    src={item.menuphoto}
+                                    className="cartItemImg"
+                                    alt={item.name}
+                                  />
+                                  <div className="cartItemDetail">
+                                    <span>{item.name}</span>
+                                    <span>$ {item.price}</span>
+                                  </div>
+                                  <AiFillDelete
+                                    fontSize="20px"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() =>
+                                      dispatch({
+                                        type: "REMOVE_FROM_CART",
+                                        payload: item,
+                                      })
+                                    }
+                                  />
+                                </span>
+                              ))}
+                              <Link to={`/cart/${a}`}>
+                                <Button
+                                  style={{ width: "95%", margin: "0 10px" }}
+                                >
+                                  Go To Cart
+                                </Button>
+                              </Link>
+                            </>
+                          ) : (
+                            <span>Cart is Empty</span>
+                          )}
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </Nav>
                   </>
                 ))}
               </Box>
             )}
 
-          {currentUser && (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt={userInfo?.firstName}
-                    src="/static/images/avatar/2.jpg"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {/* {settings.map((setting) => (
+            {currentUser && (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt={userInfo?.firstName}
+                      src="/static/images/avatar/2.jpg"
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {/* {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
@@ -350,6 +330,24 @@ const Navbar = () => {
                   >
                     Need Help?
                   </MenuItem>
+                  {userInfo?.role[1] == "Business" && (
+                    <MenuItem
+                      component={Link}
+                      to="/restaurant/dashboard"
+                      onClick={handleCloseUserMenu}
+                    >
+                      Restaurant Dashboard
+                    </MenuItem>
+                  )}
+                  {userInfo?.role[2] == "Admin" && (
+                    <MenuItem
+                      component={Link}
+                      to="/admin"
+                      onClick={handleCloseUserMenu}
+                    >
+                      Admin Dashboard
+                    </MenuItem>
+                  )}
                   <MenuItem
                     component={Link}
                     to="/profile"
@@ -360,33 +358,47 @@ const Navbar = () => {
                 </Menu>
               </Box>
             )}
-            {/* {user ? (
-            <Button onClick={handleLogout}>Logout</Button>
-          ) : (
-            <Button href="/signin">Signin</Button>
-          )}
 
-          {user && <Link to="/profile">Profile </Link>}
-          {user && <Link to="/need-help"> NeedHelp?</Link>}
-          {user && <Link to="/order-history">OrderHistory</Link>} */}
-            {console.log("userInfo inside Navbar", userInfo)}
-            {userInfo?.role[1] == "Business" && (
-              <Button>
-                {" "}
-                <Link to="/restaurant/dashboard">RestoDash</Link>{" "}
-              </Button>
+            {!currentUser && (
+              <>
+                <FormControl
+                  style={{ width: 300 }}
+                  type="search"
+                  placeholder="Search..."
+                  className="m-auto"
+                  aria-label="Search"
+                  onChange={(e) => {
+                    itemDispatch({
+                      type: "FILTER_BY_SEARCH",
+                      payload: e.target.value,
+                    });
+                  }}
+                />
+                <Button
+                  href="/signin"
+                  style={{
+                    fontSize: "22px",
+                    fontFamily: titleFont,
+                    color: "white",
+                  }}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  href="/signup"
+                  style={{
+                    fontSize: "22px",
+                    backgroundColor: "white",
+                    borderRadius: "50px",
+                    padding: "4px 10px",
+                    fontFamily: titleFont,
+                    color: "black",
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </>
             )}
-
-            {currentUser && (
-              <Button>
-                {" "}
-                <Link to="/admin">Admin</Link>{" "}
-              </Button>
-            )}
-
-            {/* SIGNIN BUTTON */}
-
-            {!currentUser && <Button href="/signin">Signin</Button>}
           </Toolbar>
         </Container>
       </AppBar>
