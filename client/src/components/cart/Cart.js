@@ -25,8 +25,8 @@ const Cart = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
-    setShow(false);
     handleOrder();
+    setShow(false);
   };
   const handleShow = () => setShow(true);
 
