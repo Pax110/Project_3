@@ -2,16 +2,15 @@ import * as React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import ImageList from "@mui/material/ImageList";
+
 import ImageListItem from "@mui/material/ImageListItem";
 
 import { Container, Row, Col } from "react-bootstrap";
-import { Button, CardActionArea, CardMedia } from "@mui/material";
+import { CardActionArea } from "@mui/material";
 import { useFirebase } from "../FirebaseProvider";
 import "../fonts/fonts.css";
 import AboutMeChef from "./aboutmechef/AboutMeChef";
-import { contains } from "@firebase/util";
-import { prodErrorMap } from "firebase/auth";
+
 import SingleItem from "./SingleItem";
 import { CartState } from "../context/CartProvider";
 
