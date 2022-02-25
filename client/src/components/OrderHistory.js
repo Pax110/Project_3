@@ -61,7 +61,7 @@ const OrderHistory = () => {
           <Card
             style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}
           >
-            <Card.Header>{order.DOC_ID}</Card.Header>
+            <Card.Header>{order.restaurantName}</Card.Header>
             <Card.Body>
               <Card.Title>Your Order</Card.Title>
               <Card.Text>
@@ -76,7 +76,7 @@ const OrderHistory = () => {
                 <br />
                 <strong>Order Total: ${order.orderTotal}</strong>
               </Card.Text>
-              <PrintReceipt items={order.orderItems}  total={order.orderTotal}/>
+              <PrintReceipt items={order.orderItems} restaurantName={order.restaurantName} total={order.orderTotal}/>
             </Card.Body>
           </Card>
         ))}

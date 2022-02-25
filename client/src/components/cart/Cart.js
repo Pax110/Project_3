@@ -24,7 +24,10 @@ const Cart = () => {
   const [total, setTotal] = useState(null);
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    handleOrder();
+    setShow(false);
+  };
   const handleShow = () => setShow(true);
 
   const { db, user } = useUserAuth();
@@ -39,7 +42,7 @@ const Cart = () => {
   }, [cart]);
 
   const handleOrder = async () => {
-    alert("Payment Successful. Thank you!");
+   
     try {
       let collRef = collection(db, "orders");
 
@@ -52,7 +55,7 @@ const Cart = () => {
         restaurantId: cart[0].restoId, //get the restoId from the state
         userLocation: "t3q4w1",
         orderItems: cart,
-        restaurantName: "Popeyes", //make this dynamic after getting the restoId
+        restaurantName: cart[0].restoName, //make this dynamic after getting the restoId
       });
     } catch (e) {
       console.log("error", e.message);
@@ -191,7 +194,12 @@ const Cart = () => {
                     The Collective will prepare your order for delivery. 🚚🍴
                   </Modal.Body>
                   <Modal.Footer>
-                    <Button variant="success" onClick={handleClose}>
+                    <Button
+                      variant="success"
+                      onClick={() => {
+                        handleClose();
+                      }}
+                    >
                       Close
                     </Button>
                   </Modal.Footer>

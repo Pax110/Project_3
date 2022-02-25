@@ -2,9 +2,9 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import jsPDF from "jspdf";
 
-const PrintReceipt = ({ total, items }) => {
+const PrintReceipt = ({ total, items, restaurantName }) => {
   console.log("total", total);
-
+  console.log("restaurantName is ",restaurantName)
   const handlePdf = () => {
     let verticalOffset = 150;
     let horizontalOffset = 66;
@@ -14,7 +14,8 @@ const PrintReceipt = ({ total, items }) => {
     doc.text("Order Receipt", horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
     doc.text("Date: March 10,2022 ", horizontalOffset, verticalOffset);
-
+    verticalOffset += lineSpace;
+    doc.text(restaurantName, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
     items.map((item, index) => {
       console.log("itemmm", item);
