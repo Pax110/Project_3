@@ -308,7 +308,7 @@ const Navbar = () => {
 
                   <MenuItem
                     component={Link}
-                    to="/home"
+                    to="/"
                     onClick={handleCloseUserMenu}
                   >
                     Home

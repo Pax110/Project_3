@@ -17,7 +17,7 @@ const Login = () => {
     setError("");
     try {
       await logIn(email, password);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }
@@ -30,7 +30,7 @@ const Login = () => {
       const user = resp.user;
       await createUserDocument(user);
 
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
