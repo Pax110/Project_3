@@ -16,9 +16,8 @@ const SingleItem = ({ item, restoId, restaurant }) => {
   item.restoId = restoId;
 
   //Resraurant Id to add into item to dispatch into the cart
-  //item.restoName = restaurant.name
+  item.restoName = restaurant.name
 
-  console.log("restaurant is",restaurant)
 
   const myStyle = {
     fontFamily: "Roboto",
