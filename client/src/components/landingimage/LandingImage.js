@@ -6,7 +6,7 @@ import { Carousel } from "react-bootstrap";
 
 const LandingImage = () => {
   return (
-    <Carousel style={{ width: "100%", margin: "0px" }}>
+    <Carousel style={{ width: "78%", margin: "0px" }}>
       <Carousel.Item>
         <img
           className="d-block w-100"

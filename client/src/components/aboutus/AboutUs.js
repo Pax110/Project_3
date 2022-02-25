@@ -20,13 +20,13 @@ const AboutUs = () => {
         About Us
       </h1>
       <div>
-        <h7>
+        <h6>
           We are a collective of people, we collectively collect monies for
           foods, prepared by our community of culinary creators. We believe in
           the collective, the collective is us, the collective is you, the
           collective is many, collective is few, the collective is me and you.
           WE ARE THE COLLECTIVE.
-        </h7>{" "}
+        </h6>{" "}
         <p>
           <br /> Halloumi pepper jack blue castello. Port-salut queso cut the
           cheese fromage fromage melted cheese croque monsieur dolcelatte. Goat

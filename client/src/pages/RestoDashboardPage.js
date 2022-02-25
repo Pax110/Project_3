@@ -1,9 +1,9 @@
 import React from "react";
+
 import RestoSelectMenu from "../components/restaurant/RestoSelectMenu";
 import { Container } from "react-bootstrap";
 import background from "../components/landingimage/dash.jpeg";
 
-//Need to add id and key to links
 
 const RestoDashboardPage = () => {
   const myStyle = {

@@ -23,6 +23,10 @@ const Profile = () => {
   const [tempAddress, setTempAddress] = useState("");
   const [tempPhone, setTempPhone] = useState("");
 
+  const myStyle = {
+    fontFamily: "Bebas Neue",
+  };
+
   useEffect(() => {
     let collRef = collection(db, "users");
     let docRef = doc(collRef, user.uid);
@@ -81,7 +85,9 @@ const Profile = () => {
       {/* <p>{JSON.stringify(userDocument)}</p> */}
       <Container>
         <div className="p-4 box">
-          <h2 className="mb-3"> Profile</h2>
+          <h1 className="text-center" style={myStyle}>
+            Profile
+          </h1>
           {/* {error && <Alert variant="danger">{error}</Alert>} */}
           <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -179,6 +185,12 @@ const Profile = () => {
               <Button
                 variant="primary"
                 type="Submit"
+                style={{
+                  backgroundColor: "#feaa00",
+                  borderColor: "#feaa00",
+                  padding: "0.25rem",
+                  margin: "1%",
+                }}
                 onClick={() => {
                   addProfileInfo();
                 }}

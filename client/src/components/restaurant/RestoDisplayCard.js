@@ -1,5 +1,4 @@
 import React from "react";
-import background from "../landingimage/food1.jpg";
 import { useState, useEffect } from "react";
 import { useFirebase } from "../FirebaseProvider";
 import { collection, getDocs } from "firebase/firestore";
