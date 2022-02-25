@@ -8,7 +8,9 @@ const SingleUser = ({ index, data }) => {
       <td>{data.firstName}</td>
       <td>{data.lastName}</td>
       <Link to={`/admin/user-profile/${data.uid}`}>
-        <td>{data.email}</td>{" "}
+        <td role="gridcell" style={{ padding: "0.5rem", width: "auto" }}>
+          {data.email}
+        </td>{" "}
       </Link>
       <td>{data.phone}</td>
       <td>{data.role}</td>{" "}
