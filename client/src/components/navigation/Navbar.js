@@ -203,24 +203,30 @@ const Navbar = () => {
               CULINARY COLLECTIVE
             </Typography>
             {currentUser && (
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Box
+                sx={{
+                  paddingLeft: "300px",
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                }}
+              >
                 {pages.map((page) => (
                   <>
-                    <FormControl
-                      style={{ width: 300 }}
-                      type="search"
-                      placeholder="Search..."
-                      className="m-auto"
-                      aria-label="Search"
-                      onChange={(e) => {
-                        itemDispatch({
-                          type: "FILTER_BY_SEARCH",
-                          payload: e.target.value,
-                        });
-                      }}
-                    />
                     <Nav>
-                      <Dropdown alignright>
+                      <FormControl
+                        style={{ width: 300 }}
+                        type="search"
+                        placeholder="Search..."
+                        className="m-auto"
+                        aria-label="Search"
+                        onChange={(e) => {
+                          itemDispatch({
+                            type: "FILTER_BY_SEARCH",
+                            payload: e.target.value,
+                          });
+                        }}
+                      />{" "}
+                      <Dropdown style={{ padding: "15px" }}>
                         <Dropdown.Toggle>
                           <FaShoppingCart color="white" fontSize="25px" />
                           <Badge>{cart.length}</Badge>
@@ -252,9 +258,7 @@ const Navbar = () => {
                                 </span>
                               ))}
                               <Link to={`/cart/${a}`}>
-                                <Button
-                                  style={{ width: "95%", margin: "0 10px" }}
-                                >
+                                <Button style={{ margin: "0 10px" }}>
                                   Go To Cart
                                 </Button>
                               </Link>
@@ -304,7 +308,7 @@ const Navbar = () => {
 
                   <MenuItem
                     component={Link}
-                    to="/home"
+                    to="/"
                     onClick={handleCloseUserMenu}
                   >
                     Home
