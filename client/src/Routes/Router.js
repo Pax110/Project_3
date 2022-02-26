@@ -18,6 +18,7 @@ import RestoOrdersViewPage from "../pages/RestoOrdersViewPage";
 import AdminUsersProfilePage from "../pages/AdminUsersProfilePage";
 import TrackOrderPage from "../pages/TrackOrderPage";
 import RestoDashboardPage from "../pages/RestoDashboardPage";
+import DriverPage from "../pages/DriverPage";
 
 const Router = () => {
   return (
@@ -39,6 +40,32 @@ const Router = () => {
         />
         <Route path="/restaurant/signUp" element={<RestoSignUpPage />} />
         <Route path="/cart/:id" element={<CartPage />} />
+        <Route path="/menu/:id" element={<MenuPage />} />
+
+        <Route
+          path="/order-history"
+          element={
+            <ProtectedRoute>
+              <OrderHistoryPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/need-help"
+          element={
+            <ProtectedRoute>
+              <NeedHelpPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/track-order"
+          element={
+            <ProtectedRoute>
+              <TrackOrderPage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/restaurant/editmenu/:id"
@@ -75,26 +102,10 @@ const Router = () => {
         />
 
         <Route
-          path="/order-history"
+          path="/driver"
           element={
             <ProtectedRoute>
-              <OrderHistoryPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/need-help"
-          element={
-            <ProtectedRoute>
-              <NeedHelpPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/track-order"
-          element={
-            <ProtectedRoute>
-              <TrackOrderPage />
+              <DriverPage />
             </ProtectedRoute>
           }
         />
@@ -116,7 +127,7 @@ const Router = () => {
           }
         />
 
-        <Route path="/menu/:id" element={<MenuPage />} />
+        
       </Routes>
     </div>
   );

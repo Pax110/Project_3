@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { addDoc, collection, doc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import {
   Button,
@@ -23,7 +23,9 @@ const Cart = () => {
   } = CartState();
   const [total, setTotal] = useState(null);
   const [show, setShow] = useState(false);
-
+  const [customerAddress, setCustomerAddress] = useState(null);
+  const [customerName, setCustomerName] = useState(null);
+  const [customerPhone, setCustomerPhone] = useState(null);
   const handleClose = () => {
     handleOrder();
     setShow(false);
@@ -39,21 +41,44 @@ const Cart = () => {
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
     console.log("cart value", cart);
-    console.log("date is", new Date())
   }, [cart]);
+  useEffect(() => {
+    const getAddressData = async () => {
+      try {
+        const docRef = doc(db, "users", user.uid);
+
+        const querySnapshot = await getDoc(docRef);
+
+        const newData = querySnapshot.data();
+        console.log("new Data", newData);
+        const address = newData.address;
+        const fullName = newData.firstName + " "+  newData.lastName;
+        const phoneNumber = newData.phone;
+
+        setCustomerAddress(address);
+        setCustomerName(fullName);
+        setCustomerPhone(phoneNumber);
+      } catch (e) {
+        console.log("error", e.message);
+      }
+    };
+
+    getAddressData();
+  }, []);
 
   const handleOrder = async () => {
-    
-   
     try {
       let collRef = collection(db, "orders");
 
       await addDoc(collRef, {
         customerId: user.uid,
+        customerName: customerName,
+        customerAddress: customerAddress,
+        customerPhone: customerPhone,
         orderId: randomValue,
         deliveryType: "ASAP",
         orderDate: new Date().toDateString(),
-        orderTime: new Date().toLocaleTimeString('en-US'),
+        orderTime: new Date().toLocaleTimeString("en-US"),
         orderTotal: countTotal(total, countTax(total)),
         restaurantId: cart[0].restoId, //get the restoId from the state
         userLocation: "t3q4w1",

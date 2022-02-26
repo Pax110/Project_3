@@ -350,6 +350,15 @@ const Navbar = () => {
                       Restaurant Dashboard
                     </MenuItem>
                   )}
+                  {userInfo?.role[3] == "Driver" && (
+                    <MenuItem
+                      component={Link}
+                      to="/driver"
+                      onClick={handleCloseUserMenu}
+                    >
+                      Driver Dashboard
+                    </MenuItem>
+                  )}
                   {userInfo?.role[2] == "Admin" && (
                     <MenuItem
                       component={Link}
@@ -359,6 +368,7 @@ const Navbar = () => {
                       Admin Dashboard
                     </MenuItem>
                   )}
+                  
                   <MenuItem
                     component={Link}
                     to="/profile"
