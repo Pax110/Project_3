@@ -5,6 +5,7 @@ import FirebaseProvider from "./components/FirebaseProvider";
 import Router from "../src/Routes/Router";
 import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 import CartProvider from "./components/context/CartProvider.js";
+import "./App.css";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <UserAuthContextProvider>
           <CartProvider>
             <Navbar style={{ position: "sticky" }} />
-            
+
             <Router />
           </CartProvider>
         </UserAuthContextProvider>
