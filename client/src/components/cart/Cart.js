@@ -39,9 +39,11 @@ const Cart = () => {
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
     console.log("cart value", cart);
+    console.log("date is", new Date())
   }, [cart]);
 
   const handleOrder = async () => {
+    
    
     try {
       let collRef = collection(db, "orders");
@@ -50,7 +52,8 @@ const Cart = () => {
         customerId: user.uid,
         orderId: randomValue,
         deliveryType: "ASAP",
-        orderTime: new Date(),
+        orderDate: new Date().toDateString(),
+        orderTime: new Date().toLocaleTimeString('en-US'),
         orderTotal: countTotal(total, countTax(total)),
         restaurantId: cart[0].restoId, //get the restoId from the state
         userLocation: "t3q4w1",

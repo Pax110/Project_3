@@ -2,8 +2,14 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import jsPDF from "jspdf";
 
-const PrintReceipt = ({ total, items, restaurantName }) => {
-  console.log("total", total);
+const PrintReceipt = ({ order }) => {
+
+  
+
+
+  const {orderTotal, restaurantName, orderItems, orderDate, orderTime} = order
+
+  console.log("total", orderTotal);
   console.log("restaurantName is ",restaurantName)
   const handlePdf = () => {
     let verticalOffset = 150;
@@ -13,11 +19,14 @@ const PrintReceipt = ({ total, items, restaurantName }) => {
     let doc = new jsPDF("portrait", "px", "letter", "false");
     doc.text("Order Receipt", horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
-    doc.text("Date: March 10,2022 ", horizontalOffset, verticalOffset);
+    doc.text("Date: "+ orderDate, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
+    doc.text(orderTime, horizontalOffset, verticalOffset);
+    verticalOffset += lineSpace;
+    
     doc.text(restaurantName, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
-    items.map((item, index) => {
+    orderItems.map((item, index) => {
       console.log("itemmm", item);
       console.log("index", index + 1);
 
@@ -29,7 +38,7 @@ const PrintReceipt = ({ total, items, restaurantName }) => {
       verticalOffset += itemSpace;
     });
 
-    doc.text("Total: " + total, horizontalOffset, verticalOffset);
+    doc.text("Total: " + orderTotal, horizontalOffset, verticalOffset);
 
     doc.save("Culinary Collective Order Receipt");
   };
@@ -53,3 +62,4 @@ const PrintReceipt = ({ total, items, restaurantName }) => {
 };
 
 export default PrintReceipt;
+

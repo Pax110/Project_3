@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "./context/UserAuthContext";
-import { Button, Card, Container } from "react-bootstrap";
+import {  Card, Container } from "react-bootstrap";
 import PrintReceipt from "./PrintReceipt";
 
 const OrderHistory = () => {
@@ -26,7 +26,7 @@ const OrderHistory = () => {
         const q = query(
           collRef,
           where("customerId", "==", user.uid),
-          orderBy("orderTime")
+          orderBy("orderDate")
         );
         const querySnapshot = await getDocs(q);
         console.log("querySnapShot", querySnapshot);
@@ -43,6 +43,8 @@ const OrderHistory = () => {
 
     getData();
   }, [user.uid]);
+
+  // const dateTimeStamp = orders.orderTime.toDate()
 
   if (orders) {
     return (
@@ -64,7 +66,10 @@ const OrderHistory = () => {
             <Card.Header>{order.restaurantName}</Card.Header>
             <Card.Body>
               <Card.Title>Your Order</Card.Title>
+              <Card.Text>Order Date: {order.orderDate} {order.orderTime}</Card.Text>
               <Card.Text>
+             
+                
                 {order.orderItems.map((item) => (
                   <>
                     <span>{item.qty}&nbsp;</span>
@@ -76,7 +81,7 @@ const OrderHistory = () => {
                 <br />
                 <strong>Order Total: ${order.orderTotal}</strong>
               </Card.Text>
-              <PrintReceipt items={order.orderItems} restaurantName={order.restaurantName} total={order.orderTotal}/>
+              <PrintReceipt order={order}/>
             </Card.Body>
           </Card>
         ))}
