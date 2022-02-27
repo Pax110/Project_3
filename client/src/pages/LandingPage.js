@@ -1,16 +1,26 @@
 import React from "react";
 import AboutUs from "../components/aboutus/AboutUs";
 import LandingImage from "../components/landingimage/LandingImage";
-
+import background from "../components/landingimage/wood.jpg";
 import RestoDisplayCard from "../components/restaurant/RestoDisplayCard";
 import Filters from "../components/cart/Filters";
 function LandingPage() {
   return (
     <div>
       <LandingImage />
-      <RestoDisplayCard />
-      <Filters />
-      <AboutUs />
+      <div
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          padding: "50px",
+          height: "100%",
+        }}
+      >
+        <RestoDisplayCard />
+        <Filters />
+        <AboutUs />
+      </div>
     </div>
   );
 }
