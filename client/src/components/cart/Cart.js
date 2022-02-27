@@ -52,7 +52,7 @@ const Cart = () => {
         const newData = querySnapshot.data();
         console.log("new Data", newData);
         const address = newData.address;
-        const fullName = newData.firstName + " "+  newData.lastName;
+        const fullName = newData.firstName + " " + newData.lastName;
         const phoneNumber = newData.phone;
 
         setCustomerAddress(address);
@@ -124,6 +124,7 @@ const Cart = () => {
               borderRadius: "15px",
               padding: "15px",
               paddingRight: "50px",
+              paddingBottom: "30px",
               textDecoration: "none",
               justifyContent: "center",
             }}

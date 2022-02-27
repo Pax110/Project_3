@@ -1,17 +1,22 @@
 import React from "react";
-import firstPic from "./food1.jpg";
-import secondPic from "./food.jpg";
-import thirdPic from "./header.jpg";
+import firstPic from "./firstpic.png";
+import secondPic from "./white.jpeg";
+import thirdPic from "./thirdpic.png";
 import { Carousel } from "react-bootstrap";
 
 const LandingImage = () => {
   return (
     <Carousel style={{ width: "100%", margin: "0px" }}>
       <Carousel.Item>
-        <img
+        <div
           className="d-block w-100"
-          src={`${firstPic}`}
-          style={{ width: "100%", height: "600px" }}
+          style={{
+            backgroundImage: `url(${firstPic})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "100%",
+            height: "600px",
+          }}
           alt="First slide"
         />
         <Carousel.Caption>
@@ -20,23 +25,40 @@ const LandingImage = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img
+        <div
           className="d-block w-100"
-          src={`${secondPic}`}
-          style={{ width: "800px", height: "600px" }}
+          style={{
+            backgroundImage: `url(${secondPic})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "100%",
+            height: "600px",
+          }}
           alt="Second slide"
         />
 
-        <Carousel.Caption>
+        <Carousel.Caption
+          style={{
+            backgroundColor: "rgba(0,0,0,0.4)",
+            width: "max-content",
+            padding: "20px",
+            margin: "auto",
+          }}
+        >
           <h3>Join the Collective</h3>
           <p>Coworking spaces available, join the collective!</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img
+        <div
           className="d-block w-100"
-          src={`${thirdPic}`}
-          style={{ width: "800px", height: "600px" }}
+          style={{
+            backgroundImage: `url(${thirdPic})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            width: "100%",
+            height: "600px",
+          }}
           alt="Third slide"
         />
 
