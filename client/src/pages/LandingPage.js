@@ -4,6 +4,7 @@ import LandingImage from "../components/landingimage/LandingImage";
 import background from "../components/landingimage/wood.jpg";
 import RestoDisplayCard from "../components/restaurant/RestoDisplayCard";
 import Filters from "../components/cart/Filters";
+import { Row } from "react-bootstrap";
 function LandingPage() {
   return (
     <div>
@@ -17,8 +18,10 @@ function LandingPage() {
           height: "100%",
         }}
       >
+        <Row>
         <RestoDisplayCard />
         <Filters />
+        </Row>
         <AboutUs />
       </div>
     </div>

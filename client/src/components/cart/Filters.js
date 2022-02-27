@@ -15,13 +15,13 @@ const Filters = () => {
   console.log(byBookedDelivery, byAsapDelivery, byRating, bySearchQuery);
 
   return (
-    <div className="filters">
-      <span className="title">Filter Items</span>
+    <div className="filters" style={{ height: "300px" }}>
+      <span className="title">Filter By:</span>
 
       <span>
         <Form.Check
           inline
-          label="Book a day ahead and SAVE"
+          label="Pre-Order"
           name="group1"
           type="checkbox"
           id={`inline-3`}
