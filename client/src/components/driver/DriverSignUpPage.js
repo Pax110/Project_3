@@ -4,13 +4,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import EditRestoProfileForm from "./EditRestoProfileForm";
-
-//user.uid === restaurants.OwnerUid
-//move jx into another file call it edit restro priofile form takes 1 property which is restro document , once it has the document it will render the edit restro form component and pass it the document
-//use form hook will be moved into the use form down into the form component. use form will only run only once it has the document . the name field will then be populated
-//edit profilepage : get the data and get the id, then load up in a diff comp.
-//make sure to use the controller around each field
-//34 to 56 delete after all the stuff is moved
+import EditDriverSignUpForm from "./EditDriverSignUpForm";
 
 const DriverSignUpPage = () => {
   const { db } = useFirebase();
@@ -40,7 +34,7 @@ const DriverSignUpPage = () => {
 
   console.log("document in the page", document);
   if (document) {
-    return <EditRestoProfileForm id={id} doc={document} />;
+    return <EditDriverSignUpForm id={id} doc={document} />;
   } else {
     return <div>Loading...</div>;
   }
