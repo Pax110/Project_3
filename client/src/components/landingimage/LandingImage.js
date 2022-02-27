@@ -1,6 +1,6 @@
 import React from "react";
 import firstPic from "./firstpic.png";
-import secondPic from "./white.jpeg";
+import secondPic from "./picpic.jpg";
 import thirdPic from "./thirdpic.png";
 import { Carousel } from "react-bootstrap";
 
@@ -37,14 +37,7 @@ const LandingImage = () => {
           alt="Second slide"
         />
 
-        <Carousel.Caption
-          style={{
-            backgroundColor: "rgba(0,0,0,0.4)",
-            width: "max-content",
-            padding: "20px",
-            margin: "auto",
-          }}
-        >
+        <Carousel.Caption>
           <h3>Join the Collective</h3>
           <p>Coworking spaces available, join the collective!</p>
         </Carousel.Caption>
