@@ -368,7 +368,7 @@ const Navbar = () => {
                       Admin Dashboard
                     </MenuItem>
                   )}
-                  
+
                   <MenuItem
                     component={Link}
                     to="/profile"
@@ -409,11 +409,11 @@ const Navbar = () => {
                   href="/signup"
                   style={{
                     fontSize: "22px",
-                    backgroundColor: "white",
+                    backgroundColor: "#feaa00",
                     borderRadius: "50px",
-                    padding: "4px 10px",
+                    padding: "3px 8px",
                     fontFamily: titleFont,
-                    color: "black",
+                    color: "#342628",
                   }}
                 >
                   Sign Up

@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ const AboutUs = () => {
         width: "100%",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
+        paddingBottom: "20px",
         // paddingRight: "40px",
         // paddingLeft: "40px",
       }}
@@ -39,7 +41,6 @@ const AboutUs = () => {
           halloumi monterey jack lancashire blue castello goat airedale fromage
           frais. Cheesy feet!{" "}
         </p>{" "}
-        <br />
       </div>
       <div
         style={{
@@ -52,20 +53,17 @@ const AboutUs = () => {
           to="/need-help"
           style={{ color: "white", textDecoration: "none" }}
         >
-          <button
+          <Button
+            variant="primary"
             style={{
-              backgroundColor: "orange",
-              textDecoration: "none",
-              padding: "0.5%",
-              textAlign: "center",
-              margin: "10px",
-              marginBottom: "50px",
-              justifyContent: "center",
-              borderRadius: "5px",
+              backgroundColor: "#feaa00",
+              borderColor: "#feaa00",
+              padding: "0.25rem",
+              margin: "1%",
             }}
           >
             Click Here for more FAQs
-          </button>
+          </Button>
         </Link>
       </div>
     </Container>

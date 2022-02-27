@@ -11,8 +11,8 @@
   color: white;
   background-color: #342628;
   border-top: 1px solid #e5e5e5;
-  box-shadow: 1px 0px 20px 1px grey;
-  margin-top: 10px;
+  box-shadow: 1px 0px 20px 1px #342628;
+  margin-top: 0px;
 }
 
 .footer > * {

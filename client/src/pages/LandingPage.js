@@ -7,9 +7,9 @@ import Filters from "../components/cart/Filters";
 function LandingPage() {
   return (
     <div>
-      <Filters />
       <LandingImage />
       <RestoDisplayCard />
+      <Filters />
       <AboutUs />
     </div>
   );
