@@ -9,7 +9,7 @@ import "./App.css";
 
 function App() {
   return (
-    <Container className="App" style={{ maxWidth: "none", paddingTop: "80px" }}>
+    <Container className="App" style={{ maxWidth: "none", paddingTop: "70px" }}>
       <FirebaseProvider>
         <UserAuthContextProvider>
           <CartProvider>
