@@ -45,7 +45,7 @@ const Admin = () => {
         paddingBottom: "15px",
       }}
     >
-      <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+      <h1 className="p-4 box text-center" style={myStyle}>
         Admin Dashboard
       </h1>
       <Table bordered>

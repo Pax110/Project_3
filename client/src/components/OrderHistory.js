@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "./context/UserAuthContext";
-import {  Card, Container } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import PrintReceipt from "./PrintReceipt";
 
 const OrderHistory = () => {
@@ -51,9 +51,11 @@ const OrderHistory = () => {
       <Container
         style={{
           width: "auto",
-          backgroundColor: "#f7f4ef",
+          backgroundColor: "rgba(225, 229, 235, 0.9)",
           borderRadius: "15px",
           paddingBottom: "15px",
+          overflowY: "auto",
+          maxHeight: "800px",
         }}
       >
         <h1 className="p-4 box mt-3 text-center" style={myStyle}>
@@ -66,10 +68,10 @@ const OrderHistory = () => {
             <Card.Header>{order.restaurantName}</Card.Header>
             <Card.Body>
               <Card.Title>Your Order</Card.Title>
-              <Card.Text>Order Date: {order.orderDate} {order.orderTime}</Card.Text>
               <Card.Text>
-             
-                
+                Order Date: {order.orderDate} {order.orderTime}
+              </Card.Text>
+              <Card.Text>
                 {order.orderItems.map((item) => (
                   <>
                     <span>{item.qty}&nbsp;</span>
@@ -81,7 +83,7 @@ const OrderHistory = () => {
                 <br />
                 <strong>Order Total: ${order.orderTotal}</strong>
               </Card.Text>
-              <PrintReceipt order={order}/>
+              <PrintReceipt order={order} />
             </Card.Body>
           </Card>
         ))}

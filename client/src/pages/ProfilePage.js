@@ -10,7 +10,7 @@ const ProfilePage = () => {
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        padding: "200px",
+        padding: "100px",
         height: "100%",
       }}
     >

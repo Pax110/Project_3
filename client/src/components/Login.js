@@ -11,6 +11,9 @@ const Login = () => {
   const [error, setError] = useState("");
   const { logIn, googleSignIn } = useUserAuth();
   const navigate = useNavigate();
+  const myStyle = {
+    fontFamily: "Bebas Neue",
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +43,9 @@ const Login = () => {
     <>
       <Container style={{ width: "400px" }}>
         <div className="p-4 box">
-          <h2 className="mb-3">Login</h2>
+          <h1 className="text-center" style={myStyle}>
+            Sign In
+          </h1>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -69,15 +74,18 @@ const Login = () => {
           <div>
             <GoogleButton
               className="g-btn"
-              type="dark"
+              type="light"
+              style={{ margin: "0 auto" }}
               onClick={handleGoogleSignIn}
             />
           </div>
         </div>
 
-        <div className="p-4 box mt-3 text-center">
-          <Link to="/forgot-password">Forgot password?</Link>
-          Don't have an account? <Link to="/signup">Sign up</Link>
+        <div className="pb-4 box text-center">
+          <Link to="/forgot-password">
+            Forgot password? <br />
+          </Link>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </div>
       </Container>
     </>

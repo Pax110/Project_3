@@ -10,20 +10,18 @@ const NeedHelpPage = () => {
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        padding: "250px",
+        padding: "100px",
         height: "100%",
       }}
     >
-      {/* <Container
+      <Container
         style={{
-          width: "600px",
+          width: "auto",
           backgroundColor: "rgba(225, 229, 235, 0.9)",
         }}
-      >     */}
-
-      <NeedHelp />
-
-      {/* </Container> */}
+      >
+        <NeedHelp />
+      </Container>
     </div>
   );
 };

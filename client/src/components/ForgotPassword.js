@@ -11,6 +11,9 @@ export default function ForgotPassword() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const { db, auth } = useFirebase();
+  const myStyle = {
+    fontFamily: "Bebas Neue",
+  };
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -32,7 +35,9 @@ export default function ForgotPassword() {
     <>
       <Container style={{ width: "400px" }}>
         <div className="p-4 box">
-          <h2 className="mb-3">Password Reset</h2>
+          <h1 className="text-center" style={myStyle}>
+            Password Reset
+          </h1>
           {error && <Alert variant="danger">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
           <Form onSubmit={handleSubmit}>
@@ -45,6 +50,7 @@ export default function ForgotPassword() {
               Reset Password
             </Button>
           </Form>
+          <br />
           <div className="w-100 text-center mt-3">
             <Link to="/signin">Login</Link>
           </div>

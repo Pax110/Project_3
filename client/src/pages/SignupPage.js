@@ -17,7 +17,6 @@ const SignupPage = () => {
         style={{
           width: "600px",
           backgroundColor: "rgba(225, 229, 235, 0.9)",
-          height: 445,
         }}
       >
         <Signup />

@@ -5,12 +5,12 @@ import { useState } from "react";
 
 const styles = {
   myContainerPadding: {
-    paddingTop: "5vh",
     paddingBottom: "5vh",
     paddingRight: "5vw",
-    paddingLeft: "13vw",
+    paddingLeft: "5vw",
   },
 };
+const myStyle = { fontFamily: "Bebas Neue" };
 
 const NeedHelp = () => {
   const [showHelp1, setShowHelp1] = useState();
@@ -18,20 +18,30 @@ const NeedHelp = () => {
   const [showHelp3, setShowHelp3] = useState();
   const [showHelp4, setShowHelp4] = useState();
   return (
-    <Container fluid style={styles.myContainerPadding}>
-      <Form>
+    <Container>
+      <h1 className="p-4 box text-center" style={myStyle}>
+        FAQ's
+      </h1>
+      <Form fluid style={styles.myContainerPadding}>
         <Row>
           <Col>
-            <Card className="mb-3" style={{ color: "#000" }}>
+            <Card
+              className="mb-3"
+              style={{
+                backgroundColor: "#f7f4ef",
+                color: "#000",
+                height: "350px",
+              }}
+            >
               {!showHelp1 && (
                 <>
                   <Card.Body>
-                    <Card.Title>What is a Commisary Kitchen?</Card.Title>
+                    <Card.Title>What is a Commissary Kitchen?</Card.Title>
                     <Card.Text>
                       A commissary kitchen is a licensed commercial kitchen
-                      regulated by Alberta Health Services, AHS, where
-                      foodservice providers can safely and legally prepare, cook
-                      and store food and equipment
+                      regulated by Alberta Health Services (AHS), where food
+                      service providers can safely and legally prepare, cook,
+                      and store food and equipment.
                     </Card.Text>
                     <Button
                       onClick={() => {
@@ -46,12 +56,12 @@ const NeedHelp = () => {
               {showHelp1 && (
                 <>
                   <Card.Body>
-                    <Card.Title>What is a Commisary Kitchen?</Card.Title>
+                    <Card.Title>What is a Commissary Kitchen?</Card.Title>
                     <Card.Text>
                       A commissary kitchen is a licensed commercial kitchen
-                      regulated by Alberta Health Services, AHS, where
-                      foodservice providers can safely and legally prepare, cook
-                      and store food and equipment
+                      regulated by Alberta Health Services (AHS), where food
+                      service providers can safely and legally prepare, cook,
+                      and store food and equipment.
                     </Card.Text>
                     <Button
                       onClick={() => {
@@ -67,14 +77,21 @@ const NeedHelp = () => {
           </Col>
 
           <Col>
-            <Card className="mb-3" style={{ color: "#000" }}>
+            <Card
+              className="mb-3"
+              style={{
+                backgroundColor: "#f7f4ef",
+                color: "#000",
+                height: "350px",
+              }}
+            >
               {!showHelp2 && (
                 <>
                   <Card.Body>
                     <Card.Title>What is a Home Based Kitchen?</Card.Title>
                     <Card.Text>
-                      food prepared in an AHS residental kitchen delievered
-                      right to your door!
+                      Food prepared in an AHS-approved residental kitchen
+                      delivered right to your door!
                     </Card.Text>
                     <Button
                       onClick={() => {
@@ -94,7 +111,7 @@ const NeedHelp = () => {
                       What if your neighbour has cooked pasta for lunch while
                       her neighbour has rustled up a Nizami biriyani and you had
                       the option to order in both piping hot at your workplace
-                      or home? Now with Culinary Collectiive, a brand new
+                      or home? <br /> Now with Culinary Collectiive, a brand new
                       mobile-based home food discovery and ordering platform
                       that enables home cooked meals to be delivered at the
                       doorstep, it is reality.
@@ -113,7 +130,14 @@ const NeedHelp = () => {
           </Col>
 
           <Col>
-            <Card className="mb-3" style={{ color: "#000" }}>
+            <Card
+              className="mb-3"
+              style={{
+                backgroundColor: "#f7f4ef",
+                color: "#000",
+                height: "350px",
+              }}
+            >
               {!showHelp3 && (
                 <>
                   <Card.Body>
@@ -167,15 +191,22 @@ const NeedHelp = () => {
           </Col>
 
           <Col>
-            <Card className="mb-3" style={{ color: "#000" }}>
+            <Card
+              className="mb-3"
+              style={{
+                backgroundColor: "#f7f4ef",
+                color: "#000",
+                height: "350px",
+              }}
+            >
               {!showHelp4 && (
                 <>
                   <Card.Body>
-                    <Card.Title>My order was not correct</Card.Title>
+                    <Card.Title>My Order Was Not Correct</Card.Title>
                     <Card.Text>
-                      Fear not we are here to correct any issues, wrong item
-                      delievered? Missing an item? Overchanged? We got you
-                      covered.
+                      Fear not, we are here to correct any issues!
+                      <br /> Wrong item delievered? Missing an item?
+                      Overchanged? <br /> We got you covered!
                     </Card.Text>
                     <Button
                       onClick={() => {
@@ -190,10 +221,10 @@ const NeedHelp = () => {
               {showHelp4 && (
                 <>
                   <Card.Body>
-                    <Card.Title>My order was not correct</Card.Title>
+                    <Card.Title>My Order Was Not Correct</Card.Title>
                     <Card.Text>
-                      email our helpline at help@cc.com and we will reach out to
-                      you with a solution.
+                      E-mail our Customer Care Team at help@cc.com and we will
+                      reach out to you with a solution.
                     </Card.Text>
                     <Button
                       onClick={() => {

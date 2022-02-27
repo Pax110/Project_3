@@ -13,7 +13,7 @@ function App() {
       className="App"
       style={{
         maxWidth: "none",
-        paddingTop: "70px",
+        paddingTop: "65px",
         paddingRight: "0px",
         paddingLeft: "0px",
       }}

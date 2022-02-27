@@ -10,6 +10,9 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
+  const myStyle = {
+    fontFamily: "Bebas Neue",
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +34,9 @@ const Signup = () => {
     <>
       <Container style={{ width: "400px" }}>
         <div className="p-4 box">
-          <h2 className="mb-3"> Signup</h2>
+          <h1 className="text-center" style={myStyle}>
+            Sign Up
+          </h1>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -57,8 +62,8 @@ const Signup = () => {
             </div>
           </Form>
         </div>
-        <div className="p-4 box mt-3 text-center">
-          Already have an account? <Link to="/signin">Log In</Link>
+        <div className="p-4 box text-center">
+          Already have an account? <Link to="/signin">Sign In</Link>
         </div>
       </Container>
     </>
