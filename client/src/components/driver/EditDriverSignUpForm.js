@@ -10,7 +10,7 @@ import DeleteRestoButton from "./DeleteRestoButton";
 // import FileUploader from "../file-uploader/FileUploader";
 import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
 
-const Edi EditDriverSignUpForm = (props) => {
+const EditDriverSignUpForm = (props) => {
   const docValue = props.doc;
   const { user } = useUserAuth();
   const { db } = useFirebase();
