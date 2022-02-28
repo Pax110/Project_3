@@ -9,6 +9,7 @@ import Appetizer from "./EditRestoMenu_Appetizers";
 import Main from "./EditRestoMenuForm_Mains";
 import Dessert from "./EditRestoMenuForm_Desserts";
 import { Edit } from "@styled-icons/feather/Edit";
+import { AddToList } from "@styled-icons/entypo/AddToList";
 
 const EditRestoMenuForm = (props) => {
   const docValue = props.document;
@@ -70,7 +71,11 @@ const EditRestoMenuForm = (props) => {
                   <Appetizer register={register} key={index} index={index} />
                 </>
               ))}
-            <Button>Add Item</Button>
+            <Button>
+              {" "}
+              <AddToList style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;Add Item
+            </Button>
           </Card.Body>
         </Card>
         {/* MAINS */}
@@ -85,7 +90,11 @@ const EditRestoMenuForm = (props) => {
                   <Main register={register} key={index} index={index} />
                 </>
               ))}
-            <Button>Add Item</Button>
+            <Button>
+              {" "}
+              <AddToList style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;Add Item
+            </Button>
           </Card.Body>
         </Card>
         {/* DESSERTS */}
@@ -99,12 +108,16 @@ const EditRestoMenuForm = (props) => {
                   <Dessert register={register} key={index} index={index} />
                 </>
               ))}
-            <Button>Add Item</Button>
+            <Button>
+              {" "}
+              <AddToList style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;Add Item
+            </Button>
           </Card.Body>
         </Card>
         <Button onClick={handleSubmit(onSubmit, onError)}>
           <Edit style={{ width: "30px", height: "30px" }} />
-          Update
+          &nbsp;&nbsp;Update
         </Button>
       </Container>
       <Edit style={{ width: "30px", height: "30px" }} />
