@@ -10,16 +10,16 @@ const AboutUs = () => {
   return (
     <Container
       style={{
-        width: "100%",
+        width: "60%",
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
         paddingBottom: "20px",
-        // paddingRight: "40px",
-        // paddingLeft: "40px",
+        maxWidth: "none",
+        marginLeft: "30px",
       }}
     >
       <h1 className="p-4 box mt-3 text-center" style={myStyle}>
-        About Us
+        About Culinary Collective
       </h1>
       <div>
         <h6>

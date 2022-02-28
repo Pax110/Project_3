@@ -7,7 +7,7 @@ const DriverDash = () => {
   return (
     <>
       <div>DriverDash</div>
-      <div>Google map Api </div>
+
       <Link to="/driver/orders">
         <Button>View Orders</Button>
       </Link>

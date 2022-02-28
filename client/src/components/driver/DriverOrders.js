@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -39,9 +39,15 @@ const DriverOrders = () => {
   console.log("orders drivewr dash", orders);
   return (<>
     <div>
-      <div>Today's total orders: ({orders?.length})</div>
-      {orders?.map((order) => (
-        <Card style={{ width: "18rem" }}>
+      <Container>
+        <div style={{margin: "10px"}}>
+
+      <h4 style={{textAlign: "center"}}>Today's total orders: ({orders?.length})</h4>
+        </div>
+        <Row xs={1} md={4}>
+          {orders?.map((order) => (
+          <Col>
+        <Card>
           <Card.Body>
             <Card.Title>Order Number: {order.orderId}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
@@ -68,7 +74,11 @@ const DriverOrders = () => {
             </Card.Footer>
           </Card.Body>
         </Card>
+          </Col>
       ))}
+        </Row>
+      </Container>
+      
     </div>
     </>);
 };
