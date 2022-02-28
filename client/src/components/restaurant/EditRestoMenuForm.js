@@ -4,10 +4,11 @@ import { Button, Container, Form, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
-import background from "../landingimage/food1.jpg";
+import background from "../landingimage/wood.jpg";
 import Appetizer from "./EditRestoMenu_Appetizers";
 import Main from "./EditRestoMenuForm_Mains";
 import Dessert from "./EditRestoMenuForm_Desserts";
+import { Edit } from "@styled-icons/feather/Edit";
 
 const EditRestoMenuForm = (props) => {
   const docValue = props.document;
@@ -58,45 +59,55 @@ const EditRestoMenuForm = (props) => {
           Menu
         </h1>
         <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
-          {/* APPETIZERS */}
+          <Card.Body>
+            {/* APPETIZERS */}
 
-          <h4>Appetizer</h4>
-          {/* {JSON.stringify(docValue.menu.appetizers)} */}
-          {docValue &&
-            docValue.menu.appetizers.map((data, index) => (
-              <>
-                <Appetizer register={register} key={index} index={index} />
-              </>
-            ))}
-          <Button>Add Item</Button>
+            <h4>Appetizer</h4>
+            {/* {JSON.stringify(docValue.menu.appetizers)} */}
+            {docValue &&
+              docValue.menu.appetizers.map((data, index) => (
+                <>
+                  <Appetizer register={register} key={index} index={index} />
+                </>
+              ))}
+            <Button>Add Item</Button>
+          </Card.Body>
         </Card>
         {/* MAINS */}
         <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
-          <h4>Mains</h4>
-          {/* {JSON.stringify(docValue.menu.mains)} */}
+          <Card.Body>
+            <h4>Mains</h4>
+            {/* {JSON.stringify(docValue.menu.mains)} */}
 
-          {docValue &&
-            docValue.menu.mains.map((data, index) => (
-              <>
-                <Main register={register} key={index} index={index} />
-              </>
-            ))}
-          <Button>Add Item</Button>
+            {docValue &&
+              docValue.menu.mains.map((data, index) => (
+                <>
+                  <Main register={register} key={index} index={index} />
+                </>
+              ))}
+            <Button>Add Item</Button>
+          </Card.Body>
         </Card>
         {/* DESSERTS */}
         <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
-          <h4>Desserts</h4>
-          {/* {JSON.stringify(docValue.menu.desserts)} */}
-          {docValue &&
-            docValue.menu.desserts.map((data, index) => (
-              <>
-                <Dessert register={register} key={index} index={index} />
-              </>
-            ))}
-          <Button>Add Item</Button>
+          <Card.Body>
+            <h4>Desserts</h4>
+            {/* {JSON.stringify(docValue.menu.desserts)} */}
+            {docValue &&
+              docValue.menu.desserts.map((data, index) => (
+                <>
+                  <Dessert register={register} key={index} index={index} />
+                </>
+              ))}
+            <Button>Add Item</Button>
+          </Card.Body>
         </Card>
-        <Button onClick={handleSubmit(onSubmit, onError)}>Update</Button>
+        <Button onClick={handleSubmit(onSubmit, onError)}>
+          <Edit style={{ width: "30px", height: "30px" }} />
+          Update
+        </Button>
       </Container>
+      <Edit style={{ width: "30px", height: "30px" }} />
     </div>
   );
 };
