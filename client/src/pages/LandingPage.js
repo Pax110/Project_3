@@ -28,7 +28,7 @@ function LandingPage() {
             src={logo}
             width="460px"
             height="460px"
-            style={{ marginLeft: "70px" }}
+            style={{ marginLeft: "70px", maxWidth: "none", width: "30%" }}
             alt="logo"
           />
           <AboutUs />

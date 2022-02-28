@@ -14,6 +14,7 @@ const AboutUs = () => {
         backgroundColor: "#f7f4ef",
         borderRadius: "15px",
         paddingBottom: "20px",
+        maxWidth: "none",
       }}
     >
       <h1 className="p-4 box mt-3 text-center" style={myStyle}>
