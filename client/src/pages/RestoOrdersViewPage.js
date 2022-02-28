@@ -1,10 +1,21 @@
-import React from 'react'
-import RestoOrdersView from '../components/restaurant/RestoOrdersView'
+import React from "react";
+import background from "../components/landingimage/wood.jpg";
+import RestoOrdersView from "../components/restaurant/RestoOrdersView";
 
 const RestoOrdersViewPage = () => {
   return (
-    <div><RestoOrdersView /></div>
-  )
-}
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        padding: "100px",
+        height: "100%",
+      }}
+    >
+      <RestoOrdersView />
+    </div>
+  );
+};
 
-export default RestoOrdersViewPage
+export default RestoOrdersViewPage;
