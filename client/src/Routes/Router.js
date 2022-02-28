@@ -20,6 +20,7 @@ import TrackOrderPage from "../pages/TrackOrderPage";
 import RestoDashboardPage from "../pages/RestoDashboardPage";
 import DriverPage from "../pages/DriverPage";
 import DriverOrdersPage from "../pages/DriverOrdersPage";
+import DriverSignUpPage from "../components/driver/DriverSignUpPage";
 
 const Router = () => {
   return (
@@ -118,7 +119,14 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-
+        <Route
+          path="/driver/signup"
+          element={
+            <ProtectedRoute>
+              <DriverSignUpPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/admin"
           element={
@@ -135,8 +143,6 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-
-        
       </Routes>
     </div>
   );
