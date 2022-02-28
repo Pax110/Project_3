@@ -16,8 +16,7 @@ const SingleItem = ({ item, restoId, restaurant }) => {
   item.restoId = restoId;
 
   //Resraurant Id to add into item to dispatch into the cart
-  item.restoName = restaurant.name
-
+  item.restoName = restaurant.name;
 
   const myStyle = {
     fontFamily: "Roboto",
@@ -69,6 +68,10 @@ const SingleItem = ({ item, restoId, restaurant }) => {
       ) : (
         <Box textAlign="center">
           <Button
+            sx={{
+              color: "whitesmoke",
+              backgroundColor: "#feaa00",
+            }}
             onClick={() => {
               dispatch({
                 type: "ADD_TO_CART",
