@@ -2,7 +2,8 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useParams } from "react-router-dom";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
+import { Container } from "@mui/material";
 
 const LiveOrders = () => {
   const { db, user } = useUserAuth();
@@ -37,20 +38,46 @@ const LiveOrders = () => {
     display: "flex",
   };
 
+  const myStyle = { fontFamily: "Bebas Neue" };
+
   if (orders) {
     return (
-      <div>
+      <Container
+        style={{
+          width: "auto",
+          backgroundColor: "#f7f4ef",
+          borderRadius: "15px",
+          paddingBottom: "15px",
+          overflowY: "auto",
+          maxHeight: "800px",
+        }}
+      >
+        <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+          Order Tracker
+        </h1>
         {orders.map((order) => (
           <div>
-            <Card>
+            <Card
+              style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}
+            >
               <Card.Body>
-                <Card.Title>Order Number: {order.orderId}</Card.Title>
+                <Row>
+                  <Col>
+                    <Card.Title>Order Number: {order.orderId}</Card.Title>
+                    <span> Date: {order.orderDate}</span> <br />
+                  </Col>
+                  <Col style={{ textAlign: "right" }}>
+                    <strong>Status: Pending</strong> <br />
+                    <strong>Delivery Type: {order.deliveryType}</strong> <br />
+                  </Col>
+                </Row>
                 <Card.Text>
+                  Items: <br />
                   {order.orderItems.map((item) => (
                     <>
-                      <span>{item.name}</span>
-                      <span> x </span>
                       <span>{item.qty}</span>
+                      <span> x </span>
+                      <span>{item.name}</span>
                       <br></br>
                     </>
                   ))}
@@ -61,7 +88,7 @@ const LiveOrders = () => {
             </Card>
           </div>
         ))}
-      </div>
+      </Container>
     );
   } else {
     return (
