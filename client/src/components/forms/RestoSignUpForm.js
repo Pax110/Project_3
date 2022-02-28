@@ -1,7 +1,7 @@
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Form, Container, Row, Col, Button, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import background from "../landingimage/food1.jpg";
+import background from "../landingimage/wood.jpg";
 import {
   collection,
   addDoc,
@@ -16,6 +16,13 @@ const RestoSignUpForm = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const navigate = useNavigate();
+  const myStyle = {
+    fontFamily: "Bebas Neue",
+    textAlign: "center",
+    textDecoration: "none",
+    fontSize: "40px",
+    margin: "0",
+  };
 
   const [resto, setResto] = useState("");
   const [type, setType] = useState("");
@@ -28,6 +35,12 @@ const RestoSignUpForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = () => setShow(true);
 
   const addResto = async () => {
     try {
@@ -88,8 +101,10 @@ const RestoSignUpForm = () => {
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Join Culinary Collective!</h2>
-            <p className="mb-3 text-center">Signup Your Business Today</p>
+            <h2 className="text-center" style={myStyle}>
+              Join Culinary Collective!
+            </h2>
+            <p className="mb-3 text-center">Grow Your Business Today</p>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -255,15 +270,40 @@ const RestoSignUpForm = () => {
                   onClick={() => {
                     addResto();
                     addRole();
-                    navigate("/");
+                    handleShow();
                   }}
                 >
                   Sign up
                 </Button>
+                <Modal
+                  show={show}
+                  onHide={handleClose}
+                  keyboard={false}
+                  centered
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>Welcome to the Collective!</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Head on over to the Restaurant Dashboard to get cookin'!
+                    🚚🍴
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="success"
+                      onClick={() => {
+                        handleClose();
+                        navigate("/restaurant/dashboard");
+                      }}
+                    >
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </div>
             </Form>
           </div>
-          <div className="p-4 box mt-3 text-center">
+          <div className="p-4 box text-center">
             Already have an account? <Link to="/signin">Log In</Link>
           </div>
         </Container>
