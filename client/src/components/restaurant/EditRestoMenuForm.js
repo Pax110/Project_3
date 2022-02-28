@@ -63,14 +63,16 @@ const EditRestoMenuForm = (props) => {
           <Card.Body>
             {/* APPETIZERS */}
 
-            <h4>Appetizer</h4>
-            {/* {JSON.stringify(docValue.menu.appetizers)} */}
-            {docValue &&
-              docValue.menu.appetizers.map((data, index) => (
-                <>
-                  <Appetizer register={register} key={index} index={index} />
-                </>
-              ))}
+            <Card.Title>Appetizer</Card.Title>
+            <Card.Text>
+              {/* {JSON.stringify(docValue.menu.appetizers)} */}
+              {docValue &&
+                docValue.menu.appetizers.map((data, index) => (
+                  <>
+                    <Appetizer register={register} key={index} index={index} />
+                  </>
+                ))}
+            </Card.Text>
             <Button>
               {" "}
               <AddToList style={{ width: "30px", height: "30px" }} />
@@ -81,15 +83,17 @@ const EditRestoMenuForm = (props) => {
         {/* MAINS */}
         <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
           <Card.Body>
-            <h4>Mains</h4>
-            {/* {JSON.stringify(docValue.menu.mains)} */}
+            <Card.Title>Mains</Card.Title>
+            <Card.Text>
+              {/* {JSON.stringify(docValue.menu.mains)} */}
 
-            {docValue &&
-              docValue.menu.mains.map((data, index) => (
-                <>
-                  <Main register={register} key={index} index={index} />
-                </>
-              ))}
+              {docValue &&
+                docValue.menu.mains.map((data, index) => (
+                  <>
+                    <Main register={register} key={index} index={index} />
+                  </>
+                ))}
+            </Card.Text>
             <Button>
               {" "}
               <AddToList style={{ width: "30px", height: "30px" }} />
@@ -100,14 +104,16 @@ const EditRestoMenuForm = (props) => {
         {/* DESSERTS */}
         <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
           <Card.Body>
-            <h4>Desserts</h4>
-            {/* {JSON.stringify(docValue.menu.desserts)} */}
-            {docValue &&
-              docValue.menu.desserts.map((data, index) => (
-                <>
-                  <Dessert register={register} key={index} index={index} />
-                </>
-              ))}
+            <Card.Title>Desserts</Card.Title>
+            <Card.Text>
+              {/* {JSON.stringify(docValue.menu.desserts)} */}
+              {docValue &&
+                docValue.menu.desserts.map((data, index) => (
+                  <>
+                    <Dessert register={register} key={index} index={index} />
+                  </>
+                ))}
+            </Card.Text>
             <Button>
               {" "}
               <AddToList style={{ width: "30px", height: "30px" }} />
