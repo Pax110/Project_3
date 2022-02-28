@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import background from "../landingimage/food1.jpg";
+import background from "../landingimage/wood.jpg";
 import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -15,7 +15,7 @@ const EditRestoProfileForm = (props) => {
   const { user } = useUserAuth();
   const { db } = useFirebase();
   const docId = props.id;
-
+  const myStyle = { fontFamily: "Bebas Neue" };
   const [photoURL, setPhotoURL] = useState();
   const { control, handleSubmit, setValue, formState } = useForm({
     //defaultValues: {name: name}
@@ -60,16 +60,21 @@ const EditRestoProfileForm = (props) => {
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          padding: "20px",
         }}
       >
         <Container
           style={{
             width: "600px",
-            backgroundColor: "rgba(225, 229, 235, 0.9)",
+            backgroundColor: "#f7f4ef",
+            borderRadius: "15px",
+            paddingBottom: "15px",
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
+            <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+              Update Restaurant Profile
+            </h1>
             <Form onSubmit={handleSubmit(mySubmit, myError)}>
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>

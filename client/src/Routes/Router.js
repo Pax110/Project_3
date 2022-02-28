@@ -21,6 +21,7 @@ import RestoDashboardPage from "../pages/RestoDashboardPage";
 import DriverPage from "../pages/DriverPage";
 import DriverOrdersPage from "../pages/DriverOrdersPage";
 import DriverSignUpPage from "../components/driver/DriverSignUpPage";
+import EditChefProfilePage from "../pages/EditChefProfilePage";
 
 const Router = () => {
   return (
@@ -74,6 +75,14 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <EditRestoMenuPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/restaurant/chefprofile/:id"
+          element={
+            <ProtectedRoute>
+              <EditChefProfilePage />
             </ProtectedRoute>
           }
         />
