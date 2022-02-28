@@ -2,10 +2,10 @@ import React from "react";
 import Veg from "./veg.jpeg";
 import Image from "react-bootstrap/Image";
 
-const ChefPic = () => {
+const ChefPic = ({restaurant}) => {
   return (
     <Image
-      src={Veg}
+      src={`${restaurant.contact.owner.chefPhotoURL}`}
       style={{
         width: "250px",
         height: "250px",

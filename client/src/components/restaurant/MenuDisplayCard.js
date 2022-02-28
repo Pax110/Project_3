@@ -86,7 +86,7 @@ const MenuDisplayCard = () => {
       }}
     >
       <h1 style={myStyle}>{title}</h1>
-      <AboutMeChef />
+      <AboutMeChef restaurant={restaurant} />
       <Col>
         <Row style={{ margin: "10px" }}>
           <CardActionArea

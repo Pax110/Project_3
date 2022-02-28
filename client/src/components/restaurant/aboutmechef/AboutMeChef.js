@@ -2,12 +2,14 @@ import React from "react";
 import { Container, Col } from "react-bootstrap";
 import ChefPic from "./ChefPic";
 
-const AboutMeChef = () => {
+const AboutMeChef = ({ restaurant }) => {
   const myStyle = {
     fontFamily: "Bebas Neue",
     textAlign: "center",
     textDecoration: "none",
   };
+
+  console.log("resto is:", restaurant);
   return (
     <Container
       style={{
@@ -31,24 +33,17 @@ const AboutMeChef = () => {
         }}
       >
         <Col xs={6} md={2}>
-          <ChefPic />
+          <ChefPic restaurant={restaurant} />
         </Col>
         <Col
           xs={12}
           md={8}
           style={{ justifyContent: "right", padding: "2%", margin: "0 auto" }}
         >
-          <h2> chef bonnie</h2>
-          AboutMeChef orem Ipsum is simply dummy text of the printing and
-          typesetting industry. Lorem Ipsum is simply dummy text of the printing
-          and typesetting industry. Lorem Ipsum has been the industry's standard
-          dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book. It has survived
-          not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in
-          the 1960s with the release of Letraset sheets containing Lorem Ipsum
-          passages, and more recently with desktop publishing software like
-          Aldus PageMaker including versions of Lorem Ipsum
+          <>
+            <h2> Chef {restaurant.contact.owner.firstName} </h2>
+            <p>{restaurant.contact.owner.about}</p>
+          </>
         </Col>
       </Container>
     </Container>
