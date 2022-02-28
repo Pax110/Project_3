@@ -5,63 +5,57 @@ import background from "../landingimage/food1.jpg";
 import {
   collection,
   addDoc,
-  updateDoc,
+  setDoc,
   arrayUnion,
   doc,
 } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
-const RestoSignUpForm = () => {
+const DriverSignUpForm = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const navigate = useNavigate();
 
-  const [resto, setResto] = useState("");
-  const [type, setType] = useState("");
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [postal, setPostal] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
 
-  const addResto = async () => {
+  const addDriver = async () => {
     try {
-      let collectionRef = collection(db, "restaurants");
+      let collectionRef = collection(db, "users");
       await addDoc(collectionRef, {
-        name: resto,
-        type: type,
-        contact: {
-          address: address1,
-          address2: address2,
-          city: city,
-          province: province,
-          postal: postal,
-          owner: { firstName: firstName, lastName: lastName },
-          email: email,
-          phoneNumber: phone,
-        },
-        ownerUid: user.uid,
+        address: address,
+        city: city,
+        email: email,
+        province: province,
+        postal: postal,
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+
+        uid: user.uid,
       });
-      console.log("Create business success!");
+      console.log("Create Driver success!");
     } catch (ex) {
       console.log("FIRESTORE ADD FAILURE!", ex.message);
     }
   };
 
-  const addRole = async () => {
+  const addDriverRole = async () => {
     try {
       let collRef = collection(db, "users");
       let docRef = doc(collRef, user.uid);
-      await updateDoc(
+      await setDoc(
         docRef,
         {
           uid: user.uid,
-          role: arrayUnion("Business"),
+          role: arrayUnion("Driver"),
         },
 
         { merge: true }
@@ -89,62 +83,45 @@ const RestoSignUpForm = () => {
         >
           <div className="p-4 box">
             <h2 className="mb-3 text-center">Join Culinary Collective!</h2>
+            <p className="mb-3 text-center">
+              Become A Driver For The Collective{" "}
+            </p>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
               }}
             >
-              <Form.Group className="mb-3" controlId="formRestoName">
-                <Form.Label>Business Name:</Form.Label>
-                <Form.Control
-                  placeholder="Business Name"
-                  type="name"
-                  value={resto}
-                  onChange={(e) => setResto(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Label>Business Type:</Form.Label>
+              <Form.Group className="mb-3" controlId="formBasicName">
                 <Row>
                   <Col>
-                    {" "}
-                    <Form.Check
-                      type="radio"
-                      value="Home"
-                      checked={type === "Home"}
-                      label="Home Kitchen"
-                      onChange={(e) => setType(e.target.value)}
+                    <Form.Label>Driver Contact:</Form.Label>
+                    <Form.Control
+                      type="firstName"
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                   </Col>
                   <Col>
-                    {" "}
-                    <Form.Check
-                      type="radio"
-                      value="Commissary"
-                      checked={type === "Commissary"}
-                      label="Commissary Kitchen"
-                      onChange={(e) => setType(e.target.value)}
-                    />{" "}
+                    <Form.Label>
+                      <br />
+                    </Form.Label>
+                    <Form.Control
+                      type="lastName"
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
                   </Col>
                 </Row>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formGridAddress1">
+              <Form.Group className="mb-3" controlId="formGridAddress">
                 <Form.Label>Address:</Form.Label>
                 <Form.Control
                   placeholder="1234 Main Street"
                   type="address"
-                  value={address1}
-                  onChange={(e) => setAddress1(e.target.value)}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formGridAddress2">
-                <Form.Label>Address 2:</Form.Label>
-                <Form.Control
-                  placeholder="Apartment, Studio, Floor, or Prep Area (if applicable)"
-                  type="address2"
-                  value={address2}
-                  onChange={(e) => setAddress2(e.target.value)}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </Form.Group>
 
@@ -201,30 +178,6 @@ const RestoSignUpForm = () => {
                 </Form.Group>
               </Row>
 
-              <Form.Group className="mb-3" controlId="formBasicName">
-                <Row>
-                  <Col>
-                    <Form.Label>Owner Contact:</Form.Label>
-                    <Form.Control
-                      type="firstName"
-                      placeholder="First Name"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                    />
-                  </Col>
-                  <Col>
-                    <Form.Label>
-                      <br />
-                    </Form.Label>
-                    <Form.Control
-                      type="lastName"
-                      placeholder="Last Name"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                    />
-                  </Col>
-                </Row>
-              </Form.Group>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Email:</Form.Label>
@@ -252,8 +205,8 @@ const RestoSignUpForm = () => {
                   variant="primary"
                   type="button"
                   onClick={() => {
-                    addResto();
-                    addRole();
+                    addDriver();
+                    addDriverRole();
                     navigate("/");
                   }}
                 >
@@ -271,4 +224,4 @@ const RestoSignUpForm = () => {
   );
 };
 
-export default RestoSignUpForm;
+export default DriverSignUpForm;

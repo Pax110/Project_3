@@ -4,6 +4,7 @@ import LandingImage from "../components/landingimage/LandingImage";
 import background from "../components/landingimage/wood.jpg";
 import RestoDisplayCard from "../components/restaurant/RestoDisplayCard";
 import Filters from "../components/cart/Filters";
+import DriverSignUpPage from "../components/driver/DriverSignUpPage";
 function LandingPage() {
   return (
     <div>
@@ -20,6 +21,7 @@ function LandingPage() {
         <RestoDisplayCard />
         <Filters />
         <AboutUs />
+        <DriverSignUpPage />
       </div>
     </div>
   );
