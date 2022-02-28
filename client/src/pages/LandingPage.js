@@ -33,7 +33,6 @@ function LandingPage() {
             alt="logo"
           />
           <AboutUs />
-          <DriverSignUpPage />
         </Row>
       </div>
     </div>

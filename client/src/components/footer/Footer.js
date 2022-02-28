@@ -13,9 +13,7 @@ const Footer = () => {
           Open Sorcerers 🧙‍♂️ <br /> Kate, Michelle and Pax
         </h2>
 
-        <address>
-          404 InceptionU Lane, Calgary, AB H3H 3H3
-        </address>
+        <address>404 InceptionU Lane, Calgary, AB H3H 3H3</address>
       </div>
       <ul className="footerNav">
         <li className="navItem">
@@ -30,9 +28,7 @@ const Footer = () => {
               <li>Retailer</li>
             </Link>
 
-            <li>
-              Driver
-            </li>
+            <Link to="/driver/signup">Driver</Link>
           </ul>
         </li>
         <li className="navItem">
