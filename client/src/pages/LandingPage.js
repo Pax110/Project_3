@@ -6,6 +6,7 @@ import logo from "../components/landingimage/logocc.png";
 import RestoDisplayCard from "../components/restaurant/RestoDisplayCard";
 import Filters from "../components/cart/Filters";
 import { Row } from "react-bootstrap";
+import DriverSignUpPage from "../components/driver/DriverSignUpPage";
 function LandingPage() {
   return (
     <div>
@@ -32,6 +33,7 @@ function LandingPage() {
             alt="logo"
           />
           <AboutUs />
+          <DriverSignUpPage />
         </Row>
       </div>
     </div>

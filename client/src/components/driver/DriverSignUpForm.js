@@ -2,13 +2,7 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import background from "../landingimage/food1.jpg";
-import {
-  collection,
-  addDoc,
-  setDoc,
-  arrayUnion,
-  doc,
-} from "firebase/firestore";
+import { collection, setDoc, arrayUnion, doc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 
@@ -26,27 +20,6 @@ const DriverSignUpForm = () => {
   const [province, setProvince] = useState("");
   const [postal, setPostal] = useState("");
 
-  const addDriver = async () => {
-    try {
-      let collectionRef = collection(db, "users");
-      await addDoc(collectionRef, {
-        address: address,
-        city: city,
-        email: email,
-        province: province,
-        postal: postal,
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-
-        uid: user.uid,
-      });
-      console.log("Create Driver success!");
-    } catch (ex) {
-      console.log("FIRESTORE ADD FAILURE!", ex.message);
-    }
-  };
-
   const addDriverRole = async () => {
     try {
       let collRef = collection(db, "users");
@@ -54,6 +27,15 @@ const DriverSignUpForm = () => {
       await setDoc(
         docRef,
         {
+          //add fields here to update content,
+          firstName: firstName,
+          lastName: lastName,
+          address: address,
+          city: city,
+          province: province,
+          postal: postal,
+          email: email,
+          phone: phone,
           uid: user.uid,
           role: arrayUnion("Driver"),
         },
@@ -83,8 +65,9 @@ const DriverSignUpForm = () => {
         >
           <div className="p-4 box">
             <h2 className="mb-3 text-center">Join Culinary Collective!</h2>
+            <p className="mb-3 text-center">Become A Driver Today </p>
             <p className="mb-3 text-center">
-              Become A Driver For The Collective{" "}
+              Please review the fields and update them to match your license{" "}
             </p>
             <Form
               onSubmit={(e) => {
@@ -94,7 +77,7 @@ const DriverSignUpForm = () => {
               <Form.Group className="mb-3" controlId="formBasicName">
                 <Row>
                   <Col>
-                    <Form.Label>Driver Contact:</Form.Label>
+                    <Form.Label>Driver's Given Name</Form.Label>
                     <Form.Control
                       type="firstName"
                       placeholder="First Name"
@@ -103,9 +86,7 @@ const DriverSignUpForm = () => {
                     />
                   </Col>
                   <Col>
-                    <Form.Label>
-                      <br />
-                    </Form.Label>
+                    <Form.Label>Surname</Form.Label>
                     <Form.Control
                       type="lastName"
                       placeholder="Last Name"
@@ -198,6 +179,10 @@ const DriverSignUpForm = () => {
                     onChange={(e) => setPhone(e.target.value)}
                   />
                 </Form.Group>
+                <Form.Group>
+                  {" "}
+                  <Form.Label>Upload your business profile photo</Form.Label>
+                </Form.Group>
               </Row>
 
               <div className="d-grid gap-2">
@@ -205,7 +190,6 @@ const DriverSignUpForm = () => {
                   variant="primary"
                   type="button"
                   onClick={() => {
-                    addDriver();
                     addDriverRole();
                     navigate("/");
                   }}
