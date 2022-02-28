@@ -1,6 +1,6 @@
 import { collection, deleteField, doc, updateDoc } from "firebase/firestore";
 import React from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useFirebase } from "../FirebaseProvider";
@@ -9,7 +9,6 @@ const Appetizer = ({ register, index }) => {
   // const r = register(`name[${index}]`);
   // console.log("r is",r)
   const { id } = useParams();
-  
 
   const { unregister } = useForm();
 
@@ -22,8 +21,7 @@ const Appetizer = ({ register, index }) => {
     unregister(`menu.appetizers[${index}].name`);
     // const path = menu.appetizers[${index}].name
     console.log(unregister(`menu.appetizers[${index}].name`));
-//get access to the doc submitting 
-
+    //get access to the doc submitting
   };
 
   //DELETING Directly to the Database Field (Not working, not recoemmended)
@@ -36,41 +34,41 @@ const Appetizer = ({ register, index }) => {
   // });
 
   return (
-    <Container
+    <Card
       style={{
         width: "400px",
-        backgroundColor: "#feaa00",
+        backgroundColor: "white",
       }}
     >
-      <label>Item Name: </label>
-      <br />
-      <input type="text" {...register(`menu.appetizers[${index}].name`)} />
-      <br />
-      <label>Item Price: </label>
-      <br />
-      <input type="text" {...register(`menu.appetizers[${index}].price`)} />
-      <input
-        type="hidden"
-        {...register(`menu.appetizers[${index}].type`)}
-        value="appetizers"
-      />
-      <input
-        type="hidden"
-        {...register(`menu.appetizers[${index}].menuphoto`)}
-        value="appetizers"
-      />
-      <br />
-      <Button>Upload Images</Button>
-      <br />
-      <Button variant="danger" onClick={handleDelete}>
-        DELETE
-      </Button>
-      <br />
-
-      <br />
-
-      <br />
-    </Container>
+      <Card.Body>
+        Item Name:
+        <br />
+        <input type="text" {...register(`menu.appetizers[${index}].name`)} />
+        <br />
+        <label>Item Price: </label>
+        <br />
+        <input type="text" {...register(`menu.appetizers[${index}].price`)} />
+        <input
+          type="hidden"
+          {...register(`menu.appetizers[${index}].type`)}
+          value="appetizers"
+        />
+        <input
+          type="hidden"
+          {...register(`menu.appetizers[${index}].menuphoto`)}
+          value="appetizers"
+        />
+        <br />
+        <Button>Upload Images</Button>
+        <br />
+        <Button variant="danger" onClick={handleDelete}>
+          DELETE
+        </Button>
+        <br />
+        <br />
+        <br />
+      </Card.Body>
+    </Card>
   );
 };
 
