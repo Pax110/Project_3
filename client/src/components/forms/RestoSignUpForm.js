@@ -89,6 +89,7 @@ const RestoSignUpForm = () => {
         >
           <div className="p-4 box">
             <h2 className="mb-3 text-center">Join Culinary Collective!</h2>
+            <p className="mb-3 text-center">Signup Your Business Today</p>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
