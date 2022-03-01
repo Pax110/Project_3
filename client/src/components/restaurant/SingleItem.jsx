@@ -10,7 +10,7 @@ const SingleItem = ({ item, restoId, restaurant }) => {
     dispatch,
   } = CartState();
 
-  console.log("cart is...", cart);
+
 
   //Resraurant Id to add into item to dispatch into the cart
   item.restoId = restoId;
