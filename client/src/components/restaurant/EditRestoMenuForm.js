@@ -53,7 +53,7 @@ const EditRestoMenuForm = (props) => {
       <Container
         style={{
           width: "60%",
-          // backgroundColor: "#f7f4ef",
+          backgroundColor: "#f7f4ef",
           borderRadius: "15px",
           paddingBottom: "15px",
           overflowY: "auto",

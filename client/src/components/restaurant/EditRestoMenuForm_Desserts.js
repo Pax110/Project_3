@@ -9,7 +9,7 @@ const Dessert = ({ register, index }) => {
   return (
     <Card
       style={{
-        width: "400px",
+        width: "400",
         backgroundColor: "white",
       }}
     >
