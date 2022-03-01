@@ -67,7 +67,7 @@ const SingleItem = ({ item, restoId, restaurant }) => {
         </Box>
       ) : (
         <Box textAlign="center">
-          <Button
+          <Button className="silly-button"
             sx={{
               color: "whitesmoke",
               backgroundColor: "#feaa00",

@@ -34,8 +34,8 @@
   border-color: #feaa00 !important;
 }
 
-.css-ueo712-MuiButtonBase-root-MuiButton-root:hover {
+button.silly-button:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
-  background-color: "none";
+  background-color: #feaa00;
 }

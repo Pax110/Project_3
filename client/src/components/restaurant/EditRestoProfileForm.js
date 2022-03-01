@@ -177,7 +177,7 @@ const EditRestoProfileForm = (props) => {
                   <Form.Label>Province/Territory:</Form.Label>
                   <Controller
                     control={control}
-                    name="province"
+                    name="contact.province"
                     render={({ field: { value, onChange } }) => (
                       <Form.Select
                         // defaultValue="Choose..."

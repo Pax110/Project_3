@@ -6,9 +6,7 @@ import background from "../landingimage/wood.jpg";
 import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
-import DeleteRestoButton from "./DeleteRestoButton";
-// import FileUploader from "../file-uploader/FileUploader";
-import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
+import ChefUpdateProfilePhoto from "../file-uploader/ChefUpdateProfilePhoto";
 
 const EditChefProfileForm = (props) => {
   const docValue = props.doc;
@@ -22,8 +20,6 @@ const EditChefProfileForm = (props) => {
   });
   const errors = formState.errors;
   const mySubmit = async (data) => {
-    console.log("submitted data is", data);
-    console.log("submitted data type is", data.type);
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, docId);
 
@@ -94,17 +90,16 @@ const EditChefProfileForm = (props) => {
                 <Form.Label>Tell us your story:</Form.Label>
                 <Controller
                   name="contact.owner.about"
-                  className="input-group-text"
                   control={control}
                   render={(props) => {
                     const { field } = props;
                     return (
                       <Form.Control
                         {...field}
+                        as="textarea"
                         style={{
-                          height: "500px",
+                          height: "300px",
                           width: "100%",
-                          overflowWrap: "break-word",
                         }}
                       />
                     );
@@ -117,7 +112,7 @@ const EditChefProfileForm = (props) => {
                 <Form.Group>
                   {" "}
                   <Form.Label>Upload Profile Photo</Form.Label>
-                  <RestroUpdateUploader setPhotoURL={setPhotoURL} />
+                  <ChefUpdateProfilePhoto setPhotoURL={setPhotoURL} />
                 </Form.Group>
               </Row>
 
