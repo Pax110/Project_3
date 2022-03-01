@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import { useFirebase } from "../FirebaseProvider";
 import {
   ref,
@@ -50,7 +51,18 @@ const RestroUpdateUploader = ({ setPhotoURL }) => {
             setImage(e.target.files[0]);
           }}
         />
-        <button onClick={upload}>Upload Profile Photo</button>
+        <Button
+          variant="primary"
+          onClick={upload}
+          style={{
+            backgroundColor: "#feaa00",
+            borderColor: "#feaa00",
+            padding: "0.25rem",
+            margin: "1%",
+          }}
+        >
+          Upload Profile Photo
+        </Button>
       </center>
     </div>
   );
