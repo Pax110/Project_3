@@ -52,8 +52,8 @@ const EditRestoMenuForm = (props) => {
     >
       <Container
         style={{
-          width: "auto",
-          backgroundColor: "#f7f4ef",
+          width: "60%",
+          // backgroundColor: "#f7f4ef",
           borderRadius: "15px",
           paddingBottom: "15px",
           overflowY: "auto",
@@ -64,13 +64,16 @@ const EditRestoMenuForm = (props) => {
         <h1 className="p-4 box mt-3 text-center" style={myStyle}>
           Menu
         </h1>
-        <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
-          <Card.Body>
-            {/* APPETIZERS */}
+        <Card.Body>
+          {/* APPETIZERS */}
 
-            <Card.Title>Appetizer</Card.Title>
+          <Card.Header className="p-3 box mt-2 text-center" style={myStyle}>
+            Appetizer
+          </Card.Header>
+          <Card.Body>
             <Card.Text>
               {/* {JSON.stringify(docValue.menu.appetizers)} */}
+
               {docValue &&
                 docValue.menu.appetizers.map((data, index) => (
                   <>
@@ -81,57 +84,66 @@ const EditRestoMenuForm = (props) => {
             <Button>
               {" "}
               <AddToList style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Add Item
+              &nbsp;&nbsp;Add Appetizer Item
             </Button>
           </Card.Body>
-        </Card>
+        </Card.Body>
         {/* MAINS */}
-        <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
-          <Card.Body>
-            <Card.Title>Mains</Card.Title>
-            <Card.Text>
-              {/* {JSON.stringify(docValue.menu.mains)} */}
+        <Card.Body>
+          <Card.Header className="p-3 box mt-2 text-center" style={myStyle}>
+            Mains
+          </Card.Header>
+          <Card.Text>
+            {/* {JSON.stringify(docValue.menu.mains)} */}
 
-              {docValue &&
-                docValue.menu.mains.map((data, index) => (
-                  <>
-                    <Main register={register} key={index} index={index} />
-                  </>
-                ))}
-            </Card.Text>
-            <Button>
-              {" "}
-              <AddToList style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Add Item
-            </Button>
-          </Card.Body>
-        </Card>
+            {docValue &&
+              docValue.menu.mains.map((data, index) => (
+                <>
+                  <Main register={register} key={index} index={index} />
+                </>
+              ))}
+          </Card.Text>
+          <Button>
+            {" "}
+            <AddToList style={{ width: "30px", height: "30px" }} />
+            &nbsp;&nbsp;Add Main Item
+          </Button>
+        </Card.Body>
         {/* DESSERTS */}
-        <Card style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}>
-          <Card.Body>
-            <Card.Title>Desserts</Card.Title>
-            <Card.Text>
-              {/* {JSON.stringify(docValue.menu.desserts)} */}
-              {docValue &&
-                docValue.menu.desserts.map((data, index) => (
-                  <>
-                    <Dessert register={register} key={index} index={index} />
-                  </>
-                ))}
-            </Card.Text>
-            <Button>
-              {" "}
-              <AddToList style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Add Item
-            </Button>
-          </Card.Body>
-        </Card>
-        <Button onClick={handleSubmit(onSubmit, onError)}>
+
+        <Card.Body>
+          <Card.Header className="p-3 box mt-2 text-center" style={myStyle}>
+            Desserts
+          </Card.Header>
+          <Card.Text>
+            {/* {JSON.stringify(docValue.menu.desserts)} */}
+            {docValue &&
+              docValue.menu.desserts.map((data, index) => (
+                <>
+                  <Dessert register={register} key={index} index={index} />
+                </>
+              ))}
+          </Card.Text>
+          <Button>
+            {" "}
+            <AddToList style={{ width: "30px", height: "30px" }} />
+            &nbsp;&nbsp;Add Dessert Item
+          </Button>
+        </Card.Body>
+
+        <Button
+          onClick={handleSubmit(onSubmit, onError)}
+          style={{
+            margin: "0",
+            position: "sticky",
+            top: "50%",
+            left: "50%",
+          }}
+        >
           <Edit style={{ width: "30px", height: "30px" }} />
           &nbsp;&nbsp;Update
         </Button>
       </Container>
-      <Edit style={{ width: "30px", height: "30px" }} />
     </div>
   );
 };

@@ -4,6 +4,9 @@ import { Button, Container, Form, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useFirebase } from "../FirebaseProvider";
+import { Delete } from "@styled-icons/fluentui-system-regular/Delete";
+import { ImageAdd } from "@styled-icons/boxicons-solid/ImageAdd";
+import { AddImageIcon } from "../icon/AddImageIcon";
 
 const Appetizer = ({ register, index }) => {
   // const r = register(`name[${index}]`);
@@ -59,10 +62,30 @@ const Appetizer = ({ register, index }) => {
           value="appetizers"
         />
         <br />
-        <Button>Upload Images</Button>
+        <Button
+          style={{
+            backgroundColor: "#feaa00",
+            borderColor: "#feaa00",
+            padding: "0.25rem",
+            margin: "3%",
+          }}
+        >
+          <AddImageIcon style={{ width: "30px", height: "30px" }} />
+          Upload Images
+        </Button>
         <br />
-        <Button variant="danger" onClick={handleDelete}>
-          DELETE
+        <Button
+          variant="danger"
+          style={{
+            padding: "0.25rem",
+            margin: "3%",
+            top: "50%",
+            left: "50%",
+          }}
+          onClick={handleDelete}
+        >
+          <Delete style={{ width: "30px", height: "30px" }} />
+          Delete
         </Button>
         <br />
         <br />
