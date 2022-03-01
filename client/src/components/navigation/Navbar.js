@@ -97,7 +97,8 @@ const Navbar = () => {
   };
 
   const titleFont = "'Bebas Neue'";
-
+  const driver = userInfo?.role.includes("Driver")
+  console.log("is Driver?",driver)
   return (
     <>
       <AppBar
@@ -278,6 +279,9 @@ const Navbar = () => {
                           )}
                         </Dropdown.Menu>
                       </Dropdown>
+                      <Dropdown>
+                        Filters
+                      </Dropdown>
                     </Nav>
                   </>
                 ))}
@@ -345,7 +349,7 @@ const Navbar = () => {
                   >
                     Need Help?
                   </MenuItem>
-                  {userInfo?.role[1] == "Business" && (
+                  {userInfo?.role.includes("Business") == true && (
                     <MenuItem
                       component={Link}
                       to="/restaurant/dashboard"
@@ -354,7 +358,7 @@ const Navbar = () => {
                       Restaurant Dashboard
                     </MenuItem>
                   )}
-                  {userInfo?.role[3] == "Driver" && (
+                  {userInfo?.role.includes("Driver") == true && (
                     <MenuItem
                       component={Link}
                       to="/driver"
@@ -363,7 +367,7 @@ const Navbar = () => {
                       Driver Dashboard
                     </MenuItem>
                   )}
-                  {userInfo?.role[2] == "Admin" && (
+                  {userInfo?.role.includes("Admin") == true && (
                     <MenuItem
                       component={Link}
                       to="/admin"

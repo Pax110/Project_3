@@ -2,7 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useParams } from "react-router-dom";
-import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, ListGroup, Nav, NavDropdown, Row } from "react-bootstrap";
 import { Container } from "@mui/material";
 
 const LiveOrders = () => {
@@ -40,8 +40,12 @@ const LiveOrders = () => {
 
   const myStyle = { fontFamily: "Bebas Neue" };
 
+  const handleSelect = () => {
+    console.log("some link selected")
+  }
   if (orders) {
-    return (
+    return (<>
+     
       <Container
         style={{
           width: "auto",
@@ -52,6 +56,26 @@ const LiveOrders = () => {
           maxHeight: "800px",
         }}
       >
+         <Nav variant="pills" activeKey="1" onSelect={handleSelect}>
+      <Nav.Item>
+        <Nav.Link eventKey="1" href="#/home">
+          NavLink 1 content
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="2" title="Item">
+          NavLink 2 content
+        </Nav.Link>
+      </Nav.Item>
+     
+      <NavDropdown title="Dropdown" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
+      </NavDropdown>
+    </Nav>
         <h1 className="p-4 box mt-3 text-center" style={myStyle}>
           Order Tracker
         </h1>
@@ -89,7 +113,7 @@ const LiveOrders = () => {
           </div>
         ))}
       </Container>
-    );
+      </>);
   } else {
     return (
       <>

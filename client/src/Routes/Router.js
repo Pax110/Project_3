@@ -128,14 +128,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/driver/signup"
-          element={
-            <ProtectedRoute>
-              <DriverSignUpPage />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/driver/signup" element={<DriverSignUpPage />} />
         <Route
           path="/admin"
           element={

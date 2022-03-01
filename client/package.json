@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set NODE_OPTIONS=--max_old_space_size=4096 & react-scripts build",
     "deploy": "npm run build && firebase deploy --only hosting",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
