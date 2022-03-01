@@ -237,7 +237,9 @@ const Navbar = () => {
                           <FaShoppingCart color="white" fontSize="25px" />
                           <Badge>&nbsp;{cart.length}</Badge>
                         </Dropdown.Toggle>
-                        <Dropdown.Menu style={{ minwidth: 370 }}>
+                        <Dropdown.Menu
+                          style={{ minwidth: 370, alignContent: "center",minWidth: "20rem" }}
+                        >
                           {cart.length > 0 ? (
                             <>
                               {cart.map((item) => (
@@ -263,11 +265,13 @@ const Navbar = () => {
                                   />
                                 </span>
                               ))}
-                              <Link to={`/cart/${a}`}>
-                                <Button style={{ margin: "0 10px" }}>
-                                  Go To Cart
-                                </Button>
-                              </Link>
+                              <div className="goToCartButton">
+                                <Link to={`/cart/${a}`} style={{textDecoration: "none", alignContent: "center", backgroundColor: "feaa00"}}>
+                                  <Button style={{ margin: "0 10px"}}>
+                                    Go To Cart
+                                  </Button>
+                                </Link>
+                              </div>
                             </>
                           ) : (
                             <span>Cart is Empty</span>
