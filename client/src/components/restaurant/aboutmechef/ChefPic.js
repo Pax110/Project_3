@@ -1,8 +1,7 @@
 import React from "react";
-import Veg from "./veg.jpeg";
 import Image from "react-bootstrap/Image";
 
-const ChefPic = ({restaurant}) => {
+const ChefPic = ({ restaurant }) => {
   return (
     <Image
       src={`${restaurant.contact.owner.chefPhotoURL}`}
@@ -13,6 +12,8 @@ const ChefPic = ({restaurant}) => {
         padding: "5%",
       }}
     />
+    
+
   );
 };
 

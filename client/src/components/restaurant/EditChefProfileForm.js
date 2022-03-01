@@ -3,12 +3,14 @@ import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/wood.jpg";
-import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import ChefUpdateProfilePhoto from "../file-uploader/ChefUpdateProfilePhoto";
+import { useNavigate } from "react-router-dom";
 
 const EditChefProfileForm = (props) => {
+  const navigate = useNavigate();
   const docValue = props.doc;
   const { user } = useUserAuth();
   const { db } = useFirebase();
@@ -23,15 +25,21 @@ const EditChefProfileForm = (props) => {
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, docId);
 
-    await updateDoc(docRef, {
-      contact: {
-        owner: {
-          firstName: data.contact.owner.firstName,
-          lastName: data.contact.owner.lastName,
-          about: data.contact.owner.about,
+    await setDoc(
+      docRef,
+      {
+        contact: {
+          owner: {
+            firstName: data.contact.owner.firstName,
+            lastName: data.contact.owner.lastName,
+            about: data.contact.owner.about,
+            chefPhotoURL: photoURL,
+          },
         },
       },
-    });
+      { merge: true }
+    );
+    navigate("/restaurant/dashboard");
   };
   const myError = (err) => {
     console.log("err is", err);

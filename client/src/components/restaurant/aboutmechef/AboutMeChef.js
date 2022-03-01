@@ -27,7 +27,6 @@ const AboutMeChef = ({ restaurant }) => {
           borderRadius: "10px",
           display: "flex",
           flexWrap: "wrap",
-
           gap: "5px",
           margin: "auto 0",
         }}

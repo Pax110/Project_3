@@ -3,14 +3,20 @@ import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/wood.jpg";
-import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
 // import FileUploader from "../file-uploader/FileUploader";
 import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
+import { useNavigate } from "react-router-dom";
 
 const EditRestoProfileForm = (props) => {
+  const navigate = useNavigate();
   const docValue = props.doc;
   const { user } = useUserAuth();
   const { db } = useFirebase();
@@ -29,25 +35,30 @@ const EditRestoProfileForm = (props) => {
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, docId);
 
-    await updateDoc(docRef, {
-      name: data.name,
-      photoURL: photoURL,
-      description: data.description,
-      type: data.type,
-      contact: {
-        address: data.contact.address,
-        address2: data.contact.address2,
-        city: data.contact.city,
-        province: data.contact.province,
-        postal: data.contact.postalCode,
-        owner: {
-          firstName: data.contact.owner.firstName,
-          lastName: data.contact.owner.lastName,
+    await setDoc(
+      docRef,
+      {
+        name: data.name,
+        photoURL: photoURL,
+        description: data.description,
+        type: data.type,
+        contact: {
+          address: data.contact.address,
+          address2: data.contact.address2,
+          city: data.contact.city,
+          province: data.contact.province,
+          postal: data.contact.postalCode,
+          owner: {
+            firstName: data.contact.owner.firstName,
+            lastName: data.contact.owner.lastName,
+          },
+          email: data.contact.email,
         },
-        email: data.contact.email,
+        phoneNumber: data.phoneNumber,
       },
-      phoneNumber: data.phoneNumber,
-    });
+      { merge: true }
+    );
+    navigate("/restaurant/dashboard");
   };
   const myError = (err) => {
     console.log("err is", err);
