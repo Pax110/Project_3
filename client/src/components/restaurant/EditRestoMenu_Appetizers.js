@@ -40,7 +40,11 @@ const Appetizer = ({ register, index }) => {
     <Card
       style={{
         width: "400px",
-        backgroundColor: "white",
+        backgroundColor: "#f7f4ef",
+        display: "inline-block",
+        padding: "3%",
+        margin: "2.5%",
+        justifyContent: "center",
       }}
     >
       <Card.Body>
@@ -67,7 +71,7 @@ const Appetizer = ({ register, index }) => {
             backgroundColor: "#feaa00",
             borderColor: "#feaa00",
             padding: "0.25rem",
-            margin: "3%",
+            float: "left",
           }}
         >
           <AddImageIcon style={{ width: "30px", height: "30px" }} />
@@ -78,19 +82,37 @@ const Appetizer = ({ register, index }) => {
           variant="danger"
           style={{
             padding: "0.25rem",
-            margin: "3%",
-            top: "50%",
-            left: "50%",
+            float: "right",
           }}
           onClick={handleDelete}
         >
           <Delete style={{ width: "30px", height: "30px" }} />
           Delete
         </Button>
-        <br />
-        <br />
-        <br />
       </Card.Body>
+      <Button
+        style={{
+          backgroundColor: "#feaa00",
+          borderColor: "#feaa00",
+          padding: "0.25rem",
+          float: "left",
+        }}
+      >
+        <AddImageIcon style={{ width: "30px", height: "30px" }} />
+        Upload Images
+      </Button>
+      <br />
+      <Button
+        variant="danger"
+        style={{
+          padding: "0.25rem",
+          float: "right",
+        }}
+        onClick={handleDelete}
+      >
+        <Delete style={{ width: "30px", height: "30px" }} />
+        Delete
+      </Button>
     </Card>
   );
 };
