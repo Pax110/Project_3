@@ -1,6 +1,6 @@
 import { Form, Container, Row, Col, Button, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import background from "../landingimage/wood.jpg";
 import {
   collection,
@@ -14,7 +14,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 
 const RestoSignUpForm = () => {
   const { db } = useFirebase();
-  const { user } = useUserAuth();
+  const { user, logOut } = useUserAuth();
   const navigate = useNavigate();
   const myStyle = {
     fontFamily: "Bebas Neue",
@@ -36,10 +36,28 @@ const RestoSignUpForm = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [show, setShow] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
+
+
+
+  useEffect(() => {
+    console.log("useEffect");
+
+    const checkSignIn = () => {
+      if (!user) {
+        setShowSignup(true);
+      }
+    };
+    checkSignIn();
+  }, []);
+  
   const handleClose = () => {
-    setShow(false);
+   
+    setShowSignup(false);
+    navigate("/");
   };
+
   const handleShow = () => setShow(true);
 
   const addResto = async () => {
@@ -285,7 +303,7 @@ const RestoSignUpForm = () => {
                     <Modal.Title>Welcome to the Collective!</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    Head on over to the Restaurant Dashboard to get cookin'!
+                    Sign in and head on over to the Restaurant Dashboard to get cookin'!
                     🚚🍴
                   </Modal.Body>
                   <Modal.Footer>
@@ -293,7 +311,32 @@ const RestoSignUpForm = () => {
                       variant="success"
                       onClick={() => {
                         handleClose();
-                        navigate("/restaurant/dashboard");
+                        logOut()
+                      }}
+                    >
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+                <Modal
+                  show={showSignup}
+                  onHide={handleClose}
+                  keyboard={false}
+                  centered
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      Thank you for your interest to join Culinary Collective.
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Please sign up and try again!</Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="success"
+                      onClick={() => {
+                        handleClose();
+                        navigate("/signup")
+                        
                       }}
                     >
                       Close

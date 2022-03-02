@@ -2,20 +2,26 @@ import React, { useMemo, useState } from "react";
 import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import background from "../landingimage/food1.jpg";
-import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import background from "../landingimage/wood.jpg";
+import {
+  collection,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
 // import FileUploader from "../file-uploader/FileUploader";
 import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
+import { useNavigate } from "react-router-dom";
 
 const EditRestoProfileForm = (props) => {
+  const navigate = useNavigate();
   const docValue = props.doc;
   const { user } = useUserAuth();
   const { db } = useFirebase();
   const docId = props.id;
-
+  const myStyle = { fontFamily: "Bebas Neue" };
   const [photoURL, setPhotoURL] = useState();
   const { control, handleSubmit, setValue, formState } = useForm({
     //defaultValues: {name: name}
@@ -29,25 +35,30 @@ const EditRestoProfileForm = (props) => {
     let collRef = collection(db, "restaurants");
     let docRef = doc(collRef, docId);
 
-    await updateDoc(docRef, {
-      name: data.name,
-      photoURL: photoURL,
-      description: data.description,
-      type: data.type,
-      contact: {
-        address: data.contact.address,
-        address2: data.contact.address2,
-        city: data.contact.city,
-        province: data.contact.province,
-        postal: data.contact.postalCode,
-        owner: {
-          firstName: data.contact.owner.firstName,
-          lastName: data.contact.owner.lastName,
+    await setDoc(
+      docRef,
+      {
+        name: data.name,
+        photoURL: photoURL,
+        description: data.description,
+        type: data.type,
+        contact: {
+          address: data.contact.address,
+          address2: data.contact.address2,
+          city: data.contact.city,
+          province: data.contact.province,
+          postal: data.contact.postalCode,
+          owner: {
+            firstName: data.contact.owner.firstName,
+            lastName: data.contact.owner.lastName,
+          },
+          email: data.contact.email,
         },
-        email: data.contact.email,
+        phoneNumber: data.phoneNumber,
       },
-      phoneNumber: data.phoneNumber,
-    });
+      { merge: true }
+    );
+    navigate("/restaurant/dashboard");
   };
   const myError = (err) => {
     console.log("err is", err);
@@ -60,16 +71,21 @@ const EditRestoProfileForm = (props) => {
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          padding: "20px",
         }}
       >
         <Container
           style={{
             width: "600px",
-            backgroundColor: "rgba(225, 229, 235, 0.9)",
+            backgroundColor: "#f7f4ef",
+            borderRadius: "15px",
+            paddingBottom: "15px",
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Update Restaurant Profile</h2>
+            <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+              Update Restaurant Profile
+            </h1>
             <Form onSubmit={handleSubmit(mySubmit, myError)}>
               <Form.Group className="mb-3" controlId="formRestoName">
                 <Form.Label>Business Name:</Form.Label>
@@ -172,7 +188,7 @@ const EditRestoProfileForm = (props) => {
                   <Form.Label>Province/Territory:</Form.Label>
                   <Controller
                     control={control}
-                    name="province"
+                    name="contact.province"
                     render={({ field: { value, onChange } }) => (
                       <Form.Select
                         // defaultValue="Choose..."

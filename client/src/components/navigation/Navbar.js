@@ -97,7 +97,8 @@ const Navbar = () => {
   };
 
   const titleFont = "'Bebas Neue'";
-
+  const driver = userInfo?.role.includes("Driver")
+  console.log("is Driver?",driver)
   return (
     <>
       <AppBar
@@ -237,7 +238,9 @@ const Navbar = () => {
                           <FaShoppingCart color="white" fontSize="25px" />
                           <Badge>&nbsp;{cart.length}</Badge>
                         </Dropdown.Toggle>
-                        <Dropdown.Menu style={{ minwidth: 370 }}>
+                        <Dropdown.Menu
+                          style={{ minwidth: 370, alignContent: "center",minWidth: "20rem" }}
+                        >
                           {cart.length > 0 ? (
                             <>
                               {cart.map((item) => (
@@ -263,16 +266,21 @@ const Navbar = () => {
                                   />
                                 </span>
                               ))}
-                              <Link to={`/cart/${a}`}>
-                                <Button style={{ margin: "0 10px" }}>
-                                  Go To Cart
-                                </Button>
-                              </Link>
+                              <div className="goToCartButton">
+                                <Link to={`/cart/${a}`} style={{textDecoration: "none", alignContent: "center", backgroundColor: "feaa00"}}>
+                                  <Button style={{ margin: "0 10px"}}>
+                                    Go To Cart
+                                  </Button>
+                                </Link>
+                              </div>
                             </>
                           ) : (
                             <span>Cart is Empty</span>
                           )}
                         </Dropdown.Menu>
+                      </Dropdown>
+                      <Dropdown>
+                        Filters
                       </Dropdown>
                     </Nav>
                   </>
@@ -341,7 +349,7 @@ const Navbar = () => {
                   >
                     Need Help?
                   </MenuItem>
-                  {userInfo?.role[1] == "Business" && (
+                  {userInfo?.role.includes("Business") == true && (
                     <MenuItem
                       component={Link}
                       to="/restaurant/dashboard"
@@ -350,7 +358,7 @@ const Navbar = () => {
                       Restaurant Dashboard
                     </MenuItem>
                   )}
-                  {userInfo?.role[3] == "Driver" && (
+                  {userInfo?.role.includes("Driver") == true && (
                     <MenuItem
                       component={Link}
                       to="/driver"
@@ -359,7 +367,7 @@ const Navbar = () => {
                       Driver Dashboard
                     </MenuItem>
                   )}
-                  {userInfo?.role[2] == "Admin" && (
+                  {userInfo?.role.includes("Admin") == true && (
                     <MenuItem
                       component={Link}
                       to="/admin"

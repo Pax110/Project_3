@@ -1,6 +1,6 @@
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Form, Container, Row, Col, Button, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import background from "../landingimage/food1.jpg";
 import { collection, setDoc, arrayUnion, doc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
@@ -9,9 +9,10 @@ import { DocumentAttach } from "@styled-icons/ionicons-outline/DocumentAttach";
 
 const DriverSignUpForm = () => {
   const { db } = useFirebase();
-  const { user } = useUserAuth();
+  const { user, logOut } = useUserAuth();
   const navigate = useNavigate();
-
+  const [show, setShow] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -20,6 +21,23 @@ const DriverSignUpForm = () => {
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [postal, setPostal] = useState("");
+
+  const handleClose = () => {
+    setShow(false);
+    navigate("/");
+  };
+  const handleShow = () => setShow(true);
+  console.log("user is", user);
+  useEffect(() => {
+    console.log("useEffect");
+
+    const checkSignIn = () => {
+      if (!user) {
+        setShowSignup(true);
+      }
+    };
+    checkSignIn();
+  }, []);
 
   const addDriverRole = async () => {
     try {
@@ -208,11 +226,60 @@ const DriverSignUpForm = () => {
                   type="button"
                   onClick={() => {
                     addDriverRole();
-                    navigate("/");
+                    handleShow();
                   }}
                 >
                   Sign up
                 </Button>
+                <Modal
+                  show={show}
+                  onHide={handleClose}
+                  keyboard={false}
+                  centered
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      Thank you for your interest to join Culinary Collective.
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>We will get back to you shortly!</Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="success"
+                      onClick={() => {
+                        handleClose();
+                        logOut();
+                      }}
+                    >
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+                <Modal
+                  show={showSignup}
+                  onHide={handleClose}
+                  keyboard={false}
+                  centered
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      Thank you for your interest to join Culinary Collective.
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Please sign up and try again!</Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="success"
+                      onClick={() => {
+                        handleClose();
+                        navigate("/signup")
+                      }}
+                    >
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+                ;
               </div>
             </Form>
           </div>

@@ -89,6 +89,7 @@ const RestoSelectMenu = () => {
             Menu Details
           </Button>
         </Link>{" "}
+        <Link to={`/restaurant/chefprofile/${selectedRestoID}`}>
         <Button
           variant="primary"
           disabled={!selectedRestoID}
@@ -99,8 +100,9 @@ const RestoSelectMenu = () => {
             margin: "1%",
           }}
         >
-          Edit Bio
+          Chef Profile
         </Button>
+        </Link>
       </Form.Group>
     </div>
   );

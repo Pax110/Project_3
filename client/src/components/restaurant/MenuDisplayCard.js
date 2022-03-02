@@ -30,17 +30,23 @@ const MenuDisplayCard = () => {
     itemState: { byAsapDelivery, byBookedDelivery, byRating, bySearchQuery },
   } = CartState();
 
-  const transformItems = () => {
-    let sortedItems = restaurant.menu.appetizers;
+  const transformItems = (category) => {
+
+    let sortedItems = category;
     if (bySearchQuery) {
       sortedItems = sortedItems.filter((item) =>
-        item.name.toLowerCase().includes(bySearchQuery)
+        item.name.toLowerCase().includes(bySearchQuery.toLowerCase())
       );
     }
     console.log("sorted..", sortedItems);
     return sortedItems;
   };
 
+  const appetizers = restaurant.menu?.appetizers
+  const mains = restaurant.menu?.mains
+  const desserts = restaurant.menu?.desserts
+  const a = transformItems(mains)
+  console.log("a is",a)
   useEffect(() => {
     const getRestaurant = async () => {
       const restaurantsDocRef = doc(db, "restaurants", id);
@@ -100,7 +106,7 @@ const MenuDisplayCard = () => {
             }}
           >
             <h3 style={myStyle}>Appetizers</h3>
-            {restaurant.menu.appetizers.map(displayItem)}
+            {transformItems(appetizers).map(displayItem)}
           </CardActionArea>
         </Row>
       </Col>
@@ -118,7 +124,7 @@ const MenuDisplayCard = () => {
             }}
           >
             <h3 style={myStyle}>Mains</h3>
-            {restaurant.menu.mains.map(displayItem)}
+            {transformItems(mains).map(displayItem)}
           </CardActionArea>
         </Row>
       </Col>
@@ -136,7 +142,7 @@ const MenuDisplayCard = () => {
             }}
           >
             <h3 style={myStyle}>Desserts</h3>
-            {restaurant.menu.desserts.map(displayItem)}
+            {transformItems(desserts).map(displayItem)}
           </CardActionArea>
         </Row>
       </Col>

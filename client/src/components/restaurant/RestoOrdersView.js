@@ -2,11 +2,23 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useParams } from "react-router-dom";
-import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  ListGroup,
+  Nav,
+  NavDropdown,
+  Row,
+  Tab,
+  Tabs,
+} from "react-bootstrap";
 import { Container } from "@mui/material";
+import RestoOrdersViewAll from "./RestoOrdersViewAll";
 
 const LiveOrders = () => {
   const { db, user } = useUserAuth();
+ 
 
   const [orders, setOrders] = useState();
   const { id } = useParams();
@@ -31,7 +43,7 @@ const LiveOrders = () => {
     };
 
     getData();
-  }, [user.uid]);
+  }, [user.uid, orders]);
   console.log("orders..", orders);
 
   const orderStyle = {
@@ -40,55 +52,36 @@ const LiveOrders = () => {
 
   const myStyle = { fontFamily: "Bebas Neue" };
 
+  const handleSelect = () => {
+    console.log("some link selected");
+  };
   if (orders) {
     return (
-      <Container
-        style={{
-          width: "auto",
-          backgroundColor: "#f7f4ef",
-          borderRadius: "15px",
-          paddingBottom: "15px",
-          overflowY: "auto",
-          maxHeight: "800px",
-        }}
-      >
-        <h1 className="p-4 box mt-3 text-center" style={myStyle}>
-          Order Tracker
-        </h1>
-        {orders.map((order) => (
-          <div>
-            <Card
-              style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}
-            >
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <Card.Title>Order Number: {order.orderId}</Card.Title>
-                    <span> Date: {order.orderDate}</span> <br />
-                  </Col>
-                  <Col style={{ textAlign: "right" }}>
-                    <strong>Status: Pending</strong> <br />
-                    <strong>Delivery Type: {order.deliveryType}</strong> <br />
-                  </Col>
-                </Row>
-                <Card.Text>
-                  Items: <br />
-                  {order.orderItems.map((item) => (
-                    <>
-                      <span>{item.qty}</span>
-                      <span> x </span>
-                      <span>{item.name}</span>
-                      <br></br>
-                    </>
-                  ))}
-                  <hr></hr>
-                  <p>Order Total: ${order.orderTotal}</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
-      </Container>
+      <>
+        <Container
+          style={{
+            width: "auto",
+            backgroundColor: "#f7f4ef",
+            borderRadius: "15px",
+            paddingBottom: "15px",
+            overflowY: "auto",
+            maxHeight: "800px",
+          }}
+        >
+          <Tabs
+            defaultActiveKey="All"
+            id="uncontrolled-tab-example"
+            className="mb-3"
+          >
+            <Tab eventKey="Live" title="Live Orders">
+              {/* {Live orders would go here...} */}
+            </Tab>
+            <Tab eventKey="All" title="All">
+              <RestoOrdersViewAll orders={orders}/>
+            </Tab>
+          </Tabs>
+        </Container>
+      </>
     );
   } else {
     return (

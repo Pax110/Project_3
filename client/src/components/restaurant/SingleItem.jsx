@@ -10,7 +10,7 @@ const SingleItem = ({ item, restoId, restaurant }) => {
     dispatch,
   } = CartState();
 
-  console.log("cart is...", cart);
+
 
   //Resraurant Id to add into item to dispatch into the cart
   item.restoId = restoId;
@@ -67,7 +67,7 @@ const SingleItem = ({ item, restoId, restaurant }) => {
         </Box>
       ) : (
         <Box textAlign="center">
-          <Button
+          <Button className="silly-button"
             sx={{
               color: "whitesmoke",
               backgroundColor: "#feaa00",
