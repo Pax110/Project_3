@@ -1,6 +1,6 @@
-import { DocumentAttach } from "@styled-icons/ionicons-outline/DocumentAttach";
+import { IoDocumentAttachOutline } from "react-icons/fa";
 import styled from "styled-components";
 
-export const AttachDocumentIcon = styled(DocumentAttach)`
+export const AttachDocumentIcon = styled(IoDocumentAttachOutline)`
   color: rgba(255, 255, 255);
 `;

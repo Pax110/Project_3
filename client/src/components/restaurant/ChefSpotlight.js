@@ -1,4 +1,5 @@
-import { Card, Container } from "@mui/material";
+import { Container } from "@mui/material";
+import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import background from "../landingimage/spotlight.jpg";
 import { collection, getDocs } from "firebase/firestore";
@@ -14,7 +15,8 @@ const ChefSpotlight = () => {
 
   const myStyle = { fontFamily: "Bebas Neue" };
   const otherStyle = {
-    fontFamily: "Roboto",
+    fontFamily: "Caveat",
+    fontSize: "50px",
   };
 
   useEffect(() => {
@@ -57,16 +59,21 @@ const ChefSpotlight = () => {
             <h1 style={otherStyle}>
               Chef {restaurant[chef]?.contact.owner.firstName}
             </h1>
-            <Image
-              src={`${restaurant[chef]?.contact.owner.chefPhotoURL}`}
-              style={{
-                width: "250px",
-                height: "250px",
-                borderRadius: "50%",
-                padding: "2%",
-              }}
-            />
-            <h1 className="p-4" style={myStyle}>
+            <Link
+              to={`/menu/${restaurant[chef]?.DOC_ID}`}
+              key={restaurant[chef]?.DOC_ID}
+            >
+              <Image
+                src={`${restaurant[chef]?.contact.owner.chefPhotoURL}`}
+                style={{
+                  width: "250px",
+                  height: "250px",
+                  borderRadius: "50%",
+                  padding: "2%",
+                }}
+              />
+            </Link>
+            <h1 className="p-4" style={otherStyle}>
               {restaurant[chef]?.name}
             </h1>
           </div>
