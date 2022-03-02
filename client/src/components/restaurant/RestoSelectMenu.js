@@ -10,7 +10,8 @@ import { MenuBook } from "@styled-icons/material-twotone/MenuBook";
 import { RestaurantMenu } from "@styled-icons/material-sharp/RestaurantMenu";
 import { FaFileDownload } from "react-icons/fa";
 import { FaGrinAlt } from "react-icons/fa";
-
+import { FaUtensils } from "react-icons/fa";
+import { FaBookOpen } from "react-icons/fa";
 
 const RestoSelectMenu = () => {
   const { db } = useFirebase();
@@ -65,7 +66,7 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            <FaFileDownload style={{ width: "30px", height: "30px" }}/>
+            <FaFileDownload style={{ width: "30px", height: "30px" }} />
             {/* <ReceiptLong style={{ width: "30px", height: "30px" }} /> */}
             &nbsp;&nbsp;Orders
           </Button>
@@ -81,7 +82,7 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            <RestaurantMenu style={{ width: "30px", height: "30px" }} />
+            <FaUtensils style={{ width: "30px", height: "30px" }} />
             &nbsp;&nbsp;Account Details
           </Button>
         </Link>
@@ -96,7 +97,7 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            <MenuBook style={{ width: "30px", height: "30px" }} />
+            <FaBookOpen style={{ width: "30px", height: "30px" }} />
             &nbsp;&nbsp;Menu Details
           </Button>
         </Link>{" "}
