@@ -1,4 +1,6 @@
 import { Card, Container } from "@mui/material";
+import Image from "react-bootstrap/Image";
+import background from "../landingimage/spotlight.jpg";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useFirebase } from "../FirebaseProvider";
@@ -11,6 +13,9 @@ const ChefSpotlight = () => {
   const [chef, setChef] = useState(null);
 
   const myStyle = { fontFamily: "Bebas Neue" };
+  const otherStyle = {
+    fontFamily: "Roboto",
+  };
 
   useEffect(() => {
     const getRestaurants = async () => {
@@ -35,16 +40,37 @@ const ChefSpotlight = () => {
     return (
       <Container
         style={{
-          width: "auto",
-          backgroundColor: "#f7f4ef",
+          backgroundImage: `url(${background})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
           borderRadius: "15px",
+          padding: "20px",
         }}
       >
-        <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+        <h1 className="p-3 box mt-3 text-center" style={myStyle}>
+          <br />
           Chef Spotlight
         </h1>
 
-        {chef != null && <div>{restaurant[chef]?.name}</div>}
+        {chef != null && (
+          <div className="text-center">
+            <h1 style={otherStyle}>
+              Chef {restaurant[chef]?.contact.owner.firstName}
+            </h1>
+            <Image
+              src={`${restaurant[chef]?.contact.owner.chefPhotoURL}`}
+              style={{
+                width: "250px",
+                height: "250px",
+                borderRadius: "50%",
+                padding: "2%",
+              }}
+            />
+            <h1 className="p-4" style={myStyle}>
+              {restaurant[chef]?.name}
+            </h1>
+          </div>
+        )}
       </Container>
     );
   }

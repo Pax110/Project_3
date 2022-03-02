@@ -1,4 +1,5 @@
 import React from "react";
+import background from "../landingimage/spin.jpg";
 import { useState, useEffect } from "react";
 import { useFirebase } from "../FirebaseProvider";
 import { collection, getDocs } from "firebase/firestore";
@@ -74,6 +75,18 @@ const RestoDisplayCard = () => {
             </ImageListItem>
           </Link>
         ))}
+        <ImageListItem>
+          <CardMedia
+            component="img"
+            height="250"
+            src={`${background}`}
+            loading="lazy"
+          />
+          <ImageListItemBar
+            title="I'm Feeling Lucky!"
+            subtitle="Click for random selection."
+          />
+        </ImageListItem>
       </ImageList>
       <br />
     </Container>
