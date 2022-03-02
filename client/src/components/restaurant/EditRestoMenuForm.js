@@ -103,11 +103,16 @@ const EditRestoMenuForm = (props) => {
                 </>
               ))}
           </Card.Text>
-          <Button>
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
             {" "}
-            <AddToList style={{ width: "30px", height: "30px" }} />
-            &nbsp;&nbsp;Add Main Item
-          </Button>
+            <Button>
+              {" "}
+              <AddToList style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;Add Main Item
+            </Button>
+          </div>
         </Card.Body>
         {/* DESSERTS */}
 
@@ -124,30 +129,37 @@ const EditRestoMenuForm = (props) => {
                 </>
               ))}
           </Card.Text>
-          <Button>
-            {" "}
-            <AddToList style={{ width: "30px", height: "30px" }} />
-            &nbsp;&nbsp;Add Dessert Item
-          </Button>
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <Button>
+              {" "}
+              <AddToList style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;Add Dessert Item
+            </Button>
+          </div>
         </Card.Body>
         <Card.Header className="p-3 box mt-2 text-center " style={myStyle}>
           click below to update all menu changes
         </Card.Header>
-
-        <Button
-          onClick={handleSubmit(onSubmit, onError)}
-          style={{
-            margin: "0",
-            position: "sticky",
-            top: "50%",
-            left: "50%",
-            marginTop: "2%",
-            marginBottom: "2%",
-          }}
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
-          <Edit style={{ width: "30px", height: "30px" }} />
-          &nbsp;&nbsp;Update
-        </Button>
+          <Button
+            onClick={handleSubmit(onSubmit, onError)}
+            style={{
+              margin: "0",
+
+              top: "50%",
+              left: "50%",
+              marginTop: "2%",
+              marginBottom: "2%",
+            }}
+          >
+            <Edit style={{ width: "30px", height: "30px" }} />
+            &nbsp;&nbsp;Update
+          </Button>
+        </div>
       </Container>
     </div>
   );
