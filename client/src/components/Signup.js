@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
@@ -13,7 +13,9 @@ const Signup = () => {
   const myStyle = {
     fontFamily: "Bebas Neue",
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");

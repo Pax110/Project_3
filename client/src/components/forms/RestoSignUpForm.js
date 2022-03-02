@@ -39,7 +39,9 @@ const RestoSignUpForm = () => {
   const [showSignup, setShowSignup] = useState(false);
 
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     console.log("useEffect");
