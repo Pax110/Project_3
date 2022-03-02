@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Container, Form, Card } from "react-bootstrap";
-import { Delete } from "@styled-icons/fluentui-system-regular/Delete";
-import { ImageAdd } from "@styled-icons/boxicons-solid/ImageAdd";
+import { DeleteIcon } from "../icon/DeleteIcon";
 import { AddImageIcon } from "../icon/AddImageIcon";
 
 const Main = ({ register, index }) => {
@@ -57,7 +56,7 @@ const Main = ({ register, index }) => {
         }}
         // onClick={handleDelete}
       >
-        <Delete style={{ width: "30px", height: "30px" }} />
+        <DeleteIcon style={{ width: "30px", height: "30px" }} />
         Delete
       </Button>
     </Card>
