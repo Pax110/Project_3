@@ -9,6 +9,7 @@ import { DocumentAttach } from "@styled-icons/ionicons-outline/DocumentAttach";
 
 const DriverSignUpForm = () => {
   const { db } = useFirebase();
+  const myStyle = { fontFamily: "Bebas Neue" };
   const { user, logOut } = useUserAuth();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -22,8 +23,8 @@ const DriverSignUpForm = () => {
   const [province, setProvince] = useState("");
   const [postal, setPostal] = useState("");
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   const handleClose = () => {
     setShow(false);
     navigate("/");
@@ -85,8 +86,9 @@ const DriverSignUpForm = () => {
           }}
         >
           <div className="p-4 box">
-            <h2 className="mb-3 text-center">Join Culinary Collective!</h2>
-            <p className="mb-3 text-center">Become A Driver Today </p>
+            <h1 className="mb-3 text-center" style={myStyle}>
+              Become A Driver Today{" "}
+            </h1>
             <p className="mb-3 text-center">
               Please review the fields and update them to match your license{" "}
             </p>
@@ -274,7 +276,7 @@ const DriverSignUpForm = () => {
                       variant="success"
                       onClick={() => {
                         handleClose();
-                        navigate("/signup")
+                        navigate("/signup");
                       }}
                     >
                       Close

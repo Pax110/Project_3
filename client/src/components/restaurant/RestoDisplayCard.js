@@ -11,6 +11,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 import { CardMedia, Container } from "@mui/material";
+import { Dice } from "../icon/Dice";
 
 const RestoDisplayCard = () => {
   const { db } = useFirebase();
@@ -85,6 +86,11 @@ const RestoDisplayCard = () => {
           <ImageListItemBar
             title="I'm Feeling Lucky!"
             subtitle="Click for random selection."
+            actionIcon={
+              <IconButton sx={{ color: "rgba(255, 255, 255, 0.54)" }}>
+                <Dice />
+              </IconButton>
+            }
           />
         </ImageListItem>
       </ImageList>
