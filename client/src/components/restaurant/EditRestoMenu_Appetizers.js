@@ -65,30 +65,6 @@ const Appetizer = ({ register, index }) => {
           {...register(`menu.appetizers[${index}].menuphoto`)}
           value="appetizers"
         />
-        <br />
-        <Button
-          style={{
-            backgroundColor: "#feaa00",
-            borderColor: "#feaa00",
-            padding: "0.25rem",
-            float: "left",
-          }}
-        >
-          <AddImageIcon style={{ width: "30px", height: "30px" }} />
-          Upload Images
-        </Button>
-        <br />
-        <Button
-          variant="danger"
-          style={{
-            padding: "0.25rem",
-            float: "right",
-          }}
-          onClick={handleDelete}
-        >
-          <Delete style={{ width: "30px", height: "30px" }} />
-          Delete
-        </Button>
       </Card.Body>
       <Button
         style={{
@@ -101,7 +77,7 @@ const Appetizer = ({ register, index }) => {
         <AddImageIcon style={{ width: "30px", height: "30px" }} />
         Upload Images
       </Button>
-      <br />
+
       <Button
         variant="danger"
         style={{

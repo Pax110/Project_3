@@ -78,11 +78,15 @@ const EditRestoMenuForm = (props) => {
                 </>
               ))}
           </Card.Text>
-          <Button>
-            {" "}
-            <AddToList style={{ width: "30px", height: "30px" }} />
-            &nbsp;&nbsp;Add Appetizer Item
-          </Button>
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <Button>
+              {" "}
+              <AddToList style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;Add Appetizer Item
+            </Button>
+          </div>
         </Card.Body>
 
         {/* MAINS */}
