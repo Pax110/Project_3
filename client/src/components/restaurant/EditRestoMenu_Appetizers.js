@@ -39,7 +39,7 @@ const Appetizer = ({ register, index }) => {
   return (
     <Card
       style={{
-        width: "400px",
+        width: "425px",
         backgroundColor: "#f7f4ef",
         display: "inline-block",
         padding: "3%",

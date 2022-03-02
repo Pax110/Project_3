@@ -48,11 +48,13 @@ const EditRestoMenuForm = (props) => {
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        paddingTop: "5%",
+        paddingBottom: "5%",
       }}
     >
       <Container
         style={{
-          width: "55%",
+          width: "60%",
           backgroundColor: "#f7f4ef",
           borderRadius: "15px",
           overflowY: "auto",
