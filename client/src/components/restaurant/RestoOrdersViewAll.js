@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 
-const RestoOrdersViewAll = ({ orders }) => {
+const RestoOrdersViewAll = ({ orders, status, setStatus }) => {
   const myStyle = { fontFamily: "Bebas Neue" };
-
-  const [status, setStatus] = useState("Completed");
+  
 
   return (
     <div>

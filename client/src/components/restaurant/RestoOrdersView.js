@@ -4,6 +4,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 import { useParams } from "react-router-dom";
 import {
   Button,
+  ButtonGroup,
   Card,
   Col,
   ListGroup,
@@ -18,10 +19,11 @@ import RestoOrdersViewAll from "./RestoOrdersViewAll";
 
 const LiveOrders = () => {
   const { db, user } = useUserAuth();
- 
-
+  const [status, setStatus] = useState(null);
   const [orders, setOrders] = useState();
+  const [pendingOrders, setPendingOrders] = useState();
   const { id } = useParams();
+
   console.log("restoId", id);
   useEffect(() => {
     const getData = async () => {
@@ -41,9 +43,16 @@ const LiveOrders = () => {
         console.log("error", e.message);
       }
     };
-
+    const filterPendings = () => {
+      const filtered = orders?.filter((order) => {
+        return order.orderStatus == "Pending";
+      });
+      setPendingOrders(filtered);
+    };
+    // pendingOrders = orders.forEach()
     getData();
-  }, [user.uid, orders]);
+    filterPendings();
+  }, [user.uid]);
   console.log("orders..", orders);
 
   const orderStyle = {
@@ -55,6 +64,10 @@ const LiveOrders = () => {
   const handleSelect = () => {
     console.log("some link selected");
   };
+
+  //from the orders array - extract the ones that are pending...
+  console.log("pending orders are", pendingOrders);
+
   if (orders) {
     return (
       <>
@@ -74,10 +87,49 @@ const LiveOrders = () => {
             className="mb-3"
           >
             <Tab eventKey="Live" title="Live Orders">
-              {/* {Live orders would go here...} */}
+              {pendingOrders?.map((order) => (
+                <Card
+                  style={{
+                    width: "50rem",
+                    margin: "auto",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <Card.Title>Order Number: {order.orderId}</Card.Title>
+                        <span> Date: </span> <br />
+                        <span> Time: </span> <br />
+                      </Col>
+                      <Col style={{ textAlign: "right" }}>
+                        <strong>Status: {order.orderStatus}</strong><br />
+                        <strong>Delivery Type:</strong> <br />
+                      </Col>
+                    </Row>
+                    <Card.Text>
+                      Items: <br />
+                      <hr></hr>
+                      <p>Order Total: </p>
+                    </Card.Text>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <Button style={{ margin: "10px" }}>
+                        {" "}
+                        Mark Complete{" "}
+                      </Button>
+                      <spna></spna>
+                      {/* <Button style={{margin: "10px"}}> Mark Cancel </Button> */}
+                    </div>
+                  </Card.Body>
+                </Card>
+              ))}
             </Tab>
             <Tab eventKey="All" title="All">
-              <RestoOrdersViewAll orders={orders}/>
+              <RestoOrdersViewAll
+                status={status}
+                setStatus={setStatus}
+                orders={orders}
+              />
             </Tab>
           </Tabs>
         </Container>
