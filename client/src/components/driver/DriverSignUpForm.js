@@ -272,6 +272,7 @@ const DriverSignUpForm = () => {
                       variant="success"
                       onClick={() => {
                         handleClose();
+                        navigate("/signup")
                       }}
                     >
                       Close

@@ -335,6 +335,7 @@ const RestoSignUpForm = () => {
                       variant="success"
                       onClick={() => {
                         handleClose();
+                        navigate("/signup")
                         
                       }}
                     >
