@@ -279,9 +279,7 @@ const Navbar = () => {
                           )}
                         </Dropdown.Menu>
                       </Dropdown>
-                      <Dropdown>
-                        Filters
-                      </Dropdown>
+                     
                     </Nav>
                   </>
                 ))}
