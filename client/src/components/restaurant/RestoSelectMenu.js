@@ -4,6 +4,10 @@ import { useUserAuth } from "../context/UserAuthContext";
 import { useFirebase } from "../FirebaseProvider";
 import { Form, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { ReceiptLong } from "@styled-icons/material-outlined/ReceiptLong";
+import { PersonCircle } from "@styled-icons/bootstrap/PersonCircle";
+import { MenuBook } from "@styled-icons/material-twotone/MenuBook";
+import { RestaurantMenu } from "@styled-icons/material-sharp/RestaurantMenu";
 
 const RestoSelectMenu = () => {
   const { db } = useFirebase();
@@ -58,7 +62,8 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            Orders
+            <ReceiptLong style={{ width: "30px", height: "30px" }} />
+            &nbsp;&nbsp;Orders
           </Button>
         </Link>
         <Link to={`/restaurant/editprofile/${selectedRestoID}`}>
@@ -72,7 +77,8 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            Account Details
+            <RestaurantMenu style={{ width: "30px", height: "30px" }} />
+            &nbsp;&nbsp;Account Details
           </Button>
         </Link>
         <Link to={`/restaurant/editmenu/${selectedRestoID}`}>
@@ -86,22 +92,24 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            Menu Details
+            <MenuBook style={{ width: "30px", height: "30px" }} />
+            &nbsp;&nbsp;Menu Details
           </Button>
         </Link>{" "}
         <Link to={`/restaurant/chefprofile/${selectedRestoID}`}>
-        <Button
-          variant="primary"
-          disabled={!selectedRestoID}
-          style={{
-            backgroundColor: "#feaa00",
-            borderColor: "#feaa00",
-            padding: "0.25rem",
-            margin: "1%",
-          }}
-        >
-          Chef Profile
-        </Button>
+          <Button
+            variant="primary"
+            disabled={!selectedRestoID}
+            style={{
+              backgroundColor: "#feaa00",
+              borderColor: "#feaa00",
+              padding: "0.25rem",
+              margin: "1%",
+            }}
+          >
+            <PersonCircle style={{ width: "30px", height: "30px" }} />
+            &nbsp;&nbsp;Chef Profile
+          </Button>
         </Link>
       </Form.Group>
     </div>
