@@ -5,8 +5,10 @@ import background from "../components/landingimage/wood.jpg";
 import logo from "../components/landingimage/logocc.png";
 import RestoDisplayCard from "../components/restaurant/RestoDisplayCard";
 import Filters from "../components/cart/Filters";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import DriverSignUpPage from "../components/driver/DriverSignUpPage";
+import ChefSpotlight from "../components/restaurant/ChefSpotlight";
+
 function LandingPage() {
   return (
     <div>
@@ -21,8 +23,13 @@ function LandingPage() {
         }}
       >
         <Row style={{ marginBottom: "30px" }}>
-          <RestoDisplayCard />
-          <Filters />
+          <Col className="col-9">
+            <RestoDisplayCard />
+          </Col>
+          <Col className="col-3">
+            <Filters style={{ height: "auto" }} />
+            <ChefSpotlight />
+          </Col>
         </Row>
         <Row style={{ maxWidth: "none", margin: "0 auto" }}>
           <img
