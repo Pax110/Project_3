@@ -5,29 +5,31 @@ import { useFirebase } from "../FirebaseProvider";
 
 const ChefSpotlight = () => {
   const { db } = useFirebase();
-  const [chef, setChef] = useState(null);
   const [restaurant, setRestaurant] = useState([]);
   const restaurantsCollectionRef = collection(db, "restaurants");
 
-  const myStyle = { fontFamily: "Bebas Neue" };
+  const [chef, setChef] = useState(null);
 
-  console.log("resto issss", restaurant);
-  console.log("chef issss", chef);
+  const myStyle = { fontFamily: "Bebas Neue" };
 
   useEffect(() => {
     const getRestaurants = async () => {
-      const data = await getDocs(restaurantsCollectionRef);
-
-      setRestaurant(
-        data.docs.map((doc) => ({ ...doc.data(), DOC_ID: doc.id }))
-      );
-      const generateRandomIndex = (array) =>
-        Math.floor(Math.random() * array.length);
-
-      setChef(generateRandomIndex(restaurant));
+      const querySnapshot = await getDocs(restaurantsCollectionRef);
+      let newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        DOC_ID: doc.id,
+      }));
+      setRestaurant(newData);
     };
     getRestaurants();
   }, []);
+
+  let length = restaurant.length;
+  let random = Math.floor(Math.random() * length);
+
+  useEffect(() => {
+    setChef(random);
+  }, [random]);
 
   if (restaurant) {
     return (
@@ -41,8 +43,8 @@ const ChefSpotlight = () => {
         <h1 className="p-4 box mt-3 text-center" style={myStyle}>
           Chef Spotlight
         </h1>
-        {restaurant[chef]?.name}
-        {restaurant[chef]?.contact.owner.firstName}
+
+        {chef != null && <div>{restaurant[chef]?.name}</div>}
       </Container>
     );
   }
