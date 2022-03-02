@@ -9,8 +9,12 @@ const Dessert = ({ register, index }) => {
   return (
     <Card
       style={{
-        width: "400",
-        backgroundColor: "white",
+        width: "400px",
+        backgroundColor: "#f7f4ef",
+        display: "inline-block",
+        padding: "3%",
+        margin: "2.5%",
+        justifyContent: "center",
       }}
     >
       <Card.Body>
@@ -31,35 +35,30 @@ const Dessert = ({ register, index }) => {
           {...register(`menu.desserts[${index}].menuphoto`)}
           value="desserts"
         />
-        <Button
-          style={{
-            backgroundColor: "#feaa00",
-            borderColor: "#feaa00",
-            padding: "0.25rem",
-            margin: "3%",
-          }}
-        >
-          <AddImageIcon style={{ width: "30px", height: "30px" }} />
-          Upload Images
-        </Button>
-        <br />
-        <Button
-          variant="danger"
-          style={{
-            padding: "0.25rem",
-            margin: "3%",
-            top: "50%",
-            left: "50%",
-          }}
-          // onClick={handleDelete}
-        >
-          <Delete style={{ width: "30px", height: "30px" }} />
-          Delete
-        </Button>
-        <br />
-
-        <br />
       </Card.Body>
+      <Button
+        style={{
+          backgroundColor: "#feaa00",
+          borderColor: "#feaa00",
+          padding: "0.25rem",
+          float: "left",
+        }}
+      >
+        <AddImageIcon style={{ width: "30px", height: "30px" }} />
+        Upload Images
+      </Button>
+
+      <Button
+        variant="danger"
+        style={{
+          padding: "0.25rem",
+          float: "right",
+        }}
+        // onClick={handleDelete}
+      >
+        <Delete style={{ width: "30px", height: "30px" }} />
+        Delete
+      </Button>
     </Card>
   );
 };

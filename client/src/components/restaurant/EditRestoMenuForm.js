@@ -55,7 +55,6 @@ const EditRestoMenuForm = (props) => {
           width: "55%",
           backgroundColor: "#f7f4ef",
           borderRadius: "15px",
-          paddingBottom: "15px",
           overflowY: "auto",
           maxHeight: "800px",
         }}
@@ -131,6 +130,9 @@ const EditRestoMenuForm = (props) => {
             &nbsp;&nbsp;Add Dessert Item
           </Button>
         </Card.Body>
+        <Card.Header className="p-3 box mt-2 text-center " style={myStyle}>
+          click below to update all menu changes
+        </Card.Header>
 
         <Button
           onClick={handleSubmit(onSubmit, onError)}
@@ -139,6 +141,8 @@ const EditRestoMenuForm = (props) => {
             position: "sticky",
             top: "50%",
             left: "50%",
+            marginTop: "2%",
+            marginBottom: "2%",
           }}
         >
           <Edit style={{ width: "30px", height: "30px" }} />
