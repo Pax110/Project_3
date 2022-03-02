@@ -21,7 +21,9 @@ const DriverSignUpForm = () => {
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [postal, setPostal] = useState("");
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const handleClose = () => {
     setShow(false);
     navigate("/");
@@ -272,6 +274,7 @@ const DriverSignUpForm = () => {
                       variant="success"
                       onClick={() => {
                         handleClose();
+                        navigate("/signup")
                       }}
                     >
                       Close

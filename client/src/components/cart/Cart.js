@@ -83,7 +83,8 @@ const Cart = () => {
         restaurantId: cart[0].restoId, //get the restoId from the state
         userLocation: "t3q4w1",
         orderItems: cart,
-        restaurantName: cart[0].restoName, //make this dynamic after getting the restoId
+        restaurantName: cart[0].restoName,
+        orderStatus: "Pending" //make this dynamic after getting the restoId
       });
     } catch (e) {
       console.log("error", e.message);
