@@ -5,9 +5,12 @@ import { useFirebase } from "../FirebaseProvider";
 import { Form, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReceiptLong } from "@styled-icons/material-outlined/ReceiptLong";
-import { PersonCircle } from "@styled-icons/bootstrap/PersonCircle";
+// import { PersonCircle } from "@styled-icons/bootstrap/PersonCircle";
 import { MenuBook } from "@styled-icons/material-twotone/MenuBook";
 import { RestaurantMenu } from "@styled-icons/material-sharp/RestaurantMenu";
+import { FaFileDownload } from "react-icons/fa";
+import { FaGrinAlt } from "react-icons/fa";
+
 
 const RestoSelectMenu = () => {
   const { db } = useFirebase();
@@ -62,7 +65,8 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            <ReceiptLong style={{ width: "30px", height: "30px" }} />
+            <FaFileDownload style={{ width: "30px", height: "30px" }}/>
+            {/* <ReceiptLong style={{ width: "30px", height: "30px" }} /> */}
             &nbsp;&nbsp;Orders
           </Button>
         </Link>
@@ -107,7 +111,7 @@ const RestoSelectMenu = () => {
               margin: "1%",
             }}
           >
-            <PersonCircle style={{ width: "30px", height: "30px" }} />
+            <FaGrinAlt style={{ width: "30px", height: "30px" }} />
             &nbsp;&nbsp;Chef Profile
           </Button>
         </Link>
