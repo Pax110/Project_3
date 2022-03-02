@@ -31,11 +31,10 @@
 .goToCartButton {
   display: flex;
   justify-content: center;
-   background-color: "feaa00"
+  background-color: "feaa00";
 }
 
-
-.goToCartButton > button{
+.goToCartButton > button {
   width: auto;
   background-color: "feaa00";
 }
@@ -53,7 +52,6 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  width: 20%;
   margin: 10px;
   height: "auto";
   border-radius: 5px;
