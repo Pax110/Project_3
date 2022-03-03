@@ -17,7 +17,7 @@ const SingleUser = ({ index, data }) => {
         {data.email}
       </td>{" "}
       <td>{data.phone}</td>
-      <td>{data.role}</td>{" "}
+     
     </>
   );
 };
