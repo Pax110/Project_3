@@ -52,6 +52,7 @@ const Admin = () => {
         <thead>
           <tr style={{ backgroundColor: "white" }}>
             <th>#</th>
+            <th style={{width: "10px"}}>Edit User</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
