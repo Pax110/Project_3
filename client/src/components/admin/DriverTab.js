@@ -46,7 +46,7 @@ const DriverTab = () => {
       return (
         <tbody key={index}>
           <tr style={{ backgroundColor: "white" }}>
-            <SingleUser index={index} data={data} />
+            <SingleUser index={index+1} data={data} />
           </tr>
         </tbody>
       );

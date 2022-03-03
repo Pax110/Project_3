@@ -12,7 +12,7 @@ const CustomerTab = () => {
   useEffect(() => {
     const getData = async () => {
       let restoRef = collection(db, "users");
-      let q = query(restoRef, where('role', 'array-contains-any', ['Customer']));
+      let q = query(restoRef, where('role', 'in', [['Customer']]));
       let querySnap = await getDocs(q);
       let newData = querySnap.docs.map((doc) => ({
         ...doc.data(),
@@ -46,7 +46,7 @@ const CustomerTab = () => {
       return (
         <tbody key={index}>
           <tr style={{ backgroundColor: "white" }}>
-            <SingleUser index={index} data={data} />
+            <SingleUser index={index+1} data={data} />
           </tr>
         </tbody>
       );
