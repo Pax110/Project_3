@@ -8,6 +8,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 
 const DriverOrders = () => {
   const [orders, setOrders] = useState();
+  const myStyle = { fontFamily: "Bebas Neue" };
 
   const dateToday = new Date().toDateString();
   const { db, user } = useUserAuth();
@@ -33,54 +34,64 @@ const DriverOrders = () => {
     getOrdersData();
   }, [user.uid]);
   const linkStyle = {
-   textDecoration: 'none'
-  }
+    textDecoration: "none",
+  };
 
   console.log("orders drivewr dash", orders);
-  return (<>
-    <div>
-      <Container>
-        <div style={{margin: "10px"}}>
+  return (
+    <>
+      <Container
+        style={{
+          width: "auto",
+          backgroundColor: "#f7f4ef",
+          borderRadius: "15px",
+          padding: "2%",
+        }}
+      >
+        <h1 className="p-4 box text-center" style={myStyle}>
+          Today's total deliveries: {orders?.length}
+        </h1>
 
-      <h4 style={{textAlign: "center"}}>Today's total orders: ({orders?.length})</h4>
-        </div>
         <Row xs={1} md={4}>
           {orders?.map((order) => (
-          <Col>
-        <Card>
-          <Card.Body>
-            <Card.Title>Order Number: {order.orderId}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              <span>Delivery Type: {order.deliveryType}</span>
-              <br></br>
-              <span>Expected delivery time: {order.orderTime}</span>
-            </Card.Subtitle>
-            <Card.Text>
-              <span>Customer Name: {order.customerName}</span>
-              <br></br>
-              <span>Customer Contact: {order.customerPhone}</span>
-            </Card.Text>
-            <Card.Footer>
-              <span>Pickup Location: </span>
-              <br></br>
-              <span>123 Kitchen Address</span>
-              <br></br>
-              
-              <span>Dropfff Location: </span>
-              <br></br>
-              <span>{order.customerAddress}</span>
-              <br></br>
-              <Button><Card.Link href="#" style={linkStyle}>Get Directions</Card.Link></Button>
-            </Card.Footer>
-          </Card.Body>
-        </Card>
-          </Col>
-      ))}
+            <Col>
+              <Card style={{ margin: "auto", marginBottom: "10px" }}>
+                <Card.Body>
+                  <Card.Title>Order Number: {order.orderId}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    <span>Delivery Type: {order.deliveryType}</span>
+                    <br></br>
+                    <span>Expected delivery time: {order.orderTime}</span>
+                  </Card.Subtitle>
+                  <Card.Text>
+                    <span>Customer Name: {order.customerName}</span>
+                    <br></br>
+                    <span>Customer Contact: {order.customerPhone}</span>
+                  </Card.Text>
+                  <Card.Footer>
+                    <strong>Pickup Location: </strong>
+                    <br></br>
+                    <span>123 Kitchen Address</span>
+                    <br></br>
+
+                    <strong>Drop-Off Location: </strong>
+                    <br></br>
+                    <span>{order.customerAddress}</span>
+                    <br></br>
+                    <Button>
+                      <Card.Link href="#" style={linkStyle}>
+                        Get Directions
+                      </Card.Link>
+                    </Button>
+                  </Card.Footer>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </Container>
-      
-    </div>
-    </>);
+    </>
+  );
 };
 
 export default DriverOrders;

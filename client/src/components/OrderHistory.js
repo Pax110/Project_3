@@ -74,7 +74,7 @@ const OrderHistory = () => {
               <Card.Text>
                 {order.orderItems.map((item) => (
                   <>
-                    <span>{item.qty}&nbsp;</span>
+                    <span>{item.qty} x&nbsp;</span>
                     <span>{item.name}&nbsp;</span>
                     <span>${item.price}</span>
                     <br></br>
