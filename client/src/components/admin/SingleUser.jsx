@@ -6,11 +6,11 @@ const SingleUser = ({ index, data }) => {
   return (
     <>
       <td>{index}</td>
-      <Link to={`/admin/user-profile/${data.uid}`}>
-        <td>
+      <td>
+        <Link to={`/admin/user-profile/${data.uid}`}>
           <UserSettings />
-        </td>
-      </Link>
+        </Link>
+      </td>
       <td>{data.firstName}</td>
       <td>{data.lastName}</td>
       <td role="gridcell" style={{ padding: "0.5rem", width: "auto" }}>
