@@ -8,8 +8,8 @@ import background from "../landingimage/wood.jpg";
 import Appetizer from "./EditRestoMenu_Appetizers";
 import Main from "./EditRestoMenuForm_Mains";
 import Dessert from "./EditRestoMenuForm_Desserts";
-import { Edit } from "@styled-icons/feather/Edit";
-import { AddToList } from "@styled-icons/entypo/AddToList";
+import { EditIcon } from "../icon/EditIcon";
+import { AddImageIcon } from "../icon/AddImageIcon";
 
 const EditRestoMenuForm = (props) => {
   const docValue = props.document;
@@ -84,7 +84,7 @@ const EditRestoMenuForm = (props) => {
           >
             <Button>
               {" "}
-              <AddToList style={{ width: "30px", height: "30px" }} />
+              <AddImageIcon style={{ width: "30px", height: "30px" }} />
               &nbsp;&nbsp;Add Appetizer Item
             </Button>
           </div>
@@ -111,7 +111,7 @@ const EditRestoMenuForm = (props) => {
             {" "}
             <Button>
               {" "}
-              <AddToList style={{ width: "30px", height: "30px" }} />
+              <AddImageIcon style={{ width: "30px", height: "30px" }} />
               &nbsp;&nbsp;Add Main Item
             </Button>
           </div>
@@ -136,7 +136,7 @@ const EditRestoMenuForm = (props) => {
           >
             <Button>
               {" "}
-              <AddToList style={{ width: "30px", height: "30px" }} />
+              <AddImageIcon style={{ width: "30px", height: "30px" }} />
               &nbsp;&nbsp;Add Dessert Item
             </Button>
           </div>
@@ -158,7 +158,7 @@ const EditRestoMenuForm = (props) => {
               marginBottom: "2%",
             }}
           >
-            <Edit style={{ width: "30px", height: "30px" }} />
+            <EditIcon style={{ width: "30px", height: "30px" }} />
             &nbsp;&nbsp;Update
           </Button>
         </div>

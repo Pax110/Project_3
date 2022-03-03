@@ -5,7 +5,8 @@ import background from "../landingimage/food1.jpg";
 import { collection, setDoc, arrayUnion, doc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
-import { DocumentAttach } from "@styled-icons/ionicons-outline/DocumentAttach";
+import { AttachDocumentIcon } from "../icon/AttachDocumentIcon";
+
 
 const DriverSignUpForm = () => {
   const { db } = useFirebase();
@@ -209,13 +210,13 @@ const DriverSignUpForm = () => {
                   </Form.Label>
                   <div className="d-grid gap-4">
                     <Button variant="primary" type="button">
-                      <DocumentAttach
+                      <AttachDocumentIcon
                         style={{ width: "30px", height: "30px" }}
                       />
                       &nbsp;&nbsp;Drivers Abstract
                     </Button>
                     <Button variant="primary" type="button">
-                      <DocumentAttach
+                    <AttachDocumentIcon
                         style={{ width: "30px", height: "30px" }}
                       />
                       &nbsp;&nbsp;Drivers License
