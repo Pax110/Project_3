@@ -2,7 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useFirebase } from "../FirebaseProvider";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaFileDownload } from "react-icons/fa";
 import { FaGrinAlt } from "react-icons/fa";
@@ -31,26 +31,34 @@ const RestoSelectMenu = () => {
     }
   }, [user?.uid]);
 
-  const ItemDisplay = (props) => {
-    const item = props.item;
-    return <option value={item.DOC_ID}>{item.name}</option>;
-  };
 
+
+  console.log("restoData is", restoData);
+  // const handleSelection = (e) => {
+  //   setSelectedRestoID(e.target.value);
+  //   console.log("This selected", selectedRestoID);
+  // };
   return (
     <div>
       <Form.Group as={Col} controlId="formSelectResto">
         <Form.Label style={{}}>Select Restaurant:</Form.Label>
-        <Form.Select
-          type="resto"
-          value={selectedRestoID}
-          onChange={(e) => {
-            setSelectedRestoID(e.target.value);
-          }}
-        >
-          <option value="Choose...">Choose...</option>
-          {restoData &&
-            restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
-        </Form.Select>
+        <div style={{margin: "10px"}}>
+        {restoData &&
+            restoData.map((item) => (
+              <Form.Check
+                inline
+                id={item.DOC_ID}
+                name="resto"
+                type="radio"
+                label={item.name}
+                value={selectedRestoID}
+                onChange={()=>{setSelectedRestoID(item.DOC_ID)}}
+              />
+            ))}
+        </div>
+
+     
+        <br></br>
         <Link to={`/restaurant/orders/${selectedRestoID}`}>
           <Button
             variant="primary"
@@ -117,3 +125,22 @@ const RestoSelectMenu = () => {
   );
 };
 export default RestoSelectMenu;
+
+
+// const ItemDisplay = (props) => {
+//   const item = props.item;
+//   return <option value={item.DOC_ID}>{item.name}</option>;
+// };
+{
+  /* <Form.Select
+          type="resto"
+          value={selectedRestoID}
+          onChange={(e) => {
+            setSelectedRestoID(e.target.value);
+          }}
+        >
+          <option value="Choose...">Choose...</option>
+          {restoData &&
+            restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
+        </Form.Select> */
+}
