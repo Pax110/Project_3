@@ -38,60 +38,64 @@ const DriverOrders = () => {
   };
 
   console.log("orders drivewr dash", orders);
-  return (
-    <>
-      <Container
-        style={{
-          width: "auto",
-          backgroundColor: "#f7f4ef",
-          borderRadius: "15px",
-          padding: "2%",
-        }}
-      >
-        <h1 className="p-4 box text-center" style={myStyle}>
-          Today's total deliveries: {orders?.length}
-        </h1>
+  if (orders) {
+    return (
+      <>
+        <Container
+          style={{
+            width: "auto",
+            backgroundColor: "#f7f4ef",
+            borderRadius: "15px",
+            padding: "2%",
+          }}
+        >
+          <h1 className="p-4 box text-center" style={myStyle}>
+            Today's total deliveries: {orders?.length}
+          </h1>
 
-        <Row xs={1} md={4}>
-          {orders?.map((order) => (
-            <Col>
-              <Card style={{ margin: "auto", marginBottom: "10px" }}>
-                <Card.Body>
-                  <Card.Title>Order Number: {order.orderId}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    <span>Delivery Type: {order.deliveryType}</span>
-                    <br></br>
-                    <span>Expected delivery time: {order.orderTime}</span>
-                  </Card.Subtitle>
-                  <Card.Text>
-                    <span>Customer Name: {order.customerName}</span>
-                    <br></br>
-                    <span>Customer Contact: {order.customerPhone}</span>
-                  </Card.Text>
-                  <Card.Footer>
-                    <strong>Pickup Location: </strong>
-                    <br></br>
-                    <span>123 Kitchen Address</span>
-                    <br></br>
+          <Row xs={1} md={4}>
+            {orders?.map((order) => (
+              <Col>
+                <Card style={{ margin: "auto", marginBottom: "10px" }}>
+                  <Card.Body>
+                    <Card.Title>Order Number: {order.orderId}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      <span>Delivery Type: {order.deliveryType}</span>
+                      <br></br>
+                      <span>Expected delivery time: {order.orderTime}</span>
+                    </Card.Subtitle>
+                    <Card.Text>
+                      <span>Customer Name: {order.customerName}</span>
+                      <br></br>
+                      <span>Customer Contact: {order.customerPhone}</span>
+                    </Card.Text>
+                    <Card.Footer>
+                      <strong>Pickup Location: </strong>
+                      <br></br>
+                      <span>123 Kitchen Address</span>
+                      <br></br>
 
-                    <strong>Drop-Off Location: </strong>
-                    <br></br>
-                    <span>{order.customerAddress}</span>
-                    <br></br>
-                    <Button>
-                      <Card.Link href="#" style={linkStyle}>
-                        Get Directions
-                      </Card.Link>
-                    </Button>
-                  </Card.Footer>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </>
-  );
+                      <strong>Drop-Off Location: </strong>
+                      <br></br>
+                      <span>{order.customerAddress}</span>
+                      <br></br>
+                      <Button>
+                        <Card.Link href="#" style={linkStyle}>
+                          Get Directions
+                        </Card.Link>
+                      </Button>
+                    </Card.Footer>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </>
+    );
+  } else {
+    return <div> Loading .. </div>;
+  }
 };
 
 export default DriverOrders;
