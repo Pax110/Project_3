@@ -66,7 +66,7 @@ const DriverOrders = () => {
               <span>123 Kitchen Address</span>
               <br></br>
               
-              <span>Dropfff Location: </span>
+              <span>Dropff Location: </span>
               <br></br>
               <span>{order.customerAddress}</span>
               <br></br>
