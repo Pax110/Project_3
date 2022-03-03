@@ -7,7 +7,11 @@ import { useUserAuth } from "../context/UserAuthContext";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import SingleUser from "./SingleUser";
-import { Container } from "react-bootstrap";
+import { Container, Tab, Tabs } from "react-bootstrap";
+import CustomerTab from "./CustomerTab";
+import BusinessTab from "./BusinessTab";
+import DriverTab from "./DriverTab";
+import OthersTab from "./OthersTab";
 
 const Admin = () => {
   const { db } = useFirebase();
@@ -15,6 +19,10 @@ const Admin = () => {
 
   // const [selectedRestoID, setSelectedRestoID] = useState("");
   const [userData, setUserData] = useState([]);
+  const [customer, setCustomer] = useState([]);
+  const [business, setBusiness] = useState([]);
+  const [driver, setDriver] = useState([]);
+  const [others, setOthers] = useState([]);
 
   const myStyle = { fontFamily: "Bebas Neue" };
 
@@ -30,8 +38,22 @@ const Admin = () => {
 
       setUserData(newData);
     };
+    const filterCustomers = () =>{
+       userData?.filter((user)=>{user.role.includes("Customer") == true && setCustomer(user)})
+       console.log("customer is",customer)
+    }
+    const filterBusiness = () =>{
+
+    }
+    const filterDrivers = () =>{
+
+    }
+    const filterOthers = () =>{
+
+    }
     if (user) {
       getData();
+      filterCustomers()
     }
   }, []);
   console.log("userdata", userData);
@@ -48,30 +70,26 @@ const Admin = () => {
       <h1 className="p-4 box text-center" style={myStyle}>
         Admin Dashboard
       </h1>
-      <Table bordered>
-        <thead>
-          <tr style={{ backgroundColor: "white" }}>
-            <th>#</th>
-            <th style={{width: "10px"}}>Edit User</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Role</th>
-          </tr>
-        </thead>
+      <Tabs
+        defaultActiveKey="Customers"
+        id="uncontrolled-tab-example"
+        className="mb-3"
+      >
+        <Tab eventKey="Customers" title="Customers">
+          <CustomerTab />
+        </Tab>
+        <Tab eventKey="Business" title="Business">
+          <BusinessTab />
+        </Tab>
+        <Tab eventKey="Driver" title="Driver" >
+          <DriverTab />
+        </Tab>
+        <Tab eventKey="Others" title="Others" >
+          <OthersTab />
+        </Tab>
 
-        {userData &&
-          userData.map((data, index) => {
-            return (
-              <tbody key={index}>
-                <tr style={{ backgroundColor: "white" }}>
-                  <SingleUser index={index} data={data} />
-                </tr>
-              </tbody>
-            );
-          })}
-      </Table>
+      </Tabs>
+      
     </Container>
   );
 };
@@ -90,3 +108,30 @@ export default Admin;
 //     <td>{data.phone}</td>
 //   </tr>
 // </tbody>
+
+
+
+// <Table bordered>
+//         <thead>
+//           <tr style={{ backgroundColor: "white" }}>
+//             <th>#</th>
+//             <th style={{ width: "10px" }}>Edit User</th>
+//             <th>First Name</th>
+//             <th>Last Name</th>
+//             <th>Email</th>
+//             <th>Phone</th>
+//             <th>Role</th>
+//           </tr>
+//         </thead>
+
+//         {userData &&
+//           userData.map((data, index) => {
+//             return (
+//               <tbody key={index}>
+//                 <tr style={{ backgroundColor: "white" }}>
+//                   <SingleUser index={index} data={data} />
+//                 </tr>
+//               </tbody>
+//             );
+//           })}
+//       </Table>
