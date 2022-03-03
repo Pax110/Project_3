@@ -2,7 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useFirebase } from "../FirebaseProvider";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaFileDownload } from "react-icons/fa";
 import { FaGrinAlt } from "react-icons/fa";
@@ -40,17 +40,29 @@ const RestoSelectMenu = () => {
     <div>
       <Form.Group as={Col} controlId="formSelectResto">
         <Form.Label style={{}}>Select Restaurant:</Form.Label>
-        <Form.Select
-          type="resto"
+   
+        <Form.Check
+          type="radio"
           value={selectedRestoID}
+          checked={type ==="selectedRestoID"}
+          label=""
           onChange={(e) => {
             setSelectedRestoID(e.target.value);
           }}
-        >
+        />
+        </Col>
+        <Col>
+        <Form.Check
+         type="radio"
+         />
           <option value="Choose...">Choose...</option>
           {restoData &&
             restoData.map((i) => <ItemDisplay key={i.name} item={i} />)}
-        </Form.Select>
+        
+        
+        
+        </Row>
+          
         <Link to={`/restaurant/orders/${selectedRestoID}`}>
           <Button
             variant="primary"
