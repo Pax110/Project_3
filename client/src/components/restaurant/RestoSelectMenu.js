@@ -59,7 +59,7 @@ const RestoSelectMenu = () => {
 
      
         <br></br>
-        <Link to={`/restaurant/orders/${selectedRestoID}`}>
+        {selectedRestoID &&<Link to={`/restaurant/orders/${selectedRestoID}`}>
           <Button
             variant="primary"
             disabled={!selectedRestoID}
@@ -74,8 +74,8 @@ const RestoSelectMenu = () => {
             {/* <ReceiptLong style={{ width: "30px", height: "30px" }} /> */}
             &nbsp;&nbsp;Orders
           </Button>
-        </Link>
-        <Link to={`/restaurant/editprofile/${selectedRestoID}`}>
+        </Link>}
+        {selectedRestoID &&<Link to={`/restaurant/editprofile/${selectedRestoID}`}>
           <Button
             variant="primary"
             disabled={!selectedRestoID}
@@ -89,8 +89,8 @@ const RestoSelectMenu = () => {
             <FaUtensils style={{ width: "30px", height: "30px" }} />
             &nbsp;&nbsp;Account Details
           </Button>
-        </Link>
-        <Link to={`/restaurant/editmenu/${selectedRestoID}`}>
+        </Link>}
+        {selectedRestoID &&<Link to={`/restaurant/editmenu/${selectedRestoID}`}>
           <Button
             variant="primary"
             disabled={!selectedRestoID}
@@ -104,8 +104,8 @@ const RestoSelectMenu = () => {
             <FaBookOpen style={{ width: "30px", height: "30px" }} />
             &nbsp;&nbsp;Menu Details
           </Button>
-        </Link>{" "}
-        <Link to={`/restaurant/chefprofile/${selectedRestoID}`}>
+        </Link>}{" "}
+        {selectedRestoID &&<Link to={`/restaurant/chefprofile/${selectedRestoID}`}>
           <Button
             variant="primary"
             disabled={!selectedRestoID}
@@ -119,7 +119,7 @@ const RestoSelectMenu = () => {
             <FaGrinAlt style={{ width: "30px", height: "30px" }} />
             &nbsp;&nbsp;Chef Profile
           </Button>
-        </Link>
+        </Link>}
       </Form.Group>
     </div>
   );
