@@ -1,20 +1,25 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import WheelComponent from "react-wheel-of-prizes";
+import { useFirebase } from "../FirebaseProvider";
+import { collection, getDocs } from "firebase/firestore";
+
 //get data from server, segemtns set segemtns to be an array,
-const Wheel = () => {
-  const segments = [
-    "Glazed & Confused",
-    "Crumbs",
-    "Muffet's Muffins",
-    "Sip a Soup",
-    "I Got Cake",
-    "Baba's Perogies",
-    "Ketolicious",
-    "Ruby's Emporium",
-    "British Bangers",
-    "Good Noodle",
-    "Gilded Wiener",
-  ];
+const Wheel = ({ restaurant }) => {
+  const [segments, setSegments] = useState();
+
+  const { db } = useFirebase();
+  useEffect(() => {
+    const getRestaurants = async () => {
+      const restaurantsCollectionRef = collection(db, "restaurants");
+      const querySnap = await getDocs(restaurantsCollectionRef);
+      let restonames = querySnap.docs.map((docSnap) => docSnap.data().name);
+      setSegments(restonames);
+    };
+
+    getRestaurants();
+  }, [db]);
+
+  console.log("resto is:", restaurant);
   const segColors = [
     "#EE4040",
     "#F0CF50",
@@ -31,6 +36,10 @@ const Wheel = () => {
   const onFinished = (winner) => {
     console.log(winner);
   };
+
+  if (!segments) {
+    return "LOADING";
+  }
   return (
     <WheelComponent
       segments={segments}
