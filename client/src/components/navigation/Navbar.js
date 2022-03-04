@@ -26,6 +26,8 @@ import { ButtonGroup, Dropdown, FormControl, Nav } from "react-bootstrap";
 import { Badge, TextField } from "@mui/material";
 import { CartState } from "../context/CartProvider";
 import { useParams } from "react-router-dom";
+import { ImClipboard, ImExit, ImInfo, ImQuestion, ImSpoonKnife, ImTruck, ImUser, ImUsers } from "react-icons/im";
+import { MdLogout } from "react-icons/md";
 
 const pages = ["Order History"];
 
@@ -97,8 +99,8 @@ const Navbar = () => {
   };
 
   const titleFont = "'Bebas Neue'";
-  const driver = userInfo?.role.includes("Driver")
-  console.log("is Driver?",driver)
+  const driver = userInfo?.role.includes("Driver");
+  console.log("is Driver?", driver);
   return (
     <>
       <AppBar
@@ -239,7 +241,11 @@ const Navbar = () => {
                           <Badge>&nbsp;{cart.length}</Badge>
                         </Dropdown.Toggle>
                         <Dropdown.Menu
-                          style={{ minwidth: 370, alignContent: "center",minWidth: "20rem" }}
+                          style={{
+                            minwidth: 370,
+                            alignContent: "center",
+                            minWidth: "20rem",
+                          }}
                         >
                           {cart.length > 0 ? (
                             <>
@@ -267,8 +273,15 @@ const Navbar = () => {
                                 </span>
                               ))}
                               <div className="goToCartButton">
-                                <Link to={`/cart/${a}`} style={{textDecoration: "none", alignContent: "center", backgroundColor: "feaa00"}}>
-                                  <Button style={{ margin: "0 10px"}}>
+                                <Link
+                                  to={`/cart/${a}`}
+                                  style={{
+                                    textDecoration: "none",
+                                    alignContent: "center",
+                                    backgroundColor: "feaa00",
+                                  }}
+                                >
+                                  <Button style={{ margin: "0 10px" }}>
                                     Go To Cart
                                   </Button>
                                 </Link>
@@ -279,7 +292,6 @@ const Navbar = () => {
                           )}
                         </Dropdown.Menu>
                       </Dropdown>
-                     
                     </Nav>
                   </>
                 ))}
@@ -318,28 +330,28 @@ const Navbar = () => {
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))} */}
+                  
 
-        
                   <MenuItem
                     component={Link}
                     to="/profile"
                     onClick={handleCloseUserMenu}
                   >
-                    Profile
+                   <ImUser style={{margin: "10px"}}/> Profile
                   </MenuItem>
                   <MenuItem
                     component={Link}
                     to="/order-history"
                     onClick={handleCloseUserMenu}
                   >
-                    Order History
+                    <ImClipboard style={{margin: "10px"}}/>Order History
                   </MenuItem>
                   <MenuItem
                     component={Link}
                     to="/need-help"
                     onClick={handleCloseUserMenu}
                   >
-                    Need Help?
+                    <ImQuestion style={{margin: "10px"}}/>Need Help?
                   </MenuItem>
                   {userInfo?.role.includes("Business") == true && (
                     <MenuItem
@@ -347,7 +359,7 @@ const Navbar = () => {
                       to="/restaurant/dashboard"
                       onClick={handleCloseUserMenu}
                     >
-                      Restaurant Dashboard
+                      <ImSpoonKnife style={{margin: "10px"}}/>Restaurant Dashboard
                     </MenuItem>
                   )}
                   {userInfo?.role.includes("Driver") == true && (
@@ -356,7 +368,7 @@ const Navbar = () => {
                       to="/driver"
                       onClick={handleCloseUserMenu}
                     >
-                      Driver Dashboard
+                      <ImTruck style={{margin: "10px"}}/>Driver Dashboard
                     </MenuItem>
                   )}
                   {userInfo?.role.includes("Admin") == true && (
@@ -365,7 +377,7 @@ const Navbar = () => {
                       to="/admin"
                       onClick={handleCloseUserMenu}
                     >
-                      Admin Dashboard
+                      <ImUsers style={{margin: "10px"}}/>Admin Dashboard
                     </MenuItem>
                   )}
 
@@ -374,7 +386,7 @@ const Navbar = () => {
                     to="/profile"
                     onClick={handleLogout}
                   >
-                    Logout
+                    <ImExit style={{margin: "10px"}}/>Logout
                   </MenuItem>
                 </Menu>
               </Box>
