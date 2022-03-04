@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WheelComponent from "react-wheel-of-prizes";
-
+//segemtns set segemtns to be an array
 const Wheel = () => {
   const segments = [
     "Glazed & Confused",
