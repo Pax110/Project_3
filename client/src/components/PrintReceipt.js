@@ -3,14 +3,11 @@ import { Button } from "react-bootstrap";
 import jsPDF from "jspdf";
 
 const PrintReceipt = ({ order }) => {
-
-  
-
-
-  const {orderTotal, restaurantName, orderItems, orderDate, orderTime} = order
+  const { orderTotal, restaurantName, orderItems, orderDate, orderTime } =
+    order;
 
   console.log("total", orderTotal);
-  console.log("restaurantName is ",restaurantName)
+  console.log("restaurantName is ", restaurantName);
   const handlePdf = () => {
     let verticalOffset = 150;
     let horizontalOffset = 66;
@@ -19,11 +16,11 @@ const PrintReceipt = ({ order }) => {
     let doc = new jsPDF("portrait", "px", "letter", "false");
     doc.text("Order Receipt", horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
-    doc.text("Date: "+ orderDate, horizontalOffset, verticalOffset);
+    doc.text("Date: " + orderDate, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
     doc.text(orderTime, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
-    
+
     doc.text(restaurantName, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
     orderItems.map((item, index) => {
@@ -31,7 +28,7 @@ const PrintReceipt = ({ order }) => {
       console.log("index", index + 1);
 
       doc.text(
-        ["Name:" + item.name, "Qty:" + item.qty, "Price:" + item.price],
+        ["Name: " + item.name, "Qty: " + item.qty, "Price: $" + item.price],
         horizontalOffset,
         verticalOffset
       );
@@ -62,4 +59,3 @@ const PrintReceipt = ({ order }) => {
 };
 
 export default PrintReceipt;
-

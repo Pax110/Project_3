@@ -65,9 +65,10 @@ const OrderHistory = () => {
           <Card
             style={{ width: "50rem", margin: "auto", marginBottom: "10px" }}
           >
-            <Card.Header>{order.restaurantName}</Card.Header>
+            <Card.Header>
+              <strong>{order.restaurantName}</strong>
+            </Card.Header>
             <Card.Body>
-              <Card.Title>Your Order</Card.Title>
               <Card.Text>
                 Order Date: {order.orderDate} {order.orderTime}
               </Card.Text>
