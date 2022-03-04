@@ -3,14 +3,17 @@ import WheelComponent from "react-wheel-of-prizes";
 
 const Wheel = () => {
   const segments = [
-    "baba",
-    "crumbs",
-    "keto",
+    "Glazed & Confused",
+    "Crumbs",
+    "Miss Muffet's Muffins",
     "Sip a Soup",
-    "peanuts",
-    "what",
-    "cats",
-    "dogs",
+    "I Got Cake",
+    "Baba's Perogies",
+    "Ketolicious",
+    "Ruby's Dog Treat Emporium",
+    "British Bangers",
+    "Good Noodle",
+    "Gilded Wiener",
   ];
   const segColors = [
     "#EE4040",
@@ -18,6 +21,9 @@ const Wheel = () => {
     "#815CD1",
     "#3DA5E0",
     "#34A24F",
+    "#F9AA1F",
+    "#EC3F3F",
+    "#FF9000",
     "#F9AA1F",
     "#EC3F3F",
     "#FF9000",

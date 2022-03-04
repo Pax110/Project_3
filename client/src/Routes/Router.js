@@ -22,14 +22,14 @@ import DriverPage from "../pages/DriverPage";
 import DriverOrdersPage from "../pages/DriverOrdersPage";
 import DriverSignUpPage from "../components/driver/DriverSignUpPage";
 import EditChefProfilePage from "../pages/EditChefProfilePage";
-import Wheel from "../components/wheel/wheel";
+import WheelPage from "../components/wheel/WheelPage";
 
 const Router = () => {
   return (
     <div>
       <Routes>
         <Route path="/signin" element={<LoginPage />} />
-        <Route path="/wheel" element={<Wheel />} />
+        <Route path="/Wheel" element={<WheelPage />} />
 
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignupPage />} />
