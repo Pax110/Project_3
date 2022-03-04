@@ -1,19 +1,27 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import Wheel from "./wheel";
+import background from "../landingimage/wood.jpg";
 
 const WheelPage = () => {
   return (
-    <Container
+    <div
       style={{
-        width: "600px",
-        backgroundColor: "#f7f4ef",
-        borderRadius: "15px",
-        paddingBottom: "15px",
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
-      <Wheel />
-    </Container>
+      <Container
+        style={{
+          width: "600px",
+          backgroundColor: "#f7f4ef",
+          borderRadius: "15px",
+        }}
+      >
+        <Wheel />
+      </Container>
+    </div>
   );
 };
 

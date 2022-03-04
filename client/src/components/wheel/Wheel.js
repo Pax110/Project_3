@@ -41,7 +41,7 @@ const Wheel = () => {
       contrastColor="white"
       buttonText="Spin"
       isOnlyOnce={false}
-      size={200}
+      size={250}
       upDuration={100}
       downDuration={1000}
       fontFamily="Arial"

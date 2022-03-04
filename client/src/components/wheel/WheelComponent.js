@@ -203,7 +203,7 @@ const WheelComponent = ({
   };
   const clear = () => {
     const ctx = canvasContext;
-    ctx.clearRect(0, 0, 520, 600);
+    ctx.clearRect(0, 0, 800, 650);
   };
   return (
     <div id="wheel">
