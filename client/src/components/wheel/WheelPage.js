@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import Wheel from "./wheel";
+import Wheel from "./Wheel";
 import background from "../landingimage/wood.jpg";
 
 const WheelPage = () => {

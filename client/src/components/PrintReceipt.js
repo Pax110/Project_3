@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import jsPDF from "jspdf";
+import image from "../components/landingimage/cc.png";
 
 const PrintReceipt = ({ order }) => {
   const { orderTotal, restaurantName, orderItems, orderDate, orderTime } =
@@ -9,11 +10,15 @@ const PrintReceipt = ({ order }) => {
   console.log("total", orderTotal);
   console.log("restaurantName is ", restaurantName);
   const handlePdf = () => {
-    let verticalOffset = 150;
+    let verticalOffset = 125;
     let horizontalOffset = 66;
     let lineSpace = 20;
     let itemSpace = 50;
     let doc = new jsPDF("portrait", "px", "letter", "false");
+
+    doc.text("CULINARY COLLECTIVE", horizontalOffset, verticalOffset);
+    doc.addImage(image, "PNG", 300, 80, 50, 50);
+    verticalOffset += lineSpace;
     doc.text("Order Receipt", horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
     doc.text("Date: " + orderDate, horizontalOffset, verticalOffset);
