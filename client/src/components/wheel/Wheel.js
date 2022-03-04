@@ -5,12 +5,12 @@ const Wheel = () => {
   const segments = [
     "Glazed & Confused",
     "Crumbs",
-    "Miss Muffet's Muffins",
+    "Muffet's Muffins",
     "Sip a Soup",
     "I Got Cake",
     "Baba's Perogies",
     "Ketolicious",
-    "Ruby's Dog Treat Emporium",
+    "Ruby's Emporium",
     "British Bangers",
     "Good Noodle",
     "Gilded Wiener",
@@ -41,7 +41,7 @@ const Wheel = () => {
       contrastColor="white"
       buttonText="Spin"
       isOnlyOnce={false}
-      size={290}
+      size={200}
       upDuration={100}
       downDuration={1000}
       fontFamily="Arial"
