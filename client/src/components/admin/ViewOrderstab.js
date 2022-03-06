@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useFirebase } from "../FirebaseProvider";
 import {
+    Button,
   Card,
   Col,
   Container,
@@ -38,52 +39,57 @@ const ViewOrderstab = () => {
     getData();
   }, [user.uid]);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     const transformSearch = (o) => {
-        let sorted = o;
-        console.log("sorted is ", sorted);
-        
-        sorted = sorted.filter((order)=>{
-            return order.orderId == search
-        })
-        console.log("sorted2 is ", sorted);
-       return sorted
-      };
-      if (orders) {
-        const result = transformSearch(orders);
-        setSortedSearch(result)
-      }
-  },[search])
+      let sorted = o;
+      console.log("sorted is ", sorted);
+
+      sorted = sorted.filter((order) => {
+        return order.orderId == search;
+      });
+      console.log("sorted2 is ", sorted);
+      return sorted;
+    };
+    if (orders) {
+      const result = transformSearch(orders);
+      setSortedSearch(result);
+    }
+  }, [search]);
 
   if (orders) {
     return (
       <>
+           
         <Container>
           <Row>
             <Col>
-              <FcSearch style={{ margin: "10px" }} />
               <FormControl
                 type="search"
                 placeholder="Search..."
-                className="m-auto"
+                className="sm-auto"
                 aria-label="Search"
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
                   console.log(search);
                 }}
-              />{" "}
+              />
             </Col>
 
             <Col>
-              <div style={{ border: "10px" }}>
+              <div style={{justifyContent: "end"}}>
                 <DropdownButton id="dropdown-basic-button" title="Sort by">
                   <Dropdown.Item href="#/action-1">Status</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Date</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Time</Dropdown.Item>
                 </DropdownButton>
               </div>
+            </Col>
+            <Col>
+                <div style={{justifyContent: "end"}}>
+
+            <Button>Generate report </Button>
+                </div>
             </Col>
           </Row>
         </Container>
@@ -98,46 +104,45 @@ const ViewOrderstab = () => {
               <th>Order Status</th>
             </tr>
           </thead>
-          {sortedSearch ? 
-          sortedSearch.map((order, index) => {
-            return (
-              <>
-                <tbody key={index} style={{ textAlign: "center" }}>
-                  <td>{index}</td>
-                  <td>{order.orderId}</td>
-                  <td>{order.orderDate}</td>
-                  <td>{order.orderTime}</td>
-                  <td>$ {order.orderTotal}</td>
+          {sortedSearch
+            ? sortedSearch.map((order, index) => {
+                return (
+                  <>
+                    <tbody key={index} style={{ textAlign: "center" }}>
+                      <td>{index}</td>
+                      <td>{order.orderId}</td>
+                      <td>{order.orderDate}</td>
+                      <td>{order.orderTime}</td>
+                      <td>$ {order.orderTotal}</td>
 
-                  {order.orderStatus === "Complete" ? (
-                    <td style={{ color: "green" }}>{order.orderStatus}</td>
-                  ) : (
-                    <td style={{ color: "red" }}>{order.orderStatus}</td>
-                  )}
-                </tbody>
-              </>
-            );
-          })
-          :
-           orders.map((order, index) => {
-            return (
-              <>
-                <tbody key={index} style={{ textAlign: "center" }}>
-                  <td>{index}</td>
-                  <td>{order.orderId}</td>
-                  <td>{order.orderDate}</td>
-                  <td>{order.orderTime}</td>
-                  <td>$ {order.orderTotal}</td>
+                      {order.orderStatus === "Complete" ? (
+                        <td style={{ color: "green" }}>{order.orderStatus}</td>
+                      ) : (
+                        <td style={{ color: "red" }}>{order.orderStatus}</td>
+                      )}
+                    </tbody>
+                  </>
+                );
+              })
+            : orders.map((order, index) => {
+                return (
+                  <>
+                    <tbody key={index} style={{ textAlign: "center" }}>
+                      <td>{index}</td>
+                      <td>{order.orderId}</td>
+                      <td>{order.orderDate}</td>
+                      <td>{order.orderTime}</td>
+                      <td>$ {order.orderTotal}</td>
 
-                  {order.orderStatus === "Complete" ? (
-                    <td style={{ color: "green" }}>{order.orderStatus}</td>
-                  ) : (
-                    <td style={{ color: "red" }}>{order.orderStatus}</td>
-                  )}
-                </tbody>
-              </>
-            );
-          })}
+                      {order.orderStatus === "Complete" ? (
+                        <td style={{ color: "green" }}>{order.orderStatus}</td>
+                      ) : (
+                        <td style={{ color: "red" }}>{order.orderStatus}</td>
+                      )}
+                    </tbody>
+                  </>
+                );
+              })}
         </Table>
       </>
     );
