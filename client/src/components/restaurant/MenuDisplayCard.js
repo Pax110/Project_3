@@ -33,6 +33,7 @@ const MenuDisplayCard = () => {
   const transformItems = (category) => {
 
     let sortedItems = category;
+    
     if (bySearchQuery) {
       sortedItems = sortedItems.filter((item) =>
         item.name.toLowerCase().includes(bySearchQuery.toLowerCase())

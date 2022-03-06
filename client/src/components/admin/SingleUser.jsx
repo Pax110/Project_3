@@ -13,9 +13,10 @@ const SingleUser = ({ index, data }) => {
       </td>
       <td>{data.firstName}</td>
       <td>{data.lastName}</td>
+      <a href="mailto:?subject=Culinary Collective <3 &amp;body=Hello friend, check out this amazing site for local home based businesses and commissary kitchens! Hope you like it :)">
       <td role="gridcell" style={{ padding: "0.5rem", width: "auto" }}>
         {data.email}
-      </td>{" "}
+      </td>{" "}</a>
       <td>{data.phone}</td>
      
     </>

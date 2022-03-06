@@ -12,6 +12,8 @@ import CustomerTab from "./CustomerTab";
 import BusinessTab from "./BusinessTab";
 import DriverTab from "./DriverTab";
 import OthersTab from "./OthersTab";
+import ViewOrderstab from "./ViewOrderstab";
+import { BsFillJournalBookmarkFill } from "react-icons/bs";
 
 const Admin = () => {
   const { db } = useFirebase();
@@ -38,22 +40,18 @@ const Admin = () => {
 
       setUserData(newData);
     };
-    const filterCustomers = () =>{
-       userData?.filter((user)=>{user.role.includes("Customer") == true && setCustomer(user)})
-       console.log("customer is",customer)
-    }
-    const filterBusiness = () =>{
-
-    }
-    const filterDrivers = () =>{
-
-    }
-    const filterOthers = () =>{
-
-    }
+    const filterCustomers = () => {
+      userData?.filter((user) => {
+        user.role.includes("Customer") == true && setCustomer(user);
+      });
+      console.log("customer is", customer);
+    };
+    const filterBusiness = () => {};
+    const filterDrivers = () => {};
+    const filterOthers = () => {};
     if (user) {
       getData();
-      filterCustomers()
+      filterCustomers();
     }
   }, []);
   console.log("userdata", userData);
@@ -81,15 +79,16 @@ const Admin = () => {
         <Tab eventKey="Business" title="Business">
           <BusinessTab />
         </Tab>
-        <Tab eventKey="Driver" title="Driver" >
+        <Tab eventKey="Driver" title="Driver">
           <DriverTab />
         </Tab>
-        <Tab eventKey="Others" title="Others" >
+        <Tab eventKey="Others" title="Others">
           <OthersTab />
         </Tab>
-
+        <Tab eventKey="ViewOrders" title="View Orders">
+          <ViewOrderstab />
+        </Tab>
       </Tabs>
-      
     </Container>
   );
 };
@@ -108,8 +107,6 @@ export default Admin;
 //     <td>{data.phone}</td>
 //   </tr>
 // </tbody>
-
-
 
 // <Table bordered>
 //         <thead>
