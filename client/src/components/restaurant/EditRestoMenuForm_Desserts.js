@@ -35,29 +35,29 @@ const Dessert = ({ register, index }) => {
           value="desserts"
         />
       </Card.Body>
-      <Button
-        style={{
-          backgroundColor: "#feaa00",
-          borderColor: "#feaa00",
-          padding: "0.25rem",
-          float: "left",
-        }}
-      >
-        <AddImageIcon style={{ width: "30px", height: "30px" }} />
-        Upload Images
-      </Button>
-
-      <Button
-        variant="danger"
-        style={{
-          padding: "0.25rem",
-          float: "right",
-        }}
-        // onClick={handleDelete}
-      >
-        <DeleteIcon style={{ width: "30px", height: "30px" }} />
-        Delete
-      </Button>
+      <div style={{ display: "inline" }}>
+        <Button
+          style={{
+            backgroundColor: "#feaa00",
+            borderColor: "#feaa00",
+            padding: "0.25rem",
+          }}
+        >
+          <AddImageIcon style={{ width: "30px", height: "30px" }} />
+          Upload Images
+        </Button>
+        &nbsp;&nbsp;
+        <Button
+          variant="danger"
+          style={{
+            padding: "0.25rem",
+          }}
+          // onClick={handleDelete}
+        >
+          <DeleteIcon style={{ width: "30px", height: "30px" }} />
+          &nbsp;&nbsp;Delete
+        </Button>
+      </div>
     </Card>
   );
 };

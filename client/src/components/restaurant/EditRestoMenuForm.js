@@ -1,6 +1,6 @@
 import { collection, doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
-import { Button, Container, Form, Card } from "react-bootstrap";
+import { Button, Container, Form, Card, Tab, Tabs } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -11,6 +11,7 @@ import Dessert from "./EditRestoMenuForm_Desserts";
 import { EditIcon } from "../icon/EditIcon";
 import { AddImageIcon } from "../icon/AddImageIcon";
 import BackButton from "../navigation/BackButton";
+import { Add } from "../icon/Add";
 
 const EditRestoMenuForm = (props) => {
   const docValue = props.document;
@@ -65,107 +66,117 @@ const EditRestoMenuForm = (props) => {
           maxHeight: "800px",
         }}
       >
-        <h1 className="p-4 box mt-3 text-center" style={myStyle}>
-          Menu
-        </h1>
-        <Card.Body>
-          {/* APPETIZERS */}
-
-          <Card.Text>
-            <h3 className="p-3 box mt-2 text-center" style={myStyle}>
-              Appetizers
-            </h3>
-            {/* {JSON.stringify(docValue.menu.appetizers)} */}
-            {docValue &&
-              docValue.menu.appetizers.map((data, index) => (
-                <>
-                  <Appetizer register={register} key={index} index={index} />
-                </>
-              ))}
-          </Card.Text>
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            <Button>
-              {" "}
-              <AddImageIcon style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Add Appetizer Item
-            </Button>
-          </div>
-        </Card.Body>
-
-        {/* MAINS */}
-        <Card.Body>
-          <h3 className="p-3 box mt-2 text-center" style={myStyle}>
-            Mains
-          </h3>
-          <Card.Text>
-            {/* {JSON.stringify(docValue.menu.mains)} */}
-
-            {docValue &&
-              docValue.menu.mains.map((data, index) => (
-                <>
-                  <Main register={register} key={index} index={index} />
-                </>
-              ))}
-          </Card.Text>
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            {" "}
-            <Button>
-              {" "}
-              <AddImageIcon style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Add Main Item
-            </Button>
-          </div>
-        </Card.Body>
-        {/* DESSERTS */}
-
-        <Card.Body>
-          <h3 className="p-3 box mt-2 text-center" style={myStyle}>
-            Desserts
-          </h3>
-          <Card.Text>
-            {/* {JSON.stringify(docValue.menu.desserts)} */}
-            {docValue &&
-              docValue.menu.desserts.map((data, index) => (
-                <>
-                  <Dessert register={register} key={index} index={index} />
-                </>
-              ))}
-          </Card.Text>
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            <Button>
-              {" "}
-              <AddImageIcon style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Add Dessert Item
-            </Button>
-          </div>
-        </Card.Body>
-        <h3 className="p-3 box mt-2 text-center " style={myStyle}>
-          Click below to update all menu changes
-        </h3>
         <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          style={{
+            display: "inline",
+          }}
         >
-          <Button
-            onClick={handleSubmit(onSubmit, onError)}
-            style={{
-              margin: "0",
-
-              top: "50%",
-              left: "50%",
-              marginTop: "2%",
-              marginBottom: "2%",
-            }}
-          >
-            <EditIcon style={{ width: "30px", height: "30px" }} />
-            &nbsp;&nbsp;Update
-          </Button>
+          <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit
+            Menu
+            <Button
+              onClick={handleSubmit(onSubmit, onError)}
+              variant="success"
+              style={{
+                margin: "0",
+                float: "right",
+                top: "50%",
+                left: "50%",
+                fontFamily: "Arial",
+              }}
+            >
+              <EditIcon style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;UPDATE MENU
+            </Button>
+          </h1>
         </div>
+        <Tabs
+          defaultActiveKey="Appetizers"
+          id="uncontrolled-tab-example"
+          className="mb-3"
+        >
+          <Tab eventKey="Appetizers" title="Appetizers">
+            <Card.Body>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Button>
+                  {" "}
+                  <Add style={{ width: "30px", height: "30px" }} />
+                  &nbsp;&nbsp;Add Appetizer Item
+                </Button>
+              </div>
+              <Card.Text>
+                {docValue &&
+                  docValue.menu.appetizers.map((data, index) => (
+                    <>
+                      <Appetizer
+                        register={register}
+                        key={index}
+                        index={index}
+                      />
+                    </>
+                  ))}
+              </Card.Text>
+            </Card.Body>
+          </Tab>
+
+          <Tab eventKey="Mains" title="Mains">
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              {" "}
+              <Button>
+                {" "}
+                <Add style={{ width: "30px", height: "30px" }} />
+                &nbsp;&nbsp;Add Main Item
+              </Button>
+            </div>
+            <Card.Body>
+              <Card.Text>
+                {docValue &&
+                  docValue.menu.mains.map((data, index) => (
+                    <>
+                      <Main register={register} key={index} index={index} />
+                    </>
+                  ))}
+              </Card.Text>
+            </Card.Body>
+          </Tab>
+          <Tab eventKey="Desserts" title="Desserts">
+            <Card.Body>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Button>
+                  {" "}
+                  <Add style={{ width: "30px", height: "30px" }} />
+                  &nbsp;&nbsp;Add Dessert Item
+                </Button>
+              </div>
+              <Card.Text>
+                {docValue &&
+                  docValue.menu.desserts.map((data, index) => (
+                    <>
+                      <Dessert register={register} key={index} index={index} />
+                    </>
+                  ))}
+              </Card.Text>
+            </Card.Body>
+          </Tab>
+        </Tabs>
       </Container>
     </div>
   );
