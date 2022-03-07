@@ -46,6 +46,8 @@ const DriverOrders = () => {
             backgroundColor: "#f7f4ef",
             borderRadius: "15px",
             padding: "2%",
+            overflowY: "auto",
+            height: "100vh",
           }}
         >
           <h1 className="p-4 box text-center" style={myStyle}>
