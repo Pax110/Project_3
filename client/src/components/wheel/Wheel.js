@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react";
 import WheelComponent from "react-wheel-of-prizes";
 import { useFirebase } from "../FirebaseProvider";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import LoadingScreen from "../navigation/LoadingScreen";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import background from "../landingimage/wood.jpg";
+import { Link } from "react-router-dom";
 
 const Wheel = ({ restaurant }) => {
   const [segments, setSegments] = useState();
+  const [restaurants, setRestaurants] = useState()
   const myStyle = { fontFamily: "Bebas Neue" };
+  const [winnerRestoId, setWinnerRestoId] = useState()
 
   const { db } = useFirebase();
   useEffect(() => {
     const getRestaurants = async () => {
       const restaurantsCollectionRef = collection(db, "restaurants");
       const querySnap = await getDocs(restaurantsCollectionRef);
+      let restos = querySnap.docs.map((docSnap) => ({...docSnap.data(), DOC_ID: docSnap.id}));
+      setRestaurants(restos)
+      console.log("restos is", restos)
+     
       let restonames = querySnap.docs.map((docSnap) => docSnap.data().name);
       setSegments(restonames);
     };
@@ -39,12 +46,22 @@ const Wheel = ({ restaurant }) => {
     "#E44C74",
   ];
   const onFinished = (winner) => {
+    let filtered = restaurants.filter((restaurant)=>{
+      
+      console.log("restos ID...", restaurant)
+      return restaurant.name === winner
+    })
+    console.log("filtered",filtered)
+    setWinnerRestoId(filtered[0].DOC_ID)
     console.log(winner);
+
   };
 
   if (!segments) {
     return <LoadingScreen />;
   }
+
+  console.log("segments is", segments)
   return (
     <div
       style={{
@@ -78,7 +95,14 @@ const Wheel = ({ restaurant }) => {
             upDuration={100}
             downDuration={1000}
             fontFamily="Arial"
-          />
+          ></WheelComponent>
+          <div>
+            <Link
+              to={`/menu/${winnerRestoId}`}
+            >
+              <Button>Veiw</Button>
+            </Link>
+          </div>
         </Container>
       </Container>
     </div>
