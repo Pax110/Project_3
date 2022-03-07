@@ -8,10 +8,10 @@ import background from "../landingimage/wood.jpg";
 import Appetizer from "./EditRestoMenu_Appetizers";
 import Main from "./EditRestoMenuForm_Mains";
 import Dessert from "./EditRestoMenuForm_Desserts";
-import { EditIcon } from "../icon/EditIcon";
-import { AddImageIcon } from "../icon/AddImageIcon";
+
 import BackButton from "../navigation/BackButton";
 import { Add } from "../icon/Add";
+import { Save } from "../icon/Save";
 
 const EditRestoMenuForm = (props) => {
   const docValue = props.document;
@@ -64,6 +64,7 @@ const EditRestoMenuForm = (props) => {
           borderRadius: "15px",
           overflowY: "auto",
           maxHeight: "800px",
+          height: "80vh",
         }}
       >
         <div
@@ -85,8 +86,8 @@ const EditRestoMenuForm = (props) => {
                 fontFamily: "Arial",
               }}
             >
-              <EditIcon style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;UPDATE MENU
+              <Save style={{ width: "30px", height: "30px" }} />
+              &nbsp;&nbsp;Save Changes
             </Button>
           </h1>
         </div>
