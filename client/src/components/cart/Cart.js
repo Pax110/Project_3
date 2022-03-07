@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import {
   Button,
@@ -11,8 +11,9 @@ import {
   Row,
 } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { CartState } from "../context/CartProvider";
-import { userAuthContext, useUserAuth } from "../context/UserAuthContext";
+import { useUserAuth } from "../context/UserAuthContext";
 
 // import Rating from "./Rating";
 
@@ -33,6 +34,7 @@ const Cart = () => {
   const handleShow = () => setShow(true);
 
   const { db, user } = useUserAuth();
+  const navigate = useNavigate();
 
   const randomValue = Math.floor(1000 + Math.random() * 9000);
 
@@ -84,7 +86,7 @@ const Cart = () => {
         userLocation: "t3q4w1",
         orderItems: cart,
         restaurantName: cart[0].restoName,
-        orderStatus: "Pending" //make this dynamic after getting the restoId
+        orderStatus: "Pending", //make this dynamic after getting the restoId
       });
     } catch (e) {
       console.log("error", e.message);
@@ -228,6 +230,7 @@ const Cart = () => {
                       variant="success"
                       onClick={() => {
                         handleClose();
+                        navigate("/");
                       }}
                     >
                       Close
