@@ -100,7 +100,7 @@ const Wheel = ({ restaurant }) => {
             <Link
               to={`/menu/${winnerRestoId}`}
             >
-              <Button>Veiw</Button>
+              { winnerRestoId && <Button>Veiw</Button>}
             </Link>
           </div>
         </Container>
