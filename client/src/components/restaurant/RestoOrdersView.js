@@ -23,7 +23,6 @@ import {
   Tabs,
 } from "react-bootstrap";
 import { cardHeaderClasses, Container } from "@mui/material";
-import { Container } from "@mui/material";
 import BackButton from "../navigation/BackButton";
 import RestoOrdersViewAll from "./RestoOrdersViewAll";
 import { async } from "@firebase/util";
@@ -34,8 +33,8 @@ const LiveOrders = () => {
   const [status, setStatus] = useState(null);
   const [orders, setOrders] = useState();
   const [pendingOrders, setPendingOrders] = useState([]);
-  const [markCompleteId, setMarkCompleteId] = useState(null);
-  let completedOrder = "";
+
+ 
   const { id } = useParams();
 
   console.log("restoId", id);
