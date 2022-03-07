@@ -7,7 +7,8 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import ChefUpdateProfilePhoto from "../file-uploader/ChefUpdateProfilePhoto";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import BackButton from "../navigation/BackButton";
 
 const EditChefProfileForm = (props) => {
   const navigate = useNavigate();
@@ -55,6 +56,9 @@ const EditChefProfileForm = (props) => {
           padding: "20px",
         }}
       >
+        <Link to="/restaurant/dashboard">
+          <BackButton />
+        </Link>
         <Container
           style={{
             width: "600px",

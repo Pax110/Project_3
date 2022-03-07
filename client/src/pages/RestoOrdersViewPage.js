@@ -1,5 +1,6 @@
 import React from "react";
 import background from "../components/landingimage/wood.jpg";
+
 import RestoOrdersView from "../components/restaurant/RestoOrdersView";
 
 const RestoOrdersViewPage = () => {

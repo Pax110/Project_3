@@ -2,7 +2,7 @@ import { collection, doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { Button, Container, Form, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 import background from "../landingimage/wood.jpg";
 import Appetizer from "./EditRestoMenu_Appetizers";
@@ -10,6 +10,7 @@ import Main from "./EditRestoMenuForm_Mains";
 import Dessert from "./EditRestoMenuForm_Desserts";
 import { EditIcon } from "../icon/EditIcon";
 import { AddImageIcon } from "../icon/AddImageIcon";
+import BackButton from "../navigation/BackButton";
 
 const EditRestoMenuForm = (props) => {
   const docValue = props.document;
@@ -48,10 +49,13 @@ const EditRestoMenuForm = (props) => {
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        paddingTop: "5%",
-        paddingBottom: "5%",
+        paddingTop: "20px",
+        paddingBottom: "15px",
       }}
     >
+      <Link to="/restaurant/dashboard">
+        <BackButton />
+      </Link>
       <Container
         style={{
           width: "60%",
@@ -68,9 +72,9 @@ const EditRestoMenuForm = (props) => {
           {/* APPETIZERS */}
 
           <Card.Text>
-            <Card.Header className="p-3 box mt-2 text-center" style={myStyle}>
-              Appetizer
-            </Card.Header>
+            <h3 className="p-3 box mt-2 text-center" style={myStyle}>
+              Appetizers
+            </h3>
             {/* {JSON.stringify(docValue.menu.appetizers)} */}
             {docValue &&
               docValue.menu.appetizers.map((data, index) => (
@@ -92,9 +96,9 @@ const EditRestoMenuForm = (props) => {
 
         {/* MAINS */}
         <Card.Body>
-          <Card.Header className="p-3 box mt-2 text-center" style={myStyle}>
+          <h3 className="p-3 box mt-2 text-center" style={myStyle}>
             Mains
-          </Card.Header>
+          </h3>
           <Card.Text>
             {/* {JSON.stringify(docValue.menu.mains)} */}
 
@@ -119,9 +123,9 @@ const EditRestoMenuForm = (props) => {
         {/* DESSERTS */}
 
         <Card.Body>
-          <Card.Header className="p-3 box mt-2 text-center" style={myStyle}>
+          <h3 className="p-3 box mt-2 text-center" style={myStyle}>
             Desserts
-          </Card.Header>
+          </h3>
           <Card.Text>
             {/* {JSON.stringify(docValue.menu.desserts)} */}
             {docValue &&
@@ -141,9 +145,9 @@ const EditRestoMenuForm = (props) => {
             </Button>
           </div>
         </Card.Body>
-        <Card.Header className="p-3 box mt-2 text-center " style={myStyle}>
-          click below to update all menu changes
-        </Card.Header>
+        <h3 className="p-3 box mt-2 text-center " style={myStyle}>
+          Click below to update all menu changes
+        </h3>
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
