@@ -1,11 +1,14 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import WheelComponent from "react-wheel-of-prizes";
 import { useFirebase } from "../FirebaseProvider";
 import { collection, getDocs } from "firebase/firestore";
+import LoadingScreen from "../navigation/LoadingScreen";
+import { Container } from "react-bootstrap";
+import background from "../landingimage/wood.jpg";
 
-//get data from server, segemtns set segemtns to be an array,
 const Wheel = ({ restaurant }) => {
   const [segments, setSegments] = useState();
+  const myStyle = { fontFamily: "Bebas Neue" };
 
   const { db } = useFirebase();
   useEffect(() => {
@@ -19,42 +22,66 @@ const Wheel = ({ restaurant }) => {
     getRestaurants();
   }, [db]);
 
-  console.log("resto is:", restaurant);
+  console.log("segment is", restaurant);
   const segColors = [
-    "#EE4040",
-    "#F0CF50",
-    "#815CD1",
-    "#3DA5E0",
-    "#34A24F",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
+    "#FEBF00",
+    "#F27A00",
+    "#80142D",
+    "#768D00",
+    "#B90300",
+    "#F64900",
+    "#CB8A2D",
+    "#90B274",
+    "#CFE773",
+    "#E69843",
+    "#F48E69",
+    "#1E6604",
+    "#E44C74",
   ];
   const onFinished = (winner) => {
     console.log(winner);
   };
 
   if (!segments) {
-    return "LOADING";
+    return <LoadingScreen />;
   }
   return (
-    <WheelComponent
-      segments={segments}
-      segColors={segColors}
-      winningSegment="won 10"
-      onFinished={(winner) => onFinished(winner)}
-      primaryColor="black"
-      contrastColor="white"
-      buttonText="Spin"
-      isOnlyOnce={false}
-      size={250}
-      upDuration={100}
-      downDuration={1000}
-      fontFamily="Arial"
-    />
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        padding: "20px",
+      }}
+    >
+      <Container
+        style={{
+          width: "800px",
+          backgroundColor: "#f7f4ef",
+          borderRadius: "15px",
+        }}
+      >
+        <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+          SURPRISE ME
+        </h1>
+        <Container style={{ paddingLeft: "90px" }}>
+          <WheelComponent
+            segments={segments}
+            segColors={segColors}
+            winningSegment="won 10"
+            onFinished={(winner) => onFinished(winner)}
+            primaryColor="black"
+            contrastColor="white"
+            buttonText="Spin"
+            isOnlyOnce={false}
+            size={250}
+            upDuration={100}
+            downDuration={1000}
+            fontFamily="Arial"
+          />
+        </Container>
+      </Container>
+    </div>
   );
 };
 export default Wheel;

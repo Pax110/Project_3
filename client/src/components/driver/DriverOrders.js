@@ -1,10 +1,9 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
-
 import { useUserAuth } from "../context/UserAuthContext";
+import LoadingScreen from "../navigation/LoadingScreen";
 
 const DriverOrders = () => {
   const [orders, setOrders] = useState();
@@ -37,7 +36,7 @@ const DriverOrders = () => {
     textDecoration: "none",
   };
 
-  console.log("orders drivewr dash", orders);
+  console.log("orders driver dash", orders);
   if (orders) {
     return (
       <>
@@ -94,7 +93,7 @@ const DriverOrders = () => {
       </>
     );
   } else {
-    return <div> Loading .. </div>;
+    return <LoadingScreen />;
   }
 };
 

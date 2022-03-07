@@ -206,13 +206,14 @@ const WheelComponent = ({
     ctx.clearRect(0, 0, 800, 650);
   };
   return (
-    <div id="wheel">
+    <div style={{ marginLeft: "500px" }}>
       <canvas
         id="canvas"
         width="520"
         height="300"
         style={{
           pointerEvents: isFinished && isOnlyOnce ? "none" : "auto",
+          paddingLeft: "200px",
         }}
       />
     </div>

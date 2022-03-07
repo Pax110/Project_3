@@ -9,7 +9,7 @@ const OrderHistoryPage = () => {
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        padding: "100px",
+        padding: "20px",
         height: "100%",
       }}
     >

@@ -76,23 +76,25 @@ const RestoDisplayCard = () => {
             </ImageListItem>
           </Link>
         ))}
-        <ImageListItem>
-          <CardMedia
-            component="img"
-            height="250"
-            src={`${background}`}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title="I'm Feeling Lucky!"
-            subtitle="Click for random selection."
-            actionIcon={
-              <IconButton sx={{ color: "rgba(255, 255, 255, 0.54)" }}>
-                <Dice />
-              </IconButton>
-            }
-          />
-        </ImageListItem>
+        <Link to={`/wheel`}>
+          <ImageListItem>
+            <CardMedia
+              component="img"
+              height="250"
+              src={`${background}`}
+              loading="lazy"
+            />
+            <ImageListItemBar
+              title="I'm Feeling Lucky!"
+              subtitle="Click for random selection."
+              actionIcon={
+                <IconButton sx={{ color: "rgba(255, 255, 255, 0.54)" }}>
+                  <Dice />
+                </IconButton>
+              }
+            />
+          </ImageListItem>
+        </Link>
       </ImageList>
       <br />
     </Container>
