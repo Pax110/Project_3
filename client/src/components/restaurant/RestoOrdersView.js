@@ -1,8 +1,10 @@
 import {
   collection,
+  doc,
   getDocs,
   onSnapshot,
   query,
+  setDoc,
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -20,14 +22,17 @@ import {
   Tab,
   Tabs,
 } from "react-bootstrap";
-import { Container } from "@mui/material";
+import { cardHeaderClasses, Container } from "@mui/material";
 import RestoOrdersViewAll from "./RestoOrdersViewAll";
+import { async } from "@firebase/util";
 
 const LiveOrders = () => {
   const { db, user } = useUserAuth();
   const [status, setStatus] = useState(null);
   const [orders, setOrders] = useState();
   const [pendingOrders, setPendingOrders] = useState([]);
+  const [markCompleteId, setMarkCompleteId] = useState(null);
+  let completedOrder = "";
   const { id } = useParams();
 
   console.log("restoId", id);
@@ -52,7 +57,7 @@ const LiveOrders = () => {
     // pendingOrders = orders.forEach()
     getData();
     //filterPendings();
-  }, [user.uid]);
+  }, [user.uid,status]);
   console.log("orders..", orders);
 
   useEffect(() => {
@@ -70,6 +75,18 @@ const LiveOrders = () => {
 
   //from the orders array - extract the ones that are pending...
   console.log("pending orders are", pendingOrders);
+  const handleComplete = async (ID) => {
+   
+    try {
+      let collRef = collection(db, "orders");
+      console.log("collRef", collRef);
+      let docRef = doc(collRef, ID);
+      console.log("docRef", docRef);
+      await setDoc(docRef, { orderStatus: "Complete" }, { merge: true });
+    } catch (e) {
+      console.log("error at handleComplete..", e.message);
+    }
+  };
 
   if (orders) {
     return (
@@ -109,24 +126,32 @@ const LiveOrders = () => {
                       <Col style={{ textAlign: "right" }}>
                         <strong>Status: {order.orderStatus}</strong>
                         <br />
-                        <strong>Delivery Type: {order.deliveryType}</strong> <br />
+                        <strong>
+                          Delivery Type: {order.deliveryType}
+                        </strong>{" "}
+                        <br />
                       </Col>
                     </Row>
                     <Card.Text>
                       Items: <br />
-                      <strong>{order.orderItems.map((item) => (
-                        <>
-                          <span>{item.qty}</span>
-                          <span> x </span>
-                          <span>{item.name}</span>
-                          <br></br>
-                        </>
-                      ))}</strong>
+                      <strong>
+                        {order.orderItems.map((item) => (
+                          <>
+                            <span>{item.qty}</span>
+                            <span> x </span>
+                            <span>{item.name}</span>
+                            <br></br>
+                          </>
+                        ))}
+                      </strong>
                     </Card.Text>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                      <Button style={{ margin: "10px" }}>
-                        {" "}
-                        Mark Complete{" "}
+                      <Button
+                        style={{ margin: "10px" }}
+                        onClick={() => handleComplete(order.DOC_ID)}
+                        
+                      >
+                        Mark Complete
                       </Button>
                       <spna></spna>
                       {/* <Button style={{margin: "10px"}}> Mark Cancel </Button> */}
