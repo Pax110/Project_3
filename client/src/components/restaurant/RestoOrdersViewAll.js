@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
 
 const RestoOrdersViewAll = ({ orders }) => {
@@ -24,9 +24,15 @@ const RestoOrdersViewAll = ({ orders }) => {
                   </Col>
                   <Col style={{ textAlign: "right" }}>
                     <strong>Status: </strong>
-                    {order.orderStatus === "Complete" ? <strong style={{color: "green"}}>{order.orderStatus}</strong>
-                    :
-                    <strong style={{color: "red"}}>{order.orderStatus}</strong>}
+                    {order.orderStatus === "Complete" ? (
+                      <strong style={{ color: "green" }}>
+                        {order.orderStatus}
+                      </strong>
+                    ) : (
+                      <strong style={{ color: "red" }}>
+                        {order.orderStatus}
+                      </strong>
+                    )}
                     <br />
                     <strong>Delivery Type: {order.deliveryType}</strong> <br />
                   </Col>

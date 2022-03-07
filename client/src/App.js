@@ -6,6 +6,7 @@ import Router from "../src/Routes/Router";
 import { UserAuthContextProvider } from "./components/context/UserAuthContext";
 import CartProvider from "./components/context/CartProvider.js";
 import "./App.css";
+import RestoOrdersViewPendingContext from "./components/restaurant/RestoOrdersViewPendingContext.js";
 
 function App() {
   return (
@@ -21,9 +22,11 @@ function App() {
       <FirebaseProvider>
         <UserAuthContextProvider>
           <CartProvider>
-            <Navbar style={{ position: "sticky" }} />
+            <RestoOrdersViewPendingContext>
+              <Navbar style={{ position: "sticky" }} />
 
-            <Router />
+              <Router />
+            </RestoOrdersViewPendingContext>
           </CartProvider>
         </UserAuthContextProvider>
       </FirebaseProvider>

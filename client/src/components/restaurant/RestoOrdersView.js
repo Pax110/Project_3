@@ -1,7 +1,6 @@
 import {
   collection,
   doc,
-  getDocs,
   onSnapshot,
   query,
   setDoc,
@@ -10,22 +9,11 @@ import {
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { Link, useParams } from "react-router-dom";
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  Col,
-  ListGroup,
-  Nav,
-  NavDropdown,
-  Row,
-  Tab,
-  Tabs,
-} from "react-bootstrap";
-import { cardHeaderClasses, Container } from "@mui/material";
+import { Button, Card, Col, Row, Tab, Tabs } from "react-bootstrap";
+import { Container } from "@mui/material";
 import BackButton from "../navigation/BackButton";
 import RestoOrdersViewAll from "./RestoOrdersViewAll";
-import { async } from "@firebase/util";
+import { usePendings } from "./RestoOrdersViewPendingContext";
 
 const LiveOrders = () => {
   const myStyle = { fontFamily: "Bebas Neue" };
@@ -34,7 +22,9 @@ const LiveOrders = () => {
   const [orders, setOrders] = useState();
   const [pendingOrders, setPendingOrders] = useState([]);
 
- 
+  const {setNumPending} = usePendings()
+  
+
   const { id } = useParams();
 
   console.log("restoId", id);
@@ -59,7 +49,7 @@ const LiveOrders = () => {
     // pendingOrders = orders.forEach()
     getData();
     //filterPendings();
-  }, [user.uid,status]);
+  }, [user.uid, status]);
   console.log("orders..", orders);
 
   useEffect(() => {
@@ -69,6 +59,7 @@ const LiveOrders = () => {
       });
       console.log("filtered is", filtered);
       setPendingOrders(filtered);
+      setNumPending(filtered.length)
     };
     if (orders) {
       filterPendings();
@@ -78,7 +69,6 @@ const LiveOrders = () => {
   //from the orders array - extract the ones that are pending...
   console.log("pending orders are", pendingOrders);
   const handleComplete = async (ID) => {
-   
     try {
       let collRef = collection(db, "orders");
       console.log("collRef", collRef);
@@ -157,7 +147,6 @@ const LiveOrders = () => {
                       <Button
                         style={{ margin: "10px" }}
                         onClick={() => handleComplete(order.DOC_ID)}
-                        
                       >
                         Mark Complete
                       </Button>

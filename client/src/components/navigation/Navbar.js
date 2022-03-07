@@ -23,11 +23,19 @@ import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import { auth } from "../FirebaseProvider";
 import { ButtonGroup, Dropdown, FormControl, Nav } from "react-bootstrap";
-import { Badge, TextField } from "@mui/material";
+import { Badge } from "@mui/material";
 import { CartState } from "../context/CartProvider";
-import { useParams } from "react-router-dom";
-import { ImClipboard, ImExit, ImInfo, ImQuestion, ImSpoonKnife, ImTruck, ImUser, ImUsers } from "react-icons/im";
-import { MdLogout } from "react-icons/md";
+import {
+  ImClipboard,
+  ImExit,
+  ImInfo,
+  ImQuestion,
+  ImSpoonKnife,
+  ImTruck,
+  ImUser,
+  ImUsers,
+} from "react-icons/im";
+import { usePendings } from "../restaurant/RestoOrdersViewPendingContext";
 
 const pages = ["Order History"];
 
@@ -36,7 +44,9 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [restoId, setRestoId] = useState(null);
-  const a = "selectedRestoId";
+  const a = "ID";
+
+  const { numPending } = usePendings();
 
   const navigate = useNavigate();
   const {
@@ -101,6 +111,7 @@ const Navbar = () => {
   const titleFont = "'Bebas Neue'";
   const driver = userInfo?.role.includes("Driver");
   console.log("is Driver?", driver);
+  console.log("numPending is", numPending);
   return (
     <>
       <AppBar
@@ -301,13 +312,15 @@ const Navbar = () => {
             {currentUser && (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      sx={{ backgroundColor: "#feaa00", color: "#342628" }}
-                      alt={userInfo?.firstName}
-                      src="/static/images/avatar/2.jpg"
-                    />
-                  </IconButton>
+                  <Badge color="secondary" badgeContent={numPending}>
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar
+                        sx={{ backgroundColor: "#feaa00", color: "#342628" }}
+                        alt={userInfo?.firstName}
+                        src="/static/images/avatar/2.jpg"
+                      />
+                    </IconButton>
+                  </Badge>
                 </Tooltip>
                 <Menu
                   sx={{ mt: "45px" }}
@@ -330,28 +343,29 @@ const Navbar = () => {
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))} */}
-                  
 
                   <MenuItem
                     component={Link}
                     to="/profile"
                     onClick={handleCloseUserMenu}
                   >
-                   <ImUser style={{margin: "10px"}}/> Profile
+                    <ImUser style={{ margin: "10px" }} /> Profile
                   </MenuItem>
                   <MenuItem
                     component={Link}
                     to="/order-history"
                     onClick={handleCloseUserMenu}
                   >
-                    <ImClipboard style={{margin: "10px"}}/>Order History
+                    <ImClipboard style={{ margin: "10px" }} />
+                    Order History
                   </MenuItem>
                   <MenuItem
                     component={Link}
                     to="/need-help"
                     onClick={handleCloseUserMenu}
                   >
-                    <ImQuestion style={{margin: "10px"}}/>Need Help?
+                    <ImQuestion style={{ margin: "10px" }} />
+                    Need Help?
                   </MenuItem>
                   {userInfo?.role.includes("Business") == true && (
                     <MenuItem
@@ -359,7 +373,8 @@ const Navbar = () => {
                       to="/restaurant/dashboard"
                       onClick={handleCloseUserMenu}
                     >
-                      <ImSpoonKnife style={{margin: "10px"}}/>Restaurant Dashboard
+                      <ImSpoonKnife style={{ margin: "10px" }} />
+                      Restaurant Dashboard{" "}
                     </MenuItem>
                   )}
                   {userInfo?.role.includes("Driver") == true && (
@@ -368,7 +383,8 @@ const Navbar = () => {
                       to="/driver"
                       onClick={handleCloseUserMenu}
                     >
-                      <ImTruck style={{margin: "10px"}}/>Driver Dashboard
+                      <ImTruck style={{ margin: "10px" }} />
+                      Driver Dashboard
                     </MenuItem>
                   )}
                   {userInfo?.role.includes("Admin") == true && (
@@ -377,7 +393,8 @@ const Navbar = () => {
                       to="/admin"
                       onClick={handleCloseUserMenu}
                     >
-                      <ImUsers style={{margin: "10px"}}/>Admin Dashboard
+                      <ImUsers style={{ margin: "10px" }} />
+                      Admin Dashboard
                     </MenuItem>
                   )}
 
@@ -386,7 +403,8 @@ const Navbar = () => {
                     to="/profile"
                     onClick={handleLogout}
                   >
-                    <ImExit style={{margin: "10px"}}/>Logout
+                    <ImExit style={{ margin: "10px" }} />
+                    Logout
                   </MenuItem>
                 </Menu>
               </Box>

@@ -8,12 +8,15 @@ import { FaFileDownload } from "react-icons/fa";
 import { FaGrinAlt } from "react-icons/fa";
 import { FaUtensils } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
+import RestoOrdersViewPendingContext, { usePendings } from "./RestoOrdersViewPendingContext";
 
 const RestoSelectMenu = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const [selectedRestoID, setSelectedRestoID] = useState("");
   const [restoData, setRestoData] = useState([]);
+  const {value} = usePendings()
+  console.log("value is...................",value)
 
   useEffect(() => {
     const getData = async () => {
@@ -37,93 +40,95 @@ const RestoSelectMenu = () => {
   //   console.log("This selected", selectedRestoID);
   // };
   return (
-    <div>
-      <Form.Group as={Col} controlId="formSelectResto">
-        <Form.Label style={{}}>Select Restaurant:</Form.Label>
-        <div style={{ margin: "10px" }}>
-          {restoData &&
-            restoData.map((item) => (
-              <Form.Check
-                inline
-                id={item.DOC_ID}
-                name="resto"
-                type="radio"
-                label={item.name}
-                value={selectedRestoID}
-                onChange={() => {
-                  setSelectedRestoID(item.DOC_ID);
+    
+      <div>
+        <Form.Group as={Col} controlId="formSelectResto">
+          <Form.Label style={{}}>Select Restaurant:</Form.Label>
+          <div style={{ margin: "10px" }}>
+            {restoData &&
+              restoData.map((item) => (
+                <Form.Check
+                  inline
+                  id={item.DOC_ID}
+                  name="resto"
+                  type="radio"
+                  label={item.name}
+                  value={selectedRestoID}
+                  onChange={() => {
+                    setSelectedRestoID(item.DOC_ID);
+                  }}
+                />
+              ))}
+          </div>
+          <br></br>
+          {selectedRestoID && (
+            <Link to={`/restaurant/orders/${selectedRestoID}`}>
+              <Button
+                variant="primary"
+                style={{
+                  backgroundColor: "#feaa00",
+                  borderColor: "#feaa00",
+                  padding: "0.25rem",
+                  margin: "1%",
                 }}
-              />
-            ))}
-        </div>
-        <br></br>
-        {selectedRestoID && (
-          <Link to={`/restaurant/orders/${selectedRestoID}`}>
-            <Button
-              variant="primary"
-              style={{
-                backgroundColor: "#feaa00",
-                borderColor: "#feaa00",
-                padding: "0.25rem",
-                margin: "1%",
-              }}
-            >
-              <FaFileDownload style={{ width: "30px", height: "30px" }} />
-              {/* <ReceiptLong style={{ width: "30px", height: "30px" }} /> */}
-              &nbsp;&nbsp;Orders
-            </Button>
-          </Link>
-        )}
-        {selectedRestoID && (
-          <Link to={`/restaurant/editprofile/${selectedRestoID}`}>
-            <Button
-              variant="primary"
-              style={{
-                backgroundColor: "#feaa00",
-                borderColor: "#feaa00",
-                padding: "0.25rem",
-                margin: "1%",
-              }}
-            >
-              <FaUtensils style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Account Details
-            </Button>
-          </Link>
-        )}
-        {selectedRestoID && (
-          <Link to={`/restaurant/editmenu/${selectedRestoID}`}>
-            <Button
-              variant="primary"
-              style={{
-                backgroundColor: "#feaa00",
-                borderColor: "#feaa00",
-                padding: "0.25rem",
-                margin: "1%",
-              }}
-            >
-              <FaBookOpen style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Menu Details
-            </Button>
-          </Link>
-        )}{" "}
-        {selectedRestoID && (
-          <Link to={`/restaurant/chefprofile/${selectedRestoID}`}>
-            <Button
-              variant="primary"
-              style={{
-                backgroundColor: "#feaa00",
-                borderColor: "#feaa00",
-                padding: "0.25rem",
-                margin: "1%",
-              }}
-            >
-              <FaGrinAlt style={{ width: "30px", height: "30px" }} />
-              &nbsp;&nbsp;Chef Profile
-            </Button>
-          </Link>
-        )}
-      </Form.Group>
-    </div>
+              >
+                <FaFileDownload style={{ width: "30px", height: "30px" }} />
+                {/* <ReceiptLong style={{ width: "30px", height: "30px" }} /> */}
+                &nbsp;&nbsp;Orders
+              </Button>
+            </Link>
+          )}
+          {selectedRestoID && (
+            <Link to={`/restaurant/editprofile/${selectedRestoID}`}>
+              <Button
+                variant="primary"
+                style={{
+                  backgroundColor: "#feaa00",
+                  borderColor: "#feaa00",
+                  padding: "0.25rem",
+                  margin: "1%",
+                }}
+              >
+                <FaUtensils style={{ width: "30px", height: "30px" }} />
+                &nbsp;&nbsp;Account Details
+              </Button>
+            </Link>
+          )}
+          {selectedRestoID && (
+            <Link to={`/restaurant/editmenu/${selectedRestoID}`}>
+              <Button
+                variant="primary"
+                style={{
+                  backgroundColor: "#feaa00",
+                  borderColor: "#feaa00",
+                  padding: "0.25rem",
+                  margin: "1%",
+                }}
+              >
+                <FaBookOpen style={{ width: "30px", height: "30px" }} />
+                &nbsp;&nbsp;Menu Details
+              </Button>
+            </Link>
+          )}{" "}
+          {selectedRestoID && (
+            <Link to={`/restaurant/chefprofile/${selectedRestoID}`}>
+              <Button
+                variant="primary"
+                style={{
+                  backgroundColor: "#feaa00",
+                  borderColor: "#feaa00",
+                  padding: "0.25rem",
+                  margin: "1%",
+                }}
+              >
+                <FaGrinAlt style={{ width: "30px", height: "30px" }} />
+                &nbsp;&nbsp;Chef Profile
+              </Button>
+            </Link>
+          )}
+        </Form.Group>
+      </div>
+    
   );
 };
 export default RestoSelectMenu;
