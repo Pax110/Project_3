@@ -35,10 +35,12 @@ const RestoOrdersViewAll = ({ orders }) => {
                     )}
                     <br />
                     <strong>Delivery Type: {order.deliveryType}</strong> <br />
+                    <span> Customer: {order.customerName}</span> <br />
+                    <span> Address: {order.customerAddress}</span>
                   </Col>
                 </Row>
                 <Card.Text>
-                  Items: <br />
+                  <strong>Items:</strong> <br />
                   {order.orderItems.map((item) => (
                     <>
                       <span>{item.qty}</span>

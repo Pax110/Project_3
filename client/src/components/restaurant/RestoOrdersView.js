@@ -22,8 +22,7 @@ const LiveOrders = () => {
   const [orders, setOrders] = useState();
   const [pendingOrders, setPendingOrders] = useState([]);
 
-  const {setNumPending} = usePendings()
-  
+  const { setNumPending } = usePendings();
 
   const { id } = useParams();
 
@@ -59,7 +58,7 @@ const LiveOrders = () => {
       });
       console.log("filtered is", filtered);
       setPendingOrders(filtered);
-      setNumPending(filtered.length)
+      setNumPending(filtered.length);
     };
     if (orders) {
       filterPendings();
@@ -94,6 +93,7 @@ const LiveOrders = () => {
             paddingBottom: "15px",
             overflowY: "auto",
             maxHeight: "800px",
+            height: "80vh",
           }}
         >
           <h1 className="p-4 box mt-3 text-center" style={myStyle}>
