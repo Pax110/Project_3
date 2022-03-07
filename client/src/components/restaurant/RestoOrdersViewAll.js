@@ -23,7 +23,10 @@ const RestoOrdersViewAll = ({ orders }) => {
                     <span> Time: {order.orderTime}</span> <br />
                   </Col>
                   <Col style={{ textAlign: "right" }}>
-                    <strong>Status: {order.orderStatus}</strong>
+                    <strong>Status: </strong>
+                    {order.orderStatus === "Complete" ? <strong style={{color: "green"}}>{order.orderStatus}</strong>
+                    :
+                    <strong style={{color: "red"}}>{order.orderStatus}</strong>}
                     <br />
                     <strong>Delivery Type: {order.deliveryType}</strong> <br />
                   </Col>
