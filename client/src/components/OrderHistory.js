@@ -56,6 +56,7 @@ const OrderHistory = () => {
           paddingBottom: "15px",
           overflowY: "auto",
           maxHeight: "800px",
+          height: "80vh",
         }}
       >
         <h1 className="p-4 box mt-3 text-center" style={myStyle}>

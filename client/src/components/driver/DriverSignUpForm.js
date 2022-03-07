@@ -7,7 +7,6 @@ import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import { AttachDocumentIcon } from "../icon/AttachDocumentIcon";
 
-
 const DriverSignUpForm = () => {
   const { db } = useFirebase();
   const myStyle = { fontFamily: "Bebas Neue" };
@@ -78,6 +77,7 @@ const DriverSignUpForm = () => {
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          padding: "20px",
         }}
       >
         <Container
@@ -216,7 +216,7 @@ const DriverSignUpForm = () => {
                       &nbsp;&nbsp;Drivers Abstract
                     </Button>
                     <Button variant="primary" type="button">
-                    <AttachDocumentIcon
+                      <AttachDocumentIcon
                         style={{ width: "30px", height: "30px" }}
                       />
                       &nbsp;&nbsp;Drivers License

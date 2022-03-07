@@ -4,7 +4,6 @@ import RestoSelectMenu from "../components/restaurant/RestoSelectMenu";
 import { Container } from "react-bootstrap";
 import background from "../components/landingimage/dash.jpeg";
 
-
 const RestoDashboardPage = () => {
   const myStyle = {
     fontFamily: "Bebas Neue",
@@ -16,7 +15,7 @@ const RestoDashboardPage = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         padding: "200px",
-        height: "100%",
+        height: "80vh",
       }}
     >
       <Container

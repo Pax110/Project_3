@@ -38,10 +38,9 @@ const RestoSignUpForm = () => {
   const [show, setShow] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
-
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     console.log("useEffect");
@@ -53,9 +52,8 @@ const RestoSignUpForm = () => {
     };
     checkSignIn();
   }, []);
-  
+
   const handleClose = () => {
-   
     setShowSignup(false);
     navigate("/");
   };
@@ -112,6 +110,7 @@ const RestoSignUpForm = () => {
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          padding: "20px",
         }}
       >
         <Container
@@ -305,15 +304,15 @@ const RestoSignUpForm = () => {
                     <Modal.Title>Welcome to the Collective!</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    Sign in and head on over to the Restaurant Dashboard to get cookin'!
-                    🚚🍴
+                    Sign in and head on over to the Restaurant Dashboard to get
+                    cookin'! 🚚🍴
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
                       variant="success"
                       onClick={() => {
                         handleClose();
-                        logOut()
+                        logOut();
                       }}
                     >
                       Close
@@ -337,8 +336,7 @@ const RestoSignUpForm = () => {
                       variant="success"
                       onClick={() => {
                         handleClose();
-                        navigate("/signup")
-                        
+                        navigate("/signup");
                       }}
                     >
                       Close
