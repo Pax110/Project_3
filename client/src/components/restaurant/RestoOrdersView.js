@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -23,10 +23,13 @@ import {
   Tabs,
 } from "react-bootstrap";
 import { cardHeaderClasses, Container } from "@mui/material";
+import { Container } from "@mui/material";
+import BackButton from "../navigation/BackButton";
 import RestoOrdersViewAll from "./RestoOrdersViewAll";
 import { async } from "@firebase/util";
 
 const LiveOrders = () => {
+  const myStyle = { fontFamily: "Bebas Neue" };
   const { db, user } = useUserAuth();
   const [status, setStatus] = useState(null);
   const [orders, setOrders] = useState();
@@ -91,6 +94,9 @@ const LiveOrders = () => {
   if (orders) {
     return (
       <>
+        <Link to="/restaurant/dashboard">
+          <BackButton />
+        </Link>
         <Container
           style={{
             width: "auto",
@@ -101,6 +107,9 @@ const LiveOrders = () => {
             maxHeight: "800px",
           }}
         >
+          <h1 className="p-4 box mt-3 text-center" style={myStyle}>
+            Orders
+          </h1>
           <Tabs
             defaultActiveKey="Live"
             id="uncontrolled-tab-example"

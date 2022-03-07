@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 
-const RestoOrdersViewAll = ({ orders, }) => {
+const RestoOrdersViewAll = ({ orders }) => {
   const myStyle = { fontFamily: "Bebas Neue" };
-  
-
   return (
     <div>
-      {" "}
-      <h1 className="p-4 box mt-3 text-center" style={myStyle}>
-        Order Tracker
-      </h1>
       {orders?.map((order) => (
         <>
           <div>
@@ -29,8 +23,8 @@ const RestoOrdersViewAll = ({ orders, }) => {
                     <span> Time: {order.orderTime}</span> <br />
                   </Col>
                   <Col style={{ textAlign: "right" }}>
-                  <strong>Status: {order.orderStatus}</strong>
-                        <br />
+                    <strong>Status: {order.orderStatus}</strong>
+                    <br />
                     <strong>Delivery Type: {order.deliveryType}</strong> <br />
                   </Col>
                 </Row>

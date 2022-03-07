@@ -3,17 +3,14 @@ import { register } from "react-hook-form";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import background from "../landingimage/wood.jpg";
-import {
-  collection,
-  doc,
-  setDoc,
-} from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { useFirebase } from "../FirebaseProvider";
 import { useUserAuth } from "../context/UserAuthContext";
 import DeleteRestoButton from "./DeleteRestoButton";
 // import FileUploader from "../file-uploader/FileUploader";
 import RestroUpdateUploader from "../file-uploader/RestroUpdateUploader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import BackButton from "../navigation/BackButton";
 
 const EditRestoProfileForm = (props) => {
   const navigate = useNavigate();
@@ -74,6 +71,9 @@ const EditRestoProfileForm = (props) => {
           padding: "20px",
         }}
       >
+        <Link to="/restaurant/dashboard">
+          <BackButton />
+        </Link>
         <Container
           style={{
             width: "600px",
