@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useFirebase } from "../FirebaseProvider";
 import {
-    Button,
+  Button,
   Card,
   Col,
   Container,
@@ -18,11 +18,11 @@ const ViewOrderstab = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const [orders, setOrders] = useState();
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState(null);
   const [sortedSearch, setSortedSearch] = useState("");
 
   useEffect(() => {
-    console.log("useEf triggered..");
+    
 
     const getData = async () => {
       const collRef = collection(db, "orders");
@@ -45,7 +45,7 @@ const ViewOrderstab = () => {
       console.log("sorted is ", sorted);
 
       sorted = sorted.filter((order) => {
-        return order.orderId == search;
+        return   search == order.orderId;
       });
       console.log("sorted2 is ", sorted);
       return sorted;
@@ -59,7 +59,6 @@ const ViewOrderstab = () => {
   if (orders) {
     return (
       <>
-           
         <Container>
           <Row>
             <Col>
@@ -73,11 +72,12 @@ const ViewOrderstab = () => {
                   setSearch(e.target.value);
                   console.log(search);
                 }}
+                
               />
             </Col>
 
             <Col>
-              <div style={{justifyContent: "end"}}>
+              <div style={{ justifyContent: "end" }}>
                 <DropdownButton id="dropdown-basic-button" title="Sort by">
                   <Dropdown.Item href="#/action-1">Status</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Date</Dropdown.Item>
@@ -86,10 +86,10 @@ const ViewOrderstab = () => {
               </div>
             </Col>
             <Col>
-                <div style={{justifyContent: "end"}}>
-
-            <Button>Generate report </Button>
-                </div>
+              <Button>Generate report </Button>
+            </Col>
+            <Col>
+            
             </Col>
           </Row>
         </Container>

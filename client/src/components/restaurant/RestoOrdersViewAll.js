@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 
-const RestoOrdersViewAll = ({ orders, status, setStatus }) => {
+const RestoOrdersViewAll = ({ orders, }) => {
   const myStyle = { fontFamily: "Bebas Neue" };
   
 
@@ -29,16 +29,8 @@ const RestoOrdersViewAll = ({ orders, status, setStatus }) => {
                     <span> Time: {order.orderTime}</span> <br />
                   </Col>
                   <Col style={{ textAlign: "right" }}>
-                    <strong>Status: </strong>
-                    {status === "Completed" ? (
-                      <div style={{ color: "green" }}>
-                        <strong> {status}</strong>
-                      </div>
-                    ) : (
-                      <div style={{ color: "red" }}>
-                        <strong> {status}</strong> <br />
-                      </div>
-                    )}
+                  <strong>Status: {order.orderStatus}</strong>
+                        <br />
                     <strong>Delivery Type: {order.deliveryType}</strong> <br />
                   </Col>
                 </Row>
