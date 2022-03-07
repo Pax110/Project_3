@@ -9,7 +9,7 @@ const DriverOrdersPage = () => {
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        padding: "60px",
+        padding: "20px",
         height: "100%",
       }}
     >
