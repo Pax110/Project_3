@@ -11,7 +11,7 @@ const RestoOrdersViewPage = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         padding: "20px",
-        height: "100%",
+        height: "80vh",
       }}
     >
       <RestoOrdersView />
