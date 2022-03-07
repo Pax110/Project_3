@@ -40,3 +40,6 @@ button.silly-button:hover {
   background-color: #feaa00;
 }
 
+.nav-link {
+  color: black !important;
+}
