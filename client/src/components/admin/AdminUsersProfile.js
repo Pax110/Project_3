@@ -62,10 +62,13 @@ const AdminUsersProfile = ({ data }) => {
     <Container
       style={{
         width: "auto",
-        backgroundColor: "#f7f4ef",
         maxWidth: "none",
+        backgroundColor: "#f7f4ef",
+        marginTop: "-5px",
         borderRadius: "15px",
         paddingBottom: "15px",
+        overflowY: "auto",
+        height: "80vh",
       }}
     >
       <h1 className="p-4 box mt-3 text-center" style={myStyle}>
@@ -104,18 +107,21 @@ const AdminUsersProfile = ({ data }) => {
                 </Tab>
                 <Tab eventKey="orders" title="Orders">
                   {orders?.map((order) => (
-                    <Card>
-                      <Card.Header>Restaurant Name</Card.Header>
+                    <Card style={{ marginBottom: "10px" }}>
+                      <Card.Header>
+                        <strong>{order.restaurantName}</strong>
+                      </Card.Header>
                       <Card.Body>
-                        <Card.Title>
-                          Customer Order Number: {order.orderId}
-                        </Card.Title>
+                        <Card.Title>Order Number: {order.orderId}</Card.Title>
+                        <Card.Text>
+                          Date: {order.orderDate} {order.orderTime}
+                        </Card.Text>
                         <Card.Text>
                           {order.orderItems.map((item) => (
                             <>
-                              <span>{item.name}</span>
-                              <span>x</span>
                               <span>{item.qty}</span>
+                              <span>&nbsp;x&nbsp;</span>
+                              <span>{item.name}</span>
                               <span> </span>
                               <br />
                               <span>${item.price}</span>
