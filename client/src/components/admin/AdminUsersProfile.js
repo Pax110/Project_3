@@ -1,8 +1,9 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Card, Container, Tab, Tabs } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
+import BackButton from "../navigation/BackButton";
 
 const AdminUsersProfile = ({ data }) => {
   const { db, user } = useUserAuth();
@@ -71,6 +72,9 @@ const AdminUsersProfile = ({ data }) => {
         height: "80vh",
       }}
     >
+      <Link to="/admin">
+        <BackButton />
+      </Link>
       <h1 className="p-4 box mt-3 text-center" style={myStyle}>
         User Profile
       </h1>
