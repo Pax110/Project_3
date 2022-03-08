@@ -61,8 +61,11 @@ const Admin = () => {
         width: "auto",
         maxWidth: "none",
         backgroundColor: "#f7f4ef",
+        marginTop: "-5px",
         borderRadius: "15px",
         paddingBottom: "15px",
+        overflowY: "auto",
+        height: "80vh",
       }}
     >
       <h1 className="p-4 box text-center" style={myStyle}>
