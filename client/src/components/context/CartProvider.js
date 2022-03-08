@@ -16,10 +16,18 @@ const CartProvider = ({ children }) => {
     bySearchQuery: "",
   });
 
+  const clearCart = () => {
+    console.log("clear cart now");
+    dispatch({
+      type: "RESET_CART",
+      payload: null,
+    });
+  };
+
   return (
     <div>
       <CartContext.Provider
-        value={{ state, dispatch, itemState, itemDispatch }}
+        value={{ state, dispatch, itemState, itemDispatch, clearCart }}
       >
         {children}
       </CartContext.Provider>

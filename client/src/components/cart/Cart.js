@@ -21,6 +21,7 @@ const Cart = () => {
   const {
     state: { cart },
     dispatch,
+    clearCart,
   } = CartState();
   const [total, setTotal] = useState(null);
   const [show, setShow] = useState(false);
@@ -88,6 +89,7 @@ const Cart = () => {
         restaurantName: cart[0].restoName,
         orderStatus: "Pending", //make this dynamic after getting the restoId
       });
+      clearCart();
     } catch (e) {
       console.log("error", e.message);
     }
