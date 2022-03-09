@@ -134,8 +134,8 @@ const ViewOrderstab = () => {
                       <td>{order.orderTime}</td>
                       <td>$ {order.orderTotal}</td>
 
-                      {order.orderStatus === "Complete" ? (
-                        <td style={{ color: "green" }}>{order.orderStatus}</td>
+                      {order.orderStatus === "Delivered" ? (
+                       <td style={{ color: "green", fontWeight: "bold" }}>{order.orderStatus}</td>
                       ) : (
                         <td style={{ color: "red" }}>{order.orderStatus}</td>
                       )}
