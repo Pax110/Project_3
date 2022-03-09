@@ -1,36 +1,56 @@
 import { Button } from "@mui/material";
-import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
+import background from "../landingimage/donut.jpg";
+import BackButton from "../navigation/BackButton";
+import { style } from "@mui/system";
 
 function OnePager() {
   return (
-    <Container
+    <div
       style={{
-        width: "60%",
-        backgroundColor: "#f7f4ef",
-        borderRadius: "15px",
-        paddingBottom: "20px",
-        maxWidth: "none",
-        marginLeft: "30px",
+        backgroundImage: `url(${background})`,
+        //Photo by <a href="https://unsplash.com/@brookelark?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Brooke Lark</a> on <a href="https://unsplash.com/s/photos/rainbow-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        padding: "20px",
       }}
     >
-      <h1 className="p-4 box mt-3 text-center">About Culinary Collective</h1>
-
-      <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-        <Button
-          variant="primary"
+      <div
+        style={{
+          padding: "40px",
+          position: "relative",
+          margin: "20px 0 0 0",
+          height: "300px",
+          width: "1100px",
+        }}
+      >
+        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+          <BackButton />
+        </Link>
+        <div
           style={{
-            backgroundColor: "#feaa00",
-            borderColor: "#feaa00",
-            padding: "0.25rem",
-            margin: "1%",
+            width: "500px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            position: "absolute",
           }}
         >
-          Back
-        </Button>
-      </Link>
-    </Container>
+          <iframe
+            style={{
+              marginBottom: "1.75em",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+            src="https://drive.google.com/file/d/1JpjZP8if2OXLPN0DgOxABT-j_ldQpCSv/preview"
+            width="700"
+            height="1000"
+            allow="autoplay"
+          ></iframe>
+        </div>
+      </div>
+    </div>
   );
 }
 
