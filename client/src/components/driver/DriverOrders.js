@@ -1,16 +1,24 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import LoadingScreen from "../navigation/LoadingScreen";
+import { ImCheckmark2 } from "react-icons/im";
 
 const DriverOrders = () => {
   const [orders, setOrders] = useState();
   const myStyle = { fontFamily: "Bebas Neue" };
+  const { db, user } = useUserAuth();
 
   const dateToday = new Date().toDateString();
-  const { db, user } = useUserAuth();
 
   useEffect(() => {
     const getOrdersData = async () => {
@@ -36,6 +44,17 @@ const DriverOrders = () => {
     textDecoration: "none",
   };
 
+  const handleDeliver = async (ID) => {
+    try {
+      let collRef = collection(db, "orders");
+      console.log("collRef", collRef);
+      let docRef = doc(collRef, ID);
+      console.log("docRef", docRef);
+      await setDoc(docRef, { orderStatus: "Complete" }, { merge: true });
+    } catch (e) {
+      console.log("error at handleComplete..", e.message);
+    }
+  };
   console.log("orders driver dash", orders);
   if (orders) {
     return (
@@ -86,6 +105,17 @@ const DriverOrders = () => {
                         </Card.Link>
                       </Button>
                     </Card.Footer>
+                    <Button
+                      variant="success"
+                      style={{ margin: "10px", width: "auto" }}
+                      onClick={() => handleDeliver(order.DOC_ID)}
+                    >
+                     
+
+                      <ImCheckmark2 style={{margin: "3px"}}/>
+                     
+                      Mark Delivered
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>
