@@ -32,11 +32,17 @@ const Footer = () => {
           </ul>
         </li>
         <li className="navItem">
-          <h2 className="navTitle">Learn More</h2>
+          <Link to="/onepager">
+            <li className="navTitle">Learn More</li>
+          </Link>
           <ul className="navList">
-            <li>About Us</li>
+            <Link to="/onepager">
+              <li>About Us</li>
+            </Link>
 
-            <li>Mission</li>
+            <Link to="/onepager">
+              <li>Mission</li>
+            </Link>
 
             <li>
               <a href="mailto:?subject=Culinary Collective <3 &amp;body=Hello friend, check out this amazing site for local home based businesses and commissary kitchens! Hope you like it :)">
