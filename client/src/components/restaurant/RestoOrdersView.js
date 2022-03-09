@@ -18,7 +18,6 @@ import { usePendings } from "./RestoOrdersViewPendingContext";
 const LiveOrders = () => {
   const myStyle = { fontFamily: "Bebas Neue" };
   const { db, user } = useUserAuth();
-  const [status, setStatus] = useState(null);
   const [orders, setOrders] = useState();
   const [pendingOrders, setPendingOrders] = useState([]);
 
@@ -48,7 +47,7 @@ const LiveOrders = () => {
     // pendingOrders = orders.forEach()
     getData();
     //filterPendings();
-  }, [user.uid, status]);
+  }, [user.uid]);
   console.log("orders..", orders);
 
   useEffect(() => {
@@ -158,11 +157,7 @@ const LiveOrders = () => {
               ))}
             </Tab>
             <Tab eventKey="All" title="All">
-              <RestoOrdersViewAll
-                status={status}
-                setStatus={setStatus}
-                orders={orders}
-              />
+              <RestoOrdersViewAll orders={orders} />
             </Tab>
           </Tabs>
         </Container>

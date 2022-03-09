@@ -4,6 +4,7 @@ import {
   collection,
   doc,
   getDocs,
+  onSnapshot,
   query,
   setDoc,
   where,
@@ -17,6 +18,8 @@ const DriverOrders = () => {
   const [orders, setOrders] = useState();
   const myStyle = { fontFamily: "Bebas Neue" };
   const { db, user } = useUserAuth();
+  const [completeOrders, setCompleteOrders] = useState();
+  let filtered = [];
 
   const dateToday = new Date().toDateString();
 
@@ -26,13 +29,16 @@ const DriverOrders = () => {
         let collRef = collection(db, "orders");
 
         const q = query(collRef, where("orderDate", "==", dateToday));
-        const querySnapshot = await getDocs(q);
-        console.log("querySnapShot", querySnapshot);
-        let newData = querySnapshot.docs.map((doc) => ({
+        const unsubscribe = await onSnapshot(q, (querySnapshot)=>{let newData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
           DOC_ID: doc.id,
-        }));
+        }))
+      
         setOrders(newData);
+      
+      });
+      return unsubscribe;
+        
       } catch (e) {
         console.log("error", e.message);
       }
@@ -50,12 +56,25 @@ const DriverOrders = () => {
       console.log("collRef", collRef);
       let docRef = doc(collRef, ID);
       console.log("docRef", docRef);
-      await setDoc(docRef, { orderStatus: "Complete" }, { merge: true });
+      await setDoc(docRef, { orderStatus: "Delivered" }, { merge: true });
     } catch (e) {
       console.log("error at handleComplete..", e.message);
     }
   };
   console.log("orders driver dash", orders);
+
+  useEffect(() => {
+    const filterPendings = () => {
+      filtered = orders.filter((order) => {
+        return order.orderStatus == "Complete";
+      });
+      console.log("filtered is", filtered);
+      setCompleteOrders(filtered);
+    };
+    if (orders) {
+      filterPendings();
+    }
+  }, [orders]);
   if (orders) {
     return (
       <>
@@ -70,11 +89,11 @@ const DriverOrders = () => {
           }}
         >
           <h1 className="p-4 box text-center" style={myStyle}>
-            Today's total deliveries: {orders?.length}
+            Today's total deliveries: {completeOrders?.length}
           </h1>
 
           <Row xs={1} md={4}>
-            {orders?.map((order) => (
+            {completeOrders?.map((order) => (
               <Col>
                 <Card style={{ margin: "auto", marginBottom: "10px" }}>
                   <Card.Body>
@@ -110,10 +129,7 @@ const DriverOrders = () => {
                       style={{ margin: "10px", width: "auto" }}
                       onClick={() => handleDeliver(order.DOC_ID)}
                     >
-                     
-
-                      <ImCheckmark2 style={{margin: "3px"}}/>
-                     
+                      <ImCheckmark2 style={{ margin: "3px" }} />
                       Mark Delivered
                     </Button>
                   </Card.Body>
