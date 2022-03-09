@@ -96,7 +96,7 @@ const LiveOrders = () => {
           }}
         >
           <h1 className="p-4 box mt-3 text-center" style={myStyle}>
-            Orders
+            Orders 
           </h1>
           <Tabs
             defaultActiveKey="Live"
@@ -104,6 +104,9 @@ const LiveOrders = () => {
             className="mb-3"
           >
             <Tab eventKey="Live" title="Live Orders">
+            <h3 className="p-4 box mt-3 text-center" style={myStyle}>
+            In progress: {pendingOrders?.length} 
+          </h3>
               {pendingOrders?.map((order) => (
                 <Card
                   style={{
