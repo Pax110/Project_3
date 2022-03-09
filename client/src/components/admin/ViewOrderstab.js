@@ -18,12 +18,10 @@ const ViewOrderstab = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
   const [orders, setOrders] = useState();
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
   const [sortedSearch, setSortedSearch] = useState("");
 
   useEffect(() => {
-    
-
     const getData = async () => {
       const collRef = collection(db, "orders");
       const q = query(collRef);
@@ -42,12 +40,13 @@ const ViewOrderstab = () => {
   useEffect(() => {
     const transformSearch = (o) => {
       let sorted = o;
-      console.log("sorted is ", sorted);
-
-      sorted = sorted.filter((order) => {
-        return   search == order.orderId;
-      });
-      console.log("sorted2 is ", sorted);
+      if (search != "") {
+        sorted = sorted.filter((order) => {
+          return search == order.orderId;
+        });
+      } else {
+        return sorted;
+      }
       return sorted;
     };
     if (orders) {
@@ -72,7 +71,6 @@ const ViewOrderstab = () => {
                   setSearch(e.target.value);
                   console.log(search);
                 }}
-                
               />
             </Col>
 
@@ -88,9 +86,7 @@ const ViewOrderstab = () => {
             <Col>
               <Button>Generate report </Button>
             </Col>
-            <Col>
-            
-            </Col>
+            <Col></Col>
           </Row>
         </Container>
         <Table bordered>
@@ -135,7 +131,9 @@ const ViewOrderstab = () => {
                       <td>$ {order.orderTotal}</td>
 
                       {order.orderStatus === "Delivered" ? (
-                       <td style={{ color: "green", fontWeight: "bold" }}>{order.orderStatus}</td>
+                        <td style={{ color: "green", fontWeight: "bold" }}>
+                          {order.orderStatus}
+                        </td>
                       ) : (
                         <td style={{ color: "red" }}>{order.orderStatus}</td>
                       )}
