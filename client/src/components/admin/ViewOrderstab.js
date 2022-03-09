@@ -13,7 +13,9 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import { FcSearch } from "react-icons/fc";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 const ViewOrderstab = () => {
   const { db } = useFirebase();
   const { user } = useUserAuth();
@@ -54,6 +56,14 @@ const ViewOrderstab = () => {
       setSortedSearch(result);
     }
   }, [search]);
+  const head = [["Order No.", "Order Date", "Order Time", "Order Amount", "Restaurant Name", "Order Status"]];
+  const body = orders;
+  const doc = new jsPDF();
+  const handlePdf = () => {
+    doc.autoTable({ head: head, body: body });
+    doc.save("Report.pdf");
+  };
+
 
   if (orders) {
     return (
@@ -84,7 +94,7 @@ const ViewOrderstab = () => {
               </div>
             </Col>
             <Col>
-              <Button>Generate report </Button>
+              <Button onClick={handlePdf}>Generate report </Button>
             </Col>
             <Col></Col>
           </Row>
@@ -105,8 +115,8 @@ const ViewOrderstab = () => {
             ? sortedSearch.map((order, index) => {
                 return (
                   <>
-                    <tbody key={index+1} style={{ textAlign: "center" }}>
-                      <td>{index+1}</td>
+                    <tbody key={index + 1} style={{ textAlign: "center" }}>
+                      <td>{index + 1}</td>
                       <td>{order.orderId}</td>
                       <td>{order.orderDate}</td>
                       <td>{order.orderTime}</td>
