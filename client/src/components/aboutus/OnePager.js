@@ -4,6 +4,7 @@ import React from "react";
 import background from "../landingimage/donut.jpg";
 import BackButton from "../navigation/BackButton";
 import { style } from "@mui/system";
+import image from "./CulinaryCollectivebyOpenSorcerers-1.jpg";
 
 function OnePager() {
   return (
@@ -17,38 +18,13 @@ function OnePager() {
         padding: "20px",
       }}
     >
+      <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+        <BackButton />
+      </Link>
       <div
-        style={{
-          padding: "40px",
-          position: "relative",
-          margin: "20px 0 0 0",
-          height: "300px",
-          width: "1100px",
-        }}
+        style={{ display: "flex", justifyContent: "center", margin: "0 auto" }}
       >
-        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-          <BackButton />
-        </Link>
-        <div
-          style={{
-            width: "500px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            position: "absolute",
-          }}
-        >
-          <iframe
-            style={{
-              marginBottom: "1.75em",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-            src="https://drive.google.com/file/d/1JpjZP8if2OXLPN0DgOxABT-j_ldQpCSv/preview"
-            width="700"
-            height="1000"
-            allow="autoplay"
-          ></iframe>
-        </div>
+        <img src={image} />
       </div>
     </div>
   );
