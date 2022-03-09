@@ -97,6 +97,7 @@ const ViewOrderstab = () => {
               <th>Order Date</th>
               <th>Order Time</th>
               <th>Order Amount</th>
+              <th>Restaurant Name</th>
               <th>Order Status</th>
             </tr>
           </thead>
@@ -104,15 +105,18 @@ const ViewOrderstab = () => {
             ? sortedSearch.map((order, index) => {
                 return (
                   <>
-                    <tbody key={index} style={{ textAlign: "center" }}>
-                      <td>{index}</td>
+                    <tbody key={index+1} style={{ textAlign: "center" }}>
+                      <td>{index+1}</td>
                       <td>{order.orderId}</td>
                       <td>{order.orderDate}</td>
                       <td>{order.orderTime}</td>
                       <td>$ {order.orderTotal}</td>
+                      <td> {order.restaurantName}</td>
 
-                      {order.orderStatus === "Complete" ? (
-                        <td style={{ color: "green" }}>{order.orderStatus}</td>
+                      {order.orderStatus === "Delivered" ? (
+                        <td style={{ color: "green", fontWeight: "bold" }}>
+                          {order.orderStatus}
+                        </td>
                       ) : (
                         <td style={{ color: "red" }}>{order.orderStatus}</td>
                       )}
