@@ -18,6 +18,7 @@ const DriverDash = () => {
         backgroundSize: "cover",
         padding: "20px",
         height: "100%",
+        marginTop: "-10px",
       }}
     >
       <Container

@@ -127,9 +127,12 @@ const ViewOrderstab = () => {
                         <td style={{ color: "green", fontWeight: "bold" }}>
                           {order.orderStatus}
                         </td>
-                      ) : (
+                      ) : order.orderStatus === "Pending" ?(
                         <td style={{ color: "red" }}>{order.orderStatus}</td>
-                      )}
+                      ) :
+                      <td style={{ color: "black" }}>{order.orderStatus}</td>
+                      
+                      }
                     </tbody>
                   </>
                 );
@@ -143,14 +146,18 @@ const ViewOrderstab = () => {
                       <td>{order.orderDate}</td>
                       <td>{order.orderTime}</td>
                       <td>$ {order.orderTotal}</td>
+                      <td> {order.restaurantName}</td>
 
                       {order.orderStatus === "Delivered" ? (
                         <td style={{ color: "green", fontWeight: "bold" }}>
                           {order.orderStatus}
                         </td>
-                      ) : (
+                      ) : order.orderStatus === "Pending" ?(
                         <td style={{ color: "red" }}>{order.orderStatus}</td>
-                      )}
+                      ) :
+                      <td style={{ color: "black" }}>{order.orderStatus}</td>
+                      
+                      }
                     </tbody>
                   </>
                 );
