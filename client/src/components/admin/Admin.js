@@ -14,6 +14,7 @@ import DriverTab from "./DriverTab";
 import OthersTab from "./OthersTab";
 import ViewOrderstab from "./ViewOrderstab";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
+import AnalyticsTab from "./AnalyticsTab";
 
 const Admin = () => {
   const { db } = useFirebase();
@@ -90,6 +91,9 @@ const Admin = () => {
         </Tab>
         <Tab eventKey="ViewOrders" title="View Orders">
           <ViewOrderstab />
+        </Tab>
+        <Tab eventKey="Analytics" title="Analytics">
+          <AnalyticsTab />
         </Tab>
       </Tabs>
     </Container>
