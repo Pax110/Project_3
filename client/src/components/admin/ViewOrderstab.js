@@ -15,6 +15,7 @@ import {
 } from "react-bootstrap";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import image from '../landingimage/cc.png'
 
 const ViewOrderstab = () => {
   const { db } = useFirebase();
@@ -22,6 +23,9 @@ const ViewOrderstab = () => {
   const [orders, setOrders] = useState();
   const [search, setSearch] = useState("");
   const [sortedSearch, setSortedSearch] = useState("");
+  let verticalOffset = 125;
+  let horizontalOffset = 66;
+  let arrayData = []
 
   useEffect(() => {
     const getData = async () => {
@@ -56,10 +60,29 @@ const ViewOrderstab = () => {
       setSortedSearch(result);
     }
   }, [search]);
-  const head = [["Order No.", "Order Date", "Order Time", "Order Amount", "Restaurant Name", "Order Status"]];
-  const body = orders;
-  const doc = new jsPDF();
   const handlePdf = () => {
+
+
+    if(orders){
+    
+     arrayData =  orders.map((order)=>{
+        let temp = []
+          temp.push(order.orderId)
+          temp.push(order.orderDate)
+          temp.push(order.orderTime)
+          temp.push(order.orderTotal)
+          temp.push(order.restaurantName)
+          temp.push(order.orderStatus)
+
+          return temp
+        
+      })
+      console.log("arraydata is",arrayData)
+    }
+    const head = [["Order No.", "Order Date", "Order Time", "Order Amount", "Restaurant Name", "Order Status"]];
+    const body = arrayData;
+    let doc = new jsPDF();
+
     doc.autoTable({ head: head, body: body });
     doc.save("Report.pdf");
   };
