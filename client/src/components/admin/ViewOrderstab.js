@@ -137,7 +137,7 @@ const ViewOrderstab = () => {
       dateToday +
         "  " +
         " | Total Sale $ " +
-        total +
+        total.toFixed(2) +
         "             | Orders: " +
         dailyOrdersNumber,
       14,
