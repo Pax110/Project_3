@@ -16,7 +16,7 @@ import {
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import image from "../landingimage/cc.png";
-import {FaArrowAltCircleDown} from 'react-icons/fa'
+import { FaArrowAltCircleDown } from "react-icons/fa";
 
 const ViewOrderstab = () => {
   const { db } = useFirebase();
@@ -101,7 +101,7 @@ const ViewOrderstab = () => {
     const body = allOrderData;
     let doc = new jsPDF();
     doc.text("CULINARY COLLECTIVE", 14, 12);
-    
+
     doc.autoTable({ head: head, body: body });
     doc.save("Report.pdf");
   };
@@ -123,18 +123,27 @@ const ViewOrderstab = () => {
 
       return temp;
     });
-    let dailyOrdersNumber = dailyOrdersData.length
-    console.log("dailySalesData", dailyOrdersData)
-    const total = dailyOrdersData.reduce(( currentTotal, order)=>{
-          return +order.orderTotal + currentTotal
-    },0)
-    console.log("total", total)
-    setTotalAmount(total)
+    let dailyOrdersNumber = dailyOrdersData.length;
+    console.log("dailySalesData", dailyOrdersData);
+    const total = dailyOrdersData.reduce((currentTotal, order) => {
+      return +order.orderTotal + currentTotal;
+    }, 0);
+    console.log("total", total);
+    setTotalAmount(total);
 
     const body2 = dailyOrders;
     let doc = new jsPDF();
-    doc.text(dateToday+"  "+ " | Total Sale $ " + total + "             | Orders: "+ dailyOrdersNumber, 14, 12);
- 
+    doc.text(
+      dateToday +
+        "  " +
+        " | Total Sale $ " +
+        total +
+        "             | Orders: " +
+        dailyOrdersNumber,
+      14,
+      12
+    );
+
     doc.autoTable({ head: head, body: body2 });
     doc.save("Daily Report.pdf");
   };
@@ -168,13 +177,19 @@ const ViewOrderstab = () => {
               </div>
             </Col>
             <Col>
-              <Button onClick={handlePdf}> <FaArrowAltCircleDown style={{margin: "3px"}}/> Generate report </Button>
+              <Button onClick={handlePdf}>
+                {" "}
+                <FaArrowAltCircleDown style={{ margin: "3px" }} /> Generate
+                report{" "}
+              </Button>
             </Col>
             <Col>
-            
-              <Button onClick={handleDailySales}>  <FaArrowAltCircleDown style={{margin: "3px"}}/> Daily sales report </Button>
+              <Button onClick={handleDailySales}>
+                {" "}
+                <FaArrowAltCircleDown style={{ margin: "3px" }} /> Daily sales
+                report{" "}
+              </Button>
             </Col>
-           
           </Row>
         </Container>
         <Table bordered>
