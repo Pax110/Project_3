@@ -62,7 +62,7 @@ const Navbar = () => {
     const getuserData = async () => {
       try {
         const info = await getUserProfile();
-        console.log("info ", info);
+ 
         setUserInfo(info);
       } catch (e) {
         console.log("error", e.message);
@@ -109,9 +109,8 @@ const Navbar = () => {
   };
 
   const titleFont = "'Bebas Neue'";
-  const driver = userInfo?.role.includes("Driver");
-  console.log("is Driver?", driver);
-  console.log("numPending is", numPending);
+  //const driver = userInfo?.role.includes("Driver");
+
   return (
     <>
       <AppBar
