@@ -244,7 +244,7 @@ const DriverSignUpForm = () => {
                 >
                   <Modal.Header closeButton>
                     <Modal.Title>
-                      Thank you for your interest to join Culinary Collective.
+                      Thank you for your interest to join Chef-Hire.
                     </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>We will get back to you shortly!</Modal.Body>
@@ -268,7 +268,7 @@ const DriverSignUpForm = () => {
                 >
                   <Modal.Header closeButton>
                     <Modal.Title>
-                      Thank you for your interest to join Culinary Collective.
+                      Thank you for your interest to join Chef-Hire.
                     </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>Please sign up and try again!</Modal.Body>

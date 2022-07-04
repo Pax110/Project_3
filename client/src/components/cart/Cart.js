@@ -43,7 +43,7 @@ const Cart = () => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
-    console.log("cart value", cart);
+   
   }, [cart]);
   useEffect(() => {
     const getAddressData = async () => {
@@ -53,7 +53,7 @@ const Cart = () => {
         const querySnapshot = await getDoc(docRef);
 
         const newData = querySnapshot.data();
-        console.log("new Data", newData);
+
         const address = newData.address;
         const fullName = newData.firstName + " " + newData.lastName;
         const phoneNumber = newData.phone;

@@ -19,7 +19,7 @@ const AboutUs = () => {
       }}
     >
       <h1 className="p-4 box mt-3 text-center" style={myStyle}>
-        About Culinary Collective
+        About Chef-Hire
       </h1>
       <div>
         <h6>

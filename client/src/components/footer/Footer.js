@@ -7,13 +7,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footerAddress">
-        <h1 className="footerLogo"> CULINARY COLLECTIVE</h1>
+        <h1 className="footerLogo"> Chef Hire</h1>
 
-        <h2>
-          Open Sorcerers 🧙‍♂️ <br /> Kate, Michelle and Pax
-        </h2>
-
-        <address>404 InceptionU Lane, Calgary, AB H3H 3H3</address>
+      
       </div>
       <ul className="footerNav">
         <li className="navItem">
@@ -45,7 +41,7 @@ const Footer = () => {
             </Link>
 
             <li>
-              <a href="mailto:?subject=Culinary Collective <3 &amp;body=Hello friend, check out this amazing site for local home based businesses and commissary kitchens! Hope you like it :)">
+              <a href="mailto:?subject=CHEF-HIRE <3 &amp;body=Hello friend, check out this amazing site for local home based businesses and commissary kitchens! Hope you like it :)">
                 Tell a Friend{" "}
               </a>
             </li>
@@ -61,7 +57,7 @@ const Footer = () => {
         </li>
       </ul>
       <div className="bottom">
-        <p>&copy; 2022 Project Three. All rights reserved.</p>
+        <p>2022. All rights reserved.</p>
 
         <div className="bottomMessage">
           <span>

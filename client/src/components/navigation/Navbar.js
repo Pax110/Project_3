@@ -61,15 +61,19 @@ const Navbar = () => {
   useEffect(() => {
     const getuserData = async () => {
       try {
-        const info = await getUserProfile();
-        console.log("info ", info);
-        setUserInfo(info);
+
+        if(user){
+
+          const info = await getUserProfile();
+          setUserInfo(info);
+        }
+ 
       } catch (e) {
         console.log("error", e.message);
       }
     };
     getuserData();
-  }, [user]);
+  }, []);
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -109,9 +113,8 @@ const Navbar = () => {
   };
 
   const titleFont = "'Bebas Neue'";
-  const driver = userInfo?.role.includes("Driver");
-  console.log("is Driver?", driver);
-  console.log("numPending is", numPending);
+  //const driver = userInfo?.role.includes("Driver");
+
   return (
     <>
       <AppBar
@@ -135,7 +138,7 @@ const Navbar = () => {
                   fontFamily: titleFont,
                 }}
               >
-                CULINARY COLLECTIVE
+                CHEF-HIRE
               </Typography>
             </Link>
 
@@ -214,7 +217,7 @@ const Navbar = () => {
                 fontFamily: titleFont,
               }}
             >
-              CULINARY COLLECTIVE
+              CHEF-HIRE
             </Typography>
             {currentUser && (
               <Box

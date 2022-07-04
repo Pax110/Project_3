@@ -8,16 +8,16 @@ import { getAuth } from "firebase/auth";
 export const FirebaseContext = React.createContext({});
 
 const config = {
-  apiKey: "AIzaSyDa0LD1FY_-s8G9Sq__4jyQaHnCtwVs4O4",
-  authDomain: "project-c1c8c.firebaseapp.com",
-  projectId: "project-c1c8c",
-  storageBucket: "project-c1c8c.appspot.com",
-  messagingSenderId: "828436672252",
-  appId: "1:828436672252:web:42afbb782a929e5f497179",
-  measurementId: "G-D18T0N5LVG",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_MESSAGING_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 const app = initializeApp(config);
-//console.log(`config is : `, config);
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const store = getStorage(app);

@@ -45,12 +45,12 @@ const ViewOrderstab = () => {
       const collRef = collection(db, "orders");
       const q = query(collRef);
       const querySnapshot = await getDocs(q);
-      console.log("q", querySnapshot);
+
       let newData = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         DOC_ID: doc.id,
       }));
-      console.log("new data", newData);
+  
       setOrders(newData);
     };
     getData();
@@ -100,7 +100,7 @@ const ViewOrderstab = () => {
     ];
     const body = allOrderData;
     let doc = new jsPDF();
-    doc.text("CULINARY COLLECTIVE", 14, 12);
+    doc.text("CHEF-HIRE", 14, 12);
 
     doc.autoTable({ head: head, body: body });
     doc.save("Report.pdf");
@@ -124,11 +124,11 @@ const ViewOrderstab = () => {
       return temp;
     });
     let dailyOrdersNumber = dailyOrdersData.length;
-    console.log("dailySalesData", dailyOrdersData);
+  
     const total = dailyOrdersData.reduce((currentTotal, order) => {
       return +order.orderTotal + currentTotal;
     }, 0);
-    console.log("total", total);
+
     setTotalAmount(total);
 
     const body2 = dailyOrders;
@@ -162,7 +162,7 @@ const ViewOrderstab = () => {
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
-                  console.log(search);
+             
                 }}
               />
             </Col>

@@ -7,8 +7,7 @@ const PrintReceipt = ({ order }) => {
   const { orderTotal, restaurantName, orderItems, orderDate, orderTime } =
     order;
 
-  console.log("total", orderTotal);
-  console.log("restaurantName is ", restaurantName);
+ 
   const handlePdf = () => {
     let verticalOffset = 125;
     let horizontalOffset = 66;
@@ -16,7 +15,7 @@ const PrintReceipt = ({ order }) => {
     let itemSpace = 50;
     let doc = new jsPDF("portrait", "px", "letter", "false");
 
-    doc.text("CULINARY COLLECTIVE", horizontalOffset, verticalOffset);
+    doc.text("CHEF-HIRE", horizontalOffset, verticalOffset);
     doc.addImage(image, "PNG", 300, 80, 50, 50);
     verticalOffset += lineSpace;
     doc.text("Order Receipt", horizontalOffset, verticalOffset);
@@ -29,8 +28,7 @@ const PrintReceipt = ({ order }) => {
     doc.text(restaurantName, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
     orderItems.map((item, index) => {
-      console.log("itemmm", item);
-      console.log("index", index + 1);
+   
 
       doc.text(
         ["Name: " + item.name, "Qty: " + item.qty, "Price: $" + item.price],
@@ -42,7 +40,7 @@ const PrintReceipt = ({ order }) => {
 
     doc.text("Total: " + orderTotal, horizontalOffset, verticalOffset);
 
-    doc.save("Culinary Collective Order Receipt");
+    doc.save("Chef-Hire Order Receipt");
   };
 
   return (

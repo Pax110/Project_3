@@ -17,13 +17,13 @@ const AdminUsersProfile = ({ data }) => {
 
         const q = query(collRef, where("uid", "==", id));
         const querySnapshot = await getDocs(q);
-        console.log("querySnapShot", querySnapshot);
+ 
         let newData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
           DOC_ID: doc.id,
         }));
         setUserProfile(newData);
-        console.log("Order history: ", newData);
+    
       } catch (e) {
         console.log("error", e.message);
       }
@@ -44,13 +44,13 @@ const AdminUsersProfile = ({ data }) => {
 
         const q = query(collRef, where("customerId", "==", id));
         const querySnapshot = await getDocs(q);
-        console.log("querySnapShot", querySnapshot);
+
         let newData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
           DOC_ID: doc.id,
         }));
         setOrders(newData);
-        console.log("Order history: ", newData);
+
       } catch (e) {
         console.log("error", e.message);
       }
@@ -58,7 +58,7 @@ const AdminUsersProfile = ({ data }) => {
 
     getData();
   }, [user.uid]);
-  console.log("userProfile", userProfile);
+
   return (
     <Container
       style={{

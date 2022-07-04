@@ -17,7 +17,7 @@ const CartProvider = ({ children }) => {
   });
 
   const clearCart = () => {
-    console.log("clear cart now");
+   
     dispatch({
       type: "RESET_CART",
       payload: null,

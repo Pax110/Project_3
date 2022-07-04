@@ -31,9 +31,9 @@ export function UserAuthContextProvider({ children }) {
     let docRef = doc(collRef, user.uid);
     const docSnap = await getDoc(docRef)
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+    
       const userInfo = docSnap.data()
-      console.log("userInfor in UserAuthContext", userInfo)
+   
       return userInfo
     } else {
       // doc.data() will be undefined in this case

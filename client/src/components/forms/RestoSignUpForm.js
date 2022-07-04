@@ -121,7 +121,7 @@ const RestoSignUpForm = () => {
         >
           <div className="p-4 box">
             <h2 className="text-center" style={myStyle}>
-              Join Culinary Collective!
+              Join Chef-Hire!
             </h2>
             <p className="mb-3 text-center">Grow Your Business Today</p>
             <Form
@@ -327,7 +327,7 @@ const RestoSignUpForm = () => {
                 >
                   <Modal.Header closeButton>
                     <Modal.Title>
-                      Thank you for your interest to join Culinary Collective.
+                      Thank you for your interest to join CHEF-HIRE.
                     </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>Please sign up and try again!</Modal.Body>
