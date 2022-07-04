@@ -17,7 +17,7 @@ export const cartReducer = (state, action) => {
         ),
       };
     case "RESET_CART":
-      console.log("trying to reset cart");
+     
       return {
         ...state,
         cart: [],

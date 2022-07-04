@@ -45,7 +45,7 @@ const Admin = () => {
       userData?.filter((user) => {
         user.role.includes("Customer") == true && setCustomer(user);
       });
-      console.log("customer is", customer);
+  
     };
     const filterBusiness = () => {};
     const filterDrivers = () => {};
@@ -55,7 +55,7 @@ const Admin = () => {
       filterCustomers();
     }
   }, []);
-  console.log("userdata", userData);
+
   return (
     <Container
       style={{

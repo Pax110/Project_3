@@ -7,8 +7,7 @@ const PrintReceipt = ({ order }) => {
   const { orderTotal, restaurantName, orderItems, orderDate, orderTime } =
     order;
 
-  console.log("total", orderTotal);
-  console.log("restaurantName is ", restaurantName);
+ 
   const handlePdf = () => {
     let verticalOffset = 125;
     let horizontalOffset = 66;
@@ -29,8 +28,7 @@ const PrintReceipt = ({ order }) => {
     doc.text(restaurantName, horizontalOffset, verticalOffset);
     verticalOffset += lineSpace;
     orderItems.map((item, index) => {
-      console.log("itemmm", item);
-      console.log("index", index + 1);
+   
 
       doc.text(
         ["Name: " + item.name, "Qty: " + item.qty, "Price: $" + item.price],

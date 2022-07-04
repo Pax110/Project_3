@@ -29,13 +29,13 @@ const OrderHistory = () => {
           orderBy("orderDate")
         );
         const querySnapshot = await getDocs(q);
-        console.log("querySnapShot", querySnapshot);
+        
         let newData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
           DOC_ID: doc.id,
         }));
         setOrders(newData);
-        console.log("Order history: ", newData);
+       
       } catch (e) {
         console.log("error", e.message);
       }

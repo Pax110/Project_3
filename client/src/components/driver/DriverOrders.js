@@ -53,9 +53,9 @@ const DriverOrders = () => {
   const handleDeliver = async (ID) => {
     try {
       let collRef = collection(db, "orders");
-      console.log("collRef", collRef);
+      
       let docRef = doc(collRef, ID);
-      console.log("docRef", docRef);
+      
       await setDoc(docRef, { orderStatus: "Delivered" }, { merge: true });
     } catch (e) {
       console.log("error at handleComplete..", e.message);

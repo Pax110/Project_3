@@ -12,7 +12,7 @@ const Filters = () => {
     itemDispatch,
   } = CartState();
 
-  console.log(byBookedDelivery, byAsapDelivery, byRating, bySearchQuery);
+
 
   return (
     <div className="filters" style={{ height: "300px" }}>

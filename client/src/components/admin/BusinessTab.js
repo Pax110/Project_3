@@ -27,7 +27,7 @@ const BusinessTab = () => {
      
     }
   }, []);
-  console.log("Business",userData)
+ 
   return <Table bordered>
   <thead>
     <tr style={{ backgroundColor: "white" }}>
