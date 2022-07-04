@@ -135,7 +135,7 @@ const Navbar = () => {
                   fontFamily: titleFont,
                 }}
               >
-                CULINARY COLLECTIVE
+                CHEF-HIRE
               </Typography>
             </Link>
 
@@ -214,7 +214,7 @@ const Navbar = () => {
                 fontFamily: titleFont,
               }}
             >
-              CULINARY COLLECTIVE
+              CHEF-HIRE
             </Typography>
             {currentUser && (
               <Box

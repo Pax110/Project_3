@@ -100,7 +100,7 @@ const ViewOrderstab = () => {
     ];
     const body = allOrderData;
     let doc = new jsPDF();
-    doc.text("CULINARY COLLECTIVE", 14, 12);
+    doc.text("CHEF-HIRE", 14, 12);
 
     doc.autoTable({ head: head, body: body });
     doc.save("Report.pdf");

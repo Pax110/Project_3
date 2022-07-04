@@ -15,7 +15,7 @@ const PrintReceipt = ({ order }) => {
     let itemSpace = 50;
     let doc = new jsPDF("portrait", "px", "letter", "false");
 
-    doc.text("CULINARY COLLECTIVE", horizontalOffset, verticalOffset);
+    doc.text("CHEF-HIRE", horizontalOffset, verticalOffset);
     doc.addImage(image, "PNG", 300, 80, 50, 50);
     verticalOffset += lineSpace;
     doc.text("Order Receipt", horizontalOffset, verticalOffset);
@@ -40,7 +40,7 @@ const PrintReceipt = ({ order }) => {
 
     doc.text("Total: " + orderTotal, horizontalOffset, verticalOffset);
 
-    doc.save("Culinary Collective Order Receipt");
+    doc.save("Chef-Hire Order Receipt");
   };
 
   return (

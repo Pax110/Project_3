@@ -23,7 +23,7 @@ import DriverOrdersPage from "../pages/DriverOrdersPage";
 import DriverSignUpPage from "../components/driver/DriverSignUpPage";
 import EditChefProfilePage from "../pages/EditChefProfilePage";
 import WheelPage from "../components/wheel/WheelPage";
-import OnePager from "../components/aboutus/OnePager";
+
 
 const Router = () => {
   return (
@@ -34,7 +34,7 @@ const Router = () => {
 
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/onepager" element={<OnePager />} />
+        {/* <Route path="/onepager" element={<OnePager />} /> */}
 
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route
