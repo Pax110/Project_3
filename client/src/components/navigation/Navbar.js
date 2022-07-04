@@ -61,15 +61,19 @@ const Navbar = () => {
   useEffect(() => {
     const getuserData = async () => {
       try {
-        const info = await getUserProfile();
+
+        if(user){
+
+          const info = await getUserProfile();
+          setUserInfo(info);
+        }
  
-        setUserInfo(info);
       } catch (e) {
         console.log("error", e.message);
       }
     };
     getuserData();
-  }, [user]);
+  }, []);
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
