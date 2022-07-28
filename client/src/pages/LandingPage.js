@@ -8,7 +8,7 @@ import Filters from "../components/cart/Filters";
 import { Col, Row } from "react-bootstrap";
 import DriverSignUpPage from "../components/driver/DriverSignUpPage";
 import ChefSpotlight from "../components/restaurant/ChefSpotlight";
-
+import"../css/landingpage.css";
 function LandingPage() {
   return (
     <div>
@@ -23,11 +23,11 @@ function LandingPage() {
         }}
       >
         <Row style={{ marginBottom: "30px" }}>
-          <Col className="col-9">
+          <Col className="col-md-8 col-sm-12 col-xs-12">
             <RestoDisplayCard />
           </Col>
-          <Col className="col-3">
-            <Filters style={{ height: "auto" }} />
+          <Col className="col-md-3 col-sm-12 col-xs-12">
+            <Filters />
             <ChefSpotlight />
           </Col>
         </Row>
@@ -36,6 +36,7 @@ function LandingPage() {
             src={logo}
             width="460px"
             height="460px"
+            className="imgAbout"
             style={{ marginLeft: "70px", maxWidth: "none", width: "30%" }}
             alt="logo"
           />
