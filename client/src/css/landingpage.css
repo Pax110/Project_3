@@ -1,0 +1,32 @@
+.slider-img{
+    width: 100%;
+    height: 700px;
+}
+@media(max-width: 768px) {
+    .slider-img{
+        height: 500px;
+    }
+}
+@media(min-width: 768px) {
+.about-us {
+    width: 60% !important;
+    background-color: #f7f4ef !important;
+    border-radius: 15px !important;
+    padding-bottom:20px !important;
+    max-width:none !important;
+  } 
+}
+@media(max-width: 768px) {
+    .about-us {
+        /* width: 60% !important; */
+        background-color: #f7f4ef !important;
+        border-radius: 15px !important;
+        padding-bottom:20px !important;
+        max-width:none !important;
+      } 
+    }
+@media(max-width: 768px) { 
+    .imgAbout{
+        display: none;
+    }   
+}
